@@ -12,7 +12,6 @@ SOURCES += \
     board.cpp \
     boardview.cpp \
     main.cpp \
-    main.cpp \
     mainwindow.cpp \
     player.cpp \
     playerview.cpp \
