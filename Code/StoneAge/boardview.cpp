@@ -54,18 +54,23 @@ BoardView::BoardView(std::shared_ptr<Board> board) : QGraphicsScene()
     QBrush brushwhite;
     brushwhite.setColor(QColor(234,222,210)); //white
     brushwhite.setStyle(Qt::SolidPattern);
+    m_brushes.push_back(brushwhite);
     QBrush brushred;
     brushred.setColor(QColor(237,28,36)); //red
     brushred.setStyle(Qt::SolidPattern);
+    m_brushes.push_back(brushred);
     QBrush brushblue;
     brushblue.setColor(QColor(63,72,204)); //blue
     brushblue.setStyle(Qt::SolidPattern);
+    m_brushes.push_back(brushblue);
     QBrush brushyellow;
     brushyellow.setColor(QColor(255,242,0)); //yellow
     brushyellow.setStyle(Qt::SolidPattern);
+    m_brushes.push_back(brushyellow);
     QBrush brushgreen;
     brushgreen.setColor(QColor(34,177,76)); //green
     brushgreen.setStyle(Qt::SolidPattern);
+    m_brushes.push_back(brushgreen);
 
 
     QGraphicsTextItem* text = new QGraphicsTextItem("Food", hunt);
@@ -278,6 +283,10 @@ BoardView::BoardView(std::shared_ptr<Board> board) : QGraphicsScene()
     field->setBrush(brushwheatyellow);
     this->addItem(field);
 
+    text = new QGraphicsTextItem("Field", field);
+    text->setFont(font);
+    text->moveBy(210,50);
+
     QBrush brushpink;
     brushpink.setColor(QColor(254,184,198)); //love pink
     brushpink.setStyle(Qt::SolidPattern);
@@ -287,6 +296,10 @@ BoardView::BoardView(std::shared_ptr<Board> board) : QGraphicsScene()
     hut->setBrush(brushpink);
     this->addItem(hut);
 
+    text = new QGraphicsTextItem("Hut", hut);
+    text->setFont(font);
+    text->moveBy(210,50);
+
     QBrush brushtoolbrown;
     brushtoolbrown.setColor(QColor(161,133,105)); //tool brown
     brushtoolbrown.setStyle(Qt::SolidPattern);
@@ -295,4 +308,23 @@ BoardView::BoardView(std::shared_ptr<Board> board) : QGraphicsScene()
     toolshed->moveBy(1050,500);
     toolshed->setBrush(brushtoolbrown);
     this->addItem(toolshed);
+
+    text = new QGraphicsTextItem("Tool Shed", toolshed);
+    text->setFont(font);
+    text->moveBy(180,50);
+
+    child = new QGraphicsRectItem(0, 0,300,200, field);
+    child->moveBy(100,150);
+    child->setBrush(brushwhite);
+    m_field = child;
+
+    child = new QGraphicsRectItem(0, 0,300,200, hut);
+    child->moveBy(100,150);
+    child->setBrush(brushwhite);
+    m_hut = child;
+
+    child = new QGraphicsRectItem(0, 0,300,200, toolshed);
+    child->moveBy(100,150);
+    child->setBrush(brushwhite);
+    m_toolshed = child;
 }

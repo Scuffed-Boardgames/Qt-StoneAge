@@ -19,6 +19,10 @@ private:
     std::vector<QGraphicsTextItem*> m_claypitValues;
     std::vector<QGraphicsTextItem*> m_quarryValues;
     std::vector<QGraphicsTextItem*> m_riverValues;
+    QGraphicsRectItem* m_field;
+    QGraphicsRectItem* m_hut;
+    QGraphicsRectItem* m_toolshed;
+    std::vector<QBrush> m_brushes;
 };
 
 #endif // BOARDVIEW_H
