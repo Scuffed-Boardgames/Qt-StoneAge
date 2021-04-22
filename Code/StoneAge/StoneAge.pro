@@ -12,12 +12,15 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     player.cpp \
-    playerview.cpp
+    playerview.cpp \
+    worker.cpp
 
 HEADERS += \
     mainwindow.h \
     player.h \
-    playerview.h
+    playerview.h \
+    recourses.h \
+    worker.h
 
 FORMS += \
     mainwindow.ui
