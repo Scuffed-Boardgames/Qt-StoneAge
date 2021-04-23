@@ -14,7 +14,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(std::shared_ptr<Board> board, QWidget *parent = nullptr);
+    MainWindow(std::shared_ptr<Board> board, QWidget *parent = nullptr);// constructor
     ~MainWindow();
 
 private slots:

@@ -7,13 +7,13 @@ class Player
 {
 public:
     Player();
-    void addRecourse(Recourse recourse, int amount);
-    void addWorker();
+    void addRecourse(Recourse recourse, int amount); // ads a given amount of a given recourse to the player(can be negative)
+    void addWorker();// ads one worker to the players inventory
 //    void addTool();
-    int getRecourse(Recourse recourse);
-    int getScore();
-    int getFoodGain();
-    int getWorkerCount();
+    int getRecourse(Recourse recourse); // gets the amount of a given recourse
+    int getScore(); // gets the score the player curently has
+    int getFoodGain(); // gets the amount of food gain the player curently has
+    int getWorkerCount();// gets the amount of workers the player curently has
 private:
     int m_foodCount;
     int m_woodCount;
