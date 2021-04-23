@@ -60,35 +60,12 @@ QGraphicsRectItem* BoardView::makeSmallPlace(QColor colour, int moveByX,int text
 }
 
 void BoardView::makePlace(QColor colour, QString name, int moveByX, std::vector<QGraphicsTextItem*>* values){
-    QBrush brushwhite;
-    brushwhite.setColor(QColor(234,222,210)); //white
-    brushwhite.setStyle(Qt::SolidPattern);
-    m_brushes.push_back(brushwhite);
-    QBrush brushred;
-    brushred.setColor(QColor(237,28,36)); //red
-    brushred.setStyle(Qt::SolidPattern);
-    m_brushes.push_back(brushred);
-    QBrush brushblue;
-    brushblue.setColor(QColor(63,72,204)); //blue
-    brushblue.setStyle(Qt::SolidPattern);
-    m_brushes.push_back(brushblue);
-    QBrush brushyellow;
-    brushyellow.setColor(QColor(255,242,0)); //yellow
-    brushyellow.setStyle(Qt::SolidPattern);
-    m_brushes.push_back(brushyellow);
-    QBrush brushgreen;
-    brushgreen.setColor(QColor(34,177,76)); //green
-    brushgreen.setStyle(Qt::SolidPattern);
-    m_brushes.push_back(brushgreen);
-
-    QBrush brushforestgreen;
-    brushforestgreen.setColor(colour);
-    brushforestgreen.setStyle(Qt::SolidPattern);
     int rectWidth = 300;
 
     QGraphicsRectItem* parent = new QGraphicsRectItem(0, 0,rectWidth,400);
     parent->moveBy(moveByX,100);
     parent->setBrush(colour);
+    parent->setFlag(QGraphicsItem::ItemIsSelectable, true);
     this->addItem(parent);
 
     QGraphicsTextItem* text = new QGraphicsTextItem(name, parent);
@@ -100,7 +77,7 @@ void BoardView::makePlace(QColor colour, QString name, int moveByX, std::vector<
     QGraphicsRectItem* child;
     child = new QGraphicsRectItem(0, 0,100,100, parent);
     child->moveBy(150,25);
-    child->setBrush(brushwhite);
+    child->setBrush(QColor(234,222,210));
 
     childText = new QGraphicsTextItem("7", child);
     childText->moveBy(22,0);
@@ -108,14 +85,14 @@ void BoardView::makePlace(QColor colour, QString name, int moveByX, std::vector<
     values->push_back(childText);
     child = new QGraphicsRectItem(0, 0,100,100, parent);
     child->moveBy(25,150);
-    child->setBrush(brushred);
+    child->setBrush(QColor(237,28,36));
 
     childText = new QGraphicsTextItem("0", child);
     childText->moveBy(22,0);
     childText->setScale(4);
     child = new QGraphicsRectItem(0, 0,100,100, parent);
     child->moveBy(150,150);
-    child->setBrush(brushblue);
+    child->setBrush(QColor(63,72,204));//blue
 
     childText= new QGraphicsTextItem("0", child);
     childText->moveBy(22,0);
@@ -123,7 +100,7 @@ void BoardView::makePlace(QColor colour, QString name, int moveByX, std::vector<
     values->push_back(childText);
     child = new QGraphicsRectItem(0, 0,100,100, parent);
     child->moveBy(25,275);
-    child->setBrush(brushyellow);
+    child->setBrush(QColor(255,242,0));//yellow
     values->push_back(childText);
 
     childText = new QGraphicsTextItem("0", child);
@@ -132,7 +109,7 @@ void BoardView::makePlace(QColor colour, QString name, int moveByX, std::vector<
     values->push_back(childText);
     child = new QGraphicsRectItem(0, 0,100,100, parent);
     child->moveBy(150,275);
-    child->setBrush(brushgreen);
+    child->setBrush(QColor(34,177,76)); //green
 
     childText = new QGraphicsTextItem("0", child);
     childText->moveBy(22,0);

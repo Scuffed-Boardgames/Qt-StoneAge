@@ -2,6 +2,7 @@
 #define BOARD_H
 
 #include "player.h"
+#include <memory>
 
 class Board
 {

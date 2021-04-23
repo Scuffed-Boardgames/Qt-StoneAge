@@ -15,6 +15,8 @@ SOURCES += \
     mainwindow.cpp \
     player.cpp \
     playerview.cpp \
+    recourses.cpp \
+    rollrecourses.cpp \
     worker.cpp \
     workeradd.cpp
 
@@ -25,11 +27,13 @@ HEADERS += \
     player.h \
     playerview.h \
     recourses.h \
+    rollrecourses.h \
     worker.h \
     workeradd.h
 
 FORMS += \
     mainwindow.ui \
+    rollrecourses.ui \
     workeradd.ui
 
 # Default rules for deployment.
