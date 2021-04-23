@@ -17,6 +17,9 @@ public:
     MainWindow(std::shared_ptr<Board> board, QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_quitButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     BoardView m_boardview;

@@ -7,7 +7,7 @@ class PlayerView : public QGraphicsScene
 {
 public:
     PlayerView(QColor color, std::shared_ptr<Player> player, QObject* parent = nullptr);
-     QGraphicsItem* getItem();
+    void updateText();
 private:
     std::shared_ptr<Player> m_player;
     std::vector<QGraphicsTextItem*> recources;

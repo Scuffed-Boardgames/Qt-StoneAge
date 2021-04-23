@@ -4,6 +4,7 @@
 #include <QGraphicsView>
 #include <QVBoxLayout>
 #include "boardview.h"
+#include "workeradd.h"
 
 int main(int argc, char *argv[])
 {

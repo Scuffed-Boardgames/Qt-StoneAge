@@ -23,6 +23,8 @@ private:
     QGraphicsRectItem* m_hut;
     QGraphicsRectItem* m_toolshed;
     std::vector<QBrush> m_brushes;
+    void makePlace(QColor colour, QString name, int moveByX, std::vector<QGraphicsTextItem*>* values);
+    QGraphicsRectItem* makeSmallPlace(QColor colour, int moveByX,int textMoveX, QString name);
 };
 
 #endif // BOARDVIEW_H

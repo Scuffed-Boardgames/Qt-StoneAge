@@ -15,7 +15,8 @@ SOURCES += \
     mainwindow.cpp \
     player.cpp \
     playerview.cpp \
-    worker.cpp
+    worker.cpp \
+    workeradd.cpp
 
 HEADERS += \
     board.h \
@@ -24,10 +25,12 @@ HEADERS += \
     player.h \
     playerview.h \
     recourses.h \
-    worker.h
+    worker.h \
+    workeradd.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    workeradd.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
