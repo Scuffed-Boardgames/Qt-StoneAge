@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>RollRecourses</class>
- <widget class="QWidget" name="RollRecourses">
+ <class>RollResources</class>
+ <widget class="QWidget" name="RollResources">
   <property name="geometry">
    <rect>
     <x>0</x>
