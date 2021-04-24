@@ -5,7 +5,7 @@
 
 
 
-placeView::placeView(QColor colour, QString name, int moveByX, QGraphicsScene* parentItem, QGraphicsRectItem* father)
+placeView::placeView(QColor colour, QString name, int moveByX, QGraphicsScene* parentItem)
 {
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
     int rectWidth = 300;
@@ -61,30 +61,34 @@ placeView::placeView(QColor colour, QString name, int moveByX, QGraphicsScene* p
 }
 
 void placeView::addWorkers(int amount, Colour colour){
-    switch((int)colour){
-    case(0):{
+    switch(colour){
+    case(Colour::red):{
         QString redTextAmount = m_redAmount->toPlainText();
         int redAmount = redTextAmount.toInt();
         redAmount += amount;
         m_redAmount->setPlainText(QString::number(redAmount));
+        return;
     }
-    case(1):{
+    case(Colour::blue):{
         QString blueTextAmount = m_blueAmount->toPlainText();
         int blueAmount = blueTextAmount.toInt();
         blueAmount += amount;
         m_redAmount->setPlainText(QString::number(blueAmount));
+        return;
     }
-    case(2):{
+    case(Colour::yellow):{
         QString yellowTextAmount = m_yellowAmount->toPlainText();
         int yellowAmount = yellowTextAmount.toInt();
         yellowAmount += amount;
         m_redAmount->setPlainText(QString::number(yellowAmount));
+        return;
     }
-    case(3):{
+    case(Colour::green):{
         QString greenTextAmount = m_greenAmount->toPlainText();
         int greenAmount = greenTextAmount.toInt();
         greenAmount += amount;
         m_redAmount->setPlainText(QString::number(greenAmount));
+        return;
     }
     default:
         return;

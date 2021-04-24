@@ -11,7 +11,7 @@ class placeView : public QGraphicsItem
 {
 
 public:
-    placeView(QColor colour, QString name, int moveByX, QGraphicsScene* parent, QGraphicsRectItem* father = nullptr);
+    placeView(QColor colour, QString name, int moveByX, QGraphicsScene* parent);
     void addWorkers(int amount, Colour colour);
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;

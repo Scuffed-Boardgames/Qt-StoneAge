@@ -5,7 +5,7 @@
 #include <QVBoxLayout>
 #include "boardview.h"
 #include "workeradd.h"
-#include "rollrecourses.h"
+#include "rollresources.h"
 #include <ctime>
 
 

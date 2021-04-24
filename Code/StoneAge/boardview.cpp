@@ -13,7 +13,7 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsS
     m_activeColour = Colour::red;
     int moveByX = 50;
     int rectWidth = 300;
-    m_test = new QGraphicsRectItem;
+//    m_test = new QGraphicsRectItem;
     m_food = std::make_unique<placeView>(QColor(60,125,0), "Food", moveByX, this);//forest green
 //    m_food = new placeView(QColor(60,125,0), "Food", moveByX, this);
     moveByX += rectWidth;
@@ -39,7 +39,6 @@ QGraphicsRectItem* BoardView::makeSmallPlace(QColor colour, int moveByX,int text
     QBrush brushwhite;
     brushwhite.setColor(QColor(234,222,210)); //white
     brushwhite.setStyle(Qt::SolidPattern);
-    m_brushes.push_back(brushwhite);
 
     QBrush brush;
     brush.setColor(colour);

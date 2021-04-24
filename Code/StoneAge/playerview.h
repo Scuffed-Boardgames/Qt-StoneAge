@@ -10,7 +10,7 @@ public:
     void updateText(); // updates player text
 private:
     std::shared_ptr<Player> m_player;
-    std::vector<QGraphicsTextItem*> recources;
+    std::vector<QGraphicsTextItem*> m_recources;
 
 };
 

@@ -21,7 +21,7 @@ private slots:
     void on_quitButton_clicked();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow *m_ui;
     BoardView* m_boardview;
     std::vector<PlayerView*> m_playerviews;
 };

@@ -8,17 +8,17 @@ Player::Player() : m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCoun
     }
 }
 
-void Player::addRecourse(Recourse recourse, int amount){
-    switch ((int)recourse){
-    case(2):
+void Player::addResource(Resource resource, int amount){
+    switch (resource){
+    case(Resource::food):
         m_foodCount += amount;
-    case(3):
+    case(Resource::wood):
         m_woodCount += amount;
-    case(4):
+    case(Resource::clay):
         m_clayCount += amount;
-    case(5):
+    case(Resource::stone):
         m_stoneCount += amount;
-    case(6):
+    case(Resource::gold):
         m_goldCount += amount;
     default:
         return;
@@ -30,8 +30,8 @@ void Player::addWorker(){
      m_workers.push_back(worker);
 }
 
-int Player::getRecourse(Recourse recourse){
-    switch ((int)recourse){
+int Player::getResource(Resource resource){
+    switch ((int)resource){
     case(2):
         return m_foodCount;
     case(3):
