@@ -1,4 +1,5 @@
 #include "boardview.h"
+#include"placeview.h"
 #include <QColor>
 #include <QGraphicsTextItem>
 
@@ -6,21 +7,23 @@ BoardView::BoardView()
 {
 }
 
-BoardView::BoardView(std::shared_ptr<Board> board) : QGraphicsScene()
+BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsScene(parent)
 {
     m_board = board;
-
+    m_activeColour = Colour::red;
     int moveByX = 50;
     int rectWidth = 300;
-    makePlace(QColor(60,125,0), "Food", moveByX, &m_huntValues); //forest green
+    m_test = new QGraphicsRectItem;
+    m_food = std::make_unique<placeView>(QColor(60,125,0), "Food", moveByX, this);//forest green
+//    m_food = new placeView(QColor(60,125,0), "Food", moveByX, this);
     moveByX += rectWidth;
-    makePlace(QColor(115,75,0), "Wood", moveByX, &m_forestValues); //brown
+    m_wood = std::make_unique<placeView>(QColor(115,75,0), "Wood", moveByX, this);//brown
     moveByX += rectWidth;
-    makePlace(QColor(220,85,57), "Clay", moveByX, &m_claypitValues); //brick red
+    m_clay = std::make_unique<placeView>(QColor(220,85,57), "Clay", moveByX, this);//brick red
     moveByX += rectWidth;
-    makePlace(QColor(75,75,75), "Stone", moveByX, &m_quarryValues); //grey
+    m_stone = std::make_unique<placeView>(QColor(75,75,75), "Stone", moveByX, this);//grey
     moveByX += rectWidth;
-    makePlace(QColor(255,215,0), "Gold", moveByX, &m_riverValues); //gold
+    m_gold = std::make_unique<placeView>(QColor(255,215,0), "Gold", moveByX, this);//gold
 
     moveByX = 50;
     rectWidth = 500;
@@ -29,6 +32,7 @@ BoardView::BoardView(std::shared_ptr<Board> board) : QGraphicsScene()
     makeSmallPlace(QColor(254,184,198), moveByX, 210, "Hut");//love pink 210
     moveByX += rectWidth;
     makeSmallPlace(QColor(161,133,105), moveByX, 180, "Tool Shed" );//tool brown 180
+    m_workeradd = new workerAdd;
 }
 
 QGraphicsRectItem* BoardView::makeSmallPlace(QColor colour, int moveByX,int textMoveX, QString name){
@@ -58,61 +62,11 @@ QGraphicsRectItem* BoardView::makeSmallPlace(QColor colour, int moveByX,int text
 //    return child;
     return tile;
 }
-
-void BoardView::makePlace(QColor colour, QString name, int moveByX, std::vector<QGraphicsTextItem*>* values){
-    int rectWidth = 300;
-
-    QGraphicsRectItem* parent = new QGraphicsRectItem(0, 0,rectWidth,400);
-    parent->moveBy(moveByX,100);
-    parent->setBrush(colour);
-    parent->setFlag(QGraphicsItem::ItemIsSelectable, true);
-    this->addItem(parent);
-
-    QGraphicsTextItem* text = new QGraphicsTextItem(name, parent);
-    QFont font("Font", 26);
-    text->setFont(font);
-    text->moveBy(30,50);
-
-    QGraphicsTextItem* childText;
-    QGraphicsRectItem* child;
-    child = new QGraphicsRectItem(0, 0,100,100, parent);
-    child->moveBy(150,25);
-    child->setBrush(QColor(234,222,210));
-
-    childText = new QGraphicsTextItem("7", child);
-    childText->moveBy(22,0);
-    childText->setScale(4);
-    values->push_back(childText);
-    child = new QGraphicsRectItem(0, 0,100,100, parent);
-    child->moveBy(25,150);
-    child->setBrush(QColor(237,28,36));
-
-    childText = new QGraphicsTextItem("0", child);
-    childText->moveBy(22,0);
-    childText->setScale(4);
-    child = new QGraphicsRectItem(0, 0,100,100, parent);
-    child->moveBy(150,150);
-    child->setBrush(QColor(63,72,204));//blue
-
-    childText= new QGraphicsTextItem("0", child);
-    childText->moveBy(22,0);
-    childText->setScale(4);
-    values->push_back(childText);
-    child = new QGraphicsRectItem(0, 0,100,100, parent);
-    child->moveBy(25,275);
-    child->setBrush(QColor(255,242,0));//yellow
-    values->push_back(childText);
-
-    childText = new QGraphicsTextItem("0", child);
-    childText->moveBy(22,0);
-    childText->setScale(4);
-    values->push_back(childText);
-    child = new QGraphicsRectItem(0, 0,100,100, parent);
-    child->moveBy(150,275);
-    child->setBrush(QColor(34,177,76)); //green
-
-    childText = new QGraphicsTextItem("0", child);
-    childText->moveBy(22,0);
-    childText->setScale(4);
-    values->push_back(childText);
+void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
+    QGraphicsScene::mouseReleaseEvent(event);
+    QList<QGraphicsItem*>list = this->selectedItems();
+    if(list.length() == 0)
+        return;
+    m_workeradd->addToPlace((placeView*)list[0], m_activeColour);
+    m_workeradd->show();
 }

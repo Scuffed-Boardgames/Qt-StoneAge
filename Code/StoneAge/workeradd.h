@@ -2,6 +2,7 @@
 #define WORKERADD_H
 
 #include <QWidget>
+#include <placeview.h>
 
 namespace Ui {
 class workerAdd;
@@ -13,7 +14,7 @@ class workerAdd : public QWidget
 
 public:
     explicit workerAdd(QWidget *parent = nullptr);
-    int getAmount();
+    void addToPlace(placeView* place, Colour colour);
     void setFixed(int amount);
     ~workerAdd();
 
@@ -23,8 +24,9 @@ private slots:
     void on_cancelButton_clicked();
 
 private:
+    Colour m_colour;
+    placeView *m_place;
     Ui::workerAdd *ui;
-    int m_amount;
 };
 
 #endif // WORKERADD_H

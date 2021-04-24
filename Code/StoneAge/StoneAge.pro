@@ -13,6 +13,7 @@ SOURCES += \
     boardview.cpp \
     main.cpp \
     mainwindow.cpp \
+    placeview.cpp \
     player.cpp \
     playerview.cpp \
     recourses.cpp \
@@ -23,7 +24,9 @@ SOURCES += \
 HEADERS += \
     board.h \
     boardview.h \
+    colour.h \
     mainwindow.h \
+    placeview.h \
     player.h \
     playerview.h \
     recourses.h \

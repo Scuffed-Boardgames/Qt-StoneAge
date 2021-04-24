@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(std::shared_ptr<Board> board, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow), m_boardview(board)
+MainWindow::MainWindow(std::shared_ptr<Board> board, QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow), m_boardview(new BoardView(board, this))
 {
     ui->setupUi(this);
     QColor red(237, 28, 36);
@@ -16,7 +16,7 @@ MainWindow::MainWindow(std::shared_ptr<Board> board, QWidget *parent) : QMainWin
     ui->blueView->setScene(m_playerviews[1]);
     ui->yellowView->setScene(m_playerviews[2]);
     ui->greenView->setScene(m_playerviews[3]);
-    ui->BoardView->setScene(&m_boardview);
+    ui->BoardView->setScene(m_boardview);
     QFont font( "Arial", 25, QFont::Bold);
     ui->Turn->setFont(font);
 }

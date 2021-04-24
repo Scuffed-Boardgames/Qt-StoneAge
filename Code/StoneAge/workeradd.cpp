@@ -1,11 +1,15 @@
 #include "workeradd.h"
 #include "ui_workeradd.h"
 
-workerAdd::workerAdd(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::workerAdd)
+workerAdd::workerAdd(QWidget *parent) : QWidget(parent), ui(new Ui::workerAdd)
 {
     ui->setupUi(this);
+}
+
+void workerAdd::addToPlace(placeView *place, Colour colour)
+{
+    m_place = place;
+    m_colour = colour;
 }
 
 workerAdd::~workerAdd()
@@ -15,19 +19,17 @@ workerAdd::~workerAdd()
 
 void workerAdd::on_okayButton_clicked()
 {
-    m_amount = ui->amount->value();
+    m_place->addWorkers(ui->amount->value(), m_colour);
+    ui->amount->setValue(0);
     this->close();
 }
 
 void workerAdd::on_cancelButton_clicked()
 {
-    m_amount = 0;
+    ui->amount->setValue(0);
     this->close();
 }
 
-int workerAdd::getAmount(){
-    return m_amount;
-}
 
 void workerAdd::setFixed(int amount){
     ui->amount->setValue(amount);
