@@ -101,6 +101,8 @@ QRectF ResourcePlaceView::boundingRect() const
 
 void ResourcePlaceView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    if (painter || option || widget){
+    }
 
 }
 
