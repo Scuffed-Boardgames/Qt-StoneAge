@@ -63,23 +63,21 @@ int Player::getScore(){
 int Player::getFoodGain(){
     return m_foodGain;
 }
+
 int Player::getWorkerCount(){
     return m_workers;
 }
 
-int Player::getFreeWorkers()
-{
+int Player::getFreeWorkers(){
     return m_freeWorkers;
 }
 
 
-Colour Player::getColour() const
-{
+Colour Player::getColour() const{
     return m_colour;
 }
 
-void Player::reset()
-{
+void Player::reset(){
     m_freeWorkers = m_workers;
     emit dataChanged();
 }
@@ -87,5 +85,25 @@ void Player::reset()
 void Player::setWorkersOccupied(int amount){
     m_freeWorkers -= amount;
     emit dataChanged();
+}
+
+Tool *Player::getTools(){
+    return m_tools;
+}
+
+void Player::addTool(){
+    int lowestLevel = m_tools[0].getLevel();
+    int lowestLevelPos = 0;
+    for(int i = 1; i > 3; ++i){
+        if(m_tools[i].getLevel() < lowestLevel){
+            lowestLevel = m_tools[i].getLevel();
+            lowestLevelPos = i;
+        }
+    }
+    m_tools[lowestLevelPos].levelUp();
+}
+
+void Player::disableTool(int nr){
+    m_tools[nr].isUsed();
 }
 

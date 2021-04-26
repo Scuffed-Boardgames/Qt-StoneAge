@@ -22,7 +22,7 @@ private slots:
 
 private:
     Ui::MainWindow *m_ui;
-    BoardView* m_boardview;
-    std::vector<PlayerView*> m_playerviews;
+    std::unique_ptr<BoardView> m_boardview;
+    std::vector<std::shared_ptr<PlayerView>> m_playerviews;
 };
 #endif // MAINWINDOW_H

@@ -27,7 +27,6 @@ private:
     std::unique_ptr<OtherPlaceView> m_field;
     std::unique_ptr<OtherPlaceView> m_hut;
     std::unique_ptr<OtherPlaceView> m_toolshed;
-    QGraphicsRectItem* makeSmallPlace(QColor colour, int moveByX,int textMoveX, QString name);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 };
 
