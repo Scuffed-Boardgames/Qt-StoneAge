@@ -1,5 +1,13 @@
 #include "player.h"
 
+Player::Player(): m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_scoreCount(0), m_foodGain(0), m_colour(Colour::none)
+{
+    for(int i = 0; i < 5 ; ++i ){
+        Worker worker(this);
+        m_workers.push_back(worker);
+    }
+}
+
 Player::Player(Colour colour) : m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_scoreCount(0), m_foodGain(0), m_colour(colour)
 {
     for(int i = 0; i < 5 ; ++i ){

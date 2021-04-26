@@ -3,8 +3,8 @@
 Board::Board() : m_forest{Resource::wood}, m_clayPit{Resource::clay}, m_quarry{Resource::stone}, m_river{Resource::gold}, m_hunt{Resource::food}
 {
     m_turn = 0;
-    for(int i = 0; i > 4; ++i){
-        Player test;
+    for(int i = 0; i < 4; ++i){
+        Player test((Colour)i);
         m_players[i] = test;
     }
 }

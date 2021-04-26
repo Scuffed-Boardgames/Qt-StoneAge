@@ -9,6 +9,7 @@
 class Player
 {
 public:
+    Player();
     Player(Colour colour);
     void addResource(Resource resource, int amount); // ads a given amount of a given resource to the player(can be negative)
     void addWorker();// ads one worker to the players inventory
