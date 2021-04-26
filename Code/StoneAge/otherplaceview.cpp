@@ -3,7 +3,7 @@
 #include <QFont>
 #include <QGraphicsScene>
 
-OtherPlaceView::OtherPlaceView(QColor colour, int moveByX, int textMoveX, int cost, QString name, QGraphicsScene* parentItem)
+OtherPlaceView::OtherPlaceView(QColor colour, int moveByX, int cost, QString name, QGraphicsScene* parentItem)
 {
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
       m_x = moveByX;
@@ -15,7 +15,11 @@ OtherPlaceView::OtherPlaceView(QColor colour, int moveByX, int textMoveX, int co
     QFont font("Font", 26);
     QGraphicsTextItem* text = new QGraphicsTextItem(name, tile);
     text->setFont(font);
-    text->moveBy(textMoveX, 50);//210/180
+    if (name == "Tool Shed")
+        text->moveBy(180, 50);
+    else
+        text->moveBy(210, 50);
+
 
     m_indicator = new QGraphicsRectItem(0, 0,300, 200, tile);
     m_indicator->moveBy(100, 150);

@@ -17,9 +17,9 @@ public:
     BoardView();
 private:
     Colour m_activeColour;
-    std::unique_ptr<WorkerAdd> m_workeradd;
+    std::shared_ptr<WorkerAdd> m_workeradd;
     std::shared_ptr<Board> m_board;
-    std::unique_ptr<ResourcePlaceView> m_food;
+    std::shared_ptr<ResourcePlaceView> m_food;
     std::unique_ptr<ResourcePlaceView> m_wood;
     std::unique_ptr<ResourcePlaceView> m_clay;
     std::unique_ptr<ResourcePlaceView> m_stone;

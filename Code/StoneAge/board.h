@@ -17,6 +17,7 @@ public:
     int getTurn();
     std::shared_ptr<Player> getPlayer(Colour colour);
     Gather* getGather(Resource resource);
+    void resetWorkers();
 private:
     Player m_players[4];
     Hut m_hut;

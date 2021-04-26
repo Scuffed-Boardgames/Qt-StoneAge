@@ -7,7 +7,7 @@
 class OtherPlaceView : public QGraphicsItem
 {
 public:
-    OtherPlaceView(QColor colour, int moveByX,int textMoveX, int cost, QString name, QGraphicsScene* parentItem);
+    OtherPlaceView(QColor colour, int moveByX, int cost, QString name, QGraphicsScene* parentItem);
     int getCost();
     void setColour(Colour colour);
     QRectF boundingRect() const override;

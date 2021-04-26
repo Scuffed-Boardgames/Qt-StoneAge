@@ -44,3 +44,15 @@ Gather* Board::getGather(Resource resource)
         return nullptr;
     }
 }
+
+void Board::resetWorkers()
+{
+    m_hunt.resetWorkers();
+    m_forest.resetWorkers();
+    m_clayPit.resetWorkers();
+    m_quarry.resetWorkers();
+    m_river.resetWorkers();
+    m_field.resetWorkers();
+    m_hut.resetWorkers();
+    m_toolMaker.resetWorkers();
+}

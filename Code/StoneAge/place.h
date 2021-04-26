@@ -3,19 +3,23 @@
 
 #include "player.h"
 #include <memory>
+#include <QObject>
 
-class Place
+class Place : public QObject
 {
+    Q_OBJECT
 public:
     Place();
-    int removeWorker();
-    virtual void addWorker(std::shared_ptr<Player>, int amount);
+    void resetWorkers();
+    virtual void addWorker(std::shared_ptr<Player>, int amount) = 0;
     int getWorkers(Colour colour);
 protected:
     int m_redWorkers;
     int m_blueWorkers;
     int m_yellowWorkers;
     int m_greenWorkers;
+signals:
+    void changedWorkers();
 };
 
 #endif // PLACE_H

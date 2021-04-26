@@ -18,14 +18,22 @@ ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, co
     QGraphicsTextItem* text = new QGraphicsTextItem(name, parent);
     QFont font("Font", 26);
     text->setFont(font);
-    text->moveBy(30,50);
-    if(name == "Food"){
-        text->moveBy(70,0);
+    text->moveBy(0,50);
+    if(name == "Hunt"){
+        text->moveBy(100,0);
+    }else if(name == "Forest"){
+        text->moveBy(20,0);
+    }else if(name == "Clay Pit"){
+        text->moveBy(10,0);
+    }else if(name == "Quarry"){
+        text->moveBy(20,0);
+    }else if(name == "River"){
+        text->moveBy(30,0);
     }
 
     QGraphicsTextItem* childText;
     QGraphicsRectItem* child;
-    if(name != "Food"){
+    if(name != "Hunt"){
         child = new QGraphicsRectItem(0, 0,100,100, parent);
         child->moveBy(150,25);
         child->setBrush(QColor(234,222,210));//white
@@ -67,20 +75,15 @@ ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, co
 void ResourcePlaceView::updateText()
 {
 
-    QString redTextAmount = m_redAmount->toPlainText();
     int redAmount = m_place->getWorkers(Colour::red);
     m_redAmount->setPlainText(QString::number(redAmount));
 
-    QString blueTextAmount = m_blueAmount->toPlainText();
     int blueAmount = m_place->getWorkers(Colour::blue);
     m_redAmount->setPlainText(QString::number(blueAmount));
 
-    QString yellowTextAmount = m_yellowAmount->toPlainText();
     int yellowAmount = m_place->getWorkers(Colour::yellow);
     m_redAmount->setPlainText(QString::number(yellowAmount));
 
-
-    QString greenTextAmount = m_greenAmount->toPlainText();
     int greenAmount = m_place->getWorkers(Colour::green);
     m_redAmount->setPlainText(QString::number(greenAmount));
 

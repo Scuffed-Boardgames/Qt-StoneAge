@@ -6,33 +6,33 @@ BoardView::BoardView()
 {
 }
 
-BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsScene(parent)
+BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsScene(parent), m_activeColour{Colour::red}, m_workeradd{std::make_unique<WorkerAdd>()}, m_board{board}
 {
-    m_board = board;
-    m_activeColour = Colour::red;
 
     int moveByX = 50;
     int rectWidth = 300;
-    m_food = std::make_unique<ResourcePlaceView>(QColor(60,125,0), "Food", moveByX, m_board->getGather(Resource::food), this);//forest green
+    m_food = std::make_unique<ResourcePlaceView>(QColor(60,125,0), "Hunt", moveByX, m_board->getGather(Resource::food), this);//forest green
+    connect(m_board->getGather(Resource::food), &Place::changedWorkers, m_food.get(), &ResourcePlaceView::updateText);
     moveByX += rectWidth;
-    m_wood = std::make_unique<ResourcePlaceView>(QColor(115,75,0), "Wood", moveByX, m_board->getGather(Resource::wood), this);//brown
+    m_wood = std::make_unique<ResourcePlaceView>(QColor(115,75,0), "Forest", moveByX, m_board->getGather(Resource::wood), this);//brown
+    connect(m_board->getGather(Resource::wood), &Place::changedWorkers, m_wood.get(), &ResourcePlaceView::updateText);
     moveByX += rectWidth;
-    m_clay = std::make_unique<ResourcePlaceView>(QColor(220,85,57), "Clay", moveByX, m_board->getGather(Resource::clay), this);//brick red
+    m_clay = std::make_unique<ResourcePlaceView>(QColor(220,85,57), "Clay Pit", moveByX, m_board->getGather(Resource::clay), this);//brick red
+    connect(m_board->getGather(Resource::clay), &Place::changedWorkers, m_clay.get(), &ResourcePlaceView::updateText);
     moveByX += rectWidth;
-    m_stone = std::make_unique<ResourcePlaceView>(QColor(75,75,75), "Stone", moveByX, m_board->getGather(Resource::stone), this);//grey
+    m_stone = std::make_unique<ResourcePlaceView>(QColor(75,75,75), "Quarry", moveByX, m_board->getGather(Resource::stone), this);//grey
+    connect(m_board->getGather(Resource::stone), &Place::changedWorkers, m_stone.get(), &ResourcePlaceView::updateText);
     moveByX += rectWidth;
-    m_gold = std::make_unique<ResourcePlaceView>(QColor(255,215,0), "Gold", moveByX, m_board->getGather(Resource::gold), this);//gold
+    m_gold = std::make_unique<ResourcePlaceView>(QColor(255,215,0), "River", moveByX, m_board->getGather(Resource::gold), this);//gold
+    connect(m_board->getGather(Resource::gold), &Place::changedWorkers, m_gold.get(), &ResourcePlaceView::updateText);
 
     moveByX = 50;
     rectWidth = 500;
-    m_field = std::make_unique<OtherPlaceView>(QColor(245,222,179), moveByX, 210, 1, "Field", this);//wheat yellow 210
+    m_field = std::make_unique<OtherPlaceView>(QColor(245,222,179), moveByX, 1, "Field", this);//wheat yellow 210
     moveByX += rectWidth;
-    m_hut = std::make_unique<OtherPlaceView>(QColor(254,184,198), moveByX, 210, 2, "Hut", this);//love pink 210
+    m_hut = std::make_unique<OtherPlaceView>(QColor(254,184,198), moveByX, 2, "Hut", this);//love pink 210
     moveByX += rectWidth;
-    m_toolshed = std::make_unique<OtherPlaceView>(QColor(161,133,105), moveByX, 180, 1, "Tool Shed", this);//tool brown 180
-
-    m_workeradd = std::make_unique<WorkerAdd>();
-
+    m_toolshed = std::make_unique<OtherPlaceView>(QColor(161,133,105), moveByX, 1, "Tool Shed", this);//tool brown 180
 }
 
 void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){

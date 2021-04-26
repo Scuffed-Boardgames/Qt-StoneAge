@@ -1,15 +1,16 @@
 #include "place.h"
 
-Place::Place() : m_redWorkers{0}, m_blueWorkers{0}, m_yellowWorkers{0}, m_greenWorkers{0}
+Place::Place() : QObject(nullptr), m_redWorkers{0}, m_blueWorkers{0}, m_yellowWorkers{0}, m_greenWorkers{0}
 {
 }
 
-int Place::removeWorker()
+void Place::resetWorkers()
 {
-    return 0;
+    m_redWorkers = 0;
+    m_blueWorkers = 0;
+    m_yellowWorkers = 0;
+    m_greenWorkers = 0;
 }
-
-void Place::addWorker(std::shared_ptr<Player> player, int amount){}
 
 int Place::getWorkers(Colour colour)
 {

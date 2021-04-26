@@ -38,5 +38,6 @@ void Gather::addWorker(std::shared_ptr<Player> player, int amount)
         for (int i = 0; i<amount ; ++i){
             workers[i]->setOccupation(this);
         }
+        emit changedWorkers();
     }
 }
