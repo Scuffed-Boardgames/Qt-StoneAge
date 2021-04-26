@@ -19,14 +19,17 @@ WorkerAdd::~WorkerAdd()
 
 void WorkerAdd::on_okayButton_clicked()
 {
-    m_place->addWorkers(ui->amount->value(), m_colour);
+    if(m_place)
+        m_place->addWorkers(ui->amount->value(), m_colour);
     ui->amount->setValue(1);
+    m_place = nullptr;
     this->close();
 }
 
 void WorkerAdd::on_cancelButton_clicked()
 {
     ui->amount->setValue(1);
+    m_place = nullptr;
     this->close();
 }
 

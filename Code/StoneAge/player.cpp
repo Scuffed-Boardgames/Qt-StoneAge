@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player::Player() : m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_scoreCount(0), m_foodGain(0)
+Player::Player(Colour colour) : m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_scoreCount(0), m_foodGain(0), m_colour(colour)
 {
     for(int i = 0; i < 5 ; ++i ){
         Worker worker(this);
@@ -56,4 +56,24 @@ int Player::getFoodGain(){
 }
 int Player::getWorkerCount(){
     return (int)m_workers.size();
+}
+
+int Player::getAmountFreeWorkers()
+{
+    int total = 0;
+    for(Worker worker : m_workers){
+        if(!worker.getOccupation())
+            ++total;
+    }
+    return total;
+}
+
+std::vector<Worker*> Player::getFreeWorkers()
+{
+    std::vector<Worker*> unoccupied;
+    for(Worker worker : m_workers){
+        if(!worker.getOccupation())
+            unoccupied.push_back(&worker);
+    }
+    return unoccupied;
 }

@@ -3,15 +3,16 @@
 
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
-#include "colour.h"
 #include <QPainter>
+#include "colour.h"
+#include "place.h"
 
 
 class ResourcePlaceView : public QGraphicsItem
 {
 
 public:
-    ResourcePlaceView(QColor colour, QString name, int moveByX, QGraphicsScene* parent);
+    ResourcePlaceView(QColor colour, QString name, int moveByX, Place* m_place, QGraphicsScene* parent);
     void addWorkers(int amount, Colour colour);
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
@@ -22,6 +23,7 @@ private:
     QGraphicsTextItem* m_blueAmount;
     QGraphicsTextItem* m_greenAmount;
     QGraphicsTextItem* m_yellowAmount;
+    Place* m_place;
 };
 
 #endif // RESOURCEPLACEVIEW_H
