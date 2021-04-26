@@ -8,7 +8,7 @@
 #include "place.h"
 
 
-class ResourcePlaceView : public QGraphicsItem
+class ResourcePlaceView :  public QObject, public QGraphicsItem
 {
     Q_OBJECT
 

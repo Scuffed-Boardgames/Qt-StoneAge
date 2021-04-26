@@ -68,24 +68,20 @@ void ResourcePlaceView::updateText()
 {
 
     QString redTextAmount = m_redAmount->toPlainText();
-    int redAmount = redTextAmount.toInt();
-    redAmount = m_place->getWorkers(Colour::red);
+    int redAmount = m_place->getWorkers(Colour::red);
     m_redAmount->setPlainText(QString::number(redAmount));
 
     QString blueTextAmount = m_blueAmount->toPlainText();
-    int blueAmount = blueTextAmount.toInt();
-    blueAmount = m_place->getWorkers(Colour::blue);
+    int blueAmount = m_place->getWorkers(Colour::blue);
     m_redAmount->setPlainText(QString::number(blueAmount));
 
     QString yellowTextAmount = m_yellowAmount->toPlainText();
-    int yellowAmount = yellowTextAmount.toInt();
-    yellowAmount = m_place->getWorkers(Colour::yellow);
+    int yellowAmount = m_place->getWorkers(Colour::yellow);
     m_redAmount->setPlainText(QString::number(yellowAmount));
 
 
     QString greenTextAmount = m_greenAmount->toPlainText();
-    int greenAmount = greenTextAmount.toInt();
-    greenAmount = m_place->getWorkers(Colour::green);
+    int greenAmount = m_place->getWorkers(Colour::green);
     m_redAmount->setPlainText(QString::number(greenAmount));
 
 }
