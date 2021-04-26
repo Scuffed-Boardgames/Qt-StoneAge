@@ -21,6 +21,7 @@ public:
     int getAmountFreeWorkers();
     std::vector<Worker*> getFreeWorkers();
     Colour getColour() const;
+    void resetWorkers();
 
 private:
     int m_foodCount;

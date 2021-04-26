@@ -79,13 +79,13 @@ void ResourcePlaceView::updateText()
     m_redAmount->setPlainText(QString::number(redAmount));
 
     int blueAmount = m_place->getWorkers(Colour::blue);
-    m_redAmount->setPlainText(QString::number(blueAmount));
+    m_blueAmount->setPlainText(QString::number(blueAmount));
 
     int yellowAmount = m_place->getWorkers(Colour::yellow);
-    m_redAmount->setPlainText(QString::number(yellowAmount));
+    m_yellowAmount->setPlainText(QString::number(yellowAmount));
 
     int greenAmount = m_place->getWorkers(Colour::green);
-    m_redAmount->setPlainText(QString::number(greenAmount));
+    m_greenAmount->setPlainText(QString::number(greenAmount));
 
 }
 

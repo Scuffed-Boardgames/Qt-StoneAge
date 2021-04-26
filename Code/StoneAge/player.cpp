@@ -96,3 +96,9 @@ Colour Player::getColour() const
     return m_colour;
 }
 
+void Player::resetWorkers()
+{
+    for(Worker worker : m_workers)
+        worker.setOccupation();
+}
+
