@@ -1,46 +1,42 @@
 #include "player.h"
 
-Player::Player(): m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_scoreCount(0), m_foodGain(0), m_colour(Colour::none)
+Player::Player(): m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_scoreCount(0), m_foodGain(0), m_colour(Colour::none), m_freeWorkers(5), m_workers(5)
 {
-    for(int i = 0; i < 5 ; ++i ){
-        Worker worker(this);
-        m_workers.push_back(worker);
-    }
+
 }
 
-Player::Player(Colour colour) : m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_scoreCount(0), m_foodGain(0), m_colour(colour)
+Player::Player(Colour colour) : m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_scoreCount(0), m_foodGain(0), m_colour(colour), m_freeWorkers(5), m_workers(5)
 {
-    for(int i = 0; i < 5 ; ++i ){
-        Worker worker(this);
-        m_workers.push_back(worker);
-    }
+
 }
 
 void Player::addResource(const Resource resource, const int amount){
     switch (resource){
     case(Resource::food):
         m_foodCount += amount;
-        return;
+        break;
     case(Resource::wood):
         m_woodCount += amount;
-        return;
+        break;
     case(Resource::clay):
         m_clayCount += amount;
-        return;
+        break;
     case(Resource::stone):
         m_stoneCount += amount;
-        return;
+        break;
     case(Resource::gold):
         m_goldCount += amount;
-        return;
+        break;
     default:
-        return;
+        break;
     }
+    emit dataChanged();
 }
 
 void Player::addWorker(){
-     Worker worker(this);;
-     m_workers.push_back(worker);
+    ++m_freeWorkers;
+    ++m_workers;
+    emit dataChanged();
 }
 
 int Player::getResource(const Resource resource){
@@ -68,37 +64,28 @@ int Player::getFoodGain(){
     return m_foodGain;
 }
 int Player::getWorkerCount(){
-    return (int)m_workers.size();
+    return m_workers;
 }
 
-int Player::getAmountFreeWorkers()
+int Player::getFreeWorkers()
 {
-    int total = 0;
-    for(Worker worker : m_workers){
-        if(!worker.getOccupation())
-            ++total;
-    }
-    return total;
+    return m_freeWorkers;
 }
 
-std::vector<Worker*> Player::getFreeWorkers()
-{
-    std::vector<Worker*> unoccupied;
-    for(Worker worker : m_workers){
-        if(!worker.getOccupation())
-            unoccupied.push_back(&worker);
-    }
-    return unoccupied;
-}
 
 Colour Player::getColour() const
 {
     return m_colour;
 }
 
-void Player::resetWorkers()
+void Player::reset()
 {
-    for(Worker worker : m_workers)
-        worker.setOccupation();
+    m_freeWorkers = m_workers;
+    emit dataChanged();
+}
+
+void Player::setWorkersOccupied(int amount){
+    m_freeWorkers -= amount;
+    emit dataChanged();
 }
 

@@ -4,8 +4,7 @@ Board::Board() : m_forest{Resource::wood}, m_clayPit{Resource::clay}, m_quarry{R
 {
     m_turn = 0;
     for(int i = 0; i < 4; ++i){
-        Player test((Colour)i);
-        m_players[i] = test;
+        m_players[i] = std::make_shared<Player>((Colour)i);
     }
 }
 
@@ -24,7 +23,7 @@ int Board::getTurn(){
 }
 
 std::shared_ptr<Player> Board::getPlayer(Colour colour){
-    return std::make_shared<Player>(m_players[(int)colour]);
+    return m_players[(int)colour];
 }
 
 Gather* Board::getGather(Resource resource)

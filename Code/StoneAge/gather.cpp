@@ -33,11 +33,8 @@ void Gather::addWorker(std::shared_ptr<Player> player, int amount)
     default:
         return;
     }
-    if (player->getAmountFreeWorkers() >= amount && (workerAmount == 0 || m_resource == Resource::food)){
-        std::vector<Worker*> workers = player->getFreeWorkers();
-        for (int i = 0; i<amount ; ++i){
-            workers[i]->setOccupation(this);
-        }
+    if (player->getFreeWorkers() >= amount && (workerAmount == 0 || m_resource == Resource::food)){
+        player->setWorkersOccupied(amount);
         switch(player->getColour()){
         case(Colour::red):
             m_redWorkers += amount;

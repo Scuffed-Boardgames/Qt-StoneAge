@@ -1,23 +1,19 @@
 #include "worker.h"
 
 
-Worker::Worker(void* owner) : m_owner(owner), m_occupation(nullptr)
+Worker::Worker(void* owner) : m_owner(owner), m_occupied(false)
 {
 
 }
 
-void* Worker::getOccupation()
-{
-    return m_occupation;
-
+void Worker::setOccupied(){
+    m_occupied = true;
 }
 
-void Worker::setOccupation(void *occupation)
-{
-    m_occupation = occupation;
+bool Worker::isOccupied(){
+    return m_occupied;
 }
 
-void Worker::setOccupation()
-{
-    m_occupation = nullptr;
+void Worker::reset(){
+     m_occupied = false;
 }

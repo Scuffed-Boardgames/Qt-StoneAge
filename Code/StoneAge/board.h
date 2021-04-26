@@ -19,7 +19,7 @@ public:
     Gather* getGather(Resource resource);
     void resetWorkers();
 private:
-    Player m_players[4];
+    std::shared_ptr<Player> m_players[4];
     Hut m_hut;
     Gather m_forest;
     Gather m_clayPit;

@@ -5,12 +5,12 @@ class Worker
 {
 public:
     Worker(void* owner);
-    void* getOccupation();
-    void setOccupation(void *occupation);
-    void setOccupation();
+    bool isOccupied();
+    void setOccupied();
+    void reset();
 private:
     void* m_owner;
-    void* m_occupation;
+    bool m_occupied;
 };
 
 #endif // WORKER_H
