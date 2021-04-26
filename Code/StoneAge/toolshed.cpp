@@ -6,12 +6,12 @@ Toolshed::Toolshed() : Place()
 }
 
 
-void Toolshed::giveResource(Player player)
+void Toolshed::giveResource(std::shared_ptr<Player> player)
 {
 
 }
 
-void Toolshed::addWorker(Player player)
+void Toolshed::addWorker(std::shared_ptr<Player> player, int amount)
 {
 
 }

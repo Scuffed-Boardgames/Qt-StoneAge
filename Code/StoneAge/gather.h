@@ -7,8 +7,8 @@ class Gather : public Place
 {
 public:
     Gather(Resource resource);
-    Resource giveResource(Player player);
-    void addWorker(Player player, int amount);
+    Resource giveResource(std::shared_ptr<Player>);
+    void addWorker(std::shared_ptr<Player>, int amount);
 private:
     int m_maxWorkers;
     Resource m_resource;

@@ -7,8 +7,8 @@ class Toolshed : public Place
 {
 public:
     Toolshed();
-    void giveResource(Player player);
-    void addWorker(Player player);
+    void giveResource(std::shared_ptr<Player> player);
+    void addWorker(std::shared_ptr<Player> player, int amount);
 };
 
 #endif // TOOLSHED_H

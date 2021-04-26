@@ -2,13 +2,14 @@
 #define PLACE_H
 
 #include "player.h"
+#include <memory>
 
 class Place
 {
 public:
     Place();
     int removeWorker();
-    virtual void addWorker(Player player, int amount);
+    virtual void addWorker(std::shared_ptr<Player>, int amount);
 protected:
     int m_redWorkers;
     int m_blueWorkers;

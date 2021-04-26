@@ -9,7 +9,7 @@ int Place::removeWorker()
     return 0;
 }
 
-void Place::addWorker(Player player, int amount)
+void Place::addWorker(std::shared_ptr<Player> player, int amount)
 {
 
 }

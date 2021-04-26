@@ -9,29 +9,32 @@ Gather::Gather(Resource resource) : Place(), m_resource{resource}
     }
 }
 
-Resource Gather::giveResource(Player player)
+Resource Gather::giveResource(std::shared_ptr<Player> player)
 {
     return m_resource;
 }
 
-void Gather::addWorker(Player player, int amount)
+void Gather::addWorker(std::shared_ptr<Player> player, int amount)
 {
     int workerAmount;
-    switch(player.getColour()){
+    switch(player->getColour()){
     case(Colour::red):
         workerAmount = m_redWorkers;
         return;
     case(Colour::blue):
+        workerAmount = m_blueWorkers;
         return;
     case(Colour::yellow):
+        workerAmount = m_yellowWorkers;
         return;
     case(Colour::green):
+        workerAmount = m_greenWorkers;
         return;
     default:
         return;
     }
-    if (player.getAmountFreeWorkers() >= amount){
-        std::vector<Worker*> workers = player.getFreeWorkers();
+    if (player->getAmountFreeWorkers() >= amount){
+        std::vector<Worker*> workers = player->getFreeWorkers();
         for (int i = 0; i<amount ; ++i){
             workers[i]->setOccupation(this);
         }
