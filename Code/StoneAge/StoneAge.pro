@@ -11,12 +11,18 @@ CONFIG += c++11
 SOURCES += \
     board.cpp \
     boardview.cpp \
+    field.cpp \
+    gather.cpp \
+    hunt.cpp \
+    hut.cpp \
     main.cpp \
     mainwindow.cpp \
+    place.cpp \
     placeview.cpp \
     player.cpp \
     playerview.cpp \
     rollresources.cpp \
+    toolshed.cpp \
     worker.cpp \
     workeradd.cpp
 
@@ -24,12 +30,18 @@ HEADERS += \
     board.h \
     boardview.h \
     colour.h \
+    field.h \
+    gather.h \
+    hunt.h \
+    hut.h \
     mainwindow.h \
+    place.h \
     placeview.h \
     player.h \
     playerview.h \
     resources.h \
     rollresources.h \
+    toolshed.h \
     worker.h \
     workeradd.h
 

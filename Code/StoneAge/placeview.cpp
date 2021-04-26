@@ -102,6 +102,8 @@ QRectF PlaceView::boundingRect() const
 
 void PlaceView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    if (painter || option || widget){
+    }
 
 //    QRectF rec = boundingRect();
 //    QBrush brush(Qt::blue);
