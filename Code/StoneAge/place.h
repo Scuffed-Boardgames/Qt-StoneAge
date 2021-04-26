@@ -10,6 +10,7 @@ public:
     Place();
     int removeWorker();
     virtual void addWorker(std::shared_ptr<Player>, int amount);
+    int getWorkers(Colour colour);
 protected:
     int m_redWorkers;
     int m_blueWorkers;
