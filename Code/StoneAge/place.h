@@ -9,7 +9,7 @@ public:
     Place();
     int removeWorker();
     virtual void addWorker(Player player, int amount);
-private:
+protected:
     int m_redWorkers;
     int m_blueWorkers;
     int m_yellowWorkers;

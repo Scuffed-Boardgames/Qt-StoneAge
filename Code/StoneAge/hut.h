@@ -8,7 +8,7 @@ class Hut : public Place
 public:
     Hut();
     Worker giveResource(Player player);
-    void addWorker(Player player);
+    void addWorker(Player player, int amount);
 };
 
 #endif // HUT_H

@@ -8,7 +8,7 @@ class Field : public Place
 public:
     Field();
     void giveResource(Player player);
-    void addWorker(Player player);
+    void addWorker(Player player, int amount);
 };
 
 #endif // FIELD_H

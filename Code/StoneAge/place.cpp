@@ -9,7 +9,7 @@ int Place::removeWorker()
     return 0;
 }
 
-void Place::addWorker(Player player)
+void Place::addWorker(Player player, int amount)
 {
 
 }
