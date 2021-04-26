@@ -13,15 +13,15 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsS
 
     int moveByX = 50;
     int rectWidth = 300;
-    m_food = std::make_unique<ResourcePlaceView>(QColor(60,125,0), "Food", moveByX, this);//forest green
+    m_food = std::make_unique<ResourcePlaceView>(QColor(60,125,0), "Food", moveByX, nullptr, this);//forest green
     moveByX += rectWidth;
-    m_wood = std::make_unique<ResourcePlaceView>(QColor(115,75,0), "Wood", moveByX, this);//brown
+    m_wood = std::make_unique<ResourcePlaceView>(QColor(115,75,0), "Wood", moveByX, nullptr, this);//brown
     moveByX += rectWidth;
-    m_clay = std::make_unique<ResourcePlaceView>(QColor(220,85,57), "Clay", moveByX, this);//brick red
+    m_clay = std::make_unique<ResourcePlaceView>(QColor(220,85,57), "Clay", moveByX, nullptr, this);//brick red
     moveByX += rectWidth;
-    m_stone = std::make_unique<ResourcePlaceView>(QColor(75,75,75), "Stone", moveByX, this);//grey
+    m_stone = std::make_unique<ResourcePlaceView>(QColor(75,75,75), "Stone", moveByX, nullptr, this);//grey
     moveByX += rectWidth;
-    m_gold = std::make_unique<ResourcePlaceView>(QColor(255,215,0), "Gold", moveByX, this);//gold
+    m_gold = std::make_unique<ResourcePlaceView>(QColor(255,215,0), "Gold", moveByX, nullptr, this);//gold
 
     moveByX = 50;
     rectWidth = 500;
@@ -50,8 +50,8 @@ void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     OtherPlaceView* otherSelected = dynamic_cast<OtherPlaceView*>(list[0]);
     if(otherSelected){
         m_workeradd->setStatic(otherSelected->getCost());
-        otherSelected->setColour(Colour::green);
+        otherSelected->setColour(Colour::red);
         m_workeradd->show();
         return;
-}
+    }
 }

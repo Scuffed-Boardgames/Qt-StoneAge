@@ -2,6 +2,10 @@
 #define BOARD_H
 
 #include "player.h"
+#include "hut.h"
+#include "gather.h"
+#include "toolshed.h"
+#include "field.h"
 #include <memory>
 
 class Board
@@ -14,14 +18,14 @@ public:
     std::shared_ptr<Player> getPlayer(int nr);
 private:
     Player m_players[4];
-//    Hut m_hut;
-//    Gather m_forest;
-//    Gather m_clayPit;
-//    Gather m_quarry;
-//    Gather m_river;
-//    Hunt m_hunt;
-//    Toolshed m_toolMaker
-//    Field m_field;
+    Hut m_hut;
+    Gather m_forest;
+    Gather m_clayPit;
+    Gather m_quarry;
+    Gather m_river;
+    Gather m_hunt;
+    Toolshed m_toolMaker;
+    Field m_field;
     int m_turn;
 //    std::vector<Building> m_buildings;
 };

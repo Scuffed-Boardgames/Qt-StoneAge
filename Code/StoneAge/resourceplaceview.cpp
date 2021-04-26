@@ -4,11 +4,12 @@
 #include <QBrush>
 
 
-ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, const int moveByX, QGraphicsScene* parentItem)
+ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, const int moveByX, Place* place, QGraphicsScene* parentItem)
 {
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
     int rectWidth = 300;
     m_x = moveByX;
+    m_place = place;
     QGraphicsRectItem* parent = new QGraphicsRectItem(0, 0, rectWidth, 400, this);
     parent->moveBy(moveByX,100);
     parent->setBrush(colour);
@@ -18,16 +19,20 @@ ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, co
     QFont font("Font", 26);
     text->setFont(font);
     text->moveBy(30,50);
+    if(name == "Food"){
+        text->moveBy(70,0);
+    }
 
     QGraphicsTextItem* childText;
     QGraphicsRectItem* child;
-
-    child = new QGraphicsRectItem(0, 0,100,100, parent);
-    child->moveBy(150,25);
-    child->setBrush(QColor(234,222,210));//white
-    childText = new QGraphicsTextItem("7", child);
-    childText->moveBy(22,0);
-    childText->setScale(4);
+    if(name != "Food"){
+        child = new QGraphicsRectItem(0, 0,100,100, parent);
+        child->moveBy(150,25);
+        child->setBrush(QColor(234,222,210));//white
+        childText = new QGraphicsTextItem("7", child);
+        childText->moveBy(22,0);
+        childText->setScale(4);
+    }
 
     child = new QGraphicsRectItem(0, 0,100,100, parent);
     child->moveBy(25,150);
