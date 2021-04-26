@@ -38,6 +38,22 @@ void Gather::addWorker(std::shared_ptr<Player> player, int amount)
         for (int i = 0; i<amount ; ++i){
             workers[i]->setOccupation(this);
         }
+        switch(player->getColour()){
+        case(Colour::red):
+            m_redWorkers += amount;
+            break;
+        case(Colour::blue):
+            m_blueWorkers += amount;
+            break;
+        case(Colour::yellow):
+            m_yellowWorkers += amount;
+            break;
+        case(Colour::green):
+            m_greenWorkers += amount;
+            break;
+        default:
+            return;
+        }
         emit changedWorkers();
     }
 }
