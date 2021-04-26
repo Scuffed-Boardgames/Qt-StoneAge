@@ -6,7 +6,7 @@ WorkerAdd::WorkerAdd(QWidget *parent) : QWidget(parent), ui(new Ui::WorkerAdd)
     ui->setupUi(this);
 }
 
-void WorkerAdd::addToPlace(PlaceView* place, const Colour colour)
+void WorkerAdd::addToPlace(ResourcePlaceView* place, const Colour colour)
 {
     m_place = place;
     m_colour = colour;
@@ -20,19 +20,27 @@ WorkerAdd::~WorkerAdd()
 void WorkerAdd::on_okayButton_clicked()
 {
     m_place->addWorkers(ui->amount->value(), m_colour);
-    ui->amount->setValue(0);
+    ui->amount->setValue(1);
     this->close();
 }
 
 void WorkerAdd::on_cancelButton_clicked()
 {
-    ui->amount->setValue(0);
+    ui->amount->setValue(1);
     this->close();
 }
 
 
-void WorkerAdd::setFixed(const int amount){
+void WorkerAdd::setStatic(const int amount){
     ui->amount->setValue(amount);
     ui->amount->setVisible(false);
     ui->label->setText("Placing " +QString::number(amount)+" workers on this space");
+}
+
+void WorkerAdd::setDynamic()
+{
+    ui->amount->setValue(1);
+    ui->amount->setVisible(true);
+    ui->label->setText("How many workers do you want to add?");
+
 }

@@ -2,7 +2,7 @@
 #define WORKERADD_H
 
 #include <QWidget>
-#include <placeview.h>
+#include "resourceplaceview.h"
 
 namespace Ui {
 class WorkerAdd;
@@ -14,8 +14,9 @@ class WorkerAdd : public QWidget
 
 public:
     explicit WorkerAdd(QWidget *parent = nullptr);
-    void addToPlace(PlaceView* place, Colour colour);
-    void setFixed(int amount);
+    void addToPlace(ResourcePlaceView* place, Colour colour);
+    void setStatic(int amount);
+    void setDynamic();
     ~WorkerAdd();
 
 private slots:
@@ -25,7 +26,7 @@ private slots:
 
 private:
     Colour m_colour;
-    PlaceView* m_place;
+    ResourcePlaceView* m_place;
     Ui::WorkerAdd* ui;
 };
 

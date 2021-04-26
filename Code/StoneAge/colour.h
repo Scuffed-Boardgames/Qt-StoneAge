@@ -2,6 +2,7 @@
 #define COLOUR_H
 
 enum class Colour {
+    none = -1,
     red = 0,
     blue = 1,
     yellow = 2,

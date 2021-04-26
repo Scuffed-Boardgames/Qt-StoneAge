@@ -13,9 +13,10 @@ SOURCES += \
     boardview.cpp \
     main.cpp \
     mainwindow.cpp \
-    placeview.cpp \
+    otherplaceview.cpp \
     player.cpp \
     playerview.cpp \
+    resourceplaceview.cpp \
     rollresources.cpp \
     worker.cpp \
     workeradd.cpp
@@ -25,9 +26,10 @@ HEADERS += \
     boardview.h \
     colour.h \
     mainwindow.h \
-    placeview.h \
+    otherplaceview.h \
     player.h \
     playerview.h \
+    resourceplaceview.h \
     resources.h \
     rollresources.h \
     worker.h \

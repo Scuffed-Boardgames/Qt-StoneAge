@@ -1,11 +1,10 @@
-#include "placeview.h"
+#include "resourceplaceview.h"
 #include <QColor>
 #include <QFont>
 #include <QBrush>
 
 
-
-PlaceView::PlaceView(const QColor colour, const QString name, const int moveByX, QGraphicsScene* parentItem)
+ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, const int moveByX, QGraphicsScene* parentItem)
 {
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
     int rectWidth = 300;
@@ -60,7 +59,7 @@ PlaceView::PlaceView(const QColor colour, const QString name, const int moveByX,
 
 }
 
-void PlaceView::addWorkers(const int amount, const Colour colour){
+void ResourcePlaceView::addWorkers(const int amount, const Colour colour){
     switch(colour){
     case(Colour::red):{
         QString redTextAmount = m_redAmount->toPlainText();
@@ -95,18 +94,13 @@ void PlaceView::addWorkers(const int amount, const Colour colour){
     }
 }
 
-QRectF PlaceView::boundingRect() const
+QRectF ResourcePlaceView::boundingRect() const
 {
     return QRectF(m_x,100, 300 , 400 );
 }
 
-void PlaceView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void ResourcePlaceView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-
-//    QRectF rec = boundingRect();
-//    QBrush brush(Qt::blue);
-//    painter->fillRect(rec, brush);
-//    painter->drawRect(rec);
 
 }
 
