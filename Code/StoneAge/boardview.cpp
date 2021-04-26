@@ -13,15 +13,15 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsS
 
     int moveByX = 50;
     int rectWidth = 300;
-    m_food = std::make_unique<ResourcePlaceView>(QColor(60,125,0), "Food", moveByX, nullptr, this);//forest green
+    m_food = std::make_unique<ResourcePlaceView>(QColor(60,125,0), "Food", moveByX, m_board->getGather(Resource::food), this);//forest green
     moveByX += rectWidth;
-    m_wood = std::make_unique<ResourcePlaceView>(QColor(115,75,0), "Wood", moveByX, nullptr, this);//brown
+    m_wood = std::make_unique<ResourcePlaceView>(QColor(115,75,0), "Wood", moveByX, m_board->getGather(Resource::wood), this);//brown
     moveByX += rectWidth;
-    m_clay = std::make_unique<ResourcePlaceView>(QColor(220,85,57), "Clay", moveByX, nullptr, this);//brick red
+    m_clay = std::make_unique<ResourcePlaceView>(QColor(220,85,57), "Clay", moveByX, m_board->getGather(Resource::clay), this);//brick red
     moveByX += rectWidth;
-    m_stone = std::make_unique<ResourcePlaceView>(QColor(75,75,75), "Stone", moveByX, nullptr, this);//grey
+    m_stone = std::make_unique<ResourcePlaceView>(QColor(75,75,75), "Stone", moveByX, m_board->getGather(Resource::stone), this);//grey
     moveByX += rectWidth;
-    m_gold = std::make_unique<ResourcePlaceView>(QColor(255,215,0), "Gold", moveByX, nullptr, this);//gold
+    m_gold = std::make_unique<ResourcePlaceView>(QColor(255,215,0), "Gold", moveByX, m_board->getGather(Resource::gold), this);//gold
 
     moveByX = 50;
     rectWidth = 500;
@@ -43,14 +43,14 @@ void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     ResourcePlaceView* resourceSelected = dynamic_cast<ResourcePlaceView*>(list[0]);
     if(resourceSelected){
         m_workeradd->setDynamic();
-        m_workeradd->addToPlace(resourceSelected, m_activeColour);
+        m_workeradd->addToPlace(resourceSelected->getPlace(), m_activeColour);
         m_workeradd->show();
         return;
     }
     OtherPlaceView* otherSelected = dynamic_cast<OtherPlaceView*>(list[0]);
     if(otherSelected){
         m_workeradd->setStatic(otherSelected->getCost());
-        otherSelected->setColour(Colour::red);
+        otherSelected->setColour(m_activeColour);
         m_workeradd->show();
         return;
     }

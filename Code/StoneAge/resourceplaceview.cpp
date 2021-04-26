@@ -111,3 +111,8 @@ void ResourcePlaceView::paint(QPainter *painter, const QStyleOptionGraphicsItem 
 
 }
 
+Place *ResourcePlaceView::getPlace() const
+{
+    return m_place;
+}
+

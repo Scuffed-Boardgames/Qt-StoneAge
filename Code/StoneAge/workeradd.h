@@ -14,7 +14,7 @@ class WorkerAdd : public QWidget
 
 public:
     explicit WorkerAdd(QWidget *parent = nullptr);
-    void addToPlace(ResourcePlaceView* place, Colour colour);
+    void addToPlace(Place* place, Colour colour);
     void setStatic(int amount);
     void setDynamic();
     ~WorkerAdd();
@@ -26,7 +26,7 @@ private slots:
 
 private:
     Colour m_colour;
-    ResourcePlaceView* m_place;
+    Place* m_place;
     Ui::WorkerAdd* ui;
 };
 

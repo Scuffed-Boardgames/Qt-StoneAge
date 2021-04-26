@@ -6,7 +6,7 @@ WorkerAdd::WorkerAdd(QWidget *parent) : QWidget(parent), ui(new Ui::WorkerAdd)
     ui->setupUi(this);
 }
 
-void WorkerAdd::addToPlace(ResourcePlaceView* place, const Colour colour)
+void WorkerAdd::addToPlace(Place* place, const Colour colour)
 {
     m_place = place;
     m_colour = colour;

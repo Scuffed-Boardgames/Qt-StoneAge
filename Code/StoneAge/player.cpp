@@ -90,3 +90,9 @@ std::vector<Worker*> Player::getFreeWorkers()
     }
     return unoccupied;
 }
+
+Colour Player::getColour() const
+{
+    return m_colour;
+}
+

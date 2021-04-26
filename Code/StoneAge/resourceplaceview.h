@@ -17,6 +17,8 @@ public:
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
+    Place* getPlace() const;
+
 private:
     int m_x;
     QGraphicsTextItem* m_redAmount;

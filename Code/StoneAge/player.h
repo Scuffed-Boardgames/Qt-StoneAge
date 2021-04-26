@@ -20,6 +20,8 @@ public:
     int getWorkerCount();// gets the amount of workers the player curently has
     int getAmountFreeWorkers();
     std::vector<Worker*> getFreeWorkers();
+    Colour getColour() const;
+
 private:
     int m_foodCount;
     int m_woodCount;
