@@ -20,14 +20,19 @@ void Player::addResource(const Resource resource, const int amount){
     switch (resource){
     case(Resource::food):
         m_foodCount += amount;
+        return;
     case(Resource::wood):
         m_woodCount += amount;
+        return;
     case(Resource::clay):
         m_clayCount += amount;
+        return;
     case(Resource::stone):
         m_stoneCount += amount;
+        return;
     case(Resource::gold):
         m_goldCount += amount;
+        return;
     default:
         return;
     }
