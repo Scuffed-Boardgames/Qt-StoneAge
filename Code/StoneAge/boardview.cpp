@@ -43,7 +43,7 @@ void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     ResourcePlaceView* resourceSelected = dynamic_cast<ResourcePlaceView*>(list[0]);
     if(resourceSelected){
         m_workeradd->setDynamic();
-        m_workeradd->addToPlace(resourceSelected->getPlace(), m_activeColour);
+        m_workeradd->addToPlace(resourceSelected->getPlace(), m_board->getPlayer(m_activeColour));
         m_workeradd->show();
         return;
     }

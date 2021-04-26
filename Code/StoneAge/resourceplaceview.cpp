@@ -64,39 +64,30 @@ ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, co
 
 }
 
-void ResourcePlaceView::addWorkers(const int amount, const Colour colour){
-    switch(colour){
-    case(Colour::red):{
-        QString redTextAmount = m_redAmount->toPlainText();
-        int redAmount = redTextAmount.toInt();
-        redAmount += amount;
-        m_redAmount->setPlainText(QString::number(redAmount));
-        return;
-    }
-    case(Colour::blue):{
-        QString blueTextAmount = m_blueAmount->toPlainText();
-        int blueAmount = blueTextAmount.toInt();
-        blueAmount += amount;
-        m_redAmount->setPlainText(QString::number(blueAmount));
-        return;
-    }
-    case(Colour::yellow):{
-        QString yellowTextAmount = m_yellowAmount->toPlainText();
-        int yellowAmount = yellowTextAmount.toInt();
-        yellowAmount += amount;
-        m_redAmount->setPlainText(QString::number(yellowAmount));
-        return;
-    }
-    case(Colour::green):{
-        QString greenTextAmount = m_greenAmount->toPlainText();
-        int greenAmount = greenTextAmount.toInt();
-        greenAmount += amount;
-        m_redAmount->setPlainText(QString::number(greenAmount));
-        return;
-    }
-    default:
-        return;
-    }
+void ResourcePlaceView::updateText()
+{
+
+    QString redTextAmount = m_redAmount->toPlainText();
+    int redAmount = redTextAmount.toInt();
+    redAmount = m_place->getWorkers(Colour::red);
+    m_redAmount->setPlainText(QString::number(redAmount));
+
+    QString blueTextAmount = m_blueAmount->toPlainText();
+    int blueAmount = blueTextAmount.toInt();
+    blueAmount = m_place->getWorkers(Colour::blue);
+    m_redAmount->setPlainText(QString::number(blueAmount));
+
+    QString yellowTextAmount = m_yellowAmount->toPlainText();
+    int yellowAmount = yellowTextAmount.toInt();
+    yellowAmount = m_place->getWorkers(Colour::yellow);
+    m_redAmount->setPlainText(QString::number(yellowAmount));
+
+
+    QString greenTextAmount = m_greenAmount->toPlainText();
+    int greenAmount = greenTextAmount.toInt();
+    greenAmount = m_place->getWorkers(Colour::green);
+    m_redAmount->setPlainText(QString::number(greenAmount));
+
 }
 
 QRectF ResourcePlaceView::boundingRect() const

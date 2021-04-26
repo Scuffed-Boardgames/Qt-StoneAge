@@ -10,14 +10,17 @@
 
 class ResourcePlaceView : public QGraphicsItem
 {
+    Q_OBJECT
 
 public:
     ResourcePlaceView(QColor colour, QString name, int moveByX, Place* m_place, QGraphicsScene* parent);
-    void addWorkers(int amount, Colour colour);
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
     Place* getPlace() const;
+
+public slots:
+    void updateText();
 
 private:
     int m_x;

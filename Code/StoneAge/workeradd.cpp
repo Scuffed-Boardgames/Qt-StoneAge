@@ -6,10 +6,10 @@ WorkerAdd::WorkerAdd(QWidget *parent) : QWidget(parent), ui(new Ui::WorkerAdd)
     ui->setupUi(this);
 }
 
-void WorkerAdd::addToPlace(Place* place, const Colour colour)
+void WorkerAdd::addToPlace(Place* place, std::shared_ptr<Player> player)
 {
     m_place = place;
-    m_colour = colour;
+    m_player = player;
 }
 
 WorkerAdd::~WorkerAdd()
@@ -20,7 +20,7 @@ WorkerAdd::~WorkerAdd()
 void WorkerAdd::on_okayButton_clicked()
 {
     if(m_place)
-        m_place->addWorkers(ui->amount->value(), m_colour);
+        m_place->addWorker(m_player, ui->amount->value());
     ui->amount->setValue(1);
     m_place = nullptr;
     this->close();

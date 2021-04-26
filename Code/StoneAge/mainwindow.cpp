@@ -5,13 +5,13 @@ MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent) : QM
 {
     m_ui->setupUi(this);
     QColor red(237, 28, 36);
-    m_playerviews.push_back(new PlayerView(red, board->getPlayer(0)));
+    m_playerviews.push_back(new PlayerView(red, board->getPlayer(Colour::red)));
     QColor blue(63, 72, 204);
-    m_playerviews.push_back(new PlayerView(blue, board->getPlayer(1)));
+    m_playerviews.push_back(new PlayerView(blue, board->getPlayer(Colour::blue)));
     QColor yellow(255, 242, 0);
-    m_playerviews.push_back(new PlayerView(yellow, board->getPlayer(2)));
+    m_playerviews.push_back(new PlayerView(yellow, board->getPlayer(Colour::yellow)));
     QColor green(34, 177, 76);
-    m_playerviews.push_back(new PlayerView(green, board->getPlayer(3)));
+    m_playerviews.push_back(new PlayerView(green, board->getPlayer(Colour::green)));
     m_ui->redView->setScene(m_playerviews[0]);
     m_ui->blueView->setScene(m_playerviews[1]);
     m_ui->yellowView->setScene(m_playerviews[2]);

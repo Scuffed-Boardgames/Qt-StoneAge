@@ -14,7 +14,7 @@ class WorkerAdd : public QWidget
 
 public:
     explicit WorkerAdd(QWidget *parent = nullptr);
-    void addToPlace(Place* place, Colour colour);
+    void addToPlace(Place* place, std::shared_ptr<Player> player);
     void setStatic(int amount);
     void setDynamic();
     ~WorkerAdd();
@@ -25,7 +25,7 @@ private slots:
     void on_cancelButton_clicked();
 
 private:
-    Colour m_colour;
+    std::shared_ptr<Player> m_player;
     Place* m_place;
     Ui::WorkerAdd* ui;
 };
