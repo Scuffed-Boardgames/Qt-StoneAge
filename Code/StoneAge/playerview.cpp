@@ -1,7 +1,7 @@
 #include "playerview.h"
 #include <QGraphicsView>
 #include <QGraphicsTextItem>
-PlayerView::PlayerView(QColor color, std::shared_ptr<Player> player, QObject* parent) : QGraphicsScene(parent), m_player(player)
+PlayerView::PlayerView(const QColor color, const std::shared_ptr<Player> player, QObject* parent) : QGraphicsScene(parent), m_player(player)
 {
     QBrush background;
     background.setColor(color);

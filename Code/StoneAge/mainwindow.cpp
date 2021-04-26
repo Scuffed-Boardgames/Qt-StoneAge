@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(std::shared_ptr<Board> board, QWidget *parent) : QMainWindow(parent), m_ui(new Ui::MainWindow), m_boardview(new BoardView(board, this))
+MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent) : QMainWindow(parent), m_ui(new Ui::MainWindow), m_boardview(new BoardView(board, this))
 {
     m_ui->setupUi(this);
     QColor red(237, 28, 36);

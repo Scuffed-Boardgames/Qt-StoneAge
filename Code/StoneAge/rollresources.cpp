@@ -2,7 +2,7 @@
 #include "ui_rollresources.h"
 
 
-RollResources::RollResources(int workerAmount, Resource resource, QString text, QWidget *parent) : QWidget(parent), ui(new Ui::RollResources)
+RollResources::RollResources(const int workerAmount, const Resource resource, const QString text, QWidget *parent) : QWidget(parent), ui(new Ui::RollResources)
 {
     ui->setupUi(this);
     int amount = 0;

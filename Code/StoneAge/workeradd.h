@@ -5,18 +5,18 @@
 #include <placeview.h>
 
 namespace Ui {
-class workerAdd;
+class WorkerAdd;
 }
 
-class workerAdd : public QWidget
+class WorkerAdd : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit workerAdd(QWidget *parent = nullptr);
-    void addToPlace(placeView* place, Colour colour);
+    explicit WorkerAdd(QWidget *parent = nullptr);
+    void addToPlace(PlaceView* place, Colour colour);
     void setFixed(int amount);
-    ~workerAdd();
+    ~WorkerAdd();
 
 private slots:
     void on_okayButton_clicked();
@@ -25,8 +25,8 @@ private slots:
 
 private:
     Colour m_colour;
-    placeView *m_place;
-    Ui::workerAdd *ui;
+    PlaceView* m_place;
+    Ui::WorkerAdd* ui;
 };
 
 #endif // WORKERADD_H

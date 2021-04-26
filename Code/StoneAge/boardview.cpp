@@ -13,18 +13,15 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsS
     m_activeColour = Colour::red;
     int moveByX = 50;
     int rectWidth = 300;
-//    m_test = new QGraphicsRectItem;
-    m_food = std::make_unique<placeView>(QColor(60,125,0), "Food", moveByX, this);//forest green
-//    m_food = new placeView(QColor(60,125,0), "Food", moveByX, this);
+    m_food = std::make_unique<PlaceView>(QColor(60,125,0), "Food", moveByX, this);//forest green
     moveByX += rectWidth;
-    m_wood = std::make_unique<placeView>(QColor(115,75,0), "Wood", moveByX, this);//brown
+    m_wood = std::make_unique<PlaceView>(QColor(115,75,0), "Wood", moveByX, this);//brown
     moveByX += rectWidth;
-    m_clay = std::make_unique<placeView>(QColor(220,85,57), "Clay", moveByX, this);//brick red
+    m_clay = std::make_unique<PlaceView>(QColor(220,85,57), "Clay", moveByX, this);//brick red
     moveByX += rectWidth;
-    m_stone = std::make_unique<placeView>(QColor(75,75,75), "Stone", moveByX, this);//grey
+    m_stone = std::make_unique<PlaceView>(QColor(75,75,75), "Stone", moveByX, this);//grey
     moveByX += rectWidth;
-    m_gold = std::make_unique<placeView>(QColor(255,215,0), "Gold", moveByX, this);//gold
-
+    m_gold = std::make_unique<PlaceView>(QColor(255,215,0), "Gold", moveByX, this);//gold
     moveByX = 50;
     rectWidth = 500;
     makeSmallPlace(QColor(245,222,179), moveByX, 210, "Field");//wheat yellow 210
@@ -32,7 +29,8 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsS
     makeSmallPlace(QColor(254,184,198), moveByX, 210, "Hut");//love pink 210
     moveByX += rectWidth;
     makeSmallPlace(QColor(161,133,105), moveByX, 180, "Tool Shed" );//tool brown 180
-    m_workeradd = new workerAdd;
+    m_workeradd = std::make_unique<WorkerAdd>();
+
 }
 
 QGraphicsRectItem* BoardView::makeSmallPlace(QColor colour, int moveByX,int textMoveX, QString name){
@@ -66,6 +64,6 @@ void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     QList<QGraphicsItem*>list = this->selectedItems();
     if(list.length() == 0)
         return;
-    m_workeradd->addToPlace((placeView*)list[0], m_activeColour);
+    m_workeradd->addToPlace((PlaceView*)list[0], m_activeColour);
     m_workeradd->show();
 }

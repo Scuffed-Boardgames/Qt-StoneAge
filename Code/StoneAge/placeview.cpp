@@ -5,7 +5,7 @@
 
 
 
-placeView::placeView(QColor colour, QString name, int moveByX, QGraphicsScene* parentItem)
+PlaceView::PlaceView(const QColor colour, const QString name, const int moveByX, QGraphicsScene* parentItem)
 {
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
     int rectWidth = 300;
@@ -60,7 +60,7 @@ placeView::placeView(QColor colour, QString name, int moveByX, QGraphicsScene* p
 
 }
 
-void placeView::addWorkers(int amount, Colour colour){
+void PlaceView::addWorkers(const int amount, const Colour colour){
     switch(colour){
     case(Colour::red):{
         QString redTextAmount = m_redAmount->toPlainText();
@@ -95,12 +95,12 @@ void placeView::addWorkers(int amount, Colour colour){
     }
 }
 
-QRectF placeView::boundingRect() const
+QRectF PlaceView::boundingRect() const
 {
     return QRectF(m_x,100, 300 , 400 );
 }
 
-void placeView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void PlaceView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
 
 //    QRectF rec = boundingRect();

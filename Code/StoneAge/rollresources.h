@@ -14,7 +14,7 @@ class RollResources : public QWidget
 
 public:
     explicit RollResources(int workerAmount, Resource resource, QString text, QWidget *parent = nullptr);
-    int getGain();
+    int getGain(); //returns the amount of resources gained
     ~RollResources();
 
 private slots:

@@ -8,7 +8,7 @@ Player::Player() : m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCoun
     }
 }
 
-void Player::addResource(Resource resource, int amount){
+void Player::addResource(const Resource resource, const int amount){
     switch (resource){
     case(Resource::food):
         m_foodCount += amount;
@@ -30,7 +30,7 @@ void Player::addWorker(){
      m_workers.push_back(worker);
 }
 
-int Player::getResource(Resource resource){
+int Player::getResource(const Resource resource){
     switch ((int)resource){
     case(2):
         return m_foodCount;

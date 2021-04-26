@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>workerAdd</class>
- <widget class="QWidget" name="workerAdd">
+ <class>WorkerAdd</class>
+ <widget class="QWidget" name="WorkerAdd">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -29,12 +29,19 @@
    <item alignment="Qt::AlignHCenter">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>How many workers do you want to add</string>
+      <string>How many workers do you want to add?</string>
      </property>
     </widget>
    </item>
-   <item alignment="Qt::AlignHCenter">
-    <widget class="QSpinBox" name="amount"/>
+   <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+    <widget class="QSpinBox" name="amount">
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>7</number>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">

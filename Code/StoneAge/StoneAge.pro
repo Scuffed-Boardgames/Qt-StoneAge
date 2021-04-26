@@ -16,7 +16,6 @@ SOURCES += \
     placeview.cpp \
     player.cpp \
     playerview.cpp \
-    resources.cpp \
     rollresources.cpp \
     worker.cpp \
     workeradd.cpp
