@@ -3,12 +3,12 @@
 
 #include "place.h"
 
-class Toolshed : public Place
+class ToolShed : public Place
 {
 public:
-    Toolshed();
+    ToolShed();
     void giveResource(std::shared_ptr<Player> player);
-    void addWorker(std::shared_ptr<Player> player, int amount);
+    void addWorker(std::shared_ptr<Player> player, int amount = 1);
 };
 
 #endif // TOOLSHED_H

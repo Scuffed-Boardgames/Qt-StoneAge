@@ -101,9 +101,11 @@ void Player::addTool(){
         }
     }
     m_tools[lowestLevelPos].levelUp();
+    emit dataChanged();
 }
 
 void Player::disableTool(int nr){
     m_tools[nr].isUsed();
 }
+
 

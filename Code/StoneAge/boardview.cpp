@@ -28,11 +28,12 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsS
 
     moveByX = 50;
     rectWidth = 500;
-    m_field = std::make_unique<OtherPlaceView>(QColor(245,222,179), moveByX, 1, "Field", this);//wheat yellow 210
+    m_field = std::make_unique<OtherPlaceView>(QColor(245,222,179), moveByX, 1, "Field", nullptr, this);//wheat yellow
     moveByX += rectWidth;
-    m_hut = std::make_unique<OtherPlaceView>(QColor(254,184,198), moveByX, 2, "Hut", this);//love pink 210
+    m_hut = std::make_unique<OtherPlaceView>(QColor(254,184,198), moveByX, 2, "Hut", nullptr, this);//love pink
     moveByX += rectWidth;
-    m_toolshed = std::make_unique<OtherPlaceView>(QColor(161,133,105), moveByX, 1, "Tool Shed", this);//tool brown 180
+    m_toolshed = std::make_unique<OtherPlaceView>(QColor(161,133,105), moveByX, 1, "Tool Shed", m_board->getToolShed(), this);//tool brown
+    connect(m_board->getToolShed(), &Place::changedWorkers, m_toolshed.get(), &OtherPlaceView::updateText);
 }
 
 void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
@@ -50,7 +51,7 @@ void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     OtherPlaceView* otherSelected = dynamic_cast<OtherPlaceView*>(list[0]);
     if(otherSelected){
         m_workeradd->setStatic(otherSelected->getCost());
-        otherSelected->setColour(m_activeColour);
+        m_workeradd->addToPlace(otherSelected->getPlace(), m_board->getPlayer(m_activeColour));
         m_workeradd->show();
         return;
     }

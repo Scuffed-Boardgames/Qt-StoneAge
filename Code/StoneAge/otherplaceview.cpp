@@ -3,15 +3,13 @@
 #include <QFont>
 #include <QGraphicsScene>
 
-OtherPlaceView::OtherPlaceView(QColor colour, int moveByX, int cost, QString name, QGraphicsScene* parentItem)
-{
+OtherPlaceView::OtherPlaceView(QColor colour, int moveByX, int cost, QString name, Place* place, QGraphicsScene* parentItem)
+    : m_place(place), m_owner(Colour::none), m_x(moveByX), m_staticCost(cost){
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
-      m_x = moveByX;
     QGraphicsRectItem* tile = new QGraphicsRectItem(0, 0,500, 400, this);
     tile->moveBy(moveByX, 500);
     tile->setBrush(colour);
     parentItem->addItem(this);
-
     QFont font("Font", 26);
     QGraphicsTextItem* text = new QGraphicsTextItem(name, tile);
     text->setFont(font);
@@ -19,25 +17,20 @@ OtherPlaceView::OtherPlaceView(QColor colour, int moveByX, int cost, QString nam
         text->moveBy(180, 50);
     else
         text->moveBy(210, 50);
-
-
     m_indicator = new QGraphicsRectItem(0, 0,300, 200, tile);
     m_indicator->moveBy(100, 150);
     m_indicator->setBrush(QColor(234, 222, 210)); //white-ish
-    m_owner = Colour::none;
-    m_staticCost = cost;
+
 
 }
 
-int OtherPlaceView::getCost()
-{
+int OtherPlaceView::getCost(){
     return m_staticCost;
 
 }
 
 
-void OtherPlaceView::setColour(Colour colour)
-{
+void OtherPlaceView::setColour(Colour colour){
     switch (colour) {
     case Colour::red:
         m_indicator->setBrush(QColor(237,28,36));
@@ -59,11 +52,38 @@ void OtherPlaceView::setColour(Colour colour)
 
 }
 
-QRectF OtherPlaceView::boundingRect() const
-{
+QRectF OtherPlaceView::boundingRect() const{
     return QRectF(m_x, 500, 500, 400 );
 }
 
 void OtherPlaceView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    if (painter || option || widget){
+    }
+}
+
+Place* OtherPlaceView::getPlace(){
+    return m_place;
+}
+
+void OtherPlaceView::updateText()
+{
+    if(m_place->getWorkers(Colour::red) != 0){
+        m_indicator->setBrush(QColor(237,28,36));
+        return;
+    }
+    else if(m_place->getWorkers(Colour::blue) != 0){
+    m_indicator->setBrush(QColor(63,72,204));
+    return;
+    }
+    else if(m_place->getWorkers(Colour::yellow) != 0){
+    m_indicator->setBrush(QColor(255,242,0));
+    return;
+    }
+    else if(m_place->getWorkers(Colour::green) != 0){
+    m_indicator->setBrush(QColor(34,177,76));
+    return;
+    }
+    m_indicator->setBrush(QColor(234, 222, 210));
+    return;
 }

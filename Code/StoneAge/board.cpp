@@ -1,6 +1,6 @@
 #include "board.h"
 
-Board::Board() : m_forest{Resource::wood}, m_clayPit{Resource::clay}, m_quarry{Resource::stone}, m_river{Resource::gold}, m_hunt{Resource::food}
+Board::Board() : m_forest{Resource::wood}, m_clayPit{Resource::clay}, m_quarry{Resource::stone}, m_river{Resource::gold}, m_hunt{Resource::food}, m_toolShed()
 {
     m_turn = 0;
     for(int i = 0; i < 4; ++i){
@@ -53,5 +53,9 @@ void Board::resetWorkers()
     m_river.resetWorkers();
     m_field.resetWorkers();
     m_hut.resetWorkers();
-    m_toolMaker.resetWorkers();
+    m_toolShed.resetWorkers();
+}
+
+ToolShed* Board::getToolShed(){
+    return &m_toolShed;
 }

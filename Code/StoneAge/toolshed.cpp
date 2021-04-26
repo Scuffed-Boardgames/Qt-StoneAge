@@ -1,17 +1,35 @@
 #include "toolshed.h"
 
-Toolshed::Toolshed() : Place()
+ToolShed::ToolShed() : Place()
 {
 
 }
 
 
-void Toolshed::giveResource(std::shared_ptr<Player> player)
-{
-
+void ToolShed::giveResource(std::shared_ptr<Player> player){
+    player->addTool();
 }
 
-void Toolshed::addWorker(std::shared_ptr<Player> player, int amount)
-{
-
+void ToolShed::addWorker(std::shared_ptr<Player> player, int amount){
+    amount = 1;
+    if(m_redWorkers != 0 or m_blueWorkers != 0 or m_yellowWorkers != 0 or m_greenWorkers != 0)
+        return;
+    player->setWorkersOccupied(amount);
+    switch(player->getColour()){
+    case(Colour::red):
+        m_redWorkers = amount;
+        break;
+    case(Colour::blue):
+        m_blueWorkers = amount;
+        break;
+    case(Colour::yellow):
+        m_yellowWorkers = amount;
+        break;
+    case(Colour::green):
+        m_greenWorkers = amount;
+        break;
+    default:
+        return;
+    }
+    emit changedWorkers();
 }

@@ -5,11 +5,10 @@
 
 
 ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, const int moveByX, Place* place, QGraphicsScene* parentItem)
+    :  m_x(moveByX), m_place(place)
 {
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
     int rectWidth = 300;
-    m_x = moveByX;
-    m_place = place;
     QGraphicsRectItem* parent = new QGraphicsRectItem(0, 0, rectWidth, 400, this);
     parent->moveBy(moveByX,100);
     parent->setBrush(colour);

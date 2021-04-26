@@ -18,6 +18,7 @@ public:
     std::shared_ptr<Player> getPlayer(Colour colour);
     Gather* getGather(Resource resource);
     void resetWorkers();
+    ToolShed* getToolShed();
 private:
     std::shared_ptr<Player> m_players[4];
     Hut m_hut;
@@ -26,7 +27,7 @@ private:
     Gather m_quarry;
     Gather m_river;
     Gather m_hunt;
-    Toolshed m_toolMaker;
+    ToolShed m_toolShed;
     Field m_field;
     int m_turn;
 //    std::vector<Building> m_buildings;
