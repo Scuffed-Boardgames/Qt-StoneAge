@@ -6,6 +6,7 @@
 #include "board.h"
 #include "workeradd.h"
 #include "otherplaceview.h"
+#include "resourceplaceview.h"
 
 class BoardView : public QGraphicsScene
 {

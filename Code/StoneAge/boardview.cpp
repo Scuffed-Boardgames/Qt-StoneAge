@@ -1,6 +1,4 @@
 #include "boardview.h"
-#include "resourceplaceview.h"
-#include "otherplaceview.h"
 #include <QColor>
 #include <QGraphicsTextItem>
 

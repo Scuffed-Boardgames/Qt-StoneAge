@@ -17,10 +17,11 @@ SOURCES += \
     hut.cpp \
     main.cpp \
     mainwindow.cpp \
+    otherplaceview.cpp \
     place.cpp \
-    placeview.cpp \
     player.cpp \
     playerview.cpp \
+    resourceplaceview.cpp \
     rollresources.cpp \
     toolshed.cpp \
     worker.cpp \
@@ -35,10 +36,11 @@ HEADERS += \
     hunt.h \
     hut.h \
     mainwindow.h \
+    otherplaceview.h \
     place.h \
-    placeview.h \
     player.h \
     playerview.h \
+    resourceplaceview.h \
     resources.h \
     rollresources.h \
     toolshed.h \
