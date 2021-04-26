@@ -22,6 +22,7 @@ SOURCES += \
     playerview.cpp \
     resourceplaceview.cpp \
     rollresources.cpp \
+    tool.cpp \
     toolshed.cpp \
     worker.cpp \
     workeradd.cpp
@@ -41,6 +42,7 @@ HEADERS += \
     resourceplaceview.h \
     resources.h \
     rollresources.h \
+    tool.h \
     toolshed.h \
     worker.h \
     workeradd.h
