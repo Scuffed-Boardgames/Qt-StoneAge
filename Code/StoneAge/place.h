@@ -7,7 +7,8 @@ class Place
 {
 public:
     Place();
-    int removeWorker(Player player, int amount);
+    int removeWorker();
+    virtual void addWorker(Player player);
 private:
     int m_redWorkers;
     int m_blueWorkers;

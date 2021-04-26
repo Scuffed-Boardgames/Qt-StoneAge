@@ -1,6 +1,6 @@
 #include "hut.h"
 
-Hut::Hut() : Hut::Place()
+Hut::Hut() : Place()
 {
 
 }

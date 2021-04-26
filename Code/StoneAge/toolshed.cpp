@@ -1,6 +1,6 @@
 #include "toolshed.h"
 
-Toolshed::Toolshed() : Toolshed::Place()
+Toolshed::Toolshed() : Place()
 {
 
 }

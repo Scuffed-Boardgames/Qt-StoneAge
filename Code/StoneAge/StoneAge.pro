@@ -13,7 +13,6 @@ SOURCES += \
     boardview.cpp \
     field.cpp \
     gather.cpp \
-    hunt.cpp \
     hut.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -33,7 +32,6 @@ HEADERS += \
     colour.h \
     field.h \
     gather.h \
-    hunt.h \
     hut.h \
     mainwindow.h \
     otherplaceview.h \

@@ -1,6 +1,6 @@
 #include "field.h"
 
-Field::Field() : Field::Place()
+Field::Field() : Place()
 {
 
 }
