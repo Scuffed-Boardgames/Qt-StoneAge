@@ -16,6 +16,7 @@ public:
     void playTurn();
     int getTurn();
     std::shared_ptr<Player> getPlayer(int nr);
+    Gather* getGather(Resource resource);
 private:
     Player m_players[4];
     Hut m_hut;
