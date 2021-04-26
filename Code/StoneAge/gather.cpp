@@ -14,7 +14,20 @@ Resource Gather::giveResource(Player player)
     return m_resource;
 }
 
-void Gather::addWorker(Player player)
+void Gather::addWorker(Player player, int amount)
 {
+    switch(player.getColour()){
+    case(Colour::red):
+    case(Colour::blue):
+    case(Colour::yellow):
+    case(Colour::green):
+    }
+    if (player.getAmountFreeWorkers() >= amount){
+        std::vector<Worker*> workers = player.getFreeWorkers();
+        for (int i = 0; i<amount ; ++i){
+            workers[i]->setOccupation(this);
+        }
+    }else{
 
+    }
 }

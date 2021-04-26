@@ -8,7 +8,7 @@ class Gather : public Place
 public:
     Gather(Resource resource);
     Resource giveResource(Player player);
-    void addWorker(Player player);
+    void addWorker(Player player, int amount);
 private:
     int m_maxWorkers;
     Resource m_resource;

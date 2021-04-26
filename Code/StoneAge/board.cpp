@@ -23,8 +23,8 @@ int Board::getTurn(){
     return m_turn;
 }
 
-std::shared_ptr<Player> Board::getPlayer(int nr){
-    return std::make_shared<Player>(m_players[nr]);
+std::shared_ptr<Player> Board::getPlayer(Colour colour){
+    return std::make_shared<Player>(m_players[(int)colour]);
 }
 
 Gather* Board::getGather(Resource resource)
