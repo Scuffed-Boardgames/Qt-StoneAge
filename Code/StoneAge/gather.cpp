@@ -1,4 +1,5 @@
 #include "gather.h"
+#include "rollresources.h"
 
 Gather::Gather(Resource resource) : Place(), m_resource{resource}
 {
@@ -28,8 +29,9 @@ void Gather::giveResource(std::shared_ptr<Player> player)
     default:
         return;
     }
-    if (amount > 0){
-        player->addResource(m_resource, amount);
+    RollResources* roll = new RollResources(amount, m_resource, player, nullptr);
+    if (roll->getGain() > 0){
+        player->addResource(m_resource, roll->getGain());
         emit resourcesChanged();
     }
 }

@@ -2,8 +2,8 @@
 #include "ui_rollresources.h"
 
 
-RollResources::RollResources(const int workerAmount, const Resource resource, const QString text, std::shared_ptr<Player>player, QWidget *parent)
-    : QWidget(parent), ui(new Ui::RollResources), m_resource(resource), m_text(text), m_player(player)
+RollResources::RollResources(const int workerAmount, const Resource resource, std::shared_ptr<Player>player, QWidget *parent)
+    : QWidget(parent), ui(new Ui::RollResources), m_resource(resource), m_text(resourceToString(resource)), m_player(player)
 {
     ui->setupUi(this);
     int amount = 0;
@@ -63,4 +63,22 @@ void RollResources::on_Tool3Button_clicked(){
     m_gain = m_roll/(int) m_resource;
     ui->message->setText("You rolled " + QString::number(m_roll) + " which will give you " + QString::number(m_gain) + " " + m_text);
 
+}
+
+const QString RollResources::resourceToString(Resource resource)
+{
+    switch(resource){
+    case(Resource::food):
+        return "food";
+    case(Resource::wood):
+        return "wood";
+    case(Resource::clay):
+        return "clay";
+    case(Resource::stone):
+        return "stone";
+    case(Resource::gold):
+        return "gold";
+    default:
+        return "error: no resource given";
+    }
 }

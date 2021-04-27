@@ -13,7 +13,7 @@ class RollResources : public QWidget
     Q_OBJECT
 
 public:
-    explicit RollResources(int workerAmount, Resource resource, QString text, std::shared_ptr<Player> player, QWidget *parent = nullptr);
+    explicit RollResources(int workerAmount, Resource resource, std::shared_ptr<Player> player, QWidget *parent = nullptr);
     int getGain(); //returns the amount of resources gained
     ~RollResources();
 
@@ -27,6 +27,7 @@ private slots:
     void on_Tool3Button_clicked();
 
 private:
+    const QString resourceToString(Resource resource);
     Ui::RollResources *ui;
     int m_roll;
     int m_gain;
