@@ -1,4 +1,5 @@
 #include "board.h"
+#include <QJsonArray>
 
 Board::Board() : m_forest{Resource::wood}, m_clayPit{Resource::clay}, m_quarry{Resource::stone}, m_river{Resource::gold}, m_hunt{Resource::food}, m_toolShed()
 {
@@ -61,4 +62,30 @@ void Board::resetWorkers()
 
 ToolShed* Board::getToolShed(){
     return &m_toolShed;
+}
+
+void Board::load(const QJsonObject &json){
+    if(json.contains("turn") && json["turn"].isDouble()){
+        m_turn = (int)json["turn"].toDouble();
+
+    }
+    if(json.contains("players") && json["players"].isArray()){
+        QJsonArray players = json["players"].toArray();
+        for(int i = 0; i < players.size(); ++i){
+            m_players[i] = std::make_shared<Player>(players[i].toObject());
+            emit(m_players[i]->dataChanged());
+        }
+
+    }
+}
+
+QJsonObject Board::save(){
+    QJsonArray players;
+    for(int i = 0; i < 4; ++i){
+        players.append(m_players[i]->save());
+    }
+    QJsonObject json = {{"turn", m_turn},
+                        {"players", players}
+                       };
+    return json;
 }

@@ -19,6 +19,8 @@ public:
     Gather* getGather(Resource resource);
     void resetWorkers();
     ToolShed* getToolShed();
+    void load(const QJsonObject &json);
+    QJsonObject save();
 private:
     std::shared_ptr<Player> m_players[4];
     Hut m_hut;

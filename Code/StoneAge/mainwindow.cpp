@@ -1,7 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QFile>
+#include <QJsonDocument>
+#include <Qdir>
 
-MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent) : QMainWindow(parent), m_ui(new Ui::MainWindow), m_boardview(new BoardView(board, this))
+MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
+    : QMainWindow(parent), m_ui(new Ui::MainWindow), m_boardview(new BoardView(board, this)), m_board(board), m_fileDialog(new QFileDialog(this))
 {
     m_ui->setupUi(this);
     QColor red(237, 28, 36);
@@ -35,4 +39,23 @@ MainWindow::~MainWindow()
 void MainWindow::on_quitButton_clicked()
 {
     this->close();
+}
+
+void MainWindow::on_loadButton_clicked()
+{
+
+}
+
+void MainWindow::on_saveButton_clicked()
+{
+     QString filePath = QFileDialog::getSaveFileName(this, "Save", QDir::currentPath(), "JSON Files (*.json)");
+     QFile file(filePath);
+     file.open(QIODevice::ReadWrite);
+     QJsonDocument jsonDocument;
+     QJsonObject jsonObject = m_board->save();
+     jsonDocument.setObject(jsonObject);
+     file.resize(0);
+     file.write(jsonDocument.toJson());
+     file.close();
+
 }

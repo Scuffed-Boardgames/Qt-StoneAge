@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <QObject>
+#include <QJsonArray>
 
 #include "worker.h"
 #include "resources.h"
@@ -32,6 +33,8 @@ public:
     void setWorkersOccupied(int amount);
     void disableTool(int nr);
 
+    Player(const QJsonObject &json);
+    QJsonObject save();
 signals:
     void dataChanged();
 

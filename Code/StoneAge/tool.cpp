@@ -25,3 +25,18 @@ bool Tool::wasUsed(){
 void Tool::reset(){
      m_used = false;
 }
+
+QJsonObject Tool::save(){
+    QJsonObject json = {{"level", m_level},
+                        {"used", m_used}};
+    return json;
+}
+
+Tool::Tool(const QJsonObject & tool){
+    if(tool.contains("level") && tool["level"].isDouble()){
+        m_level = (int)tool["level"].toDouble();
+    }
+    if(tool.contains("used") && tool["used"].isBool()){
+        m_used = tool["used"].toBool();
+    }
+}
