@@ -13,6 +13,8 @@ public:
     void resetWorkers();
     virtual void addWorker(std::shared_ptr<Player>, int amount) = 0;
     int getWorkers(Colour colour);
+    QJsonObject save();
+    void load(const QJsonObject &json);
 protected:
     int m_redWorkers;
     int m_blueWorkers;

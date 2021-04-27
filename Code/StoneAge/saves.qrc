@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/save">
+        <file>saves/clean.json</file>
+    </qresource>
+</RCC>

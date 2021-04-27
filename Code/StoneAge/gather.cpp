@@ -4,7 +4,7 @@
 Gather::Gather(Resource resource) : Place(), m_resource{resource}
 {
     if (resource == Resource::food){
-        m_maxWorkers = 99;
+        m_maxWorkers = 9999;
     }else{
         m_maxWorkers = 7;
     }
@@ -76,3 +76,5 @@ void Gather::addWorker(std::shared_ptr<Player> player, int amount)
         emit changedWorkers();
     }
 }
+
+

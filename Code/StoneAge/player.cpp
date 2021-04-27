@@ -108,52 +108,51 @@ void Player::disableTool(int nr){
     m_tools[nr].isUsed();
 }
 
-Player::Player(const QJsonObject &json){
-    if(json.contains("food") && json["food"].isDouble()){
+void Player::load(const QJsonObject &json){
+//    if(json.contains("food") && json["food"].isDouble()){
         m_foodCount = (int)json["food"].toDouble();
-
-    }
-    if(json.contains("wood") && json["wood"].isDouble()){
+//    }
+//    if(json.contains("wood") && json["wood"].isDouble()){
         m_woodCount = (int)json["wood"].toDouble();
 
-    }
-    if(json.contains("clay") && json["clay"].isDouble()){
+//    }
+//    if(json.contains("clay") && json["clay"].isDouble()){
         m_clayCount = (int)json["clay"].toDouble();
 
-    }
-    if(json.contains("stone") && json["stone"].isDouble()){
+//    }
+//    if(json.contains("stone") && json["stone"].isDouble()){
         m_stoneCount = (int)json["stone"].toDouble();
 
-    }
-    if(json.contains("gold") && json["gold"].isDouble()){
+//    }
+//    if(json.contains("gold") && json["gold"].isDouble()){
         m_goldCount = (int)json["gold"].toDouble();
 
-    }
-    if(json.contains("score") && json["score"].isDouble()){
+//    }
+//    if(json.contains("score") && json["score"].isDouble()){
         m_scoreCount = (int)json["score"].toDouble();
 
-    }
-    if(json.contains("foodGain") && json["foodGain"].isDouble()){
+//    }
+//    if(json.contains("foodGain") && json["foodGain"].isDouble()){
         m_foodGain = (int)json["foodGain"].toDouble();
 
-    }
-    if(json.contains("colour") && json["colour"].isDouble()){
+//    }
+//    if(json.contains("colour") && json["colour"].isDouble()){
         m_colour = (Colour)(int)json["colour"].toDouble();
 
-    }
-    if(json.contains("workerTotal") && json["workerTotal"].isDouble()){
+//    }
+//    if(json.contains("workerTotal") && json["workerTotal"].isDouble()){
         m_workers = (int)json["workerTotal"].toDouble();
-    }
-    if(json.contains("workerFree") && json["workerFree"].isDouble()){
+//    }
+//    if(json.contains("workerFree") && json["workerFree"].isDouble()){
         m_freeWorkers = (int)json["workerFree"].toDouble();
-    }
-    if(json.contains("tools") && json["tools"].isArray()){
+//    }
+//    if(json.contains("tools") && json["tools"].isArray()){
         QJsonArray tools = json["tools"].toArray();
         for (int i = 0; i < tools.size(); ++i) {
             QJsonObject tool = tools[i].toObject();
             m_tools[i] = Tool(tool);
             }
-    }
+//    }
 }
 
 QJsonObject Player::save(){

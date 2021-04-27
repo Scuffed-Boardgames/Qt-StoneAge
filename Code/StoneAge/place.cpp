@@ -27,3 +27,31 @@ int Place::getWorkers(Colour colour)
         return -1;
     }
 }
+
+QJsonObject Place::save(){
+    QJsonObject json = {{"redWorkers", m_redWorkers},
+                        {"blueWorkers", m_blueWorkers},
+                        {"yellowWorkers", m_yellowWorkers},
+                        {"greenWorkers", m_greenWorkers}};
+    return json;
+}
+
+void Place::load(const QJsonObject &json){
+    if(json.contains("redWorkers") && json["redWorkers"].isDouble()){
+        m_redWorkers = (int)json["redWorkers"].toDouble();
+
+    }
+    if(json.contains("blueWorkers") && json["blueWorkers"].isDouble()){
+        m_blueWorkers = (int)json["blueWorkers"].toDouble();
+
+    }
+    if(json.contains("yellowWorkers") && json["yellowWorkers"].isDouble()){
+        m_yellowWorkers = (int)json["yellowWorkers"].toDouble();
+
+    }
+    if(json.contains("greenWorkers") && json["greenWorkers"].isDouble()){
+        m_greenWorkers = (int)json["greenWorkers"].toDouble();
+
+    }
+
+}

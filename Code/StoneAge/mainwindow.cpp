@@ -41,14 +41,17 @@ void MainWindow::on_quitButton_clicked()
     this->close();
 }
 
-void MainWindow::on_loadButton_clicked()
-{
-
+void MainWindow::on_loadButton_clicked(){
+    QString filePath = QFileDialog::getOpenFileName(this, "Load", ":/save/saves/", "JSON Files (*.json)");
+    QFile file(filePath);
+    QJsonDocument jsonDocument;
+    jsonDocument.fromJson(file.readAll());
+    QJsonObject jsonObject = jsonDocument.object();
+    m_board->load(jsonObject);
 }
 
-void MainWindow::on_saveButton_clicked()
-{
-     QString filePath = QFileDialog::getSaveFileName(this, "Save", QDir::currentPath(), "JSON Files (*.json)");
+void MainWindow::on_saveButton_clicked(){
+     QString filePath = QFileDialog::getSaveFileName(this, "Save", ":/save/saves/", "JSON Files (*.json)");
      QFile file(filePath);
      file.open(QIODevice::ReadWrite);
      QJsonDocument jsonDocument;
@@ -57,5 +60,4 @@ void MainWindow::on_saveButton_clicked()
      file.resize(0);
      file.write(jsonDocument.toJson());
      file.close();
-
 }

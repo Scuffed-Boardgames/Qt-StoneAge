@@ -33,8 +33,8 @@ public:
     void setWorkersOccupied(int amount);
     void disableTool(int nr);
 
-    Player(const QJsonObject &json);
     QJsonObject save();
+    void load(const QJsonObject &json);
 signals:
     void dataChanged();
 
