@@ -20,6 +20,7 @@ protected:
     int m_greenWorkers;
 signals:
     void changedWorkers();
+    void resourcesChanged();
 };
 
 #endif // PLACE_H

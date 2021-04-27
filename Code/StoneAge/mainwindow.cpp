@@ -12,6 +12,11 @@ MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent) : QM
     m_playerviews.push_back(std::make_shared<PlayerView>(yellow, board->getPlayer(Colour::yellow)));
     QColor green(34, 177, 76);
     m_playerviews.push_back(std::make_shared<PlayerView>(green, board->getPlayer(Colour::green)));
+
+    for(int i = 0; i<4 ; ++i){
+        connect(board->getGather(Resource::food), &Place::resourcesChanged, m_playerviews[i].get(), &PlayerView::updateText);
+    }
+
     m_ui->redView->setScene(m_playerviews[0].get());
     m_ui->blueView->setScene(m_playerviews[1].get());
     m_ui->yellowView->setScene(m_playerviews[2].get());

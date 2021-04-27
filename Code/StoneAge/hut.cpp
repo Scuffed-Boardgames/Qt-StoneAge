@@ -5,9 +5,9 @@ Hut::Hut() : Place()
 
 }
 
-Worker Hut::giveResource(std::shared_ptr<Player> player)
+void Hut::giveResource(std::shared_ptr<Player> player)
 {
-    return NULL;
+    return;
 }
 
 
