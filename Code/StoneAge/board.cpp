@@ -65,49 +65,20 @@ ToolShed* Board::getToolShed(){
 }
 
 void Board::load(const QJsonObject &json){
-//    if(json.contains("turn") && json["turn"].isDouble()){
-        m_turn = (int)json["turn"].toDouble();
+    m_turn = (int)json["turn"].toDouble();
+    QJsonArray players = json["players"].toArray();
+    for(int i = 0; i < 4; ++i){
+        m_players[i]->load(players[i].toObject());
+    }
 
-//    }
-//    if(json.contains("players") && json["players"].isArray()){
-        QJsonArray players = json["players"].toArray();
-        for(int i = 0; i < 4; ++i){
-            m_players[i]->load(players[i].toObject());
-            emit m_players[i]->dataChanged();
-        }
-
-//    }
-//    if(json.contains("hut") && json["hut"].isObject()){
-        m_hut.load(json["hut"].toObject());
-
-//    }
-//    if(json.contains("forest") && json["forest"].isObject()){
-        m_forest.load(json["forest"].toObject());
-
-//    }
-//    if(json.contains("clayPit") && json["clayPit"].isObject()){
-        m_clayPit.load(json["clayPit"].toObject());
-
-//    }
-//    if(json.contains("quarry") && json["quarry"].isObject()){
-        m_quarry.load(json["quarry"].toObject());
-
-//    }
-//    if(json.contains("river") && json["river"].isObject()){
-        m_river.load(json["river"].toObject());
-
-//    }
-//    if(json.contains("hunt") && json["hunt"].isObject()){
-        m_hunt.load(json["hunt"].toObject());
-
-//    }
-//    if(json.contains("toolShes") && json["toolShed"].isObject()){
-        m_toolShed.load(json["toolShed"].toObject());
-
-//    }
-//    if(json.contains("field") && json["field"].isObject()){
-        m_field.load(json["field"].toObject());
-//    }
+    m_hut.load(json["hut"].toObject());
+    m_forest.load(json["forest"].toObject());
+    m_clayPit.load(json["clayPit"].toObject());
+    m_quarry.load(json["quarry"].toObject());
+    m_river.load(json["river"].toObject());
+    m_hunt.load(json["hunt"].toObject());
+    m_toolShed.load(json["toolShed"].toObject());
+    m_field.load(json["field"].toObject());
 }
 
 QJsonObject Board::save(){

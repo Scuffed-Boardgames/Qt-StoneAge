@@ -44,9 +44,13 @@ void MainWindow::on_quitButton_clicked()
 void MainWindow::on_loadButton_clicked(){
     QString filePath = QFileDialog::getOpenFileName(this, "Load", ":/save/saves/", "JSON Files (*.json)");
     QFile file(filePath);
-    QJsonDocument jsonDocument;
-    jsonDocument.fromJson(file.readAll());
-    QJsonObject jsonObject = jsonDocument.object();
+    if(file.size() == 0)
+        return;
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QByteArray data = file.readAll();
+    file.close();
+    QJsonDocument document = QJsonDocument::fromJson(data);
+    QJsonObject jsonObject = document.object();
     m_board->load(jsonObject);
 }
 
@@ -60,4 +64,15 @@ void MainWindow::on_saveButton_clicked(){
      file.resize(0);
      file.write(jsonDocument.toJson());
      file.close();
+}
+
+void MainWindow::on_newGameButton_clicked(){
+     QFile file(":/save/saves/clean.json");
+     file.open(QIODevice::ReadOnly | QIODevice::Text);
+     QByteArray data = file.readAll();
+     file.close();
+     QJsonDocument document = QJsonDocument::fromJson(data);
+     QJsonObject jsonObject = document.object();
+     m_board->load(jsonObject);
+
 }

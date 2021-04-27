@@ -37,21 +37,9 @@ QJsonObject Place::save(){
 }
 
 void Place::load(const QJsonObject &json){
-    if(json.contains("redWorkers") && json["redWorkers"].isDouble()){
-        m_redWorkers = (int)json["redWorkers"].toDouble();
-
-    }
-    if(json.contains("blueWorkers") && json["blueWorkers"].isDouble()){
-        m_blueWorkers = (int)json["blueWorkers"].toDouble();
-
-    }
-    if(json.contains("yellowWorkers") && json["yellowWorkers"].isDouble()){
-        m_yellowWorkers = (int)json["yellowWorkers"].toDouble();
-
-    }
-    if(json.contains("greenWorkers") && json["greenWorkers"].isDouble()){
-        m_greenWorkers = (int)json["greenWorkers"].toDouble();
-
-    }
-
+    m_redWorkers = (int)json["redWorkers"].toDouble();
+    m_blueWorkers = (int)json["blueWorkers"].toDouble();
+    m_yellowWorkers = (int)json["yellowWorkers"].toDouble();
+    m_greenWorkers = (int)json["greenWorkers"].toDouble();
+    emit changedWorkers();
 }

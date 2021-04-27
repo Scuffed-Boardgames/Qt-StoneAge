@@ -25,6 +25,8 @@ private slots:
 
     void on_saveButton_clicked();
 
+    void on_newGameButton_clicked();
+
 private:
     Ui::MainWindow *m_ui;
     std::unique_ptr<BoardView> m_boardview;
