@@ -54,6 +54,9 @@ void Board::resetWorkers()
     m_field.resetWorkers();
     m_hut.resetWorkers();
     m_toolShed.resetWorkers();
+    for (int i = 0; i<4 ; ++i){
+        m_players[i].reset();
+    }
 }
 
 ToolShed* Board::getToolShed(){
