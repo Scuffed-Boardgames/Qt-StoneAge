@@ -15,6 +15,12 @@ void BoardView::newBuild(std::shared_ptr<Building> building, int pos){
 
 }
 
+void BoardView::updateTurn()
+{
+    m_board->nextPlayer();
+    m_activeColour = m_board->getCurrentPlayer();
+}
+
 BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsScene(parent), m_activeColour{Colour::red}, m_workeradd{std::make_unique<WorkerAdd>()}, m_board{board}
 {
 
@@ -22,18 +28,23 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsS
     int rectWidth = 300;
     m_food = std::make_unique<ResourcePlaceView>(QColor(60,125,0), "Hunt", moveByX, m_board->getGather(Resource::food), this);//forest green
     connect(m_board->getGather(Resource::food), &Place::changedWorkers, m_food.get(), &ResourcePlaceView::updateText);
+    connect(m_board->getGather(Resource::food), &Place::turnHappend, this, &BoardView::updateTurn);
     moveByX += rectWidth;
     m_wood = std::make_unique<ResourcePlaceView>(QColor(115,75,0), "Forest", moveByX, m_board->getGather(Resource::wood), this);//brown
     connect(m_board->getGather(Resource::wood), &Place::changedWorkers, m_wood.get(), &ResourcePlaceView::updateText);
+    connect(m_board->getGather(Resource::wood), &Place::turnHappend, this, &BoardView::updateTurn);
     moveByX += rectWidth;
     m_clay = std::make_unique<ResourcePlaceView>(QColor(220,85,57), "Clay Pit", moveByX, m_board->getGather(Resource::clay), this);//brick red
     connect(m_board->getGather(Resource::clay), &Place::changedWorkers, m_clay.get(), &ResourcePlaceView::updateText);
+    connect(m_board->getGather(Resource::clay), &Place::turnHappend, this, &BoardView::updateTurn);
     moveByX += rectWidth;
     m_stone = std::make_unique<ResourcePlaceView>(QColor(75,75,75), "Quarry", moveByX, m_board->getGather(Resource::stone), this);//grey
     connect(m_board->getGather(Resource::stone), &Place::changedWorkers, m_stone.get(), &ResourcePlaceView::updateText);
+    connect(m_board->getGather(Resource::stone), &Place::turnHappend, this, &BoardView::updateTurn);
     moveByX += rectWidth;
     m_gold = std::make_unique<ResourcePlaceView>(QColor(255,215,0), "River", moveByX, m_board->getGather(Resource::gold), this);//gold
     connect(m_board->getGather(Resource::gold), &Place::changedWorkers, m_gold.get(), &ResourcePlaceView::updateText);
+    connect(m_board->getGather(Resource::gold), &Place::turnHappend, this, &BoardView::updateTurn);
 
     moveByX = 50;
     rectWidth = 500;

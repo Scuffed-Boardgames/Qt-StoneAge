@@ -74,6 +74,7 @@ void Gather::addWorker(std::shared_ptr<Player> player, int amount)
             return;
         }
         emit changedWorkers();
+        emit turnHappend();
     }
 }
 

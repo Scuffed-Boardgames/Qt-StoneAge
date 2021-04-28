@@ -17,6 +17,7 @@ public:
     BoardView();
 public slots:
     void newBuild(std::shared_ptr<Building> building, int pos);
+    void updateTurn();
 private:
     std::unique_ptr<BuildingView> m_buildings[4];
     Colour m_activeColour;

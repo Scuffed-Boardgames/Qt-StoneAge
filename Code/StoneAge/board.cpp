@@ -3,7 +3,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 
-Board::Board() : m_forest{Resource::wood}, m_clayPit{Resource::clay}, m_quarry{Resource::stone}, m_river{Resource::gold}, m_hunt{Resource::food}, m_toolShed()
+Board::Board() : m_currentPlayer{Colour::red}, m_forest{Resource::wood}, m_clayPit{Resource::clay}, m_quarry{Resource::stone}, m_river{Resource::gold}, m_hunt{Resource::food}, m_toolShed()
 {
     m_turn = 0;
     for(int i = 0; i < 4; ++i){
@@ -50,6 +50,24 @@ void Board::rerollBuildings(){
         m_openBuildingCards[i] = m_buildingCards[place];
         m_buildingCards.erase(m_buildingCards.begin() + place);
         emit newBuild(m_openBuildingCards[i], i);
+    }
+}
+
+Colour Board::getCurrentPlayer() const
+{
+    return m_currentPlayer;
+}
+
+void Board::nextPlayer(int checked)
+{
+    if(checked == 4){
+        m_currentPlayer = Colour::red;
+        emit allWorkersPlaced();
+    }else{
+        m_currentPlayer = (Colour)(((int)m_currentPlayer + 1)%4);
+        if(getPlayer(m_currentPlayer)->getFreeWorkers() == 0){
+            nextPlayer(checked + 1);
+        }
     }
 }
 
