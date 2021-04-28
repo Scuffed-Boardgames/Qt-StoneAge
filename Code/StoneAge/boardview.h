@@ -18,6 +18,7 @@ public:
 public slots:
     void newBuild(std::shared_ptr<Building> building, int pos);
     void updateTurn();
+    void startPayout();
 private:
     std::unique_ptr<BuildingView> m_buildings[4];
     Colour m_activeColour;
@@ -32,6 +33,7 @@ private:
     std::unique_ptr<OtherPlaceView> m_hut;
     std::unique_ptr<OtherPlaceView> m_toolshed;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    void setSelectable(bool isSelectalbe);
 };
 
 #endif // BOARDVIEW_H

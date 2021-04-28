@@ -108,6 +108,11 @@ void Player::addScore(int amount){
     m_scoreCount += amount;
 }
 
+void Player::addFoodGain()
+{
+    m_foodGain += 1;
+}
+
 void Player::disableTool(int nr){
     m_tools[nr].isUsed();
 }

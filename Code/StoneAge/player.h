@@ -21,6 +21,7 @@ public:
     void addWorker();// ads one worker to the players inventory
     void addTool();
     void addScore(int amount);
+    void addFoodGain();
 
     int getResource(Resource resource); // gets the amount of a given resource
     int getScore(); // gets the score the player curently has

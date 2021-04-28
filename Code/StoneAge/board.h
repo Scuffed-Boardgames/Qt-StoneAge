@@ -15,7 +15,7 @@ class Board : public QObject
 public:
     Board();
     void setUpGame();
-    void playTurn();
+    void payResources(Colour colour);
     int getTurn();
     std::shared_ptr<Player> getPlayer(Colour colour);
     Gather* getGather(Resource resource);
