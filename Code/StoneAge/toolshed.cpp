@@ -14,6 +14,8 @@ void ToolShed::addWorker(std::shared_ptr<Player> player, int amount){
     amount = 1;
     if(m_redWorkers != 0 or m_blueWorkers != 0 or m_yellowWorkers != 0 or m_greenWorkers != 0)
         return;
+    if(player->getFreeWorkers() < amount)
+        return;
     player->setWorkersOccupied(amount);
     switch(player->getColour()){
     case(Colour::red):
