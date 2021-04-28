@@ -8,8 +8,7 @@ ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, co
     :  m_x(moveByX), m_place(place)
 {
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
-    int rectWidth = 300;
-    QGraphicsRectItem* parent = new QGraphicsRectItem(0, 0, rectWidth, 400, this);
+    QGraphicsRectItem* parent = new QGraphicsRectItem(0, 0, 300, 350, this);
     parent->moveBy(moveByX,100);
     parent->setBrush(colour);
     parentItem->addItem(this);
@@ -17,7 +16,7 @@ ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, co
     QGraphicsTextItem* text = new QGraphicsTextItem(name, parent);
     QFont font("Font", 26);
     text->setFont(font);
-    text->moveBy(0,50);
+    text->moveBy(0,25);
     if(name == "Hunt"){
         text->moveBy(100,0);
     }else if(name == "Forest"){
@@ -34,7 +33,7 @@ ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, co
     QGraphicsRectItem* child;
     if(name != "Hunt"){
         child = new QGraphicsRectItem(0, 0,100,100, parent);
-        child->moveBy(150,25);
+        child->moveBy(150,10);
         child->setBrush(QColor(234,222,210));//white
         childText = new QGraphicsTextItem("7", child);
         childText->moveBy(22,0);
@@ -42,28 +41,28 @@ ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, co
     }
 
     child = new QGraphicsRectItem(0, 0,100,100, parent);
-    child->moveBy(25,150);
+    child->moveBy(25,120);
     child->setBrush(QColor(237,28,36));//red
     m_redAmount = new QGraphicsTextItem("0", child);
     m_redAmount->moveBy(22,0);
     m_redAmount->setScale(4);
 
     child = new QGraphicsRectItem(0, 0,100,100, parent);
-    child->moveBy(150,150);
+    child->moveBy(150,120);
     child->setBrush(QColor(63,72,204));//blue
     m_blueAmount= new QGraphicsTextItem("0", child);
     m_blueAmount->moveBy(22,0);
     m_blueAmount->setScale(4);
 
     child = new QGraphicsRectItem(0, 0,100,100, parent);
-    child->moveBy(25,275);
+    child->moveBy(25,240);
     child->setBrush(QColor(255,242,0));//yellow
     m_yellowAmount = new QGraphicsTextItem("0", child);
     m_yellowAmount->moveBy(22,0);
     m_yellowAmount->setScale(4);
 
     child = new QGraphicsRectItem(0, 0,100,100, parent);
-    child->moveBy(150,275);
+    child->moveBy(150,240);
     child->setBrush(QColor(34,177,76)); //green
     m_greenAmount = new QGraphicsTextItem("0", child);
     m_greenAmount->moveBy(22,0);
@@ -90,7 +89,7 @@ void ResourcePlaceView::updateText()
 
 QRectF ResourcePlaceView::boundingRect() const
 {
-    return QRectF(m_x,100, 300 , 400 );
+    return QRectF(m_x, 100, 300, 350 );
 }
 
 void ResourcePlaceView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

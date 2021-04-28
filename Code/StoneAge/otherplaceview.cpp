@@ -6,19 +6,19 @@
 OtherPlaceView::OtherPlaceView(QColor colour, int moveByX, int cost, QString name, Place* place, QGraphicsScene* parentItem)
     : m_place(place), m_owner(Colour::none), m_x(moveByX), m_staticCost(cost){
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
-    QGraphicsRectItem* tile = new QGraphicsRectItem(0, 0,500, 400, this);
-    tile->moveBy(moveByX, 500);
+    QGraphicsRectItem* tile = new QGraphicsRectItem(0, 0,500, 350, this);
+    tile->moveBy(moveByX, 450);
     tile->setBrush(colour);
     parentItem->addItem(this);
     QFont font("Font", 26);
     QGraphicsTextItem* text = new QGraphicsTextItem(name, tile);
     text->setFont(font);
     if (name == "Tool Shed")
-        text->moveBy(180, 50);
+        text->moveBy(180, 25);
     else
-        text->moveBy(210, 50);
+        text->moveBy(210, 25);
     m_indicator = new QGraphicsRectItem(0, 0,300, 200, tile);
-    m_indicator->moveBy(100, 150);
+    m_indicator->moveBy(100, 100);
     m_indicator->setBrush(QColor(234, 222, 210)); //white-ish
 
 
@@ -53,7 +53,7 @@ void OtherPlaceView::setColour(Colour colour){
 }
 
 QRectF OtherPlaceView::boundingRect() const{
-    return QRectF(m_x, 500, 500, 400 );
+    return QRectF(m_x, 450, 500, 350 );
 }
 
 void OtherPlaceView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
