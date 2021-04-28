@@ -12,6 +12,7 @@ SOURCES += \
     board.cpp \
     boardview.cpp \
     building.cpp \
+    buildingpay.cpp \
     buildingview.cpp \
     field.cpp \
     gather.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     board.h \
     boardview.h \
     building.h \
+    buildingpay.h \
     buildingview.h \
     colour.h \
     field.h \
@@ -54,6 +56,7 @@ HEADERS += \
     workeradd.h
 
 FORMS += \
+    buildingpay.ui \
     mainwindow.ui \
     rollresources.ui \
     workeradd.ui

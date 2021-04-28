@@ -64,7 +64,6 @@ void Board::setUpGame()
 
 void Board::playTurn()
 {
-
 }
 
 int Board::getTurn(){
