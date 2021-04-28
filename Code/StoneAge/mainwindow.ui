@@ -39,7 +39,7 @@
       <item>
        <widget class="QLabel" name="Turn">
         <property name="text">
-         <string>Turn: 1</string>
+         <string>Round: 1</string>
         </property>
        </widget>
       </item>
