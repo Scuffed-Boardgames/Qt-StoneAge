@@ -1,5 +1,7 @@
 #include "board.h"
+#include <QFile>
 #include <QJsonArray>
+#include <QJsonDocument>
 
 Board::Board() : m_forest{Resource::wood}, m_clayPit{Resource::clay}, m_quarry{Resource::stone}, m_river{Resource::gold}, m_hunt{Resource::food}, m_toolShed()
 {
@@ -7,6 +9,52 @@ Board::Board() : m_forest{Resource::wood}, m_clayPit{Resource::clay}, m_quarry{R
     for(int i = 0; i < 4; ++i){
         m_players[i] = std::make_shared<Player>((Colour)i);
     }
+
+    QFile file(":/files/files/buildings.json");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QByteArray data = file.readAll();
+    file.close();
+    QJsonDocument document = QJsonDocument::fromJson(data);
+    QJsonObject jsonObject = document.object();
+    QJsonArray jsonBuildings = jsonObject["setBuildings"].toArray();
+    for(int i = 0; i < jsonBuildings.size(); ++i){
+        m_buildingCards.push_back(std::make_shared<SetBuilding>(jsonBuildings[i].toObject()));
+    }
+    for(int i = 0; i < 4; ++i){
+        int place = rand() % m_buildingCards.size();
+        m_openBuildingCards[i] = m_buildingCards[place];
+        m_buildingCards.erase(m_buildingCards.begin() + place);
+    }
+}
+
+void Board::newBuilding(int place){
+    if(m_buildingCards.size() == 0){
+        return;
+    }
+    int randplace = rand() % m_buildingCards.size();
+    m_openBuildingCards[place] = m_buildingCards[randplace];
+    m_buildingCards.erase(m_buildingCards.begin() + randplace);
+    emit newBuild(m_openBuildingCards[place], place);
+}
+
+void Board::rerollBuildings(){
+    if(m_buildingCards.size() == 0){
+        return;
+    }
+    for(int i = 0; i < 4; ++i){
+        m_openBuildingCards[i]->reset();
+        m_buildingCards.push_back(m_openBuildingCards[i]);
+    }
+    for(int i = 0; i < 4; ++i){
+        int place = rand() % m_buildingCards.size();
+        m_openBuildingCards[i] = m_buildingCards[place];
+        m_buildingCards.erase(m_buildingCards.begin() + place);
+        emit newBuild(m_openBuildingCards[i], i);
+    }
+}
+
+std::shared_ptr<Building> Board::getOpenBuildingCard(int pos){
+    return m_openBuildingCards[pos];
 }
 
 void Board::setUpGame()

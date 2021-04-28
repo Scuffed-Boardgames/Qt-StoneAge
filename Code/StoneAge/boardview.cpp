@@ -2,8 +2,17 @@
 #include <QColor>
 #include <QGraphicsTextItem>
 
+#include "buildingview.h"
+#include "setbuilding.h"
+
 BoardView::BoardView()
 {
+}
+
+void BoardView::newBuild(std::shared_ptr<Building> building, int pos){
+    m_buildings[pos]->updateBuilding(building.get());
+    connect(m_board->getOpenBuildingCard(pos).get(), &Building::changedWorkers,  m_buildings[pos].get(), &BuildingView::updateText);
+
 }
 
 BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsScene(parent), m_activeColour{Colour::red}, m_workeradd{std::make_unique<WorkerAdd>()}, m_board{board}
@@ -34,6 +43,16 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsS
     moveByX += rectWidth;
     m_toolshed = std::make_unique<OtherPlaceView>(QColor(161,133,105), moveByX, 1, "Tool Shed", m_board->getToolShed(), this);//tool brown
     connect(m_board->getToolShed(), &Place::changedWorkers, m_toolshed.get(), &OtherPlaceView::updateText);
+
+    moveByX = 50;
+    rectWidth = 175;
+    for(int i = 0; i < 4; ++i){
+        m_buildings[i] = std::make_unique<BuildingView>(moveByX, m_board->getOpenBuildingCard(i).get(), this);
+        moveByX += rectWidth;
+        connect(m_board->getOpenBuildingCard(i).get(), &Building::changedWorkers,  m_buildings[i].get(), &BuildingView::updateText);
+    }
+    connect(m_board.get(), &Board::newBuild, this, &BoardView::newBuild);
+
 }
 
 void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
@@ -54,5 +73,12 @@ void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
         m_workeradd->addToPlace(otherSelected->getPlace(), m_board->getPlayer(m_activeColour));
         m_workeradd->show();
         return;
+    }
+    BuildingView* buildingSelected = dynamic_cast<BuildingView*>(list[0]);
+    if(buildingSelected){
+         m_workeradd->setStatic(1);
+         m_workeradd->addToBuilding(buildingSelected->getBuilding(), m_board->getPlayer(m_activeColour));
+         m_workeradd->show();
+         return;
     }
 }

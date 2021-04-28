@@ -1,0 +1,123 @@
+{
+    "setBuildings": [
+        {
+			"woodCost": 2,
+			"clayCost": 1,
+			"stoneCost": 0,
+			"goldCost": 0,
+			"scoreGain": 10
+        },
+		{
+			"woodCost": 2,
+			"clayCost": 0,
+			"stoneCost": 1,
+			"goldCost": 0,
+			"scoreGain": 11
+        },
+        {
+			"woodCost": 1,
+			"clayCost": 2,
+			"stoneCost": 0,
+			"goldCost": 0,
+			"scoreGain": 11
+        }, 
+		{
+			"woodCost": 2,
+			"clayCost": 0,
+			"stoneCost": 0,
+			"goldCost": 1,
+			"scoreGain": 12
+        }, 
+		{
+			"woodCost": 1,
+			"clayCost": 0,
+			"stoneCost": 2,
+			"goldCost": 0,
+			"scoreGain": 13
+        },    
+		{
+			"woodCost": 0,
+			"clayCost": 2,
+			"stoneCost": 1,
+			"goldCost": 0,
+			"scoreGain": 13
+        },    
+		{
+			"woodCost": 0,
+			"clayCost": 2,
+			"stoneCost": 0,
+			"goldCost": 1,
+			"scoreGain": 14
+        },     
+		{
+			"woodCost": 0,
+			"clayCost": 1,
+			"stoneCost": 2,
+			"goldCost": 0,
+			"scoreGain": 14
+        },    
+		{
+			"woodCost": 0,
+			"clayCost": 0,
+			"stoneCost": 2,
+			"goldCost": 1,
+			"scoreGain": 16
+        },    
+		{
+			"woodCost": 1,
+			"clayCost": 1,
+			"stoneCost": 1,
+			"goldCost": 0,
+			"scoreGain": 12
+        },    
+		{
+			"woodCost": 1,
+			"clayCost": 1,
+			"stoneCost": 1,
+			"goldCost": 0,
+			"scoreGain": 12
+        }, 	
+		{
+			"woodCost": 1,
+			"clayCost": 1,
+			"stoneCost": 0,
+			"goldCost": 1,
+			"scoreGain": 13
+        },     
+		{
+			"woodCost": 1,
+			"clayCost": 1,
+			"stoneCost": 0,
+			"goldCost": 1,
+			"scoreGain": 13
+        },  
+		{
+			"woodCost": 1,
+			"clayCost": 0,
+			"stoneCost": 1,
+			"goldCost": 1,
+			"scoreGain": 14
+        },    
+		{
+			"woodCost": 1,
+			"clayCost": 0,
+			"stoneCost": 1,
+			"goldCost": 1,
+			"scoreGain": 14
+        },     
+		{
+			"woodCost": 0,
+			"clayCost": 1,
+			"stoneCost": 1,
+			"goldCost": 1,
+			"scoreGain": 15
+        }, 
+		{
+			"woodCost": 0,
+			"clayCost": 1,
+			"stoneCost": 1,
+			"goldCost": 1,
+			"scoreGain": 15
+        }
+	]
+}

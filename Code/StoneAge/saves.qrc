@@ -1,5 +1,7 @@
 <RCC>
-    <qresource prefix="/save">
-        <file>saves/clean.json</file>
+    <qresource prefix="/save"/>
+    <qresource prefix="/files">
+        <file>files/cleanSave.json</file>
+        <file>files/buildings.json</file>
     </qresource>
 </RCC>

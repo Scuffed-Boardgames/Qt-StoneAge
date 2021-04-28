@@ -1,13 +1,19 @@
 #include "workeradd.h"
 #include "ui_workeradd.h"
 
-WorkerAdd::WorkerAdd(QWidget *parent) : QWidget(parent), ui(new Ui::WorkerAdd)
+WorkerAdd::WorkerAdd(QWidget *parent)
+    : QWidget(parent), m_building(nullptr), m_place(nullptr), ui(new Ui::WorkerAdd)
 {
     ui->setupUi(this);
 }
 
 void WorkerAdd::addToPlace(Place* place, std::shared_ptr<Player> player){
     m_place = place;
+    m_player = player;
+}
+
+void WorkerAdd::addToBuilding(Building* building, std::shared_ptr<Player> player){
+    m_building = building;
     m_player = player;
 }
 
@@ -19,8 +25,11 @@ WorkerAdd::~WorkerAdd()
 void WorkerAdd::on_okayButton_clicked(){
     if(m_place)
         m_place->addWorker(m_player, ui->amount->value());
+    if(m_building)
+        m_building->addWorker(m_player);
     ui->amount->setValue(1);
     m_place = nullptr;
+    m_building = nullptr;
     this->close();
 }
 

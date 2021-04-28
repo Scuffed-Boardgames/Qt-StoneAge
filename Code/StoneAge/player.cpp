@@ -40,16 +40,16 @@ void Player::addWorker(){
 }
 
 int Player::getResource(const Resource resource){
-    switch ((int)resource){
-    case(2):
+    switch (resource){
+    case(Resource::food):
         return m_foodCount;
-    case(3):
+    case(Resource::wood):
         return m_woodCount;
-    case(4):
+    case(Resource::clay):
         return m_clayCount;
-    case(5):
+    case(Resource::stone):
         return m_stoneCount;
-    case(6):
+    case(Resource::gold):
         return m_goldCount;
     default:
         return 0;
@@ -102,6 +102,10 @@ void Player::addTool(){
     }
     m_tools[lowestLevelPos].levelUp();
     emit dataChanged();
+}
+
+void Player::addScore(int amount){
+    m_scoreCount += amount;
 }
 
 void Player::disableTool(int nr){

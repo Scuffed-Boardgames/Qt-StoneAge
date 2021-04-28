@@ -15,7 +15,10 @@ class BoardView : public QGraphicsScene
 public:
     BoardView(std::shared_ptr<Board> board, QObject* parent = nullptr);
     BoardView();
+public slots:
+    void newBuild(std::shared_ptr<Building> building, int pos);
 private:
+    std::unique_ptr<BuildingView> m_buildings[4];
     Colour m_activeColour;
     std::shared_ptr<WorkerAdd> m_workeradd;
     std::shared_ptr<Board> m_board;

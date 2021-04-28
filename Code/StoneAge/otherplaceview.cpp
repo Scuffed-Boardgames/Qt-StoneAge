@@ -30,27 +30,27 @@ int OtherPlaceView::getCost(){
 }
 
 
-void OtherPlaceView::setColour(Colour colour){
-    switch (colour) {
-    case Colour::red:
-        m_indicator->setBrush(QColor(237,28,36));
-        return;
-    case Colour::blue:
-        m_indicator->setBrush(QColor(63,72,204));
-        return;
-    case Colour::yellow:
-        m_indicator->setBrush(QColor(255,242,0));
-        return;
-    case Colour::green:
-        m_indicator->setBrush(QColor(34,177,76));
-        return;
-    default:
-        m_indicator->setBrush(QColor(234, 222, 210));
-        return;
+//void OtherPlaceView::setColour(Colour colour){
+//    switch (colour) {
+//    case Colour::red:
+//        m_indicator->setBrush(QColor(237,28,36));
+//        return;
+//    case Colour::blue:
+//        m_indicator->setBrush(QColor(63,72,204));
+//        return;
+//    case Colour::yellow:
+//        m_indicator->setBrush(QColor(255,242,0));
+//        return;
+//    case Colour::green:
+//        m_indicator->setBrush(QColor(34,177,76));
+//        return;
+//    default:
+//        m_indicator->setBrush(QColor(234, 222, 210));
+//        return;
 
-    }
+//    }
 
-}
+//}
 
 QRectF OtherPlaceView::boundingRect() const{
     return QRectF(m_x, 450, 500, 350 );
@@ -66,8 +66,7 @@ Place* OtherPlaceView::getPlace(){
     return m_place;
 }
 
-void OtherPlaceView::updateText()
-{
+void OtherPlaceView::updateText(){
     if(m_place->getWorkers(Colour::red) != 0){
         m_indicator->setBrush(QColor(237,28,36));
         return;

@@ -6,10 +6,12 @@
 #include "gather.h"
 #include "toolshed.h"
 #include "field.h"
+#include "setbuilding.h"
 #include <memory>
 
-class Board
+class Board : public QObject
 {
+    Q_OBJECT
 public:
     Board();
     void setUpGame();
@@ -21,7 +23,16 @@ public:
     ToolShed* getToolShed();
     void load(const QJsonObject &json);
     QJsonObject save();
+    std::shared_ptr<Building> getOpenBuildingCard(int pos);
+    void newBuilding(int place);
+    void rerollBuildings();
+signals:
+    void newBuild(std::shared_ptr<Building> building, int pos);
+//    void newBuild(std::pair<int, std::shared_ptr<Building>> msg);
 private:
+
+    std::vector<std::shared_ptr<Building>> m_buildingCards;
+    std::shared_ptr<Building> m_openBuildingCards[4];
     std::shared_ptr<Player> m_players[4];
     Hut m_hut;
     Gather m_forest;

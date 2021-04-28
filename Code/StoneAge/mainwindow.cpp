@@ -67,12 +67,13 @@ void MainWindow::on_saveButton_clicked(){
 }
 
 void MainWindow::on_newGameButton_clicked(){
-     QFile file(":/save/saves/clean.json");
+     QFile file(":/files/files/cleanSave.json");
      file.open(QIODevice::ReadOnly | QIODevice::Text);
      QByteArray data = file.readAll();
      file.close();
      QJsonDocument document = QJsonDocument::fromJson(data);
      QJsonObject jsonObject = document.object();
      m_board->load(jsonObject);
+     m_board->rerollBuildings();
 
 }

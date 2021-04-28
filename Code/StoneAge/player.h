@@ -20,6 +20,7 @@ public:
     void addResource(Resource resource, int amount); // ads a given amount of a given resource to the player(can be negative)
     void addWorker();// ads one worker to the players inventory
     void addTool();
+    void addScore(int amount);
 
     int getResource(Resource resource); // gets the amount of a given resource
     int getScore(); // gets the score the player curently has

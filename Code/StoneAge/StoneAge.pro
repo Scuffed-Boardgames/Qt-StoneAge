@@ -11,6 +11,8 @@ CONFIG += c++11
 SOURCES += \
     board.cpp \
     boardview.cpp \
+    building.cpp \
+    buildingview.cpp \
     field.cpp \
     gather.cpp \
     hut.cpp \
@@ -22,6 +24,7 @@ SOURCES += \
     playerview.cpp \
     resourceplaceview.cpp \
     rollresources.cpp \
+    setbuilding.cpp \
     tool.cpp \
     toolshed.cpp \
     worker.cpp \
@@ -30,6 +33,8 @@ SOURCES += \
 HEADERS += \
     board.h \
     boardview.h \
+    building.h \
+    buildingview.h \
     colour.h \
     field.h \
     gather.h \
@@ -42,6 +47,7 @@ HEADERS += \
     resourceplaceview.h \
     resources.h \
     rollresources.h \
+    setbuilding.h \
     tool.h \
     toolshed.h \
     worker.h \
