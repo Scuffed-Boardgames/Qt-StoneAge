@@ -56,6 +56,10 @@ private:
     int m_freeWorkers;
     int m_workers;
     Tool m_tools[3];
+    int m_farmerCount;
+    int m_toolMakerCount;
+    int m_hutBuilderCount;
+    int m_shamanCount;
 };
 
 #endif // PLAYER_H

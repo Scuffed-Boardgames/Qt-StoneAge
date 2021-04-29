@@ -1,11 +1,13 @@
 #include "player.h"
 
-Player::Player(): m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_scoreCount(0), m_foodGain(0), m_colour(Colour::none), m_freeWorkers(5), m_workers(5)
+Player::Player(): m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_buildingCount(0),
+    m_scoreCount(0), m_foodGain(0), m_colour(Colour::none), m_freeWorkers(5), m_workers(5), m_farmerCount(0), m_toolMakerCount(0), m_hutBuilderCount(0), m_shamanCount(0)
 {
 
 }
 
-Player::Player(Colour colour) : m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_scoreCount(0), m_foodGain(0), m_colour(colour), m_freeWorkers(5), m_workers(5)
+Player::Player(Colour colour) : m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_buildingCount(0),
+    m_scoreCount(0), m_foodGain(0), m_colour(colour), m_freeWorkers(5), m_workers(5), m_farmerCount(0), m_toolMakerCount(0), m_hutBuilderCount(0), m_shamanCount(0)
 {
 
 }
