@@ -98,6 +98,7 @@ int Board::getRound() const
 void Board::addRound()
 {
     m_round += 1;
+    roundChanged();
 }
 
 std::shared_ptr<Building> Board::getOpenBuildingCard(int pos){

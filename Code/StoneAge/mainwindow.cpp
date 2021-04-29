@@ -7,6 +7,8 @@ MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
     : QMainWindow(parent), m_ui(new Ui::MainWindow), m_boardview(new BoardView(board, this)), m_board(board), m_fileDialog(new QFileDialog(this))
 {
     m_ui->setupUi(this);
+    QString text = "Round: " + QString::number(m_board->getRound()+1);
+    m_ui->Turn->setText(text);
     QColor red(237, 28, 36);
     m_playerviews.push_back(std::make_shared<PlayerView>(red, board->getPlayer(Colour::red)));
     QColor blue(63, 72, 204);
@@ -19,6 +21,7 @@ MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
     for(int i = 0; i<4 ; ++i){
         connect(board->getGather(Resource::food).get(), &Place::resourcesChanged, m_playerviews[i].get(), &PlayerView::updateText);
     }
+    connect(m_board.get(), &Board::roundChanged, this, &MainWindow::updateRound);
 
     m_ui->redView->setScene(m_playerviews[0].get());
     m_ui->blueView->setScene(m_playerviews[1].get());
@@ -32,6 +35,12 @@ MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete m_ui;
+}
+
+void MainWindow::updateRound()
+{
+    QString text = "Round: " + QString::number(m_board->getRound()+1);
+    m_ui->Turn->setText(text);
 }
 
 

@@ -39,6 +39,7 @@ signals:
     void newBuild(std::shared_ptr<Building> building, int pos);
     void allWorkersPlaced();
     void workersReset();
+    void roundChanged();
 //    void newBuild(std::pair<int, std::shared_ptr<Building>> msg);
 private:
     Colour m_currentPlayer;
