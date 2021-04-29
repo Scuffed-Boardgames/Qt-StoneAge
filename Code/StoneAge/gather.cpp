@@ -23,24 +23,9 @@ void Gather::giveResource(std::shared_ptr<Player> player)
 
 void Gather::addWorker(std::shared_ptr<Player> player, int amount)
 {
-    int workerAmount;
-    switch(player->getColour()){
-    case(Colour::red):
-        workerAmount = m_redWorkers;
-        break;
-    case(Colour::blue):
-        workerAmount = m_blueWorkers;
-        break;
-    case(Colour::yellow):
-        workerAmount = m_yellowWorkers;
-        break;
-    case(Colour::green):
-        workerAmount = m_greenWorkers;
-        break;
-    default:
-        return;
-    }
-    if (player->getFreeWorkers() >= amount && (workerAmount == 0 || m_resource == Resource::food)){
+    bool workersEmpty = (getWorkers(player->getColour()) == 0) || (m_resource == Resource::food);
+    int allowedWorkers = m_maxWorkers - totalWorkers();
+    if (player->getFreeWorkers() >= amount && workersEmpty && amount <= allowedWorkers){
         player->setWorkersOccupied(amount);
         switch(player->getColour()){
         case(Colour::red):
