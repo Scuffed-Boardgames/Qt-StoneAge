@@ -44,13 +44,13 @@ QString WorkerAdd::colourToString(Colour colour)
 {
     switch(colour){
     case(Colour::red):
-        return "RED PLAYER";
+        return "Red player";
     case(Colour::blue):
-        return "BLUE PLAYER";
+        return "Blue player";
     case(Colour::yellow):
-        return "YELLOW PLAYER";
+        return "Yellow player";
     case(Colour::green):
-        return "GREEN PLAYER";
+        return "Green player";
     default:
         return "error: no colour given";
     }
