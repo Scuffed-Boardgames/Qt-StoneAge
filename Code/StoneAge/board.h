@@ -7,6 +7,7 @@
 #include "toolshed.h"
 #include "field.h"
 #include "setbuilding.h"
+#include "varbuilding.h"
 #include <memory>
 
 class Board : public QObject

@@ -22,6 +22,10 @@ Board::Board() : m_currentPlayer{Colour::red}, m_hut(std::make_shared<Hut>()), m
     for(int i = 0; i < jsonBuildings.size(); ++i){
         m_buildingCards.push_back(std::make_shared<SetBuilding>(jsonBuildings[i].toObject()));
     }
+    jsonBuildings = jsonObject["varBuildings"].toArray();
+    for(int i = 0; i < jsonBuildings.size(); ++i){
+        m_buildingCards.push_back(std::make_shared<VarBuilding>(jsonBuildings[i].toObject()));
+    }
     for(int i = 0; i < 4; ++i){
         int place = rand() % m_buildingCards.size();
         m_openBuildingCards[i] = m_buildingCards[place];

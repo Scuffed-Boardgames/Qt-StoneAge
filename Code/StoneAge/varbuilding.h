@@ -10,8 +10,8 @@ public:
     void makeBuilding(std::shared_ptr<Player> Player);
     VarBuilding(const QJsonObject &json);
     int getDiff() const;
+    bool build(std::shared_ptr<Player> Player);
     bool build(std::shared_ptr<Player> Player, int woodAmount, int clayAmount, int stoneAmount, int goldAmount);
-
     int getTotalMin() const;
     int getTotalMax() const;
 

@@ -62,12 +62,37 @@ BuildingView::BuildingView(int moveByX, Building* building, QGraphicsScene* pare
             costs[pos]->setBrush(QColor(255,215,0));
             ++pos;
         }
-
     } else{
         m_cost1->setVisible(false);
         m_cost2->setVisible(false);
         m_cost3->setVisible(false);
+        QGraphicsRectItem* big = new QGraphicsRectItem(0, 0, 50, 50, tile);
+        big->moveBy(90, yPos);
+        QGraphicsRectItem* tleft = new QGraphicsRectItem(0, 0, 25, 25, big);
+        tleft->moveBy(0, 0);
+        tleft->setBrush(QColor(115,75,0));
+        QGraphicsRectItem* tright = new QGraphicsRectItem(0, 0, 25, 25, big);
+        tright->moveBy(25, 0);
+        tright->setBrush(QColor(220,85,57));
+        QGraphicsRectItem* bright = new QGraphicsRectItem(0, 0, 25, 25, big);
+        bright->moveBy(0, 25);
+        bright->setBrush(QColor(75,75,75));
+        QGraphicsRectItem* bleft = new QGraphicsRectItem(0, 0, 25, 25, big);
+        bleft->moveBy(25, 25);
+        bleft->setBrush(QColor(255,215,0));
+        QFont font2("font", 26);
+        QGraphicsSimpleTextItem* num = new QGraphicsSimpleTextItem("4", big);
+        num->setBrush(Qt::white);
+        num->setFont(font2);
+        num->setScale(1.5);
+        num->moveBy(10, -5);
+        QPen pen;
+        pen.setBrush(Qt::black);
+        num->setPen(pen);
+
+
     }
+
 }
 
 QRectF BuildingView::boundingRect() const
@@ -115,6 +140,9 @@ void BuildingView::updateBuilding(Building* building){
     SetBuilding* setBuilding = dynamic_cast<SetBuilding*>(building);
 
     if(setBuilding){
+        m_cost1->setVisible(true);
+        m_cost2->setVisible(true);
+        m_cost3->setVisible(true);
         int pos = 0;
         QGraphicsRectItem* costs[3] = {m_cost1, m_cost2, m_cost3};
 

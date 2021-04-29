@@ -5,6 +5,11 @@ VarBuilding::VarBuilding(int diff, int totalMin, int totalMax) : m_diff{diff}, m
 
 }
 
+VarBuilding::VarBuilding(const QJsonObject &json)
+    :m_diff((int)json["diffMaterials"].toDouble()), m_totalMin((int)json["minCost"].toDouble()),m_totalMax((int)json["maxCost"].toDouble())
+{
+}
+
 bool VarBuilding::canPay(std::shared_ptr<Player> player, int woodAmount, int clayAmount, int stoneAmount, int goldAmount){
     if(player->getResource(Resource::wood) < woodAmount)
         return false;
@@ -21,6 +26,11 @@ bool VarBuilding::canPay(std::shared_ptr<Player> player, int woodAmount, int cla
 int VarBuilding::getDiff() const
 {
     return m_diff;
+}
+
+bool VarBuilding::build(std::shared_ptr<Player> Player)
+{
+    return false;
 }
 
 int VarBuilding::calcScore(int woodAmount, int clayAmount, int stoneAmount, int goldAmount){
@@ -48,6 +58,8 @@ bool VarBuilding::build(std::shared_ptr<Player> player, int woodAmount, int clay
     player->addScore(calcScore(woodAmount, clayAmount, stoneAmount, goldAmount));
     return true;
 }
+
+
 
 int VarBuilding::getTotalMin() const
 {
