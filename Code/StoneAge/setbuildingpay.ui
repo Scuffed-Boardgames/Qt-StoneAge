@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>BuildingPay</class>
- <widget class="QWidget" name="BuildingPay">
+ <class>SetBuildingPay</class>
+ <widget class="QWidget" name="SetBuildingPay">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>252</width>
-    <height>135</height>
+    <height>136</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -19,6 +23,9 @@
    </property>
    <item alignment="Qt::AlignHCenter">
     <widget class="QLabel" name="topText">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="text">
       <string>Do you want to build this building, it wil cost you:</string>
      </property>
@@ -26,6 +33,9 @@
    </item>
    <item>
     <spacer name="verticalSpacer">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -42,6 +52,9 @@
    </item>
    <item alignment="Qt::AlignHCenter">
     <widget class="QLabel" name="woodText">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="text">
       <string>Wood: x</string>
      </property>
@@ -49,6 +62,9 @@
    </item>
    <item alignment="Qt::AlignHCenter">
     <widget class="QLabel" name="clayText">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="text">
       <string>Clay: x</string>
      </property>
@@ -56,6 +72,9 @@
    </item>
    <item alignment="Qt::AlignHCenter">
     <widget class="QLabel" name="stoneText">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="text">
       <string>Stone: x</string>
      </property>
@@ -63,6 +82,9 @@
    </item>
    <item alignment="Qt::AlignHCenter">
     <widget class="QLabel" name="goldText">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="text">
       <string>Gold: x</string>
      </property>
@@ -70,6 +92,9 @@
    </item>
    <item>
     <spacer name="verticalSpacer_2">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -86,6 +111,9 @@
    </item>
    <item alignment="Qt::AlignHCenter">
     <widget class="QLabel" name="bottomText">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="text">
       <string>and will give you xx score</string>
      </property>
@@ -95,6 +123,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="yesButton">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="text">
         <string>Yes</string>
        </property>
@@ -102,6 +133,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="noButton">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="text">
         <string>No</string>
        </property>

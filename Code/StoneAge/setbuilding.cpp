@@ -10,6 +10,20 @@ SetBuilding::SetBuilding(const QJsonObject & json)
 {
 }
 
+bool SetBuilding::canPay(std::shared_ptr<Player> player)
+{
+    if(player->getResource(Resource::wood) < m_woodCost)
+        return false;
+    if(player->getResource(Resource::clay) < m_clayCost)
+        return false;
+    if(player->getResource(Resource::stone) < m_stoneCost)
+        return false;
+    if(player->getResource(Resource::gold) < m_goldCost)
+        return false;
+
+    return true;
+}
+
 //SetBuilding::SetBuilding(const SetBuilding & building)
 //    : m_woodCost(building.getCost(Resource::wood)), m_clayCost(building.getCost(Resource::clay)),
 //      m_stoneCost(building.getCost(Resource::stone)), m_goldCost(building.getCost(Resource::gold)), m_scoreGain(getScoreGain())
@@ -24,20 +38,21 @@ SetBuilding::SetBuilding(const QJsonObject & json)
 //    m_scoreGain = getScoreGain();
 //}
 
-void SetBuilding::build(std::shared_ptr<Player> player){
+bool SetBuilding::build(std::shared_ptr<Player> player){
     if(player->getResource(Resource::wood) < m_woodCost)
-        return;
+        return false;
     if(player->getResource(Resource::clay) < m_clayCost)
-        return;
+        return false;
     if(player->getResource(Resource::stone) < m_stoneCost)
-        return;
+        return false;
     if(player->getResource(Resource::gold) < m_goldCost)
-        return;
+        return false;
     player->addResource(Resource::wood, -m_woodCost);
     player->addResource(Resource::clay, -m_clayCost);
     player->addResource(Resource::stone, -m_stoneCost);
     player->addResource(Resource::gold, -m_goldCost);
     player->addScore(m_scoreGain);
+    return true;
 }
 
 int SetBuilding::getScoreGain() const

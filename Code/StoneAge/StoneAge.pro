@@ -12,7 +12,6 @@ SOURCES += \
     board.cpp \
     boardview.cpp \
     building.cpp \
-    buildingpay.cpp \
     buildingview.cpp \
     field.cpp \
     gather.cpp \
@@ -26,8 +25,11 @@ SOURCES += \
     resourceplaceview.cpp \
     rollresources.cpp \
     setbuilding.cpp \
+    setbuildingpay.cpp \
     tool.cpp \
     toolshed.cpp \
+    varbuilding.cpp \
+    varbuildingpay.cpp \
     worker.cpp \
     workeradd.cpp
 
@@ -35,7 +37,6 @@ HEADERS += \
     board.h \
     boardview.h \
     building.h \
-    buildingpay.h \
     buildingview.h \
     colour.h \
     field.h \
@@ -50,15 +51,19 @@ HEADERS += \
     resources.h \
     rollresources.h \
     setbuilding.h \
+    setbuildingpay.h \
     tool.h \
     toolshed.h \
+    varbuilding.h \
+    varbuildingpay.h \
     worker.h \
     workeradd.h
 
 FORMS += \
-    buildingpay.ui \
     mainwindow.ui \
     rollresources.ui \
+    setbuildingpay.ui \
+    varbuildingpay.ui \
     workeradd.ui
 
 # Default rules for deployment.

@@ -40,3 +40,5 @@ void Field::addWorker(std::shared_ptr<Player> player, int amount = 1)
     emit changedWorkers();
     emit turnHappend();
 }
+
+

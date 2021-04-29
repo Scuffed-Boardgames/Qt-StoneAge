@@ -13,6 +13,7 @@ public:
     void addWorker(std::shared_ptr<Player> player);
     void reset();
     Colour getStandingColour() const;
+    virtual bool build(std::shared_ptr<Player> Player) = 0;
 signals:
     void changedWorkers();
 private:
