@@ -168,6 +168,7 @@ void Board::resetWorkers()
     m_toolShed->resetWorkers();
     for (int i = 0; i<4 ; ++i){
         m_players[i]->resetWorkers();
+        m_players[i]->resetTools();
     }
     emit m_hunt->changedWorkers();
     emit m_forest->changedWorkers();

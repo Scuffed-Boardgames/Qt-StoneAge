@@ -91,6 +91,13 @@ Tool *Player::getTools(){
     return m_tools;
 }
 
+void Player::resetTools()
+{
+    for(int i = 0; i < 3; ++i){
+        m_tools[i].reset();
+    }
+}
+
 void Player::addTool(){
     int lowestLevel = m_tools[0].getLevel();
     int lowestLevelPos = 0;

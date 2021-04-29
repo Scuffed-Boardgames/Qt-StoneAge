@@ -31,6 +31,7 @@ public:
     Colour getColour() const;
     Tool* getTools();
 
+    void resetTools();
     void resetWorkers();
     void setWorkersOccupied(int amount);
     void disableTool(int nr);
