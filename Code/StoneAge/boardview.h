@@ -20,7 +20,7 @@ public slots:
     void updateTurn();
     void placementDone();
 private:
-    void startPayout();
+    void updateResources();
     bool m_placementDone;
     std::unique_ptr<BuildingView> m_buildings[4];
     std::shared_ptr<WorkerAdd> m_workeradd;

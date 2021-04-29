@@ -73,6 +73,23 @@ void Board::nextPlayer(int checked)
     }
 }
 
+void Board::feedWorkers()
+{
+    for(int i = 0; i < 4; ++i){
+        int foodNeeded = m_players[i]->getWorkerCount();
+        int ownedFood = m_players[i]->getResource(Resource::food);
+        if(foodNeeded <= ownedFood){
+            m_players[i]->addResource(Resource::food, -foodNeeded);
+        }else{
+            m_players[i]->addResource(Resource::food, -ownedFood);
+            foodNeeded -= ownedFood;
+        }
+        if(foodNeeded > 0){
+            m_players[i]->addScore(-10);
+        }
+    }
+}
+
 std::shared_ptr<Building> Board::getOpenBuildingCard(int pos){
     return m_openBuildingCards[pos];
 }
@@ -110,6 +127,7 @@ void Board::payResources(Colour colour)
     if(m_toolShed->getWorkers(colour) != 0){
         m_toolShed->giveResource(m_players[playerInt]);
     }
+    m_players[playerInt]->addResource(Resource::food, m_players[playerInt]->getFoodGain());
 }
 
 int Board::getTurn(){

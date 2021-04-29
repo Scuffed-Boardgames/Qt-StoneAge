@@ -30,6 +30,7 @@ public:
     void rerollBuildings();
     Colour getCurrentPlayer() const;
     void nextPlayer(int checked = 0);
+    void feedWorkers();
 
 signals:
     void newBuild(std::shared_ptr<Building> building, int pos);
