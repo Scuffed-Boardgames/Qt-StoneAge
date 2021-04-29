@@ -14,7 +14,7 @@ void Gather::giveResource(std::shared_ptr<Player> player)
 {
     int amount = getWorkers(player->getColour());
     RollResources* roll = new RollResources(amount, m_resource, player, nullptr);
-    roll->show();
+    roll->exec();
     if (roll->getGain() > 0){
         player->addResource(m_resource, roll->getGain());
         emit resourcesChanged();
