@@ -21,7 +21,6 @@ public slots:
     void startPayout();
 private:
     std::unique_ptr<BuildingView> m_buildings[4];
-    Colour m_activeColour;
     std::shared_ptr<WorkerAdd> m_workeradd;
     std::shared_ptr<Board> m_board;
     std::shared_ptr<ResourcePlaceView> m_food;

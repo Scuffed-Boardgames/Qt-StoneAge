@@ -83,12 +83,31 @@ void Board::setUpGame()
 void Board::payResources(Colour colour)
 {
     int playerInt = (int)colour;
-    m_hunt.giveResource(m_players[playerInt]);
-    m_forest.giveResource(m_players[playerInt]);
-    m_clayPit.giveResource(m_players[playerInt]);
-    m_quarry.giveResource(m_players[playerInt]);
-    m_river.giveResource(m_players[playerInt]);
-    m_toolShed.giveResource(m_players[playerInt]);
+
+    if(m_hunt.getWorkers(colour) != 0){
+        m_hunt.giveResource(m_players[playerInt]);
+    }
+    if(m_forest.getWorkers(colour) != 0){
+        m_forest.giveResource(m_players[playerInt]);
+    }
+    if(m_clayPit.getWorkers(colour) != 0){
+        m_clayPit.giveResource(m_players[playerInt]);
+    }
+    if(m_quarry.getWorkers(colour) != 0){
+        m_quarry.giveResource(m_players[playerInt]);
+    }
+    if(m_river.getWorkers(colour) != 0){
+        m_river.giveResource(m_players[playerInt]);
+    }
+    if(m_field.getWorkers(colour) != 0){
+        m_field.giveResource(m_players[playerInt]);
+    }
+    if(m_hut.getWorkers(colour) != 0){
+        m_hut.giveResource(m_players[playerInt]);
+    }
+    if(m_toolShed.getWorkers(colour) != 0){
+        m_toolShed.giveResource(m_players[playerInt]);
+    }
 }
 
 int Board::getTurn(){

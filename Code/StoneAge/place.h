@@ -11,6 +11,7 @@ class Place : public QObject
 public:
     Place();
     void resetWorkers();
+    void resetWorkers(Colour colour);
     virtual void addWorker(std::shared_ptr<Player>, int amount) = 0;
     int getWorkers(Colour colour);
     QJsonObject save();

@@ -7,23 +7,7 @@ ToolShed::ToolShed() : Place()
 
 
 void ToolShed::giveResource(std::shared_ptr<Player> player){
-    int amount;
-    switch(player->getColour()){
-    case(Colour::red):
-        amount = m_redWorkers;
-        break;
-    case(Colour::blue):
-        amount = m_blueWorkers;
-        break;
-    case(Colour::yellow):
-        amount = m_yellowWorkers;
-        break;
-    case(Colour::green):
-        amount = m_greenWorkers;
-        break;
-    default:
-        return;
-    }
+    int amount = getWorkers(player->getColour());
     if(amount == 1){
         player->addTool();
         emit resourcesChanged();

@@ -18,7 +18,6 @@ void BoardView::newBuild(std::shared_ptr<Building> building, int pos){
 void BoardView::updateTurn()
 {
     m_board->nextPlayer();
-    m_activeColour = m_board->getCurrentPlayer();
 }
 
 void BoardView::startPayout()
@@ -31,7 +30,7 @@ void BoardView::startPayout()
     setSelectable(true);
 }
 
-BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsScene(parent), m_activeColour{Colour::red}, m_workeradd{std::make_unique<WorkerAdd>()}, m_board{board}
+BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsScene(parent), m_workeradd{std::make_unique<WorkerAdd>()}, m_board{board}
 {
     connect(m_board.get(), &Board::allWorkersPlaced, this, &BoardView::startPayout);
     int moveByX = 50;
@@ -84,21 +83,21 @@ void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     ResourcePlaceView* resourceSelected = dynamic_cast<ResourcePlaceView*>(list[0]);
     if(resourceSelected){
         m_workeradd->setDynamic();
-        m_workeradd->addToPlace(resourceSelected->getPlace(), m_board->getPlayer(m_activeColour));
+        m_workeradd->addToPlace(resourceSelected->getPlace(), m_board->getPlayer(m_board->getCurrentPlayer()));
         m_workeradd->show();
         return;
     }
     OtherPlaceView* otherSelected = dynamic_cast<OtherPlaceView*>(list[0]);
     if(otherSelected){
         m_workeradd->setStatic(otherSelected->getCost());
-        m_workeradd->addToPlace(otherSelected->getPlace(), m_board->getPlayer(m_activeColour));
+        m_workeradd->addToPlace(otherSelected->getPlace(), m_board->getPlayer(m_board->getCurrentPlayer()));
         m_workeradd->show();
         return;
     }
     BuildingView* buildingSelected = dynamic_cast<BuildingView*>(list[0]);
     if(buildingSelected){
          m_workeradd->setStatic(1);
-         m_workeradd->addToBuilding(buildingSelected->getBuilding(), m_board->getPlayer(m_activeColour));
+         m_workeradd->addToBuilding(buildingSelected->getBuilding(), m_board->getPlayer(m_board->getCurrentPlayer()));
          m_workeradd->show();
          return;
     }

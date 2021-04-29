@@ -12,23 +12,7 @@ Gather::Gather(Resource resource) : Place(), m_resource{resource}
 
 void Gather::giveResource(std::shared_ptr<Player> player)
 {
-    int amount;
-    switch(player->getColour()){
-    case(Colour::red):
-        amount = m_redWorkers;
-        break;
-    case(Colour::blue):
-        amount = m_blueWorkers;
-        break;
-    case(Colour::yellow):
-        amount = m_yellowWorkers;
-        break;
-    case(Colour::green):
-        amount = m_greenWorkers;
-        break;
-    default:
-        return;
-    }
+    int amount = getWorkers(player->getColour());
     RollResources* roll = new RollResources(amount, m_resource, player, nullptr);
     roll->show();
     if (roll->getGain() > 0){
