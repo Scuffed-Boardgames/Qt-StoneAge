@@ -38,6 +38,8 @@ public:
 
     QJsonObject save();
     void load(const QJsonObject &json);
+    void addBuilding();
+
 signals:
     void dataChanged();
 
@@ -47,7 +49,7 @@ private:
     int m_clayCount;
     int m_stoneCount;
     int m_goldCount;
-
+    int m_buildingCount;
     int m_scoreCount;
     int m_foodGain;
     Colour m_colour;

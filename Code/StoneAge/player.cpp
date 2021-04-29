@@ -143,10 +143,15 @@ void Player::load(const QJsonObject &json){
     emit dataChanged();
 }
 
+void Player::addBuilding()
+{
+    m_buildingCount += 1;
+}
+
 QJsonObject Player::save(){
     QJsonArray tools;
     for (int i = 0; i < 3; ++i) {
-         tools.append(m_tools[i].save());
+        tools.append(m_tools[i].save());
          }
    QJsonObject json = {{"food", m_foodCount},
                        {"wood", m_woodCount},
