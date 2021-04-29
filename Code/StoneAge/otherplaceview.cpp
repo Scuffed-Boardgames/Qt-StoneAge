@@ -3,7 +3,7 @@
 #include <QFont>
 #include <QGraphicsScene>
 
-OtherPlaceView::OtherPlaceView(QColor colour, int moveByX, int cost, QString name, Place* place, QGraphicsScene* parentItem)
+OtherPlaceView::OtherPlaceView(QColor colour, int moveByX, int cost, QString name, std::shared_ptr<Place> place, QGraphicsScene* parentItem)
     : m_place(place), m_owner(Colour::none), m_x(moveByX), m_staticCost(cost){
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
     QGraphicsRectItem* tile = new QGraphicsRectItem(0, 0,500, 350, this);
@@ -62,7 +62,7 @@ void OtherPlaceView::paint(QPainter *painter, const QStyleOptionGraphicsItem *op
     }
 }
 
-Place* OtherPlaceView::getPlace(){
+std::shared_ptr<Place> OtherPlaceView::getPlace(){
     return m_place;
 }
 

@@ -15,7 +15,7 @@ class WorkerAdd : public QDialog
 
 public:
     explicit WorkerAdd(QWidget *parent = nullptr);
-    void addToPlace(Place* place, std::shared_ptr<Player> player);
+    void addToPlace(std::shared_ptr<Place> place, std::shared_ptr<Player> player);
     void setStatic(int amount);
     void setDynamic();
     ~WorkerAdd();
@@ -29,7 +29,7 @@ private slots:
 private:
     Building* m_building;
     std::shared_ptr<Player> m_player;
-    Place* m_place;
+    std::shared_ptr<Place> m_place;
     Ui::WorkerAdd* ui;
 };
 

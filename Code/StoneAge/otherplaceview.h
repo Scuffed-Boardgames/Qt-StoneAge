@@ -10,18 +10,18 @@ class OtherPlaceView : public QObject, public QGraphicsItem
     Q_OBJECT
     Q_INTERFACES(QGraphicsItem)
 public:
-    OtherPlaceView(QColor colour, int moveByX, int cost, QString name, Place* place, QGraphicsScene* parentItem);
+    OtherPlaceView(QColor colour, int moveByX, int cost, QString name, std::shared_ptr<Place> place, QGraphicsScene* parentItem);
     int getCost();
     void setColour(Colour colour);
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    Place* getPlace();
+    std::shared_ptr<Place> getPlace();
 
 public slots:
     void updateText();
 
 private:
-    Place* m_place;
+    std::shared_ptr<Place> m_place;
     Colour m_owner;
     int m_x;
     int m_staticCost;

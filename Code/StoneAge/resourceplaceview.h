@@ -14,11 +14,11 @@ class ResourcePlaceView :  public QObject, public QGraphicsItem
     Q_INTERFACES(QGraphicsItem)
 
 public:
-    ResourcePlaceView(QColor colour, QString name, int moveByX, Place* m_place, QGraphicsScene* parent);
+    ResourcePlaceView(QColor colour, QString name, int moveByX, std::shared_ptr<Place> m_place, QGraphicsScene* parent);
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
-    Place* getPlace() const;
+    std::shared_ptr<Place> getPlace() const;
 
 public slots:
     void updateText();
@@ -29,7 +29,7 @@ private:
     QGraphicsTextItem* m_blueAmount;
     QGraphicsTextItem* m_greenAmount;
     QGraphicsTextItem* m_yellowAmount;
-    Place* m_place;
+    std::shared_ptr<Place> m_place;
 };
 
 #endif // RESOURCEPLACEVIEW_H

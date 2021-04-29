@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 #include <QFile>
 #include <QJsonDocument>
-#include <Qdir>
 
 MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
     : QMainWindow(parent), m_ui(new Ui::MainWindow), m_boardview(new BoardView(board, this)), m_board(board), m_fileDialog(new QFileDialog(this))
@@ -18,7 +17,7 @@ MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
     m_playerviews.push_back(std::make_shared<PlayerView>(green, board->getPlayer(Colour::green)));
 
     for(int i = 0; i<4 ; ++i){
-        connect(board->getGather(Resource::food), &Place::resourcesChanged, m_playerviews[i].get(), &PlayerView::updateText);
+        connect(board->getGather(Resource::food).get(), &Place::resourcesChanged, m_playerviews[i].get(), &PlayerView::updateText);
     }
 
     m_ui->redView->setScene(m_playerviews[0].get());

@@ -7,7 +7,7 @@ WorkerAdd::WorkerAdd(QWidget *parent)
     ui->setupUi(this);
 }
 
-void WorkerAdd::addToPlace(Place* place, std::shared_ptr<Player> player){
+void WorkerAdd::addToPlace(std::shared_ptr<Place> place, std::shared_ptr<Player> player){
     m_place = place;
     m_player = player;
 }

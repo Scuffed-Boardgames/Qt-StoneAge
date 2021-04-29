@@ -3,7 +3,9 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 
-Board::Board() : m_currentPlayer{Colour::red}, m_forest{Resource::wood}, m_clayPit{Resource::clay}, m_quarry{Resource::stone}, m_river{Resource::gold}, m_hunt{Resource::food}, m_toolShed()
+Board::Board() : m_currentPlayer{Colour::red}, m_hut(std::make_shared<Hut>()), m_forest{std::make_shared<Gather>(Resource::wood)},
+    m_clayPit{std::make_shared<Gather>(Resource::clay)}, m_quarry{std::make_shared<Gather>(Resource::stone)}, m_river{std::make_shared<Gather>(Resource::gold)},
+    m_hunt{std::make_shared<Gather>(Resource::food)}, m_toolShed(std::make_shared<ToolShed>()), m_field(std::make_shared<Field>())
 {
     m_turn = 0;
     for(int i = 0; i < 4; ++i){
@@ -84,29 +86,29 @@ void Board::payResources(Colour colour)
 {
     int playerInt = (int)colour;
 
-    if(m_hunt.getWorkers(colour) != 0){
-        m_hunt.giveResource(m_players[playerInt]);
+    if(m_hunt->getWorkers(colour) != 0){
+        m_hunt->giveResource(m_players[playerInt]);
     }
-    if(m_forest.getWorkers(colour) != 0){
-        m_forest.giveResource(m_players[playerInt]);
+    if(m_forest->getWorkers(colour) != 0){
+        m_forest->giveResource(m_players[playerInt]);
     }
-    if(m_clayPit.getWorkers(colour) != 0){
-        m_clayPit.giveResource(m_players[playerInt]);
+    if(m_clayPit->getWorkers(colour) != 0){
+        m_clayPit->giveResource(m_players[playerInt]);
     }
-    if(m_quarry.getWorkers(colour) != 0){
-        m_quarry.giveResource(m_players[playerInt]);
+    if(m_quarry->getWorkers(colour) != 0){
+        m_quarry->giveResource(m_players[playerInt]);
     }
-    if(m_river.getWorkers(colour) != 0){
-        m_river.giveResource(m_players[playerInt]);
+    if(m_river->getWorkers(colour) != 0){
+        m_river->giveResource(m_players[playerInt]);
     }
-    if(m_field.getWorkers(colour) != 0){
-        m_field.giveResource(m_players[playerInt]);
+    if(m_field->getWorkers(colour) != 0){
+        m_field->giveResource(m_players[playerInt]);
     }
-    if(m_hut.getWorkers(colour) != 0){
-        m_hut.giveResource(m_players[playerInt]);
+    if(m_hut->getWorkers(colour) != 0){
+        m_hut->giveResource(m_players[playerInt]);
     }
-    if(m_toolShed.getWorkers(colour) != 0){
-        m_toolShed.giveResource(m_players[playerInt]);
+    if(m_toolShed->getWorkers(colour) != 0){
+        m_toolShed->giveResource(m_players[playerInt]);
     }
 }
 
@@ -118,19 +120,19 @@ std::shared_ptr<Player> Board::getPlayer(Colour colour){
     return m_players[(int)colour];
 }
 
-Gather* Board::getGather(Resource resource)
+std::shared_ptr<Gather> Board::getGather(Resource resource)
 {
     switch(resource){
     case(Resource::food):
-        return &m_hunt;
+        return m_hunt;
     case(Resource::wood):
-        return &m_forest;
+        return m_forest;
     case(Resource::clay):
-        return &m_clayPit;
+        return m_clayPit;
     case(Resource::stone):
-        return &m_quarry;
+        return m_quarry;
     case(Resource::gold):
-        return &m_river;
+        return m_river;
     default:
         return nullptr;
     }
@@ -138,32 +140,39 @@ Gather* Board::getGather(Resource resource)
 
 void Board::resetWorkers()
 {
-    m_hunt.resetWorkers();
-    m_forest.resetWorkers();
-    m_clayPit.resetWorkers();
-    m_quarry.resetWorkers();
-    m_river.resetWorkers();
-    m_field.resetWorkers();
-    m_hut.resetWorkers();
-    m_toolShed.resetWorkers();
+    m_hunt->resetWorkers();
+    m_forest->resetWorkers();
+    m_clayPit->resetWorkers();
+    m_quarry->resetWorkers();
+    m_river->resetWorkers();
+    m_field->resetWorkers();
+    m_hut->resetWorkers();
+    m_toolShed->resetWorkers();
     for (int i = 0; i<4 ; ++i){
         m_players[i]->resetWorkers();
     }
-    emit workersReset();
+    emit m_hunt->changedWorkers();
+    emit m_forest->changedWorkers();
+    emit m_clayPit->changedWorkers();
+    emit m_quarry->changedWorkers();
+    emit m_river->changedWorkers();
+    emit m_toolShed->changedWorkers();
+    emit m_field->changedWorkers();
+    emit m_hut->changedWorkers();
 }
 
-ToolShed* Board::getToolShed(){
-    return &m_toolShed;
+std::shared_ptr<ToolShed> Board::getToolShed(){
+    return m_toolShed;
 }
 
-Hut *Board::getHut()
+std::shared_ptr<Hut> Board::getHut()
 {
-    return &m_hut;
+    return m_hut;
 }
 
-Field *Board::getField()
+std::shared_ptr<Field> Board::getField()
 {
-    return &m_field;
+    return m_field;
 }
 
 void Board::load(const QJsonObject &json){
@@ -173,14 +182,14 @@ void Board::load(const QJsonObject &json){
         m_players[i]->load(players[i].toObject());
     }
 
-    m_hut.load(json["hut"].toObject());
-    m_forest.load(json["forest"].toObject());
-    m_clayPit.load(json["clayPit"].toObject());
-    m_quarry.load(json["quarry"].toObject());
-    m_river.load(json["river"].toObject());
-    m_hunt.load(json["hunt"].toObject());
-    m_toolShed.load(json["toolShed"].toObject());
-    m_field.load(json["field"].toObject());
+    m_hut->load(json["hut"].toObject());
+    m_forest->load(json["forest"].toObject());
+    m_clayPit->load(json["clayPit"].toObject());
+    m_quarry->load(json["quarry"].toObject());
+    m_river->load(json["river"].toObject());
+    m_hunt->load(json["hunt"].toObject());
+    m_toolShed->load(json["toolShed"].toObject());
+    m_field->load(json["field"].toObject());
 }
 
 QJsonObject Board::save(){
@@ -188,14 +197,14 @@ QJsonObject Board::save(){
     for(int i = 0; i < 4; ++i){
         players.append(m_players[i]->save());
     }
-    QJsonObject hut = m_hut.save();
-    QJsonObject forest = m_forest.save();
-    QJsonObject clayPit = m_clayPit.save();
-    QJsonObject quarry = m_quarry.save();
-    QJsonObject river = m_river.save();
-    QJsonObject hunt = m_hunt.save();
-    QJsonObject toolShed = m_toolShed.save();
-    QJsonObject field = m_field.save();
+    QJsonObject hut = m_hut->save();
+    QJsonObject forest = m_forest->save();
+    QJsonObject clayPit = m_clayPit->save();
+    QJsonObject quarry = m_quarry->save();
+    QJsonObject river = m_river->save();
+    QJsonObject hunt = m_hunt->save();
+    QJsonObject toolShed = m_toolShed->save();
+    QJsonObject field = m_field->save();
     QJsonObject json = {{"turn", m_turn},
                         {"players", players},
                         {"hut", hut},

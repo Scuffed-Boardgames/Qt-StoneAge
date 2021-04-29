@@ -4,7 +4,7 @@
 #include <QBrush>
 
 
-ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, const int moveByX, Place* place, QGraphicsScene* parentItem)
+ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, const int moveByX, std::shared_ptr<Place> place, QGraphicsScene* parentItem)
     :  m_x(moveByX), m_place(place)
 {
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
@@ -99,7 +99,7 @@ void ResourcePlaceView::paint(QPainter *painter, const QStyleOptionGraphicsItem 
 
 }
 
-Place *ResourcePlaceView::getPlace() const
+std::shared_ptr<Place> ResourcePlaceView::getPlace() const
 {
     return m_place;
 }

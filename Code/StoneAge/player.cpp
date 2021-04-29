@@ -94,7 +94,7 @@ Tool *Player::getTools(){
 void Player::addTool(){
     int lowestLevel = m_tools[0].getLevel();
     int lowestLevelPos = 0;
-    for(int i = 1; i > 3; ++i){
+    for(int i = 1; i < 3; ++i){
         if(m_tools[i].getLevel() < lowestLevel){
             lowestLevel = m_tools[i].getLevel();
             lowestLevelPos = i;
