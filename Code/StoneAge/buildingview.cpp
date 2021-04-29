@@ -11,18 +11,12 @@ BuildingView::BuildingView(int moveByX, Building* building, QGraphicsScene* pare
     tile->setBrush(QColor(245, 241, 214));
     parentItem->addItem(this);
 
-    QFont font("Font", 15);
-    SetBuilding* setBuilding = dynamic_cast<SetBuilding*>(building);
+    QFont font1("Font", 15);
 
-    QString topText = "Score: ";
-    if(setBuilding){
-        topText += QString::number(setBuilding->getScoreGain());
-    } else{
-        topText += "?";
-    }
+
     yPos += 5;
-    m_text = new QGraphicsTextItem(topText, tile);
-    m_text->setFont(font);
+    m_text = new QGraphicsTextItem("", tile);
+    m_text->setFont(font1);
     m_text->moveBy(40, yPos);
 
     yPos += 40;
@@ -42,56 +36,37 @@ BuildingView::BuildingView(int moveByX, Building* building, QGraphicsScene* pare
     m_cost3 = new QGraphicsRectItem(0, 0, 50, 50, tile);
     m_cost3->moveBy(xPos, yPos);
 
-    if(setBuilding){
-        int pos = 0;
-        QGraphicsRectItem* costs[3] = {m_cost1, m_cost2, m_cost3};
 
-        for(int i = 0; i < setBuilding->getCost(Resource::wood); ++i){
-            costs[pos]->setBrush(QColor(115,75,0));
-            ++pos;
-        }
-        for(int i = 0; i < setBuilding->getCost(Resource::clay); ++i){
-            costs[pos]->setBrush(QColor(220,85,57));
-            ++pos;
-        }
-        for(int i = 0; i < setBuilding->getCost(Resource::stone); ++i){
-            costs[pos]->setBrush(QColor(75,75,75));
-            ++pos;
-        }
-        for(int i = 0; i < setBuilding->getCost(Resource::gold); ++i){
-            costs[pos]->setBrush(QColor(255,215,0));
-            ++pos;
-        }
-    } else{
-        m_cost1->setVisible(false);
-        m_cost2->setVisible(false);
-        m_cost3->setVisible(false);
-        QGraphicsRectItem* big = new QGraphicsRectItem(0, 0, 50, 50, tile);
-        big->moveBy(90, yPos);
-        QGraphicsRectItem* tleft = new QGraphicsRectItem(0, 0, 25, 25, big);
-        tleft->moveBy(0, 0);
-        tleft->setBrush(QColor(115,75,0));
-        QGraphicsRectItem* tright = new QGraphicsRectItem(0, 0, 25, 25, big);
-        tright->moveBy(25, 0);
-        tright->setBrush(QColor(220,85,57));
-        QGraphicsRectItem* bright = new QGraphicsRectItem(0, 0, 25, 25, big);
-        bright->moveBy(0, 25);
-        bright->setBrush(QColor(75,75,75));
-        QGraphicsRectItem* bleft = new QGraphicsRectItem(0, 0, 25, 25, big);
-        bleft->moveBy(25, 25);
-        bleft->setBrush(QColor(255,215,0));
-        QFont font2("font", 26);
-        QGraphicsSimpleTextItem* num = new QGraphicsSimpleTextItem("4", big);
-        num->setBrush(Qt::white);
-        num->setFont(font2);
-        num->setScale(1.5);
-        num->moveBy(10, -5);
-        QPen pen;
-        pen.setBrush(Qt::black);
-        num->setPen(pen);
+    m_holder = new QGraphicsRectItem(0, 0, 50, 50, tile);
+    m_holder->moveBy(95, yPos);
+    QGraphicsRectItem* tleft = new QGraphicsRectItem(0, 0, 25, 25, m_holder);
+    tleft->moveBy(0, 0);
+    tleft->setBrush(QColor(115,75,0));
+    QGraphicsRectItem* tright = new QGraphicsRectItem(0, 0, 25, 25, m_holder);
+    tright->moveBy(25, 0);
+    tright->setBrush(QColor(220,85,57));
+    QGraphicsRectItem* bright = new QGraphicsRectItem(0, 0, 25, 25, m_holder);
+    bright->moveBy(0, 25);
+    bright->setBrush(QColor(75,75,75));
+    QGraphicsRectItem* bleft = new QGraphicsRectItem(0, 0, 25, 25, m_holder);
+    bleft->moveBy(25, 25);
+    bleft->setBrush(QColor(255,215,0));
 
+    QFont font2("font", 26);
+    m_diff = new QGraphicsSimpleTextItem("", m_holder);
+    m_diff->setBrush(Qt::white);
+    m_diff->setFont(font2);
+    m_diff->setScale(1.5);
+    m_diff->moveBy(11, -5);
+    QPen pen;
+    pen.setBrush(Qt::black);
+    m_diff->setPen(pen);
+    m_minMax = new QGraphicsSimpleTextItem("", m_holder);
+    m_minMax->moveBy(-60, 0);
+    m_minMax->setFont(font2);
+    m_minMax->setScale(1.5);
 
-    }
+    updateBuilding(m_building);
 
 }
 
@@ -137,44 +112,54 @@ void BuildingView::updateText(){
 
 void BuildingView::updateBuilding(Building* building){
     m_building = building;
-    SetBuilding* setBuilding = dynamic_cast<SetBuilding*>(building);
-
-    if(setBuilding){
-        m_cost1->setVisible(true);
-        m_cost2->setVisible(true);
-        m_cost3->setVisible(true);
-        int pos = 0;
-        QGraphicsRectItem* costs[3] = {m_cost1, m_cost2, m_cost3};
-
-        for(int i = 0; i < setBuilding->getCost(Resource::wood); ++i){
-            costs[pos]->setBrush(QColor(115,75,0));
-            ++pos;
-        }
-        for(int i = 0; i < setBuilding->getCost(Resource::clay); ++i){
-            costs[pos]->setBrush(QColor(220,85,57));
-            ++pos;
-        }
-        for(int i = 0; i < setBuilding->getCost(Resource::stone); ++i){
-            costs[pos]->setBrush(QColor(75,75,75));
-            ++pos;
-        }
-        for(int i = 0; i < setBuilding->getCost(Resource::gold); ++i){
-            costs[pos]->setBrush(QColor(255,215,0));
-            ++pos;
-        }
-
-    } else{
-        m_cost1->setVisible(false);
-        m_cost2->setVisible(false);
-        m_cost3->setVisible(false);
-    }
-
     QString topText = "Score: ";
-    if(setBuilding){
-        topText += QString::number(setBuilding->getScoreGain());
-    } else{
-        topText += "?";
+    SetBuilding* setBuilding = dynamic_cast<SetBuilding*>(building);
+    QGraphicsRectItem* costs[3] = {m_cost1, m_cost2, m_cost3};
+   if(setBuilding){
+       int pos = 0;
+       topText += QString::number(setBuilding->getScoreGain());
+       setOrVar(true);
+       for(int i = 0; i < setBuilding->getCost(Resource::wood); ++i){
+           costs[pos]->setBrush(QColor(115,75,0));
+           ++pos;
+       }
+       for(int i = 0; i < setBuilding->getCost(Resource::clay); ++i){
+           costs[pos]->setBrush(QColor(220,85,57));
+           ++pos;
+       }
+       for(int i = 0; i < setBuilding->getCost(Resource::stone); ++i){
+           costs[pos]->setBrush(QColor(75,75,75));
+           ++pos;
+       }
+       for(int i = 0; i < setBuilding->getCost(Resource::gold); ++i){
+           costs[pos]->setBrush(QColor(255,215,0));
+           ++pos;
+       }
+   } else{
+       VarBuilding* varBuilding = dynamic_cast<VarBuilding*>(building);
+       int min = varBuilding->getTotalMin();
+       int max = varBuilding->getTotalMax();
+       topText += "?";
+       setOrVar(false);
+       m_diff->setText(QString::number(varBuilding->getDiff()));
+       if(min == max){
+           m_minMax->setPos(-60, -2);
+           m_minMax->setText(QString::number(max));
+       } else{
+           m_minMax->setPos(-90, -2);
+           m_minMax->setText(QString::number(min) + "-" + QString::number(max));
+       }
+   }
+   m_text->setPlainText(topText);
+   updateText();
+}
+
+void BuildingView::setOrVar(bool isSet){
+    QGraphicsRectItem* costs[3] = {m_cost1, m_cost2, m_cost3};
+    for(int i = 0; i < 3; ++i){
+        costs[i]->setVisible(isSet);
     }
-    m_text->setPlainText(topText);
-    updateText();
+    m_holder->setVisible(!isSet);
+    m_minMax->setVisible(!isSet);
+
 }
