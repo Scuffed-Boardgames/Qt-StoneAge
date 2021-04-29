@@ -25,13 +25,15 @@ void BoardView::placementDone()
     m_placementDone = true;
 }
 
-void BoardView::startPayout()
+void BoardView::updateResources()
 {
     setSelectable(false);
     for(int i = 0; i<4; ++i){
         m_board->payResources((Colour)i);
     }
     m_board->resetWorkers();
+    m_board->feedWorkers();
+    m_board->addRound();
     setSelectable(true);
     m_placementDone = false;
 }
@@ -118,7 +120,7 @@ void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
          m_workeradd->exec();
     }
     if(m_placementDone){
-        startPayout();
+        updateResources();
     }
 }
 

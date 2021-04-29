@@ -27,6 +27,7 @@ private slots:
     void on_cancelButton_clicked();
 
 private:
+    QString colourToString(Colour colour);
     Building* m_building;
     std::shared_ptr<Player> m_player;
     std::shared_ptr<Place> m_place;

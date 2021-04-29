@@ -47,6 +47,11 @@ int Place::getWorkers(Colour colour)
     }
 }
 
+int Place::totalWorkers()
+{
+    return m_redWorkers + m_blueWorkers + m_yellowWorkers + m_greenWorkers;
+}
+
 QJsonObject Place::save(){
     QJsonObject json = {{"redWorkers", m_redWorkers},
                         {"blueWorkers", m_blueWorkers},

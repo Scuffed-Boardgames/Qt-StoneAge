@@ -1,11 +1,13 @@
 #include "player.h"
 
-Player::Player(): m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_scoreCount(0), m_foodGain(0), m_colour(Colour::none), m_freeWorkers(5), m_workers(5)
+Player::Player(): m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_buildingCount(0),
+    m_scoreCount(0), m_foodGain(0), m_colour(Colour::none), m_freeWorkers(5), m_workers(5), m_farmerCount(0), m_toolMakerCount(0), m_hutBuilderCount(0), m_shamanCount(0)
 {
 
 }
 
-Player::Player(Colour colour) : m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_scoreCount(0), m_foodGain(0), m_colour(colour), m_freeWorkers(5), m_workers(5)
+Player::Player(Colour colour) : m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_buildingCount(0),
+    m_scoreCount(0), m_foodGain(0), m_colour(colour), m_freeWorkers(5), m_workers(5), m_farmerCount(0), m_toolMakerCount(0), m_hutBuilderCount(0), m_shamanCount(0)
 {
 
 }
@@ -91,6 +93,13 @@ Tool *Player::getTools(){
     return m_tools;
 }
 
+void Player::resetTools()
+{
+    for(int i = 0; i < 3; ++i){
+        m_tools[i].reset();
+    }
+}
+
 void Player::addTool(){
     int lowestLevel = m_tools[0].getLevel();
     int lowestLevelPos = 0;
@@ -136,10 +145,15 @@ void Player::load(const QJsonObject &json){
     emit dataChanged();
 }
 
+void Player::addBuilding()
+{
+    m_buildingCount += 1;
+}
+
 QJsonObject Player::save(){
     QJsonArray tools;
     for (int i = 0; i < 3; ++i) {
-         tools.append(m_tools[i].save());
+        tools.append(m_tools[i].save());
          }
    QJsonObject json = {{"food", m_foodCount},
                        {"wood", m_woodCount},

@@ -15,6 +15,7 @@ class RollResources : public QDialog
 public:
     explicit RollResources(int workerAmount, Resource resource, std::shared_ptr<Player> player, QWidget *parent = nullptr);
     int getGain(); //returns the amount of resources gained
+    QString colourToString(Colour colour);
     ~RollResources();
 
 private slots:

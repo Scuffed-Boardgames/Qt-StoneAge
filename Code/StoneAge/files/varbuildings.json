@@ -1,0 +1,59 @@
+{
+    "varBuildings": [
+        {
+			"minCost": 4,
+			"maxCost": 4,
+			"diffMaterials": 1
+        },
+		{
+			"minCost": 4,
+			"maxCost": 4,
+			"diffMaterials": 2
+        },
+        {
+			"minCost": 4,
+			"maxCost": 4,
+			"diffMaterials": 3
+        }, 
+		{
+			"minCost": 4,
+			"maxCost": 4,
+			"diffMaterials": 4
+        }, 
+		{
+			"minCost": 5,
+			"maxCost": 5,
+			"diffMaterials": 1
+        },    
+		{
+			"minCost": 5,
+			"maxCost": 5,
+			"diffMaterials": 2
+        },    
+		{
+			"minCost": 5,
+			"maxCost": 5,
+			"diffMaterials": 3
+        },     
+		{
+			"minCost": 5,
+			"maxCost": 5,
+			"diffMaterials": 4
+        },    
+		{
+			"minCost": 1,
+			"maxCost": 7,
+			"diffMaterials": 0
+        },    
+		{
+			"minCost": 1,
+			"maxCost": 7,
+			"diffMaterials": 0
+        },    
+		{
+			"minCost": 1,
+			"maxCost": 7,
+			"diffMaterials": 0
+        }
+	]
+}

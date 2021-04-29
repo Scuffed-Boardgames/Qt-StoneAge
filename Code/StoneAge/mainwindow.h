@@ -19,6 +19,8 @@ public:
     ~MainWindow();
 
 private slots:
+    void updateRound();
+
     void on_quitButton_clicked();
 
     void on_loadButton_clicked();

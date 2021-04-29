@@ -10,6 +10,7 @@ WorkerAdd::WorkerAdd(QWidget *parent)
 void WorkerAdd::addToPlace(std::shared_ptr<Place> place, std::shared_ptr<Player> player){
     m_place = place;
     m_player = player;
+    this->setWindowTitle(colourToString(player->getColour()));
 }
 
 void WorkerAdd::addToBuilding(Building* building, std::shared_ptr<Player> player){
@@ -37,6 +38,22 @@ void WorkerAdd::on_cancelButton_clicked(){
     ui->amount->setValue(1);
     m_place = nullptr;
     this->close();
+}
+
+QString WorkerAdd::colourToString(Colour colour)
+{
+    switch(colour){
+    case(Colour::red):
+        return "Red player";
+    case(Colour::blue):
+        return "Blue player";
+    case(Colour::yellow):
+        return "Yellow player";
+    case(Colour::green):
+        return "Green player";
+    default:
+        return "error: no colour given";
+    }
 }
 
 void WorkerAdd::setStatic(const int amount){

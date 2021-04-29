@@ -31,12 +31,15 @@ public:
     Colour getColour() const;
     Tool* getTools();
 
+    void resetTools();
     void resetWorkers();
     void setWorkersOccupied(int amount);
     void disableTool(int nr);
 
     QJsonObject save();
     void load(const QJsonObject &json);
+    void addBuilding();
+
 signals:
     void dataChanged();
 
@@ -46,13 +49,17 @@ private:
     int m_clayCount;
     int m_stoneCount;
     int m_goldCount;
-
+    int m_buildingCount;
     int m_scoreCount;
     int m_foodGain;
     Colour m_colour;
     int m_freeWorkers;
     int m_workers;
     Tool m_tools[3];
+    int m_farmerCount;
+    int m_toolMakerCount;
+    int m_hutBuilderCount;
+    int m_shamanCount;
 };
 
 #endif // PLAYER_H
