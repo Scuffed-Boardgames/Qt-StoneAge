@@ -7,7 +7,7 @@ Board::Board() : m_currentPlayer{Colour::red}, m_hut(std::make_shared<Hut>()), m
     m_clayPit{std::make_shared<Gather>(Resource::clay)}, m_quarry{std::make_shared<Gather>(Resource::stone)}, m_river{std::make_shared<Gather>(Resource::gold)},
     m_hunt{std::make_shared<Gather>(Resource::food)}, m_toolShed(std::make_shared<ToolShed>()), m_field(std::make_shared<Field>())
 {
-    m_turn = 0;
+    m_round = 0;
     for(int i = 0; i < 4; ++i){
         m_players[i] = std::make_shared<Player>((Colour)i);
     }
@@ -90,6 +90,16 @@ void Board::feedWorkers()
     }
 }
 
+int Board::getRound() const
+{
+    return m_round;
+}
+
+void Board::addRound()
+{
+    m_round += 1;
+}
+
 std::shared_ptr<Building> Board::getOpenBuildingCard(int pos){
     return m_openBuildingCards[pos];
 }
@@ -128,10 +138,6 @@ void Board::payResources(Colour colour)
         m_toolShed->giveResource(m_players[playerInt]);
     }
     m_players[playerInt]->addResource(Resource::food, m_players[playerInt]->getFoodGain());
-}
-
-int Board::getTurn(){
-    return m_turn;
 }
 
 std::shared_ptr<Player> Board::getPlayer(Colour colour){
@@ -195,7 +201,7 @@ std::shared_ptr<Field> Board::getField()
 }
 
 void Board::load(const QJsonObject &json){
-    m_turn = (int)json["turn"].toDouble();
+    m_round = (int)json["round"].toDouble();
     QJsonArray players = json["players"].toArray();
     for(int i = 0; i < 4; ++i){
         m_players[i]->load(players[i].toObject());
@@ -224,7 +230,7 @@ QJsonObject Board::save(){
     QJsonObject hunt = m_hunt->save();
     QJsonObject toolShed = m_toolShed->save();
     QJsonObject field = m_field->save();
-    QJsonObject json = {{"turn", m_turn},
+    QJsonObject json = {{"round", m_round},
                         {"players", players},
                         {"hut", hut},
                         {"forest", forest},

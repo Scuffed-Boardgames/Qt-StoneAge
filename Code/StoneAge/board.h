@@ -32,6 +32,9 @@ public:
     void nextPlayer(int checked = 0);
     void feedWorkers();
 
+    int getRound() const;
+    void addRound();
+
 signals:
     void newBuild(std::shared_ptr<Building> building, int pos);
     void allWorkersPlaced();
@@ -50,7 +53,7 @@ private:
     std::shared_ptr<Gather> m_hunt;
     std::shared_ptr<ToolShed> m_toolShed;
     std::shared_ptr<Field> m_field;
-    int m_turn;
+    int m_round;
 //    std::vector<Building> m_buildings;
 };
 

@@ -33,8 +33,7 @@ void BoardView::updateResources()
     }
     m_board->resetWorkers();
     m_board->feedWorkers();
-
-
+    m_board->addRound();
     setSelectable(true);
     m_placementDone = false;
 }
