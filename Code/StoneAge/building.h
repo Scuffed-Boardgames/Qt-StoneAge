@@ -16,6 +16,7 @@ public:
     virtual bool build(std::shared_ptr<Player> Player) = 0;
 signals:
     void changedWorkers();
+    void turnHappend();
 private:
     Colour m_standingColour;
 };

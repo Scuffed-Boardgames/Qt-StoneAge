@@ -91,6 +91,7 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsS
         m_buildings[i] = std::make_unique<BuildingView>(moveByX, m_board->getOpenBuildingCard(i).get(), this);
         moveByX += rectWidth;
         connect(m_board->getOpenBuildingCard(i).get(), &Building::changedWorkers,  m_buildings[i].get(), &BuildingView::updateText);
+        connect(m_board->getOpenBuildingCard(i).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
     }
     connect(m_board.get(), &Board::newBuild, this, &BoardView::newBuild);
 

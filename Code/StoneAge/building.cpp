@@ -12,6 +12,7 @@ void Building::addWorker(std::shared_ptr<Player> player){
         player->setWorkersOccupied(1);
         }
     emit changedWorkers();
+    emit turnHappend();
 }
 
 void Building::reset(){
