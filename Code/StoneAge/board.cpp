@@ -155,6 +155,16 @@ ToolShed* Board::getToolShed(){
     return &m_toolShed;
 }
 
+Hut *Board::getHut()
+{
+    return &m_hut;
+}
+
+Field *Board::getField()
+{
+    return &m_field;
+}
+
 void Board::load(const QJsonObject &json){
     m_turn = (int)json["turn"].toDouble();
     QJsonArray players = json["players"].toArray();

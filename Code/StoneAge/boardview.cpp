@@ -58,11 +58,16 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsS
     moveByX = 50;
     rectWidth = 500;
     m_field = std::make_unique<OtherPlaceView>(QColor(245,222,179), moveByX, 1, "Field", nullptr, this);//wheat yellow
+    connect(m_board->getField(), &Place::changedWorkers, m_field.get(), &OtherPlaceView::updateText);
+    connect(m_board->getField(), &Place::turnHappend, this, &BoardView::updateTurn);
     moveByX += rectWidth;
     m_hut = std::make_unique<OtherPlaceView>(QColor(254,184,198), moveByX, 2, "Hut", nullptr, this);//love pink
+    connect(m_board->getHut(), &Place::changedWorkers, m_hut.get(), &OtherPlaceView::updateText);
+    connect(m_board->getHut(), &Place::turnHappend, this, &BoardView::updateTurn);
     moveByX += rectWidth;
     m_toolshed = std::make_unique<OtherPlaceView>(QColor(161,133,105), moveByX, 1, "Tool Shed", m_board->getToolShed(), this);//tool brown
     connect(m_board->getToolShed(), &Place::changedWorkers, m_toolshed.get(), &OtherPlaceView::updateText);
+    connect(m_board->getToolShed(), &Place::turnHappend, this, &BoardView::updateTurn);
 
     moveByX = 50;
     rectWidth = 175;

@@ -21,6 +21,8 @@ public:
     Gather* getGather(Resource resource);
     void resetWorkers();
     ToolShed* getToolShed();
+    Hut* getHut();
+    Field* getField();
     void load(const QJsonObject &json);
     QJsonObject save();
     std::shared_ptr<Building> getOpenBuildingCard(int pos);
