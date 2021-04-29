@@ -67,3 +67,4 @@ void Place::load(const QJsonObject &json){
     m_greenWorkers = (int)json["greenWorkers"].toDouble();
     emit changedWorkers();
 }
+

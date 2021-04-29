@@ -11,6 +11,14 @@ void WorkerAdd::addToPlace(std::shared_ptr<Place> place, std::shared_ptr<Player>
     m_place = place;
     m_player = player;
     this->setWindowTitle(colourToString(player->getColour()));
+
+    std::shared_ptr<Gather> gather = std::dynamic_pointer_cast<Gather>(m_place);
+    if(gather){
+        int freeSpace = gather->getMaxWorkers() - m_place->totalWorkers();
+        int placable = std::min(freeSpace, m_player->getFreeWorkers());
+        ui->amount->setMaximum(placable);
+        ui->okayButton->setDisabled(placable == 0);
+    }
 }
 
 void WorkerAdd::addToBuilding(Building* building, std::shared_ptr<Player> player){
@@ -37,6 +45,7 @@ void WorkerAdd::on_okayButton_clicked(){
 void WorkerAdd::on_cancelButton_clicked(){
     ui->amount->setValue(1);
     m_place = nullptr;
+    ui->okayButton->setEnabled(true);
     this->close();
 }
 

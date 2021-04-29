@@ -9,6 +9,8 @@ public:
     Gather(Resource resource);
     void giveResource(std::shared_ptr<Player>);
     void addWorker(std::shared_ptr<Player>, int amount);
+
+    int getMaxWorkers() const;
 private:
     int m_maxWorkers;
     Resource m_resource;

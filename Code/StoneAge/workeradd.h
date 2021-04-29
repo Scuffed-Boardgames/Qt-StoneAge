@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "resourceplaceview.h"
 #include "buildingview.h"
+#include "gather.h"
 
 namespace Ui {
 class WorkerAdd;
@@ -21,9 +22,9 @@ public:
     ~WorkerAdd();
 
     void addToBuilding(Building *building, std::shared_ptr<Player> player);
+
 private slots:
     void on_okayButton_clicked();
-
     void on_cancelButton_clicked();
 
 private:

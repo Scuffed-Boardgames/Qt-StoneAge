@@ -48,4 +48,9 @@ void Gather::addWorker(std::shared_ptr<Player> player, int amount)
     }
 }
 
+int Gather::getMaxWorkers() const
+{
+    return m_maxWorkers;
+}
+
 

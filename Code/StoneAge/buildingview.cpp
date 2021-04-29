@@ -12,8 +12,6 @@ BuildingView::BuildingView(int moveByX, Building* building, QGraphicsScene* pare
     parentItem->addItem(this);
 
     QFont font1("Font", 15);
-
-
     yPos += 5;
     m_text = new QGraphicsTextItem("", tile);
     m_text->setFont(font1);
@@ -67,7 +65,6 @@ BuildingView::BuildingView(int moveByX, Building* building, QGraphicsScene* pare
     m_minMax->setScale(1.5);
 
     updateBuilding(m_building);
-
 }
 
 QRectF BuildingView::boundingRect() const
