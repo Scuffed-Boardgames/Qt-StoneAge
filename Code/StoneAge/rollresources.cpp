@@ -3,7 +3,7 @@
 
 
 RollResources::RollResources(const int workerAmount, const Resource resource, std::shared_ptr<Player>player, QWidget *parent)
-    : QWidget(parent), ui(new Ui::RollResources), m_resource(resource), m_text(resourceToString(resource)), m_player(player)
+    : QDialog(parent), ui(new Ui::RollResources), m_resource(resource), m_text(resourceToString(resource)), m_player(player)
 {
     ui->setupUi(this);
     int amount = 0;

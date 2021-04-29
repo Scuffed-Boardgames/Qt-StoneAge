@@ -1,14 +1,14 @@
 #ifndef BUILDINGPAY_H
 #define BUILDINGPAY_H
 
-#include <QWidget>
+#include <QDialog>
 #include "setbuilding.h"
 
 namespace Ui {
 class BuildingPay;
 }
 
-class BuildingPay : public QWidget
+class BuildingPay : public QDialog
 {
     Q_OBJECT
 

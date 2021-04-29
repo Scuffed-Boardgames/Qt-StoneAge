@@ -1,7 +1,7 @@
 #ifndef WORKERADD_H
 #define WORKERADD_H
 
-#include <QWidget>
+#include <QDialog>
 #include "resourceplaceview.h"
 #include "buildingview.h"
 
@@ -9,7 +9,7 @@ namespace Ui {
 class WorkerAdd;
 }
 
-class WorkerAdd : public QWidget
+class WorkerAdd : public QDialog
 {
     Q_OBJECT
 

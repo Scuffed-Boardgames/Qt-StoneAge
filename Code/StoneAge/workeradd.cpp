@@ -2,7 +2,7 @@
 #include "ui_workeradd.h"
 
 WorkerAdd::WorkerAdd(QWidget *parent)
-    : QWidget(parent), m_building(nullptr), m_place(nullptr), ui(new Ui::WorkerAdd)
+    : QDialog(parent), m_building(nullptr), m_place(nullptr), ui(new Ui::WorkerAdd)
 {
     ui->setupUi(this);
 }

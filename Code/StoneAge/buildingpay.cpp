@@ -2,7 +2,7 @@
 #include "ui_buildingpay.h"
 
 BuildingPay::BuildingPay(QWidget *parent) :
-    QWidget(parent),
+    QDialog(parent),
     ui(new Ui::BuildingPay)
 {
     ui->setupUi(this);

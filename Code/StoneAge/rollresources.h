@@ -1,14 +1,14 @@
 #ifndef ROLLRESOURCES_H
 #define ROLLRESOURCES_H
 
-#include <QWidget>
+#include <QDialog>
 #include "player.h"
 
 namespace Ui {
 class RollResources;
 }
 
-class RollResources : public QWidget
+class RollResources : public QDialog
 {
     Q_OBJECT
 
