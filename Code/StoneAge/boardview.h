@@ -18,8 +18,10 @@ public:
 public slots:
     void newBuild(std::shared_ptr<Building> building, int pos);
     void updateTurn();
-    void startPayout();
+    void placementDone();
 private:
+    void startPayout();
+    bool m_placementDone;
     std::unique_ptr<BuildingView> m_buildings[4];
     std::shared_ptr<WorkerAdd> m_workeradd;
     std::shared_ptr<Board> m_board;

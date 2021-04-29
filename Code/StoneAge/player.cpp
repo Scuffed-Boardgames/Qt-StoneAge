@@ -77,7 +77,7 @@ Colour Player::getColour() const{
     return m_colour;
 }
 
-void Player::reset(){
+void Player::resetWorkers(){
     m_freeWorkers = m_workers;
     emit dataChanged();
 }

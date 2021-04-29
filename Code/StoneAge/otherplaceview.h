@@ -8,6 +8,7 @@
 class OtherPlaceView : public QObject, public QGraphicsItem
 {
     Q_OBJECT
+    Q_INTERFACES(QGraphicsItem)
 public:
     OtherPlaceView(QColor colour, int moveByX, int cost, QString name, Place* place, QGraphicsScene* parentItem);
     int getCost();

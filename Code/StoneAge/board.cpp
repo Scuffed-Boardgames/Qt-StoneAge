@@ -147,8 +147,9 @@ void Board::resetWorkers()
     m_hut.resetWorkers();
     m_toolShed.resetWorkers();
     for (int i = 0; i<4 ; ++i){
-        m_players[i].reset();
+        m_players[i]->resetWorkers();
     }
+    emit workersReset();
 }
 
 ToolShed* Board::getToolShed(){

@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     srand(time(0));
     QApplication a(argc, argv);
     std::shared_ptr<Board> board(new Board());
-    MainWindow g(board);
-    g.showFullScreen();
+    std::shared_ptr<MainWindow> g(new MainWindow(board));
+    g->showFullScreen();
     return a.exec();
 }

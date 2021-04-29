@@ -11,6 +11,7 @@
 class ResourcePlaceView :  public QObject, public QGraphicsItem
 {
     Q_OBJECT
+    Q_INTERFACES(QGraphicsItem)
 
 public:
     ResourcePlaceView(QColor colour, QString name, int moveByX, Place* m_place, QGraphicsScene* parent);
