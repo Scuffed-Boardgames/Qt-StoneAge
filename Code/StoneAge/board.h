@@ -35,7 +35,6 @@ public:
     std::shared_ptr<Field> getField();
     std::shared_ptr<Player> getPlayer(Colour colour);
     std::shared_ptr<Gather> getGather(Resource resource);
-    int getTurn();
     int getRound() const;
     Colour getCurrentPlayer() const;
 
