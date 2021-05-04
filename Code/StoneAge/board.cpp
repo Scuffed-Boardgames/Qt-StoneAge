@@ -19,43 +19,41 @@ Board::Board() : m_currentPlayer{Colour::red}, m_hut(std::make_shared<Hut>()), m
     QJsonDocument document = QJsonDocument::fromJson(data);
     QJsonObject jsonObject = document.object();
     QJsonArray jsonBuildings = jsonObject["setBuildings"].toArray();
+    std::vector<std::shared_ptr<Building>> buildingCards;
     for(int i = 0; i < jsonBuildings.size(); ++i){
-        m_buildingCards.push_back(std::make_shared<SetBuilding>(jsonBuildings[i].toObject()));
+        buildingCards.push_back(std::make_shared<SetBuilding>(jsonBuildings[i].toObject()));
     }
     jsonBuildings = jsonObject["varBuildings"].toArray();
     for(int i = 0; i < jsonBuildings.size(); ++i){
-        m_buildingCards.push_back(std::make_shared<VarBuilding>(jsonBuildings[i].toObject()));
+        buildingCards.push_back(std::make_shared<VarBuilding>(jsonBuildings[i].toObject()));
     }
-    for(int i = 0; i < 4; ++i){
-        int place = rand() % m_buildingCards.size();
-        m_openBuildingCards[i] = m_buildingCards[place];
-        m_buildingCards.erase(m_buildingCards.begin() + place);
+    int i = 0;
+    while(buildingCards.size() > 0){
+        int place = rand() % buildingCards.size();
+        m_buildingCardStacks[i].push_back(buildingCards[place]);
+        buildingCards.erase(buildingCards.begin() + place);
+        i = (++i) % 4;
+
     }
 }
 
 void Board::newBuilding(int place){
-    if(m_buildingCards.size() == 0){
+    m_buildingCardStacks[place].pop_back();
+    if(m_buildingCardStacks[place].size() == 0){
         return;
     }
-    int randplace = rand() % m_buildingCards.size();
-    m_openBuildingCards[place] = m_buildingCards[randplace];
-    m_buildingCards.erase(m_buildingCards.begin() + randplace);
-    emit newBuild(m_openBuildingCards[place], place);
+    emit newBuild(m_buildingCardStacks[place].back(), place);
 }
 
 void Board::rerollBuildings(){
-    if(m_buildingCards.size() == 0){
-        return;
-    }
     for(int i = 0; i < 4; ++i){
-        m_openBuildingCards[i]->reset();
-        m_buildingCards.push_back(m_openBuildingCards[i]);
-    }
-    for(int i = 0; i < 4; ++i){
-        int place = rand() % m_buildingCards.size();
-        m_openBuildingCards[i] = m_buildingCards[place];
-        m_buildingCards.erase(m_buildingCards.begin() + place);
-        emit newBuild(m_openBuildingCards[i], i);
+        m_buildingCardStacks[i].back()->reset();
+        int place = rand() % m_buildingCardStacks[i].size();
+        std::shared_ptr<Building> tmp = m_buildingCardStacks[i].back();
+        m_buildingCardStacks[i].back() = m_buildingCardStacks[i][place];
+        m_buildingCardStacks[i][place] = tmp;
+        emit newBuild(m_buildingCardStacks[i].back(), i);
+
     }
 }
 
@@ -106,7 +104,7 @@ void Board::addRound()
 }
 
 std::shared_ptr<Building> Board::getOpenBuildingCard(int pos){
-    return m_openBuildingCards[pos];
+    return m_buildingCardStacks[pos].back();
 }
 
 void Board::setUpGame()
@@ -211,7 +209,20 @@ void Board::load(const QJsonObject &json){
     for(int i = 0; i < 4; ++i){
         m_players[i]->load(players[i].toObject());
     }
+    QJsonArray buildingsStacks = json["buildings"].toArray();
+    for(int i = 0; i < 4; ++i){
+        m_buildingCardStacks[i].clear();
+        QJsonArray buildings = buildingsStacks[i].toArray();
+        for(int j = 0; j < buildings.size(); ++j){
+            if(buildings[j].toObject().contains("diffMaterials")){
+                m_buildingCardStacks[i].push_back(std::make_shared<VarBuilding>(buildings[j].toObject()));
+            } else{
+                m_buildingCardStacks[i].push_back(std::make_shared<SetBuilding>(buildings[j].toObject()));
+            }
 
+        }
+
+    }
     m_hut->load(json["hut"].toObject());
     m_forest->load(json["forest"].toObject());
     m_clayPit->load(json["clayPit"].toObject());
@@ -227,6 +238,15 @@ QJsonObject Board::save(){
     for(int i = 0; i < 4; ++i){
         players.append(m_players[i]->save());
     }
+    QJsonArray buildingsStacks;
+    for(int i = 0; i < 4; ++i){
+        QJsonArray buildings;
+        for(int j = 0; j < (int)m_buildingCardStacks[i].size(); ++j){
+            buildings.append(m_buildingCardStacks[i][j]->save());
+        }
+        buildingsStacks.append(buildings);
+    }
+
     QJsonObject hut = m_hut->save();
     QJsonObject forest = m_forest->save();
     QJsonObject clayPit = m_clayPit->save();
@@ -244,6 +264,7 @@ QJsonObject Board::save(){
                         {"river", river},
                         {"hunt", hunt},
                         {"toolShed", toolShed},
-                        {"field", field}};
+                        {"field", field},
+                        {"buildings", buildingsStacks}};
     return json;
 }

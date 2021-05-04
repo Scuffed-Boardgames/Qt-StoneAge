@@ -14,6 +14,7 @@ public:
     void reset();
     Colour getStandingColour() const;
     virtual bool build(std::shared_ptr<Player> Player) = 0;
+    virtual QJsonObject save() = 0;
 signals:
     void changedWorkers();
     void turnHappend();

@@ -15,6 +15,9 @@ public:
     SetBuilding(const SetBuilding &building);
     void CopyBuilding(const SetBuilding &building);
     bool canPay(std::shared_ptr<Player>);
+
+    QJsonObject save();
+    void load(const QJsonObject &json);
 private:
     int m_woodCost;
     int m_clayCost;

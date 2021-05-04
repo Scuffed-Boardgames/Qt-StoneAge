@@ -17,6 +17,9 @@ public:
 
     bool canPay(std::shared_ptr<Player> player, int woodAmount, int clayAmount, int stoneAmount, int goldAmount);
     int calcScore(int woodAmount, int clayAmount, int stoneAmount, int goldAmount);
+
+    QJsonObject save();
+    void load(const QJsonObject &json);
 private:
     int m_diff;
     int m_totalMin;

@@ -44,7 +44,7 @@ signals:
 //    void newBuild(std::pair<int, std::shared_ptr<Building>> msg);
 private:
     Colour m_currentPlayer;
-    std::vector<std::shared_ptr<Building>> m_buildingCards;
+    std::vector<std::shared_ptr<Building>> m_buildingCardStacks[4];
     std::shared_ptr<Building> m_openBuildingCards[4];
     std::shared_ptr<Player> m_players[4];
     std::shared_ptr<Hut> m_hut;

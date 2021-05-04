@@ -24,6 +24,25 @@ bool SetBuilding::canPay(std::shared_ptr<Player> player)
     return true;
 }
 
+QJsonObject SetBuilding::save()
+{
+    QJsonObject json = {{"woodCost", m_woodCost},
+                        {"clayCost", m_clayCost},
+                        {"stoneCost", m_stoneCost},
+                        {"goldCost", m_goldCost},
+                        {"scoreGain", m_scoreGain}};
+    return json;
+}
+
+void SetBuilding::load(const QJsonObject &json)
+{
+    m_woodCost = (int)json["woodCost"].toDouble();
+    m_clayCost = (int)json["clayCost"].toDouble();
+    m_stoneCost = (int)json["stoneCost"].toDouble();
+    m_goldCost = (int)json["goldCost"].toDouble();
+    m_scoreGain = (int)json["scoreGain"].toDouble();
+}
+
 //SetBuilding::SetBuilding(const SetBuilding & building)
 //    : m_woodCost(building.getCost(Resource::wood)), m_clayCost(building.getCost(Resource::clay)),
 //      m_stoneCost(building.getCost(Resource::stone)), m_goldCost(building.getCost(Resource::gold)), m_scoreGain(getScoreGain())
