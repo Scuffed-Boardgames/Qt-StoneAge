@@ -43,20 +43,6 @@ void SetBuilding::load(const QJsonObject &json)
     m_scoreGain = (int)json["scoreGain"].toDouble();
 }
 
-//SetBuilding::SetBuilding(const SetBuilding & building)
-//    : m_woodCost(building.getCost(Resource::wood)), m_clayCost(building.getCost(Resource::clay)),
-//      m_stoneCost(building.getCost(Resource::stone)), m_goldCost(building.getCost(Resource::gold)), m_scoreGain(getScoreGain())
-//{
-//}
-
-//void SetBuilding::CopyBuilding(const SetBuilding & building){
-//    m_woodCost = building.getCost(Resource::wood);
-//    m_clayCost = building.getCost(Resource::clay);
-//    m_stoneCost = building.getCost(Resource::stone);
-//    m_goldCost = building.getCost(Resource::gold);
-//    m_scoreGain = getScoreGain();
-//}
-
 bool SetBuilding::build(std::shared_ptr<Player> player){
     if(player->getResource(Resource::wood) < m_woodCost)
         return false;

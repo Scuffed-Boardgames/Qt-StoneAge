@@ -13,6 +13,7 @@ class PayFood : public QDialog
 public:
     PayFood(std::shared_ptr<Player> player, int amount);
     ~PayFood();
+
 private slots:
     void on_acceptButton_clicked();
     void on_scoreButton_clicked();

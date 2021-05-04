@@ -15,19 +15,19 @@ class VarBuildingPay : public QDialog
 
 public:
     explicit VarBuildingPay(QWidget *parent = nullptr);
-    void setBuilding(std::shared_ptr<Player> player, std::shared_ptr<VarBuilding> building);
     ~VarBuildingPay();
-    int getAmount(Resource resource);
 
+    void setBuilding(std::shared_ptr<Player> player, std::shared_ptr<VarBuilding> building);
     void resetAmounts();
+
     bool getBought() const;
+    int getAmount(Resource resource);
 
 public slots:
     void editText();
 
 private slots:
     void on_okayButton_clicked();
-
     void on_cancelButton_clicked();
 
 private:

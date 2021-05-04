@@ -39,28 +39,52 @@ Board::Board() : m_currentPlayer{Colour::red}, m_hut(std::make_shared<Hut>()), m
 
     }
 }
-void Board::buildBuilding(Colour colour){
+
+
+void Board::feedWorkers()
+{
     for(int i = 0; i < 4; ++i){
-        if(m_buildingCardStacks[i].back()->getStandingColour() == colour){
-            std::shared_ptr<SetBuilding> setBuilding = std::dynamic_pointer_cast<SetBuilding>(m_buildingCardStacks[i].back());
-            if(setBuilding){
-                m_setBuildingPay->setBuilding(getPlayer(colour), setBuilding);
-                m_setBuildingPay->exec();
-                if(m_setBuildingPay->getBought()){
-                    newBuilding(i);
-                }
-            } else{
-                std::shared_ptr<VarBuilding> varBuilding = std::dynamic_pointer_cast<VarBuilding>(m_buildingCardStacks[i].back());
-                m_varBuildingPay->setBuilding(getPlayer(colour), varBuilding);
-                m_varBuildingPay->exec();
-                if( m_varBuildingPay->getBought()){
-                    newBuilding(i);
-                }
-            }
+        int foodNeeded = m_players[i]->getWorkerCount();
+        int ownedFood = m_players[i]->getResource(Resource::food);
+        if(foodNeeded <= ownedFood){
+            m_players[i]->addResource(Resource::food, -foodNeeded);
+        }else{
+            m_players[i]->addResource(Resource::food, -ownedFood);
+            foodNeeded -= ownedFood;
+            PayFood* pay = new PayFood(m_players[i], foodNeeded);
+            pay->exec();
         }
     }
-
 }
+
+void Board::resetWorkers()
+{
+    m_hunt->resetWorkers();
+    m_forest->resetWorkers();
+    m_clayPit->resetWorkers();
+    m_quarry->resetWorkers();
+    m_river->resetWorkers();
+    m_field->resetWorkers();
+    m_hut->resetWorkers();
+    m_toolShed->resetWorkers();
+    for (int i = 0; i<4 ; ++i){
+        m_players[i]->resetWorkers();
+        m_players[i]->resetTools();
+    }
+    emit m_hunt->changedWorkers();
+    emit m_forest->changedWorkers();
+    emit m_clayPit->changedWorkers();
+    emit m_quarry->changedWorkers();
+    emit m_river->changedWorkers();
+    emit m_toolShed->changedWorkers();
+    emit m_field->changedWorkers();
+    emit m_hut->changedWorkers();
+}
+
+std::shared_ptr<Building> Board::getOpenBuildingCard(int pos){
+    return m_buildingCardStacks[pos].back();
+}
+
 void Board::newBuilding(int place){
     m_buildingCardStacks[place].pop_back();
     if(m_buildingCardStacks[place].size() == 0){
@@ -87,10 +111,30 @@ void Board::rerollBuildings(){
     }
 }
 
-Colour Board::getCurrentPlayer() const
-{
-    return m_currentPlayer;
+void Board::buildBuilding(Colour colour){
+    for(int i = 0; i < 4; ++i){
+        if(m_buildingCardStacks[i].back()->getStandingColour() == colour){
+            std::shared_ptr<SetBuilding> setBuilding = std::dynamic_pointer_cast<SetBuilding>(m_buildingCardStacks[i].back());
+            if(setBuilding){
+                m_setBuildingPay->setBuilding(getPlayer(colour), setBuilding);
+                m_setBuildingPay->exec();
+                if(m_setBuildingPay->getBought()){
+                    newBuilding(i);
+                }
+            } else{
+                std::shared_ptr<VarBuilding> varBuilding = std::dynamic_pointer_cast<VarBuilding>(m_buildingCardStacks[i].back());
+                m_varBuildingPay->setBuilding(getPlayer(colour), varBuilding);
+                m_varBuildingPay->exec();
+                if( m_varBuildingPay->getBought()){
+                    newBuilding(i);
+                }
+            }
+        }
+    }
+
 }
+
+
 
 void Board::nextPlayer(int checked)
 {
@@ -105,40 +149,10 @@ void Board::nextPlayer(int checked)
     }
 }
 
-void Board::feedWorkers()
-{
-    for(int i = 0; i < 4; ++i){
-        int foodNeeded = m_players[i]->getWorkerCount();
-        int ownedFood = m_players[i]->getResource(Resource::food);
-        if(foodNeeded <= ownedFood){
-            m_players[i]->addResource(Resource::food, -foodNeeded);
-        }else{
-            m_players[i]->addResource(Resource::food, -ownedFood);
-            foodNeeded -= ownedFood;
-            PayFood* pay = new PayFood(m_players[i], foodNeeded);
-            pay->exec();
-        }
-    }
-}
-
-int Board::getRound() const
-{
-    return m_round;
-}
-
 void Board::addRound()
 {
     m_round += 1;
     emit roundChanged();
-}
-
-std::shared_ptr<Building> Board::getOpenBuildingCard(int pos){
-    return m_buildingCardStacks[pos].back();
-}
-
-void Board::setUpGame()
-{
-
 }
 
 void Board::payResources(Colour colour)
@@ -172,6 +186,17 @@ void Board::payResources(Colour colour)
     m_players[playerInt]->addResource(Resource::food, m_players[playerInt]->getFoodGain());
 }
 
+
+Colour Board::getCurrentPlayer() const
+{
+    return m_currentPlayer;
+}
+
+int Board::getRound() const
+{
+    return m_round;
+}
+
 std::shared_ptr<Player> Board::getPlayer(Colour colour){
     return m_players[(int)colour];
 }
@@ -194,30 +219,6 @@ std::shared_ptr<Gather> Board::getGather(Resource resource)
     }
 }
 
-void Board::resetWorkers()
-{
-    m_hunt->resetWorkers();
-    m_forest->resetWorkers();
-    m_clayPit->resetWorkers();
-    m_quarry->resetWorkers();
-    m_river->resetWorkers();
-    m_field->resetWorkers();
-    m_hut->resetWorkers();
-    m_toolShed->resetWorkers();
-    for (int i = 0; i<4 ; ++i){
-        m_players[i]->resetWorkers();
-        m_players[i]->resetTools();
-    }
-    emit m_hunt->changedWorkers();
-    emit m_forest->changedWorkers();
-    emit m_clayPit->changedWorkers();
-    emit m_quarry->changedWorkers();
-    emit m_river->changedWorkers();
-    emit m_toolShed->changedWorkers();
-    emit m_field->changedWorkers();
-    emit m_hut->changedWorkers();
-}
-
 std::shared_ptr<ToolShed> Board::getToolShed(){
     return m_toolShed;
 }
@@ -231,6 +232,7 @@ std::shared_ptr<Field> Board::getField()
 {
     return m_field;
 }
+
 
 void Board::load(const QJsonObject &json){
     m_round = (int)json["round"].toDouble();

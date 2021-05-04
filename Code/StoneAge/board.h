@@ -17,38 +17,41 @@ class Board : public QObject
     Q_OBJECT
 public:
     Board();
-    void setUpGame();
-    void payResources(Colour colour);
-    int getTurn();
-    std::shared_ptr<Player> getPlayer(Colour colour);
-    std::shared_ptr<Gather> getGather(Resource resource);
+
     void resetWorkers();
-    std::shared_ptr<ToolShed> getToolShed();
-    std::shared_ptr<Hut> getHut();
-    std::shared_ptr<Field> getField();
-    void load(const QJsonObject &json);
-    QJsonObject save();
+    void feedWorkers();
+
     std::shared_ptr<Building> getOpenBuildingCard(int pos);
     void newBuilding(int place);
     void rerollBuildings();
-    Colour getCurrentPlayer() const;
-    void nextPlayer(int checked = 0);
-    void feedWorkers();
+    void buildBuilding(Colour colour);
 
-    int getRound() const;
+    void nextPlayer(int checked = 0);
+    void payResources(Colour colour);
     void addRound();
 
-    void buildBuilding(Colour colour);
+    std::shared_ptr<ToolShed> getToolShed();
+    std::shared_ptr<Hut> getHut();
+    std::shared_ptr<Field> getField();
+    std::shared_ptr<Player> getPlayer(Colour colour);
+    std::shared_ptr<Gather> getGather(Resource resource);
+    int getTurn();
+    int getRound() const;
+    Colour getCurrentPlayer() const;
+
+    void load(const QJsonObject &json);
+    QJsonObject save();
+
 signals:
     void newBuild(std::shared_ptr<Building> building, int pos);
     void allWorkersPlaced();
     void workersReset();
     void roundChanged();
-//    void newBuild(std::pair<int, std::shared_ptr<Building>> msg);
+
 private:
+
     Colour m_currentPlayer;
     std::vector<std::shared_ptr<Building>> m_buildingCardStacks[4];
-    std::shared_ptr<Building> m_openBuildingCards[4];
     std::shared_ptr<Player> m_players[4];
     std::shared_ptr<Hut> m_hut;
     std::shared_ptr<Gather> m_forest;
@@ -61,7 +64,7 @@ private:
     int m_round;
     std::shared_ptr<SetBuildingPay> m_setBuildingPay;
     std::shared_ptr<VarBuildingPay> m_varBuildingPay;
-//    std::vector<Building> m_buildings;
+
 };
 
 #endif // BOARD_H

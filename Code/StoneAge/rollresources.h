@@ -14,16 +14,15 @@ class RollResources : public QDialog
 
 public:
     explicit RollResources(int workerAmount, Resource resource, std::shared_ptr<Player> player, QWidget *parent = nullptr);
-    int getGain(); //returns the amount of resources gained
     ~RollResources();
+
+    int getGain(); //returns the amount of resources gained
+
 
 private slots:
     void on_pushButton_clicked();
-
     void on_Tool1Button_clicked();
-
     void on_Tool2Button_clicked();
-
     void on_Tool3Button_clicked();
 
 private:

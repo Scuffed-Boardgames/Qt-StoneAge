@@ -16,10 +16,12 @@ class WorkerAdd : public QDialog
 
 public:
     explicit WorkerAdd(QWidget *parent = nullptr);
+    ~WorkerAdd();
+
     void addToPlace(std::shared_ptr<Place> place, std::shared_ptr<Player> player);
+
     void setStatic(int amount);
     void setDynamic();
-    ~WorkerAdd();
 
     void addToBuilding(std::shared_ptr<Building> building, std::shared_ptr<Player> player);
 

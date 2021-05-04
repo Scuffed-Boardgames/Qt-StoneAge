@@ -10,12 +10,14 @@ class BuildingView :public QObject, public QGraphicsItem
     Q_OBJECT
     Q_INTERFACES(QGraphicsItem)
 public:
+    BuildingView(int moveByX, std::shared_ptr<Building> building, QGraphicsScene *parentItem);
+
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
     void setOwner(Colour colour);
     std::shared_ptr<Building> getBuilding() const;
 
-    BuildingView(int moveByX, std::shared_ptr<Building> building, QGraphicsScene *parentItem);
 public slots:
     void updateText();
     void updateBuilding(std::shared_ptr<Building> building);

@@ -49,12 +49,6 @@ QJsonObject VarBuilding::save()
     return json;
 }
 
-void VarBuilding::load(const QJsonObject &json)
-{
-    m_diff = (int)json["diffMaterials"].toDouble();
-    m_totalMin = (int)json["minCost"].toDouble();
-    m_totalMax = (int)json["maxCost"].toDouble();
-}
 
 bool VarBuilding::build(std::shared_ptr<Player> player, int woodAmount, int clayAmount, int stoneAmount, int goldAmount)
 {

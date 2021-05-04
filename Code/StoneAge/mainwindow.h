@@ -20,13 +20,9 @@ public:
 
 private slots:
     void updateRound();
-
     void on_quitButton_clicked();
-
     void on_loadButton_clicked();
-
     void on_saveButton_clicked();
-
     void on_newGameButton_clicked();
 
 private:

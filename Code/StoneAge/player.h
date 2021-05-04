@@ -5,7 +5,6 @@
 #include <QObject>
 #include <QJsonArray>
 
-#include "worker.h"
 #include "resources.h"
 #include "colour.h"
 #include "tool.h"
@@ -22,6 +21,7 @@ public:
     void addTool();
     void addScore(int amount);
     void addFoodGain();
+    void addBuilding();
 
     int getResource(Resource resource); // gets the amount of a given resource
     int getScore(); // gets the score the player curently has
@@ -34,12 +34,13 @@ public:
 
     void resetTools();
     void resetWorkers();
+
     void setWorkersOccupied(int amount);
     void disableTool(int nr);
 
     QJsonObject save();
     void load(const QJsonObject &json);
-    void addBuilding();
+
 
 signals:
     void dataChanged();

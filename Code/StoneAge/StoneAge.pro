@@ -31,7 +31,6 @@ SOURCES += \
     toolshed.cpp \
     varbuilding.cpp \
     varbuildingpay.cpp \
-    worker.cpp \
     workeradd.cpp
 
 HEADERS += \
@@ -58,7 +57,6 @@ HEADERS += \
     toolshed.h \
     varbuilding.h \
     varbuildingpay.h \
-    worker.h \
     workeradd.h
 
 FORMS += \

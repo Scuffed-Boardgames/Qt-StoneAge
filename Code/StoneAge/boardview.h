@@ -15,13 +15,13 @@ class BoardView : public QGraphicsScene
 public:
     BoardView(std::shared_ptr<Board> board, QObject* parent = nullptr);
     BoardView();
-    void buildBuildings();
+
 public slots:
     void newBuild(std::shared_ptr<Building> building, int pos);
     void updateTurn();
     void placementDone();
+
 private:
-    void updateResources();
     bool m_placementDone;
     std::unique_ptr<BuildingView> m_buildings[4];
     std::shared_ptr<WorkerAdd> m_workeradd;
@@ -34,6 +34,9 @@ private:
     std::unique_ptr<OtherPlaceView> m_field;
     std::unique_ptr<OtherPlaceView> m_hut;
     std::unique_ptr<OtherPlaceView> m_toolshed;
+
+    void updateResources();
+    void buildBuildings();
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     void setSelectable(bool isSelectalbe);
 };

@@ -7,14 +7,13 @@ class SetBuilding : public Building
 {
 public:
     SetBuilding(int wood, int clay, int stone, int gold, int score);
-    bool build(std::shared_ptr<Player> Player);
-    int getScoreGain() const;
-
-    int getCost(Resource resource) const;
     SetBuilding(const QJsonObject &json);
-    SetBuilding(const SetBuilding &building);
-    void CopyBuilding(const SetBuilding &building);
-    bool canPay(std::shared_ptr<Player>);
+
+    bool build(std::shared_ptr<Player> player);
+    bool canPay(std::shared_ptr<Player> player);
+
+    int getScoreGain() const;
+    int getCost(Resource resource) const;
 
     QJsonObject save();
     void load(const QJsonObject &json);
