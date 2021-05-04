@@ -4,8 +4,8 @@
 #include <QJsonDocument>
 
 MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
-    : QMainWindow(parent), m_ui(new Ui::MainWindow), m_boardview(new BoardView(board, this)), m_board(board), m_fileDialog(new QFileDialog(this))
-{
+    : QMainWindow(parent), m_ui(new Ui::MainWindow), m_boardview(new BoardView(board, this)), m_board(board), m_fileDialog(new QFileDialog(this)){
+
     m_ui->setupUi(this);
     QString text = "Round: " + QString::number(m_board->getRound()+1);
     m_ui->Turn->setText(text);
@@ -32,20 +32,17 @@ MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
     m_ui->Turn->setFont(font);
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow(){
     delete m_ui;
 }
 
-void MainWindow::updateRound()
-{
+void MainWindow::updateRound(){
     QString text = "Round: " + QString::number(m_board->getRound()+1);
     m_ui->Turn->setText(text);
 }
 
 
-void MainWindow::on_quitButton_clicked()
-{
+void MainWindow::on_quitButton_clicked(){
     this->close();
 }
 

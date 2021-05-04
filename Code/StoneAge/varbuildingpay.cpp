@@ -1,10 +1,7 @@
 #include "varbuildingpay.h"
 #include "ui_varbuildingpay.h"
 
-VarBuildingPay::VarBuildingPay(QWidget *parent) :
-     QDialog(parent), m_bought(false),
-    ui(new Ui::VarBuildingPay)
-{
+VarBuildingPay::VarBuildingPay(QWidget *parent) :QDialog(parent), m_bought(false), ui(new Ui::VarBuildingPay){
     ui->setupUi(this);
     connect(ui->woodAmount, &QSpinBox::valueChanged, this, &VarBuildingPay::editText);
     connect(ui->clayAmount, &QSpinBox::valueChanged, this, &VarBuildingPay::editText);
@@ -12,8 +9,7 @@ VarBuildingPay::VarBuildingPay(QWidget *parent) :
     connect(ui->goldAmount, &QSpinBox::valueChanged, this, &VarBuildingPay::editText);
 }
 
-void VarBuildingPay::setBuilding(std::shared_ptr<Player> player, std::shared_ptr<VarBuilding> building)
-{
+void VarBuildingPay::setBuilding(std::shared_ptr<Player> player, std::shared_ptr<VarBuilding> building){
     this->setWindowTitle(player->getString());
     m_bought = false;
     m_player = player;
@@ -38,8 +34,7 @@ void VarBuildingPay::setBuilding(std::shared_ptr<Player> player, std::shared_ptr
     ui->okayButton->setEnabled(false);
 }
 
-VarBuildingPay::~VarBuildingPay()
-{
+VarBuildingPay::~VarBuildingPay(){
     delete ui;
 }
 
@@ -68,6 +63,7 @@ int VarBuildingPay::getDiff(){
     }
     return diff;
 }
+
 void VarBuildingPay::editText()
 {
     int amount = 0;
@@ -143,8 +139,8 @@ void VarBuildingPay::resetAmounts(){
     ui->stoneAmount->setValue(0);
     ui->goldAmount->setValue(0);
 }
-void VarBuildingPay::on_okayButton_clicked()
-{
+
+void VarBuildingPay::on_okayButton_clicked(){
     resetAmounts();
     m_bought = m_building->build(m_player, ui->woodAmount->value(), ui->clayAmount->value(), ui->stoneAmount->value(), ui->goldAmount->value());
     m_building = nullptr;
@@ -152,8 +148,7 @@ void VarBuildingPay::on_okayButton_clicked()
     this->close();
 }
 
-void VarBuildingPay::on_cancelButton_clicked()
-{
+void VarBuildingPay::on_cancelButton_clicked(){
     resetAmounts();
     m_building->reset();
     m_building = nullptr;
@@ -161,7 +156,6 @@ void VarBuildingPay::on_cancelButton_clicked()
     this->close();
 }
 
-bool VarBuildingPay::getBought() const
-{
+bool VarBuildingPay::getBought() const{
     return m_bought;
 }

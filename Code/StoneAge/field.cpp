@@ -1,12 +1,9 @@
 #include "field.h"
 
 Field::Field() : Place()
-{
+{}
 
-}
-
-void Field::giveResource(std::shared_ptr<Player> player)
-{
+void Field::giveResource(std::shared_ptr<Player> player){
     int amount = getWorkers(player->getColour());
     if(amount == 1){
         player->addFoodGain();
@@ -14,8 +11,7 @@ void Field::giveResource(std::shared_ptr<Player> player)
     }
 }
 
-void Field::addWorker(std::shared_ptr<Player> player, int amount = 1)
-{
+void Field::addWorker(std::shared_ptr<Player> player, int amount = 1){
     if(m_redWorkers != 0 or m_blueWorkers != 0 or m_yellowWorkers != 0 or m_greenWorkers != 0)
         return;
     if(player->getFreeWorkers() < amount)

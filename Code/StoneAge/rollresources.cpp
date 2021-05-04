@@ -3,8 +3,8 @@
 
 
 RollResources::RollResources(const int workerAmount, const Resource resource, std::shared_ptr<Player>player, QWidget *parent)
-    : QDialog(parent), ui(new Ui::RollResources), m_resource(resource), m_text(resourceToString(resource)), m_player(player)
-{
+    : QDialog(parent), ui(new Ui::RollResources), m_resource(resource), m_text(resourceToString(resource)), m_player(player){
+
     ui->setupUi(this);
     QString name = player->getString();
     this->setWindowTitle(name);
@@ -27,8 +27,7 @@ RollResources::RollResources(const int workerAmount, const Resource resource, st
 
 
 
-RollResources::~RollResources()
-{
+RollResources::~RollResources(){
     delete ui;
 }
 
@@ -66,6 +65,7 @@ void RollResources::on_Tool3Button_clicked(){
     ui->message->setText("You rolled " + QString::number(m_roll) + " which will give you " + QString::number(m_gain) + " " + m_text);
 
 }
+
 
 const QString RollResources::resourceToString(Resource resource)
 {

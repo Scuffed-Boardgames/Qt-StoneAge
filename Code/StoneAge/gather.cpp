@@ -1,8 +1,7 @@
 #include "gather.h"
 #include "rollresources.h"
 
-Gather::Gather(Resource resource) : Place(), m_resource{resource}
-{
+Gather::Gather(Resource resource) : Place(), m_resource{resource}{
     if (resource == Resource::food){
         m_maxWorkers = 9999;
     }else{
@@ -10,8 +9,8 @@ Gather::Gather(Resource resource) : Place(), m_resource{resource}
     }
 }
 
-void Gather::giveResource(std::shared_ptr<Player> player)
-{
+
+void Gather::giveResource(std::shared_ptr<Player> player){
     int amount = getWorkers(player->getColour());
     RollResources* roll = new RollResources(amount, m_resource, player, nullptr);
     roll->exec();
@@ -21,8 +20,7 @@ void Gather::giveResource(std::shared_ptr<Player> player)
     }
 }
 
-void Gather::addWorker(std::shared_ptr<Player> player, int amount)
-{
+void Gather::addWorker(std::shared_ptr<Player> player, int amount){
     bool workersEmpty = (getWorkers(player->getColour()) == 0) || (m_resource == Resource::food);
     int allowedWorkers = m_maxWorkers - totalWorkers();
     if (player->getFreeWorkers() >= amount && workersEmpty && amount <= allowedWorkers){
@@ -47,6 +45,7 @@ void Gather::addWorker(std::shared_ptr<Player> player, int amount)
         emit turnHappend();
     }
 }
+
 
 int Gather::getMaxWorkers() const
 {

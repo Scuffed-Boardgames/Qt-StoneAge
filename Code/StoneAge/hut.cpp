@@ -1,12 +1,11 @@
 #include "hut.h"
 
-Hut::Hut() : Place()
-{
+Hut::Hut() : Place(){
 
 }
 
-void Hut::giveResource(std::shared_ptr<Player> player)
-{
+
+void Hut::giveResource(std::shared_ptr<Player> player){
     int amount = getWorkers(player->getColour());
     if(amount == 2){
         player->addWorker();
@@ -14,9 +13,7 @@ void Hut::giveResource(std::shared_ptr<Player> player)
     }
 }
 
-
-void Hut::addWorker(std::shared_ptr<Player> player, int amount = 2)
-{
+void Hut::addWorker(std::shared_ptr<Player> player, int amount = 2){
     if(m_redWorkers != 0 or m_blueWorkers != 0 or m_yellowWorkers != 0 or m_greenWorkers != 0)
         return;
     if(player->getFreeWorkers() < amount)

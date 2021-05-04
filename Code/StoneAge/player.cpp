@@ -2,15 +2,12 @@
 
 Player::Player(): m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_buildingCount(0),
     m_scoreCount(0), m_foodGain(0), m_colour(Colour::none), m_freeWorkers(5), m_workers(5), m_farmerCount(0), m_toolMakerCount(0), m_hutBuilderCount(0), m_shamanCount(0)
-{
-
-}
+{}
 
 Player::Player(Colour colour) : m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_buildingCount(0),
     m_scoreCount(0), m_foodGain(0), m_colour(colour), m_freeWorkers(5), m_workers(5), m_farmerCount(0), m_toolMakerCount(0), m_hutBuilderCount(0), m_shamanCount(0)
-{
+{}
 
-}
 
 void Player::addResource(const Resource resource, const int amount){
     switch (resource){
@@ -39,6 +36,36 @@ void Player::addWorker(){
     ++m_freeWorkers;
     ++m_workers;
     emit dataChanged();
+}
+
+void Player::addTool(){
+    int lowestLevel = m_tools[0].getLevel();
+    int lowestLevelPos = 0;
+    for(int i = 1; i < 3; ++i){
+        if(m_tools[i].getLevel() < lowestLevel){
+            lowestLevel = m_tools[i].getLevel();
+            lowestLevelPos = i;
+        }
+    }
+    m_tools[lowestLevelPos].levelUp();
+    emit dataChanged();
+}
+
+void Player::addScore(int amount){
+    m_scoreCount += amount;
+}
+
+void Player::addFoodGain(){
+    m_foodGain += 1;
+}
+
+void Player::addBuilding(){
+    m_buildingCount += 1;
+}
+
+
+Tool *Player::getTools(){
+    return m_tools;
 }
 
 int Player::getResource(const Resource resource){
@@ -79,19 +106,6 @@ Colour Player::getColour() const{
     return m_colour;
 }
 
-void Player::resetWorkers(){
-    m_freeWorkers = m_workers;
-    emit dataChanged();
-}
-
-void Player::setWorkersOccupied(int amount){
-    m_freeWorkers -= amount;
-    emit dataChanged();
-}
-
-Tool *Player::getTools(){
-    return m_tools;
-}
 
 void Player::resetTools()
 {
@@ -100,31 +114,21 @@ void Player::resetTools()
     }
 }
 
-void Player::addTool(){
-    int lowestLevel = m_tools[0].getLevel();
-    int lowestLevelPos = 0;
-    for(int i = 1; i < 3; ++i){
-        if(m_tools[i].getLevel() < lowestLevel){
-            lowestLevel = m_tools[i].getLevel();
-            lowestLevelPos = i;
-        }
-    }
-    m_tools[lowestLevelPos].levelUp();
+void Player::resetWorkers(){
+    m_freeWorkers = m_workers;
     emit dataChanged();
 }
 
-void Player::addScore(int amount){
-    m_scoreCount += amount;
-}
 
-void Player::addFoodGain()
-{
-    m_foodGain += 1;
+void Player::setWorkersOccupied(int amount){
+    m_freeWorkers -= amount;
+    emit dataChanged();
 }
 
 void Player::disableTool(int nr){
     m_tools[nr].isUsed();
 }
+
 
 void Player::load(const QJsonObject &json){
     m_foodCount = (int)json["food"].toDouble();
@@ -145,28 +149,23 @@ void Player::load(const QJsonObject &json){
     emit dataChanged();
 }
 
-void Player::addBuilding()
-{
-    m_buildingCount += 1;
-}
-
 QJsonObject Player::save(){
     QJsonArray tools;
     for (int i = 0; i < 3; ++i) {
         tools.append(m_tools[i].save());
-         }
-   QJsonObject json = {{"food", m_foodCount},
-                       {"wood", m_woodCount},
-                       {"clay", m_clayCount},
-                       {"stone", m_stoneCount},
-                       {"gold", m_goldCount},
-                       {"score", m_scoreCount},
-                       {"foodGain", m_foodGain},
-                       {"colour", (int)m_colour},
-                       {"workerTotal", m_workers},
-                       {"workerFree", m_freeWorkers},
-                       {"tools", tools}};
-   return json;
+    }
+    QJsonObject json = {{"food", m_foodCount},
+                        {"wood", m_woodCount},
+                        {"clay", m_clayCount},
+                        {"stone", m_stoneCount},
+                        {"gold", m_goldCount},
+                        {"score", m_scoreCount},
+                        {"foodGain", m_foodGain},
+                        {"colour", (int)m_colour},
+                        {"workerTotal", m_workers},
+                        {"workerFree", m_freeWorkers},
+                        {"tools", tools}};
+    return json;
 }
 
 QString Player::getString()

@@ -2,8 +2,8 @@
 #include <QGraphicsScene>
 //#include <QGraphicsTextItem>
 
-BuildingView::BuildingView(int moveByX, std::shared_ptr<Building> building, QGraphicsScene* parentItem ) : m_x(moveByX), m_building(building)
-{
+BuildingView::BuildingView(int moveByX, std::shared_ptr<Building> building, QGraphicsScene* parentItem ) : m_x(moveByX), m_building(building){
+
     int yPos = 0;
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
     QGraphicsRectItem* tile = new QGraphicsRectItem(0, 0, 175, 200, this);
@@ -67,6 +67,7 @@ BuildingView::BuildingView(int moveByX, std::shared_ptr<Building> building, QGra
     updateBuilding(m_building);
 }
 
+
 QRectF BuildingView::boundingRect() const
 {
     return QRectF(m_x, 800, 175 , 200);
@@ -85,22 +86,23 @@ std::shared_ptr<Building> BuildingView::getBuilding() const
     return m_building;
 }
 
+
 void BuildingView::updateText(){
     if(m_building->getStandingColour() == Colour::red){
         m_indicator->setBrush(QColor(237,28,36));
         return;
     }
     else if(m_building->getStandingColour() == Colour::blue){
-    m_indicator->setBrush(QColor(63,72,204));
-    return;
+        m_indicator->setBrush(QColor(63,72,204));
+        return;
     }
     else if(m_building->getStandingColour() == Colour::yellow){
-    m_indicator->setBrush(QColor(255,242,0));
-    return;
+        m_indicator->setBrush(QColor(255,242,0));
+        return;
     }
     else if(m_building->getStandingColour() == Colour::green){
-    m_indicator->setBrush(QColor(34,177,76));
-    return;
+        m_indicator->setBrush(QColor(34,177,76));
+        return;
     }
     m_indicator->setBrush(QColor(234, 222, 210));
     return;
@@ -112,44 +114,45 @@ void BuildingView::updateBuilding(std::shared_ptr<Building> building){
     QString topText = "Score: ";
     std::shared_ptr<SetBuilding> setBuilding = std::dynamic_pointer_cast<SetBuilding>(building);
     QGraphicsRectItem* costs[3] = {m_cost1, m_cost2, m_cost3};
-   if(setBuilding){
-       int pos = 0;
-       topText += QString::number(setBuilding->getScoreGain());
-       setOrVar(true);
-       for(int i = 0; i < setBuilding->getCost(Resource::wood); ++i){
-           costs[pos]->setBrush(QColor(115,75,0));
-           ++pos;
-       }
-       for(int i = 0; i < setBuilding->getCost(Resource::clay); ++i){
-           costs[pos]->setBrush(QColor(220,85,57));
-           ++pos;
-       }
-       for(int i = 0; i < setBuilding->getCost(Resource::stone); ++i){
-           costs[pos]->setBrush(QColor(75,75,75));
-           ++pos;
-       }
-       for(int i = 0; i < setBuilding->getCost(Resource::gold); ++i){
-           costs[pos]->setBrush(QColor(255,215,0));
-           ++pos;
-       }
-   } else{
-       std::shared_ptr<VarBuilding> varBuilding = std::dynamic_pointer_cast<VarBuilding>(building);
-       int min = varBuilding->getTotalMin();
-       int max = varBuilding->getTotalMax();
-       topText += "?";
-       setOrVar(false);
-       m_diff->setText(QString::number(varBuilding->getDiff()));
-       if(min == max){
-           m_minMax->setPos(-60, -2);
-           m_minMax->setText(QString::number(max));
-       } else{
-           m_minMax->setPos(-90, -2);
-           m_minMax->setText(QString::number(min) + "-" + QString::number(max));
-       }
-   }
-   m_text->setPlainText(topText);
-   updateText();
+    if(setBuilding){
+        int pos = 0;
+        topText += QString::number(setBuilding->getScoreGain());
+        setOrVar(true);
+        for(int i = 0; i < setBuilding->getCost(Resource::wood); ++i){
+            costs[pos]->setBrush(QColor(115,75,0));
+            ++pos;
+        }
+        for(int i = 0; i < setBuilding->getCost(Resource::clay); ++i){
+            costs[pos]->setBrush(QColor(220,85,57));
+            ++pos;
+        }
+        for(int i = 0; i < setBuilding->getCost(Resource::stone); ++i){
+            costs[pos]->setBrush(QColor(75,75,75));
+            ++pos;
+        }
+        for(int i = 0; i < setBuilding->getCost(Resource::gold); ++i){
+            costs[pos]->setBrush(QColor(255,215,0));
+            ++pos;
+        }
+    } else{
+        std::shared_ptr<VarBuilding> varBuilding = std::dynamic_pointer_cast<VarBuilding>(building);
+        int min = varBuilding->getTotalMin();
+        int max = varBuilding->getTotalMax();
+        topText += "?";
+        setOrVar(false);
+        m_diff->setText(QString::number(varBuilding->getDiff()));
+        if(min == max){
+            m_minMax->setPos(-60, -2);
+            m_minMax->setText(QString::number(max));
+        } else{
+            m_minMax->setPos(-90, -2);
+            m_minMax->setText(QString::number(min) + "-" + QString::number(max));
+        }
+    }
+    m_text->setPlainText(topText);
+    updateText();
 }
+
 
 void BuildingView::setOrVar(bool isSet){
     QGraphicsRectItem* costs[3] = {m_cost1, m_cost2, m_cost3};

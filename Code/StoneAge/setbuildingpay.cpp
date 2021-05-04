@@ -2,15 +2,11 @@
 #include "ui_setbuildingpay.h"
 #include "ui_buildingpay.h"
 
-SetBuildingPay::SetBuildingPay(QWidget *parent) :
-     QDialog(parent),
-    ui(new Ui::SetBuildingPay),  m_bought(false)
-{
+SetBuildingPay::SetBuildingPay(QWidget *parent) :QDialog(parent), ui(new Ui::SetBuildingPay), m_bought(false){
     ui->setupUi(this);
 }
 
-void SetBuildingPay::setBuilding(std::shared_ptr<Player> player, std::shared_ptr<SetBuilding> building)
-{
+void SetBuildingPay::setBuilding(std::shared_ptr<Player> player, std::shared_ptr<SetBuilding> building){
     this->setWindowTitle(player->getString());
     m_bought = false;
     m_player = player;
@@ -36,28 +32,24 @@ void SetBuildingPay::setBuilding(std::shared_ptr<Player> player, std::shared_ptr
     ui->yesButton->setEnabled(building->canPay(m_player));
 }
 
-SetBuildingPay::~SetBuildingPay()
-{
+SetBuildingPay::~SetBuildingPay(){
     delete ui;
 }
 
-void SetBuildingPay::on_yesButton_clicked()
-{
+void SetBuildingPay::on_yesButton_clicked(){
     m_bought = m_building->build(m_player);
     m_player = nullptr;
     m_building = nullptr;
     this->close();
 }
 
-void SetBuildingPay::on_noButton_clicked()
-{
+void SetBuildingPay::on_noButton_clicked(){
     m_building->reset();
     m_player = nullptr;
     m_building = nullptr;
     this->close();
 }
 
-bool SetBuildingPay::getBought() const
-{
+bool SetBuildingPay::getBought() const{
     return m_bought;
 }

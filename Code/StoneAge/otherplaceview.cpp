@@ -5,6 +5,7 @@
 
 OtherPlaceView::OtherPlaceView(QColor colour, int moveByX, int cost, QString name, std::shared_ptr<Place> place, QGraphicsScene* parentItem)
     : m_place(place), m_owner(Colour::none), m_x(moveByX), m_staticCost(cost){
+
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
     QGraphicsRectItem* tile = new QGraphicsRectItem(0, 0,500, 350, this);
     tile->moveBy(moveByX, 450);
@@ -24,33 +25,6 @@ OtherPlaceView::OtherPlaceView(QColor colour, int moveByX, int cost, QString nam
 
 }
 
-int OtherPlaceView::getCost(){
-    return m_staticCost;
-
-}
-
-
-//void OtherPlaceView::setColour(Colour colour){
-//    switch (colour) {
-//    case Colour::red:
-//        m_indicator->setBrush(QColor(237,28,36));
-//        return;
-//    case Colour::blue:
-//        m_indicator->setBrush(QColor(63,72,204));
-//        return;
-//    case Colour::yellow:
-//        m_indicator->setBrush(QColor(255,242,0));
-//        return;
-//    case Colour::green:
-//        m_indicator->setBrush(QColor(34,177,76));
-//        return;
-//    default:
-//        m_indicator->setBrush(QColor(234, 222, 210));
-//        return;
-
-//    }
-
-//}
 
 QRectF OtherPlaceView::boundingRect() const{
     return QRectF(m_x, 450, 500, 350 );
@@ -62,8 +36,16 @@ void OtherPlaceView::paint(QPainter *painter, const QStyleOptionGraphicsItem *op
     }
 }
 
+
+
+
 std::shared_ptr<Place> OtherPlaceView::getPlace(){
     return m_place;
+}
+
+int OtherPlaceView::getCost(){
+    return m_staticCost;
+
 }
 
 void OtherPlaceView::updateText(){
@@ -72,16 +54,16 @@ void OtherPlaceView::updateText(){
         return;
     }
     else if(m_place->getWorkers(Colour::blue) != 0){
-    m_indicator->setBrush(QColor(63,72,204));
-    return;
+        m_indicator->setBrush(QColor(63,72,204));
+        return;
     }
     else if(m_place->getWorkers(Colour::yellow) != 0){
-    m_indicator->setBrush(QColor(255,242,0));
-    return;
+        m_indicator->setBrush(QColor(255,242,0));
+        return;
     }
     else if(m_place->getWorkers(Colour::green) != 0){
-    m_indicator->setBrush(QColor(34,177,76));
-    return;
+        m_indicator->setBrush(QColor(34,177,76));
+        return;
     }
     m_indicator->setBrush(QColor(234, 222, 210));
     return;

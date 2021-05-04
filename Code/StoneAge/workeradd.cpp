@@ -27,8 +27,7 @@ void WorkerAdd::addToBuilding(std::shared_ptr<Building> building, std::shared_pt
     m_player = player;
 }
 
-WorkerAdd::~WorkerAdd()
-{
+WorkerAdd::~WorkerAdd(){
     delete ui;
 }
 

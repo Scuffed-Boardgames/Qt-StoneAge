@@ -8,7 +8,6 @@ class Building : public QObject
 {
     Q_OBJECT
 public:
-//    Building(const QJsonObject &json);
     Building();
 
     void addWorker(std::shared_ptr<Player> player);

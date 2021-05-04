@@ -1,18 +1,15 @@
 #include "place.h"
 
 Place::Place() : QObject(nullptr), m_redWorkers{0}, m_blueWorkers{0}, m_yellowWorkers{0}, m_greenWorkers{0}
-{
-}
+{}
 
-void Place::resetWorkers()
-{
+void Place::resetWorkers(){
     m_redWorkers = 0;
     m_blueWorkers = 0;
     m_yellowWorkers = 0;
     m_greenWorkers = 0;
 }
-void Place::resetWorkers(Colour colour)
-{
+void Place::resetWorkers(Colour colour){
     switch (colour) {
     case Colour::red:
         m_redWorkers = 0;
@@ -21,7 +18,7 @@ void Place::resetWorkers(Colour colour)
         m_blueWorkers = 0;
         return;
     case Colour::yellow:
-         m_yellowWorkers = 0;
+        m_yellowWorkers = 0;
         return;
     case Colour::green:
         m_greenWorkers = 0;
@@ -31,8 +28,7 @@ void Place::resetWorkers(Colour colour)
     }
 }
 
-int Place::getWorkers(Colour colour)
-{
+int Place::getWorkers(Colour colour){
     switch (colour) {
     case Colour::red:
         return m_redWorkers;
@@ -47,8 +43,7 @@ int Place::getWorkers(Colour colour)
     }
 }
 
-int Place::totalWorkers()
-{
+int Place::totalWorkers(){
     return m_redWorkers + m_blueWorkers + m_yellowWorkers + m_greenWorkers;
 }
 
