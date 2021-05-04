@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include "payfood.h"
 
 Board::Board() : m_currentPlayer{Colour::red}, m_hut(std::make_shared<Hut>()), m_forest{std::make_shared<Gather>(Resource::wood)},
     m_clayPit{std::make_shared<Gather>(Resource::clay)}, m_quarry{std::make_shared<Gather>(Resource::stone)}, m_river{std::make_shared<Gather>(Resource::gold)},
@@ -114,9 +115,8 @@ void Board::feedWorkers()
         }else{
             m_players[i]->addResource(Resource::food, -ownedFood);
             foodNeeded -= ownedFood;
-        }
-        if(foodNeeded > 0){
-            m_players[i]->addScore(-10);
+            PayFood* pay = new PayFood(m_players[i], foodNeeded);
+            pay->exec();
         }
     }
 }
