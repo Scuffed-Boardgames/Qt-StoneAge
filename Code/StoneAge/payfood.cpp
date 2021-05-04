@@ -6,6 +6,10 @@ PayFood::PayFood(std::shared_ptr<Player> player, int amount) : m_player{player},
     ui->setupUi(this);
     this->setWindowTitle(colourToString(player->getColour()));
     ui->payLabel->setText("You have to pay " + QString::number(m_amount) + " items or take -10 score");
+    ui->spinBoxWood->setMaximum(player->getResource(Resource::wood));
+    ui->spinBoxClay->setMaximum(player->getResource(Resource::clay));
+    ui->spinBoxStone->setMaximum(player->getResource(Resource::stone));
+    ui->spinBoxGold->setMaximum(player->getResource(Resource::gold));
 }
 
 PayFood::~PayFood()
