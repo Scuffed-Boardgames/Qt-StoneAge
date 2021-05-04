@@ -1,7 +1,7 @@
 #include "payfood.h"
 #include "ui_payfood.h"
 
-PayFood::PayFood(std::shared_ptr<Player> player, int amount) : m_player{player}, m_amount{amount}
+PayFood::PayFood(std::shared_ptr<Player> player, int amount) : QDialog(nullptr), m_player{player}, m_amount{amount}, ui(new Ui::PayFood)
 {
     ui->setupUi(this);
     this->setWindowTitle(colourToString(player->getColour()));

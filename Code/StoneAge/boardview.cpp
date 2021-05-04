@@ -33,9 +33,9 @@ void BoardView::updateResources()
         m_board->payResources((Colour)i);
     }
     m_board->resetWorkers();
+    buildBuildings();
     m_board->feedWorkers();
     m_board->addRound();
-    buildBuildings();
 }
 
 void BoardView::buildBuildings(){
