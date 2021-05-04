@@ -11,6 +11,7 @@ SetBuildingPay::SetBuildingPay(QWidget *parent) :
 
 void SetBuildingPay::setBuilding(std::shared_ptr<Player> player, std::shared_ptr<SetBuilding> building)
 {
+    this->setWindowTitle(player->getString());
     m_bought = false;
     m_player = player;
     m_building = building;
