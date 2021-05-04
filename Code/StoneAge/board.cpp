@@ -46,15 +46,26 @@ void Board::newBuilding(int place){
 }
 
 void Board::rerollBuildings(){
+    std::vector<std::shared_ptr<Building>> buildings;
     for(int i = 0; i < 4; ++i){
         m_buildingCardStacks[i].back()->reset();
-        int place = rand() % m_buildingCardStacks[i].size();
-        std::shared_ptr<Building> tmp = m_buildingCardStacks[i].back();
-        m_buildingCardStacks[i].back() = m_buildingCardStacks[i][place];
-        m_buildingCardStacks[i][place] = tmp;
-        emit newBuild(m_buildingCardStacks[i].back(), i);
-
+        buildings.insert(buildings.end(),m_buildingCardStacks[i].begin(), m_buildingCardStacks[i].end());
     }
+    int i = 0;
+    while(buildings.size() > 0){
+        int place = rand() % buildings.size();
+        m_buildingCardStacks[i].push_back(buildings[place]);
+        buildings.erase(buildings.begin() + place);
+        i = (++i) % 4;
+    }
+    for(int i = 0; i < 4; ++i){
+        emit newBuild(m_buildingCardStacks[i].back(), i);
+    }
+//        int place = rand() % m_buildingCardStacks[i].size();
+//        std::shared_ptr<Building> tmp = m_buildingCardStacks[i].back();
+//        m_buildingCardStacks[i].back() = m_buildingCardStacks[i][place];
+//        m_buildingCardStacks[i][place] = tmp;
+//        ;
 }
 
 Colour Board::getCurrentPlayer() const
