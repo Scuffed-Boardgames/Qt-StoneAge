@@ -19,6 +19,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     otherplaceview.cpp \
+    payfood.cpp \
     place.cpp \
     player.cpp \
     playerview.cpp \
@@ -44,6 +45,7 @@ HEADERS += \
     hut.h \
     mainwindow.h \
     otherplaceview.h \
+    payfood.h \
     place.h \
     player.h \
     playerview.h \
@@ -61,6 +63,7 @@ HEADERS += \
 
 FORMS += \
     mainwindow.ui \
+    payfood.ui \
     rollresources.ui \
     setbuildingpay.ui \
     varbuildingpay.ui \
