@@ -30,6 +30,7 @@ public:
     int getFreeWorkers();// gets the amount of free workers the player curently has
     Colour getColour() const;
     Tool* getTools();
+    QString getString();
 
     void resetTools();
     void resetWorkers();

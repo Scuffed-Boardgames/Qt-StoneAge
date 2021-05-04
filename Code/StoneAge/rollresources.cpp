@@ -6,7 +6,7 @@ RollResources::RollResources(const int workerAmount, const Resource resource, st
     : QDialog(parent), ui(new Ui::RollResources), m_resource(resource), m_text(resourceToString(resource)), m_player(player)
 {
     ui->setupUi(this);
-    QString name = colourToString(player->getColour());
+    QString name = player->getString();
     this->setWindowTitle(name);
     int amount = 0;
     for (int i = 0; i < workerAmount; ++i) {
@@ -35,22 +35,6 @@ RollResources::~RollResources()
 int RollResources::getGain(){
     return m_gain;
 
-}
-
-QString RollResources::colourToString(Colour colour)
-{
-    switch(colour){
-    case(Colour::red):
-        return "Red player";
-    case(Colour::blue):
-        return "Blue player";
-    case(Colour::yellow):
-        return "Yellow player";
-    case(Colour::green):
-        return "Green player";
-    default:
-        return "error: no colour given";
-    }
 }
 
 void RollResources::on_pushButton_clicked(){

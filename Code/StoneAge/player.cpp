@@ -168,3 +168,19 @@ QJsonObject Player::save(){
                        {"tools", tools}};
    return json;
 }
+
+QString Player::getString()
+{
+    switch(m_colour){
+    case(Colour::red):
+        return "Red player";
+    case(Colour::blue):
+        return "Blue player";
+    case(Colour::yellow):
+        return "Yellow player";
+    case(Colour::green):
+        return "Green player";
+    default:
+        return "error: no colour given";
+    }
+}

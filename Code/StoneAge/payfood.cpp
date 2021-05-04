@@ -4,7 +4,7 @@
 PayFood::PayFood(std::shared_ptr<Player> player, int amount) : QDialog(nullptr), m_player{player}, m_amount{amount}, ui(new Ui::PayFood)
 {
     ui->setupUi(this);
-    this->setWindowTitle(colourToString(player->getColour()));
+    this->setWindowTitle(player->getString());
     ui->payLabel->setText("You have to pay " + QString::number(m_amount) + " items or take -10 score");
     ui->spinBoxWood->setMaximum(player->getResource(Resource::wood));
     ui->spinBoxClay->setMaximum(player->getResource(Resource::clay));
@@ -51,20 +51,4 @@ void PayFood::on_acceptButton_clicked()
     removeResources();
     m_player = nullptr;
     this->close();
-}
-
-QString PayFood::colourToString(Colour colour)
-{
-    switch(colour){
-    case(Colour::red):
-        return "Red player";
-    case(Colour::blue):
-        return "Blue player";
-    case(Colour::yellow):
-        return "Yellow player";
-    case(Colour::green):
-        return "Green player";
-    default:
-        return "error: no colour given";
-    }
 }

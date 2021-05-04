@@ -20,7 +20,6 @@ private slots:
 private:
     int totalSet();
     void removeResources();
-    QString colourToString(Colour colour);
     std::shared_ptr<Player> m_player;
     int m_amount;
     Ui::PayFood* ui;
