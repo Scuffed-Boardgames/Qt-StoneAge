@@ -2,7 +2,7 @@
 #include "ui_varbuildingpay.h"
 
 VarBuildingPay::VarBuildingPay(QWidget *parent) :
-    QDialog(parent),
+     QDialog(parent), m_bought(false),
     ui(new Ui::VarBuildingPay)
 {
     ui->setupUi(this);
@@ -14,6 +14,7 @@ VarBuildingPay::VarBuildingPay(QWidget *parent) :
 
 void VarBuildingPay::setBuilding(std::shared_ptr<Player> player, std::shared_ptr<VarBuilding> building)
 {
+    m_bought = false;
     m_player = player;
     m_building = building;
     int max = m_building->getTotalMax();
@@ -30,9 +31,10 @@ void VarBuildingPay::setBuilding(std::shared_ptr<Player> player, std::shared_ptr
     if(diff == 0){
         textDiff = "";
     } else{
-        textDiff = "items of " + QString::number(diff) + " types";
+        textDiff = " items of " + QString::number(diff) + " types";
     }
-    ui->topText->setText("You still have to pay" + amount + textDiff);
+    ui->topText->setText("You still have to pay " + amount + textDiff);
+    ui->okayButton->setEnabled(false);
 }
 
 VarBuildingPay::~VarBuildingPay()
@@ -57,7 +59,7 @@ int VarBuildingPay::getAmount(Resource resource){
     }
 }
 
-void VarBuildingPay::editText(int num)
+void VarBuildingPay::editText()
 {
     int amount = 0;
     int diff = 0;
@@ -82,33 +84,56 @@ void VarBuildingPay::editText(int num)
         ++diff;
     amount += goldAmount;
 
-    diff -= m_building->getDiff();
-    if(diff < 0){
-        diff = 0;
+    int reqDiff = m_building->getDiff() - diff;
+    if(reqDiff < 0){
+        reqDiff = 0;
     }
     QString textAmount;
     int max = m_building->getTotalMax();
     int min = m_building->getTotalMin();
-    amount -= max;
+    int reqAmount = max - amount;
 
     if(max == min){
         textAmount = QString::number(amount);
+        ui->okayButton->setEnabled(reqAmount == 0);
     } else{
         textAmount = QString::number(min) + "-" + QString::number(amount);
+        ui->okayButton->setEnabled(max - reqAmount > 0);
     }
-    ui->topText->setText("You still have to pay" + textAmount + "items of " + QString::number(diff) + " types");
+    ui->topText->setText("You still have to pay " + textAmount + " items of " + QString::number(reqDiff) + " types");
     ui->bottomText->setText("this will give you " + QString::number(m_building->calcScore(woodAmount, clayAmount, stoneAmount, goldAmount)) + " score");
-    ui->woodAmount->setMaximum(woodAmount + amount - max);
-    ui->clayAmount->setMaximum(clayAmount + amount - max);
-    ui->stoneAmount->setMaximum(stoneAmount + amount - max);
-    ui->goldAmount->setMaximum(goldAmount + amount - max);
-    ui->okayButton->setEnabled(m_building->canPay(m_player, woodAmount, clayAmount, stoneAmount, goldAmount));
-
+    ui->woodAmount->setMaximum(woodAmount + (max - amount));
+    ui->clayAmount->setMaximum(clayAmount + (max - amount));
+    ui->stoneAmount->setMaximum(stoneAmount + (max - amount));
+    ui->goldAmount->setMaximum(goldAmount + (max - amount));
+    if(reqDiff == 0){
+        if(woodAmount == 0){
+            ui->woodAmount->setMaximum(0);
+        }
+        if(clayAmount == 0){
+            ui->clayAmount->setMaximum(0);
+        }
+        if(stoneAmount == 0){
+            ui->stoneAmount->setMaximum(0);
+        }
+        if(goldAmount == 0){
+            ui->goldAmount->setMaximum(0);
+        }
+    }
+    if(ui->okayButton->isEnabled())
+        ui->okayButton->setEnabled(m_building->canPay(m_player, woodAmount, clayAmount, stoneAmount, goldAmount));
 }
 
+void VarBuildingPay::resetAmounts(){
+    ui->woodAmount->setValue(0);
+    ui->clayAmount->setValue(0);
+    ui->stoneAmount->setValue(0);
+    ui->goldAmount->setValue(0);
+}
 void VarBuildingPay::on_okayButton_clicked()
 {
-    m_building->build(m_player, ui->woodAmount->value(), ui->clayAmount->value(), ui->stoneAmount->value(), ui->goldAmount->value());
+    resetAmounts();
+    m_bought = m_building->build(m_player, ui->woodAmount->value(), ui->clayAmount->value(), ui->stoneAmount->value(), ui->goldAmount->value());
     m_building = nullptr;
     m_player = nullptr;
     this->close();
@@ -116,8 +141,14 @@ void VarBuildingPay::on_okayButton_clicked()
 
 void VarBuildingPay::on_cancelButton_clicked()
 {
+    resetAmounts();
     m_building->reset();
     m_building = nullptr;
     m_player = nullptr;
     this->close();
+}
+
+bool VarBuildingPay::getBought() const
+{
+    return m_bought;
 }

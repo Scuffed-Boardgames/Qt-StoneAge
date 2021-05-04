@@ -2,7 +2,7 @@
 #include <QGraphicsScene>
 //#include <QGraphicsTextItem>
 
-BuildingView::BuildingView(int moveByX, Building* building, QGraphicsScene* parentItem ) : m_x(moveByX), m_building(building)
+BuildingView::BuildingView(int moveByX, std::shared_ptr<Building> building, QGraphicsScene* parentItem ) : m_x(moveByX), m_building(building)
 {
     int yPos = 0;
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
@@ -80,7 +80,7 @@ void BuildingView::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
 }
 
 
-Building* BuildingView::getBuilding() const
+std::shared_ptr<Building> BuildingView::getBuilding() const
 {
     return m_building;
 }
@@ -107,10 +107,10 @@ void BuildingView::updateText(){
 
 }
 
-void BuildingView::updateBuilding(Building* building){
+void BuildingView::updateBuilding(std::shared_ptr<Building> building){
     m_building = building;
     QString topText = "Score: ";
-    SetBuilding* setBuilding = dynamic_cast<SetBuilding*>(building);
+    std::shared_ptr<SetBuilding> setBuilding = std::dynamic_pointer_cast<SetBuilding>(building);
     QGraphicsRectItem* costs[3] = {m_cost1, m_cost2, m_cost3};
    if(setBuilding){
        int pos = 0;
@@ -133,7 +133,7 @@ void BuildingView::updateBuilding(Building* building){
            ++pos;
        }
    } else{
-       VarBuilding* varBuilding = dynamic_cast<VarBuilding*>(building);
+       std::shared_ptr<VarBuilding> varBuilding = std::dynamic_pointer_cast<VarBuilding>(building);
        int min = varBuilding->getTotalMin();
        int max = varBuilding->getTotalMax();
        topText += "?";

@@ -6,6 +6,8 @@
 #include "gather.h"
 #include "toolshed.h"
 #include "field.h"
+#include "varbuildingpay.h"
+#include "setbuildingpay.h"
 #include "setbuilding.h"
 #include "varbuilding.h"
 #include <memory>
@@ -36,6 +38,7 @@ public:
     int getRound() const;
     void addRound();
 
+    void buildBuilding(Colour colour);
 signals:
     void newBuild(std::shared_ptr<Building> building, int pos);
     void allWorkersPlaced();
@@ -56,6 +59,8 @@ private:
     std::shared_ptr<ToolShed> m_toolShed;
     std::shared_ptr<Field> m_field;
     int m_round;
+    std::shared_ptr<SetBuildingPay> m_setBuildingPay;
+    std::shared_ptr<VarBuildingPay> m_varBuildingPay;
 //    std::vector<Building> m_buildings;
 };
 

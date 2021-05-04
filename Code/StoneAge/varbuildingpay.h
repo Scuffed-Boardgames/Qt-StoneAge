@@ -19,8 +19,11 @@ public:
     ~VarBuildingPay();
     int getAmount(Resource resource);
 
+    void resetAmounts();
+    bool getBought() const;
+
 public slots:
-    void editText(int num);
+    void editText();
 
 private slots:
     void on_okayButton_clicked();
@@ -28,6 +31,7 @@ private slots:
     void on_cancelButton_clicked();
 
 private:
+    bool m_bought;
     Ui::VarBuildingPay *ui;
     std::shared_ptr<Player> m_player;
     std::shared_ptr<VarBuilding> m_building;

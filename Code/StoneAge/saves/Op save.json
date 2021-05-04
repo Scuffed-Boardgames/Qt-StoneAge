@@ -216,106 +216,106 @@
     },
     "players": [
         {
-            "clay": 0,
+            "clay": 100,
             "colour": 0,
-            "food": 12,
-            "foodGain": 0,
-            "gold": 0,
+            "food": 100,
+            "foodGain": 100,
+            "gold": 100,
             "score": 0,
-            "stone": 0,
+            "stone": 100,
             "tools": [
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 }
             ],
-            "wood": 0,
+            "wood": 100,
             "workerFree": 5,
             "workerTotal": 5
         },
         {
-            "clay": 0,
+            "clay": 100,
             "colour": 1,
-            "food": 12,
-            "foodGain": 0,
-            "gold": 0,
-            "score": 0,
-            "stone": 0,
+            "food": 100,
+            "foodGain": 100,
+            "gold": 100,
+            "score": 100,
+            "stone": 100,
             "tools": [
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 }
             ],
-            "wood": 0,
+            "wood": 100,
             "workerFree": 5,
             "workerTotal": 5
         },
         {
-            "clay": 0,
+            "clay": 100,
             "colour": 2,
-            "food": 12,
-            "foodGain": 0,
-            "gold": 0,
-            "score": 0,
-            "stone": 0,
+            "food": 100,
+            "foodGain": 100,
+            "gold": 100,
+            "score": 100,
+            "stone": 100,
             "tools": [
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 }
             ],
-            "wood": 0,
+            "wood": 100,
             "workerFree": 5,
             "workerTotal": 5
         },
         {
-            "clay": 0,
+            "clay": 100,
             "colour": 3,
-            "food": 12,
-            "foodGain": 0,
-            "gold": 0,
-            "score": 0,
-            "stone": 0,
+            "food": 100,
+            "foodGain": 100,
+            "gold": 100,
+            "score": 100,
+            "stone": 100,
             "tools": [
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 }
             ],
-            "wood": 0,
+            "wood": 100,
             "workerFree": 5,
             "workerTotal": 5
         }

@@ -10,9 +10,10 @@ BoardView::BoardView()
 }
 
 void BoardView::newBuild(std::shared_ptr<Building> building, int pos){
-    m_buildings[pos]->updateBuilding(building.get());
-    connect(m_board->getOpenBuildingCard(pos).get(), &Building::changedWorkers,  m_buildings[pos].get(), &BuildingView::updateText);
 
+    m_buildings[pos]->updateBuilding(building);
+    connect(m_board->getOpenBuildingCard(pos).get(), &Building::changedWorkers,  m_buildings[pos].get(), &BuildingView::updateText);
+    connect(m_board->getOpenBuildingCard(pos).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
 }
 
 void BoardView::updateTurn()
@@ -34,6 +35,13 @@ void BoardView::updateResources()
     m_board->resetWorkers();
     m_board->feedWorkers();
     m_board->addRound();
+    buildBuildings();
+}
+
+void BoardView::buildBuildings(){
+    for(int i = 0; i<4; ++i){
+        m_board->buildBuilding((Colour)i);
+    }
     setSelectable(true);
     m_placementDone = false;
 }
@@ -88,7 +96,7 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent) : QGraphicsS
     moveByX = 50;
     rectWidth = 175;
     for(int i = 0; i < 4; ++i){
-        m_buildings[i] = std::make_unique<BuildingView>(moveByX, m_board->getOpenBuildingCard(i).get(), this);
+        m_buildings[i] = std::make_unique<BuildingView>(moveByX, m_board->getOpenBuildingCard(i), this);
         moveByX += rectWidth;
         connect(m_board->getOpenBuildingCard(i).get(), &Building::changedWorkers,  m_buildings[i].get(), &BuildingView::updateText);
         connect(m_board->getOpenBuildingCard(i).get(), &Building::turnHappend,  this, &BoardView::updateTurn);

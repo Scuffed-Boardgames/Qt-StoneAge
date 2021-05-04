@@ -3,14 +3,15 @@
 #include "ui_buildingpay.h"
 
 SetBuildingPay::SetBuildingPay(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::SetBuildingPay)
+     QDialog(parent),
+    ui(new Ui::SetBuildingPay),  m_bought(false)
 {
     ui->setupUi(this);
 }
 
 void SetBuildingPay::setBuilding(std::shared_ptr<Player> player, std::shared_ptr<SetBuilding> building)
 {
+    m_bought = false;
     m_player = player;
     m_building = building;
 
@@ -41,16 +42,21 @@ SetBuildingPay::~SetBuildingPay()
 
 void SetBuildingPay::on_yesButton_clicked()
 {
+    m_bought = m_building->build(m_player);
     m_player = nullptr;
     m_building = nullptr;
-    m_building->build(m_player);
     this->close();
 }
 
 void SetBuildingPay::on_noButton_clicked()
 {
+    m_building->reset();
     m_player = nullptr;
     m_building = nullptr;
-    m_building->reset();
     this->close();
+}
+
+bool SetBuildingPay::getBought() const
+{
+    return m_bought;
 }

@@ -21,7 +21,7 @@ void WorkerAdd::addToPlace(std::shared_ptr<Place> place, std::shared_ptr<Player>
     }
 }
 
-void WorkerAdd::addToBuilding(Building* building, std::shared_ptr<Player> player){
+void WorkerAdd::addToBuilding(std::shared_ptr<Building> building, std::shared_ptr<Player> player){
     m_building = building;
     m_player = player;
 }

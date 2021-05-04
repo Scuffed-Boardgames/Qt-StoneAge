@@ -21,7 +21,7 @@ public:
     void setDynamic();
     ~WorkerAdd();
 
-    void addToBuilding(Building *building, std::shared_ptr<Player> player);
+    void addToBuilding(std::shared_ptr<Building> building, std::shared_ptr<Player> player);
 
 private slots:
     void on_okayButton_clicked();
@@ -29,7 +29,7 @@ private slots:
 
 private:
     QString colourToString(Colour colour);
-    Building* m_building;
+    std::shared_ptr<Building> m_building;
     std::shared_ptr<Player> m_player;
     std::shared_ptr<Place> m_place;
     Ui::WorkerAdd* ui;

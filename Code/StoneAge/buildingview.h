@@ -12,19 +12,19 @@ class BuildingView :public QObject, public QGraphicsItem
 public:
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    BuildingView(int moveByX, Building *building, QGraphicsScene *parentItem);
     void setOwner(Colour colour);
-    Building* getBuilding() const;
+    std::shared_ptr<Building> getBuilding() const;
 
+    BuildingView(int moveByX, std::shared_ptr<Building> building, QGraphicsScene *parentItem);
 public slots:
     void updateText();
-    void updateBuilding(Building *building);
+    void updateBuilding(std::shared_ptr<Building> building);
 
 private:
     void setOrVar(bool isSet);
     int m_x;
     QGraphicsTextItem* m_text;
-    Building* m_building;
+    std::shared_ptr<Building> m_building;
     QGraphicsRectItem* m_indicator;
 
     QGraphicsRectItem* m_cost1;

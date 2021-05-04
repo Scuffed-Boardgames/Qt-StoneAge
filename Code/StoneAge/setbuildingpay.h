@@ -17,6 +17,8 @@ public:
     void setBuilding(std::shared_ptr<Player> player, std::shared_ptr<SetBuilding> building);
     ~SetBuildingPay();
 
+    bool getBought() const;
+
 private slots:
     void on_yesButton_clicked();
 
@@ -27,6 +29,7 @@ private:
     std::shared_ptr<SetBuilding> m_building;
     std::shared_ptr<Player> m_player;
 
+    bool m_bought;
     int m_woodCost;
     int m_clayCost;
     int m_stoneCost;
