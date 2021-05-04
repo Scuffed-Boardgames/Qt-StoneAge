@@ -35,6 +35,7 @@ private:
     Ui::VarBuildingPay *ui;
     std::shared_ptr<Player> m_player;
     std::shared_ptr<VarBuilding> m_building;
+    int getDiff();
 };
 
 #endif // VARBUILDINGPAY_H

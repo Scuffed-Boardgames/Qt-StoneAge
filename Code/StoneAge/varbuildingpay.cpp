@@ -31,9 +31,9 @@ void VarBuildingPay::setBuilding(std::shared_ptr<Player> player, std::shared_ptr
     if(diff == 0){
         textDiff = "";
     } else{
-        textDiff = " items of " + QString::number(diff) + " types";
+        textDiff = " of " + QString::number(diff) + " types";
     }
-    ui->topText->setText("You still have to pay " + amount + textDiff);
+    ui->topText->setText("You still have to pay " + amount + " items" + textDiff);
     ui->okayButton->setEnabled(false);
 }
 
@@ -58,36 +58,37 @@ int VarBuildingPay::getAmount(Resource resource){
         return 0;
     }
 }
-
+int VarBuildingPay::getDiff(){
+    int diff = 0;
+    for (int i = 3; i < 7; ++i){
+        if(getAmount((Resource)i) > 0){
+            ++diff;
+        }
+    }
+    return diff;
+}
 void VarBuildingPay::editText()
 {
     int amount = 0;
-    int diff = 0;
+    int diff = getDiff();
 
     int woodAmount = getAmount(Resource::wood);
-    if(woodAmount > 0)
-        ++diff;
     amount += woodAmount;
 
     int clayAmount = getAmount(Resource::clay);
-    if(clayAmount > 0)
-        ++diff;
     amount += clayAmount;
 
     int stoneAmount = getAmount(Resource::stone);
-    if(stoneAmount > 0)
-        ++diff;
     amount += stoneAmount;
 
     int goldAmount = getAmount(Resource::gold);
-    if(goldAmount > 0)
-        ++diff;
     amount += goldAmount;
 
     int reqDiff = m_building->getDiff() - diff;
     if(reqDiff < 0){
         reqDiff = 0;
     }
+
     QString textAmount;
     int max = m_building->getTotalMax();
     int min = m_building->getTotalMin();
@@ -97,16 +98,27 @@ void VarBuildingPay::editText()
         textAmount = QString::number(amount);
         ui->okayButton->setEnabled(reqAmount == 0);
     } else{
-        textAmount = QString::number(min) + "-" + QString::number(amount);
-        ui->okayButton->setEnabled(max - reqAmount > 0);
+        if(amount > 0){
+            min = 0;
+        }
+        if(amount == max){
+            textAmount = "0";
+        }else{
+            textAmount = QString::number(min) + "-" + QString::number(reqAmount);
+        }
+        ui->okayButton->setEnabled(amount > 0);
     }
-    ui->topText->setText("You still have to pay " + textAmount + " items of " + QString::number(reqDiff) + " types");
+    QString stringDiff = "";
+    if(m_building->getDiff() > 0){
+        stringDiff =  " of " + QString::number(reqDiff) + " types";
+    }
+    ui->topText->setText("You still have to pay " + textAmount + " items" + stringDiff);
     ui->bottomText->setText("this will give you " + QString::number(m_building->calcScore(woodAmount, clayAmount, stoneAmount, goldAmount)) + " score");
-    ui->woodAmount->setMaximum(woodAmount + (max - amount));
-    ui->clayAmount->setMaximum(clayAmount + (max - amount));
-    ui->stoneAmount->setMaximum(stoneAmount + (max - amount));
-    ui->goldAmount->setMaximum(goldAmount + (max - amount));
-    if(reqDiff == 0){
+    ui->woodAmount->setMaximum(woodAmount + reqAmount);
+    ui->clayAmount->setMaximum(clayAmount + reqAmount);
+    ui->stoneAmount->setMaximum(stoneAmount + reqAmount);
+    ui->goldAmount->setMaximum(goldAmount + reqAmount);
+    if(reqDiff == 0 && m_building->getDiff() > 0){
         if(woodAmount == 0){
             ui->woodAmount->setMaximum(0);
         }
