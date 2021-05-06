@@ -13,12 +13,15 @@ SOURCES += \
     boardview.cpp \
     building.cpp \
     buildingview.cpp \
+    cardbonus.cpp \
     civilisation.cpp \
+    dicebonus.cpp \
     field.cpp \
     gather.cpp \
     hut.cpp \
     main.cpp \
     mainwindow.cpp \
+    miscbonus.cpp \
     otherplaceview.cpp \
     payfood.cpp \
     place.cpp \
@@ -26,6 +29,7 @@ SOURCES += \
     playerview.cpp \
     resourceplaceview.cpp \
     rollresources.cpp \
+    setbonus.cpp \
     setbuilding.cpp \
     setbuildingpay.cpp \
     tool.cpp \
@@ -39,13 +43,16 @@ HEADERS += \
     boardview.h \
     building.h \
     buildingview.h \
+    cardbonus.h \
     civbonuses.h \
     civilisation.h \
     colour.h \
+    dicebonus.h \
     field.h \
     gather.h \
     hut.h \
     mainwindow.h \
+    miscbonus.h \
     otherplaceview.h \
     payfood.h \
     place.h \
@@ -54,6 +61,7 @@ HEADERS += \
     resourceplaceview.h \
     resources.h \
     rollresources.h \
+    setbonus.h \
     setbuilding.h \
     setbuildingpay.h \
     tool.h \
