@@ -58,6 +58,10 @@ void MainWindow::on_loadButton_clicked(){
     QJsonDocument document = QJsonDocument::fromJson(data);
     QJsonObject jsonObject = document.object();
     m_board->load(jsonObject);
+    for(std::shared_ptr<PlayerView> player : m_playerviews){
+        player->unHighlight();
+    }
+    highlight(m_board->getCurrentPlayer());
 }
 
 void MainWindow::on_saveButton_clicked(){
@@ -81,6 +85,10 @@ void MainWindow::on_newGameButton_clicked(){
     QJsonObject jsonObject = document.object();
     m_board->load(jsonObject);
     m_board->rerollBuildings();
+    for(std::shared_ptr<PlayerView> player : m_playerviews){
+        player->unHighlight();
+    }
+    highlight(m_board->getCurrentPlayer());
 
 }
 
