@@ -62,6 +62,7 @@ void MainWindow::on_loadButton_clicked(){
         player->unHighlight();
     }
     highlight(m_board->getCurrentPlayer());
+    gameUnEnded();
 }
 
 void MainWindow::on_saveButton_clicked(){
@@ -89,6 +90,7 @@ void MainWindow::on_newGameButton_clicked(){
         player->unHighlight();
     }
     highlight(m_board->getCurrentPlayer());
+    gameUnEnded();
 
 }
 
@@ -99,10 +101,18 @@ void MainWindow::highlight(Colour colour){
 void MainWindow::unHighlight(Colour colour){
     m_playerviews[(int) colour]->unHighlight();
 }
+void MainWindow::gameUnEnded(){
+    m_boardview->setSelectable(true);
+    for (std::shared_ptr<PlayerView> player : m_playerviews){
+        player->unEnd();
+    }
+}
 
 void MainWindow::gameEnded(){
+    for (std::shared_ptr<PlayerView> player : m_playerviews){
+        player->unHighlight();
+    }
     m_boardview->setSelectable(false);
-    unHighlight(m_board->getCurrentPlayer());
     int highestScore = 0;
     std::vector<int> highestScorePlayer;
     for (int i = 0; i < 4; ++i){
