@@ -1,8 +1,10 @@
 #include "building.h"
 
-Building::Building() : m_standingColour(Colour::none){
+Building::Building() : m_standingColour(Colour::none)
+{}
 
-}
+Building::Building(Colour colour) : m_standingColour(colour)
+{}
 
 
 void Building::addWorker(std::shared_ptr<Player> player){
@@ -25,6 +27,7 @@ Colour Building::getStandingColour() const
 {
     return m_standingColour;
 }
+
 
 
 

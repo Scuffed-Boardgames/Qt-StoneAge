@@ -9,6 +9,7 @@ class Building : public QObject
     Q_OBJECT
 public:
     Building();
+    Building(Colour colour);
 
     void addWorker(std::shared_ptr<Player> player);
 

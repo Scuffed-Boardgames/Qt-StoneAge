@@ -159,7 +159,7 @@ void Player::load(const QJsonObject &json){
         m_tools[i] = Tool(tool);
     }
     QJsonArray extraTools = json["extraTools"].toArray();
-    for (int i = 0; i < tools.size(); ++i) {
+    for (int i = 0; i < extraTools.size(); ++i) {
         m_extraTools[i] = extraTools[i].toInt();
     }
 

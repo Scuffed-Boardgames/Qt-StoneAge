@@ -4,8 +4,8 @@ SetBuilding::SetBuilding(int wood, int clay, int stone, int gold, int score) : m
 {}
 
 SetBuilding::SetBuilding(const QJsonObject & json)
-    :m_woodCost((int)json["woodCost"].toDouble()), m_clayCost((int)json["clayCost"].toDouble()),
-      m_stoneCost((int)json["stoneCost"].toDouble()), m_goldCost((int)json["goldCost"].toDouble()), m_scoreGain((int)json["scoreGain"].toDouble())
+    : Building((Colour)json["colour"].toInt()), m_woodCost(json["woodCost"].toInt()), m_clayCost(json["clayCost"].toInt()),
+      m_stoneCost(json["stoneCost"].toInt()), m_goldCost(json["goldCost"].toInt()), m_scoreGain(json["scoreGain"].toInt())
 {}
 
 bool SetBuilding::build(std::shared_ptr<Player> player){
@@ -59,6 +59,7 @@ QJsonObject SetBuilding::save(){
                         {"clayCost", m_clayCost},
                         {"stoneCost", m_stoneCost},
                         {"goldCost", m_goldCost},
-                        {"scoreGain", m_scoreGain}};
+                        {"scoreGain", m_scoreGain},
+                        {"colour", (int)getStandingColour()}};
     return json;
 }
