@@ -214,6 +214,15 @@ QString Player::getString(){
     }
 }
 
+bool Player::maxToolsReached()
+{
+    int total = m_tools[0].getLevel() + m_tools[1].getLevel() + m_tools[2].getLevel();
+    if (total >= 12){
+        return true;
+    }
+    return false;
+}
+
 int Player::calcScore(){
     int score = m_scoreCount;
     score += m_farmerCount * m_foodGain;

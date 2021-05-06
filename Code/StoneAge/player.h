@@ -33,6 +33,8 @@ public:
     Tool* getTools();
     QString getString();
 
+    bool maxToolsReached();
+
     void resetTools();
     void resetWorkers();
 
@@ -41,7 +43,6 @@ public:
 
     QJsonObject save();
     void load(const QJsonObject &json);
-
 
     int calcScore();
     int calcTieBreak();

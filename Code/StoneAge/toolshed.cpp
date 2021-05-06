@@ -19,6 +19,8 @@ void ToolShed::addWorker(std::shared_ptr<Player> player, int amount){
         return;
     if(player->getFreeWorkers() < amount)
         return;
+    if(player->maxToolsReached())
+        return;
     player->setWorkersOccupied(amount);
     switch(player->getColour()){
     case(Colour::red):
