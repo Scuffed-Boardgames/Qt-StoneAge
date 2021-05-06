@@ -153,6 +153,10 @@ void Player::load(const QJsonObject &json){
         QJsonObject tool = tools[i].toObject();
         m_tools[i] = Tool(tool);
     }
+    QJsonArray extraTools = json["extraTools"].toArray();
+    for (int i = 0; i < tools.size(); ++i) {
+        m_extraTools[i] = extraTools[i].toInt();
+    }
 
     QJsonArray civBonuses = json["civBonuses"].toArray();
     for (int i = 0; i < civBonuses.size(); ++i) {
@@ -166,7 +170,10 @@ QJsonObject Player::save(){
     for (int i = 0; i < 3; ++i) {
         tools.append(m_tools[i].save());
     }
-
+    QJsonArray extraTools;
+    for (size_t i = 0; i < m_extraTools.size();++i){
+        extraTools.append(m_extraTools[i]);
+    }
     QJsonArray civBonuses;
     for (int i = 0; i < 8; ++i) {
         civBonuses.append(m_civBonuses[i]);
@@ -187,6 +194,7 @@ QJsonObject Player::save(){
                         {"workerTotal", m_workers},
                         {"workerFree", m_freeWorkers},
                         {"tools", tools},
+                        {"extraTools", extraTools},
                         {"civBonuses", civBonuses}};
     return json;
 }

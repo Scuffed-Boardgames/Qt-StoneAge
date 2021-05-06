@@ -63,6 +63,7 @@ private:
     int m_freeWorkers; //saved & loaded
     int m_workers; //saved & loaded
     Tool m_tools[3]; //saved & loaded
+    std::vector<int> m_extraTools; //saved & loaded
     int m_civBonuses[8]; //saved & loaded
     int m_farmerCount; //saved & loaded
     int m_toolMakerCount; //saved & loaded
