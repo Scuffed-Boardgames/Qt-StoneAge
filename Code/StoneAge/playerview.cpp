@@ -61,6 +61,8 @@ int PlayerView::showTieBreak(){
 }
 
 void PlayerView::highlight(){
+    if(m_recources[0]->defaultTextColor() == Qt::black)
+        return;
     setBackgroundBrush(backgroundBrush().color().lighter(200));
     for (QGraphicsTextItem* text : m_recources) {
         text->setDefaultTextColor(Qt::black);
@@ -69,6 +71,8 @@ void PlayerView::highlight(){
 
 
 void PlayerView::unHighlight(){
+    if(m_recources[0]->defaultTextColor() == Qt::white)
+        return;
     setBackgroundBrush(backgroundBrush().color().darker(200));
     for (QGraphicsTextItem* text : m_recources) {
         text->setDefaultTextColor(Qt::white);
