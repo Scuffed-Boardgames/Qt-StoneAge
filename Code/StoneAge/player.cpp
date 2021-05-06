@@ -64,6 +64,11 @@ void Player::addBuilding(){
     m_buildingCount += 1;
 }
 
+void Player::addExtraTool(int tool)
+{
+    m_extraTools.push_back(tool);
+}
+
 
 Tool *Player::getTools(){
     return m_tools;
@@ -221,6 +226,15 @@ bool Player::maxToolsReached()
         return true;
     }
     return false;
+}
+
+void Player::deleteExtraTool(int tool)
+{
+    for(size_t i = 0; i < m_extraTools.size(); ++i){
+        if(tool == m_extraTools[i]){
+            m_extraTools.erase(m_extraTools.begin() + i);
+        }
+    }
 }
 
 int Player::calcScore(){

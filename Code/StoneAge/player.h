@@ -23,6 +23,7 @@ public:
     void addScore(int amount);
     void addFoodGain();
     void addBuilding();
+    void addExtraTool(int tool);
 
     int getResource(Resource resource); // gets the amount of a given resource
     int getScore(); // gets the score the player curently has
@@ -34,6 +35,7 @@ public:
     QString getString();
 
     bool maxToolsReached();
+    void deleteExtraTool(int tool);
 
     void resetTools();
     void resetWorkers();
