@@ -132,21 +132,21 @@ void Player::disableTool(int nr){
 
 
 void Player::load(const QJsonObject &json){
-    m_foodCount = (int)json["food"].toDouble();
-    m_woodCount = (int)json["wood"].toDouble();
-    m_clayCount = (int)json["clay"].toDouble();
-    m_stoneCount = (int)json["stone"].toDouble();
-    m_goldCount = (int)json["gold"].toDouble();
-    m_scoreCount = (int)json["score"].toDouble();
-    m_foodGain = (int)json["foodGain"].toDouble();
-    m_farmerCount = (int)json["farmers"].toDouble();
-    m_toolMakerCount = (int)json["toolMakers"].toDouble();
-    m_hutBuilderCount = (int)json["hutBuilders"].toDouble();
-    m_shamanCount = (int)json["shamans"].toDouble();
-    m_buildingCount = (int)json["buildings"].toDouble();
-    m_colour = (Colour)(int)json["colour"].toDouble();
-    m_workers = (int)json["workerTotal"].toDouble();
-    m_freeWorkers = (int)json["workerFree"].toDouble();
+    m_foodCount = json["food"].toInt();
+    m_woodCount = json["wood"].toInt();
+    m_clayCount = json["clay"].toInt();
+    m_stoneCount = json["stone"].toInt();
+    m_goldCount = json["gold"].toInt();
+    m_scoreCount = json["score"].toInt();
+    m_foodGain = json["foodGain"].toInt();
+    m_farmerCount = json["farmers"].toInt();
+    m_toolMakerCount = json["toolMakers"].toInt();
+    m_hutBuilderCount = json["hutBuilders"].toInt();
+    m_shamanCount = json["shamans"].toInt();
+    m_buildingCount = json["buildings"].toInt();
+    m_colour = (Colour)json["colour"].toInt();
+    m_workers = json["workerTotal"].toInt();
+    m_freeWorkers = json["workerFree"].toInt();
 
     QJsonArray tools = json["tools"].toArray();
     for (int i = 0; i < tools.size(); ++i) {
@@ -156,7 +156,7 @@ void Player::load(const QJsonObject &json){
 
     QJsonArray civBonuses = json["civBonuses"].toArray();
     for (int i = 0; i < civBonuses.size(); ++i) {
-        civBonuses[i] = (int)civBonuses[i].toDouble();
+        civBonuses[i] = civBonuses[i].toInt();
     }
     emit dataChanged();
 }

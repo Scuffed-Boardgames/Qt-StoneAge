@@ -233,7 +233,7 @@ std::shared_ptr<Field> Board::getField(){
 
 void Board::load(const QJsonObject &json){
     m_ended = json["ended"].toBool();
-    m_round = (int)json["round"].toDouble();
+    m_round = json["round"].toInt();
     m_currentPlayer = (Colour)json["activePlayer"].toDouble();
     QJsonArray players = json["players"].toArray();
     for(int i = 0; i < 4; ++i){
