@@ -9,6 +9,8 @@ void Building::addWorker(std::shared_ptr<Player> player){
     if (player->getFreeWorkers() >= 1 && m_standingColour == Colour::none){
         m_standingColour = player->getColour();
         player->setWorkersOccupied(1);
+    } else{
+        return;
     }
     emit changedWorkers();
     emit turnHappend();
