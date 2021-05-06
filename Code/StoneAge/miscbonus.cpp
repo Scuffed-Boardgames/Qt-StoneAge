@@ -32,7 +32,7 @@ QJsonObject MiscBonus::save()
                         {"shamen", getShamen()},
                         {"makers", (int)getBonus()},
                         {"cost", getCost()},
-                        {"card", (int)getCard()},
+                        {"card", getCard()},
                         {"score", m_score},
                         {"food", m_food},
                         {"tool", m_tool}

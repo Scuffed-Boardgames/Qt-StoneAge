@@ -24,7 +24,7 @@ QJsonObject SetBonus::save()
                         {"shamen", getShamen()},
                         {"makers", (int)getBonus()},
                         {"cost", getCost()},
-                        {"card", (int)getCard()},
+                        {"card", getCard()},
                         {"amount", m_amount},
                         {"resource", (int)m_resource},
                         };

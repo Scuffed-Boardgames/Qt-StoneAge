@@ -33,6 +33,7 @@ SOURCES += \
     setbuilding.cpp \
     setbuildingpay.cpp \
     tool.cpp \
+    toolbonus.cpp \
     toolshed.cpp \
     varbuilding.cpp \
     varbuildingpay.cpp \
@@ -65,6 +66,7 @@ HEADERS += \
     setbuilding.h \
     setbuildingpay.h \
     tool.h \
+    toolbonus.h \
     toolshed.h \
     varbuilding.h \
     varbuildingpay.h \
