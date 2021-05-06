@@ -27,9 +27,9 @@ void BoardView::placementDone(){
 
 void BoardView::updateResources(){
     setSelectable(false);
-    for(int i = 0; i < 4; ++i){
-        m_board->payResources((Colour)i);
-        emit unHighlight((Colour)i);
+    for(int i = (int)m_board->getCurrentPlayer(); i < (int)m_board->getCurrentPlayer() + 4; ++i){
+        m_board->payResources((Colour)(i % 4));
+        emit unHighlight((Colour)(i % 4));
         emit highlight((Colour)((i+1)%4));
     }
     m_board->resetWorkers();
@@ -39,11 +39,13 @@ void BoardView::updateResources(){
 }
 
 void BoardView::buildBuildings(){
-    for(int i = 0; i < 4; ++i){
-        m_board->buildBuilding((Colour)i);
-        emit unHighlight((Colour)i);
+    for(int i = (int)m_board->getCurrentPlayer(); i < (int)m_board->getCurrentPlayer() + 4; ++i){
+        m_board->buildBuilding((Colour)(i % 4));
+        emit unHighlight((Colour)(i % 4));
         emit highlight((Colour)((i+1)%4));
     }
+    emit unHighlight(m_board->getCurrentPlayer());
+    emit highlight((Colour)(((int)m_board->getCurrentPlayer() + 1) % 4));
     setSelectable(true);
     m_placementDone = false;
 }

@@ -124,10 +124,10 @@ void Board::buildBuilding(Colour colour){
 
 void Board::nextPlayer(int checked){
     if(checked == 4){
-        m_currentPlayer = (Colour)(m_round%4);
+        m_currentPlayer = (Colour)((m_round) % 4);
         emit allWorkersPlaced();
     }else{
-        m_currentPlayer = (Colour)(((int)m_currentPlayer + 1)%4);
+        m_currentPlayer = (Colour)(((int)m_currentPlayer + 1) % 4);
         if(getPlayer(m_currentPlayer)->getFreeWorkers() == 0){
             nextPlayer(checked + 1);
         }
@@ -136,6 +136,7 @@ void Board::nextPlayer(int checked){
 
 void Board::addRound(){
     m_round += 1;
+    m_currentPlayer = (Colour)((m_round) % 4);
     emit roundChanged();
 }
 
