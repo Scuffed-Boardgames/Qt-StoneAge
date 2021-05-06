@@ -41,6 +41,8 @@ void BoardView::updateResources(){
 void BoardView::buildBuildings(){
     for(int i = (int)m_board->getCurrentPlayer(); i < (int)m_board->getCurrentPlayer() + 4; ++i){
         m_board->buildBuilding((Colour)(i % 4));
+        if(m_board->getEnded())
+            return;
         emit unHighlight((Colour)(i % 4));
         emit highlight((Colour)((i+1)%4));
     }

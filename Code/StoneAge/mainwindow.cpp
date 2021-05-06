@@ -22,6 +22,7 @@ MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
         connect(board->getGather(Resource::food).get(), &Place::resourcesChanged, m_playerviews[i].get(), &PlayerView::updateText);
     }
     connect(m_board.get(), &Board::roundChanged, this, &MainWindow::updateRound);
+    connect(m_board.get(), &Board::endGame, this, &MainWindow::gameEnded);
     connect(m_boardview.get(), &BoardView::highlight, this, &MainWindow::highlight);
     connect(m_boardview.get(), &BoardView::unHighlight, this, &MainWindow::unHighlight);
 
@@ -63,26 +64,26 @@ void MainWindow::on_loadButton_clicked(){
 }
 
 void MainWindow::on_saveButton_clicked(){
-     QString filePath = QFileDialog::getSaveFileName(this, "Save", ":/save/saves/", "JSON Files (*.json)");
-     QFile file(filePath);
-     file.open(QIODevice::ReadWrite);
-     QJsonDocument jsonDocument;
-     QJsonObject jsonObject = m_board->save();
-     jsonDocument.setObject(jsonObject);
-     file.resize(0);
-     file.write(jsonDocument.toJson());
-     file.close();
+    QString filePath = QFileDialog::getSaveFileName(this, "Save", ":/save/saves/", "JSON Files (*.json)");
+    QFile file(filePath);
+    file.open(QIODevice::ReadWrite);
+    QJsonDocument jsonDocument;
+    QJsonObject jsonObject = m_board->save();
+    jsonDocument.setObject(jsonObject);
+    file.resize(0);
+    file.write(jsonDocument.toJson());
+    file.close();
 }
 
 void MainWindow::on_newGameButton_clicked(){
-     QFile file(":/files/files/cleanSave.json");
-     file.open(QIODevice::ReadOnly | QIODevice::Text);
-     QByteArray data = file.readAll();
-     file.close();
-     QJsonDocument document = QJsonDocument::fromJson(data);
-     QJsonObject jsonObject = document.object();
-     m_board->load(jsonObject);
-     m_board->rerollBuildings();
+    QFile file(":/files/files/cleanSave.json");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QByteArray data = file.readAll();
+    file.close();
+    QJsonDocument document = QJsonDocument::fromJson(data);
+    QJsonObject jsonObject = document.object();
+    m_board->load(jsonObject);
+    m_board->rerollBuildings();
 
 }
 
@@ -92,4 +93,39 @@ void MainWindow::highlight(Colour colour){
 
 void MainWindow::unHighlight(Colour colour){
     m_playerviews[(int) colour]->unHighlight();
+}
+
+void MainWindow::gameEnded(){
+    m_boardview->setSelectable(false);
+    unHighlight(m_board->getCurrentPlayer());
+    int highestScore = 0;
+    std::vector<int> highestScorePlayer;
+    for (int i = 0; i < 4; ++i){
+        int score = m_playerviews[i]->showScore();
+        if(score > highestScore){
+            highestScore = score;
+            highestScorePlayer.clear();
+            highestScorePlayer.push_back(i);
+        } else if(score == highestScore) {
+            highestScorePlayer.push_back(i);
+
+        }
+
+    }
+    int bestPlayer = 0;
+    if(highestScorePlayer.size() > 1){
+        int highestTieBreak = 0;
+        for (int i = 0; i < (int)highestScorePlayer.size(); ++i){
+            int tieBreak = m_playerviews[highestScorePlayer[i]]->showTieBreak();
+            if(tieBreak > highestTieBreak){
+                highestTieBreak = tieBreak;
+                bestPlayer = highestScorePlayer[i];
+            }
+
+        }
+    } else {
+        bestPlayer = highestScorePlayer[0];
+    }
+
+    m_playerviews[bestPlayer]->highlight();
 }

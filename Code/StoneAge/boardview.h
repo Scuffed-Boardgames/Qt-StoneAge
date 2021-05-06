@@ -20,6 +20,7 @@ public slots:
     void newBuild(std::shared_ptr<Building> building, int pos);
     void updateTurn();
     void placementDone();
+    void setSelectable(bool isSelectalbe);
 
 signals:
     void highlight(Colour colour);
@@ -42,7 +43,7 @@ private:
     void updateResources();
     void buildBuildings();
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-    void setSelectable(bool isSelectalbe);
+
 };
 
 #endif // BOARDVIEW_H

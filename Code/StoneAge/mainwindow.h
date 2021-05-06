@@ -21,6 +21,7 @@ public:
 public slots:
     void highlight(Colour colour);
     void unHighlight(Colour colour);
+    void gameEnded();
 private slots:
     void updateRound();
     void on_quitButton_clicked();

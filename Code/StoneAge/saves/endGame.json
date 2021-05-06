@@ -1,0 +1,192 @@
+{
+    "activePlayer": 0,
+    "buildings": [
+        [
+            {
+                "diffMaterials": 2,
+                "maxCost": 5,
+                "minCost": 5
+            }
+        ],
+        [
+            {
+                "diffMaterials": 4,
+                "maxCost": 5,
+                "minCost": 5
+            }
+        ],
+        [
+            {
+                "clayCost": 0,
+                "goldCost": 0,
+                "scoreGain": 11,
+                "stoneCost": 1,
+                "woodCost": 2
+            }
+        ],
+        [
+            {
+                "clayCost": 1,
+                "goldCost": 0,
+                "scoreGain": 12,
+                "stoneCost": 1,
+                "woodCost": 1
+            }
+        ]
+    ],
+    "clayPit": {
+        "blueWorkers": 0,
+        "greenWorkers": 0,
+        "redWorkers": 0,
+        "yellowWorkers": 0
+    },
+    "field": {
+        "blueWorkers": 0,
+        "greenWorkers": 0,
+        "redWorkers": 0,
+        "yellowWorkers": 0
+    },
+    "forest": {
+        "blueWorkers": 0,
+        "greenWorkers": 0,
+        "redWorkers": 0,
+        "yellowWorkers": 0
+    },
+    "hunt": {
+        "blueWorkers": 0,
+        "greenWorkers": 0,
+        "redWorkers": 0,
+        "yellowWorkers": 0
+    },
+    "hut": {
+        "blueWorkers": 0,
+        "greenWorkers": 0,
+        "redWorkers": 0,
+        "yellowWorkers": 0
+    },
+    "players": [
+        {
+            "clay": 100,
+            "colour": 0,
+            "food": 100,
+            "foodGain": 100,
+            "gold": 100,
+            "score": 50,
+            "stone": 100,
+            "tools": [
+                {
+                    "level": 0,
+                    "used": false
+                },
+                {
+                    "level": 0,
+                    "used": false
+                },
+                {
+                    "level": 0,
+                    "used": false
+                }
+            ],
+            "wood": 100,
+            "workerFree": 6,
+            "workerTotal": 6
+        },
+        {
+            "clay": 100,
+            "colour": 1,
+            "food": 100,
+            "foodGain": 100,
+            "gold": 100,
+            "score": 1,
+            "stone": 100,
+            "tools": [
+                {
+                    "level": 0,
+                    "used": false
+                },
+                {
+                    "level": 0,
+                    "used": false
+                },
+                {
+                    "level": 0,
+                    "used": false
+                }
+            ],
+            "wood": 0,
+            "workerFree": 5,
+            "workerTotal": 5
+        },
+        {
+            "clay": 100,
+            "colour": 2,
+            "food": 100,
+            "foodGain": 100,
+            "gold": 100,
+            "score": 500,
+            "stone": 100,
+            "tools": [
+                {
+                    "level": 0,
+                    "used": false
+                },
+                {
+                    "level": 0,
+                    "used": false
+                },
+                {
+                    "level": 0,
+                    "used": false
+                }
+            ],
+            "wood": 100,
+            "workerFree": 5,
+            "workerTotal": 5
+        },
+        {
+            "clay": 100,
+            "colour": 3,
+            "food": 100,
+            "foodGain": 100,
+            "gold": 100,
+            "score": 500,
+            "stone": 100,
+            "tools": [
+                {
+                    "level": 0,
+                    "used": false
+                },
+                {
+                    "level": 0,
+                    "used": false
+                },
+                {
+                    "level": 0,
+                    "used": false
+                }
+            ],
+            "wood": 100,
+            "workerFree": 5,
+            "workerTotal": 5
+        }
+    ],
+    "quarry": {
+        "blueWorkers": 0,
+        "greenWorkers": 0,
+        "redWorkers": 0,
+        "yellowWorkers": 0
+    },
+    "river": {
+        "blueWorkers": 0,
+        "greenWorkers": 0,
+        "redWorkers": 0,
+        "yellowWorkers": 0
+    },
+    "round": 0,
+    "toolShed": {
+        "blueWorkers": 0,
+        "greenWorkers": 0,
+        "redWorkers": 0,
+        "yellowWorkers": 0
+    }
+}

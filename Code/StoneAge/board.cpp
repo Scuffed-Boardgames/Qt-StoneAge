@@ -4,7 +4,7 @@
 #include <QJsonDocument>
 #include "payfood.h"
 
-Board::Board() : m_currentPlayer{Colour::red}, m_hut(std::make_shared<Hut>()), m_forest{std::make_shared<Gather>(Resource::wood)},
+Board::Board() : m_ended{false}, m_currentPlayer{Colour::red}, m_hut(std::make_shared<Hut>()), m_forest{std::make_shared<Gather>(Resource::wood)},
     m_clayPit{std::make_shared<Gather>(Resource::clay)}, m_quarry{std::make_shared<Gather>(Resource::stone)}, m_river{std::make_shared<Gather>(Resource::gold)},
     m_hunt{std::make_shared<Gather>(Resource::food)}, m_toolShed(std::make_shared<ToolShed>()), m_field(std::make_shared<Field>()),
     m_setBuildingPay(std::make_shared<SetBuildingPay>()), m_varBuildingPay(std::make_shared<VarBuildingPay>()){
@@ -98,6 +98,9 @@ void Board::rerollBuildings(){
 }
 
 void Board::buildBuilding(Colour colour){
+    if(m_ended)
+        return;
+
     for(int i = 0; i < 4; ++i){
         if(m_buildingCardStacks[i].back()->getStandingColour() == colour){
             std::shared_ptr<SetBuilding> setBuilding = std::dynamic_pointer_cast<SetBuilding>(m_buildingCardStacks[i].back());
@@ -178,6 +181,8 @@ std::shared_ptr<Building> Board::getOpenBuildingCard(int pos){
 void Board::newBuilding(int place){
     m_buildingCardStacks[place].pop_back();
     if(m_buildingCardStacks[place].size() == 0){
+        m_ended = true;
+        emit endGame();
         return;
     }
     emit newBuild(m_buildingCardStacks[place].back(), place);
@@ -291,4 +296,9 @@ QJsonObject Board::save(){
                         {"field", field},
                         {"buildings", buildingsStacks}};
     return json;
+}
+
+bool Board::getEnded() const
+{
+    return m_ended;
 }

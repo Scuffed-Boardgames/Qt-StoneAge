@@ -10,6 +10,8 @@ public:
 
     void highlight();
     void unHighlight();
+    int showScore();
+    int showTieBreak();
 public slots:
     void updateText(); // updates player text
 

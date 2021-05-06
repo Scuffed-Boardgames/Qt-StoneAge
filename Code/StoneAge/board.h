@@ -41,14 +41,17 @@ public:
     void load(const QJsonObject &json);
     QJsonObject save();
 
+    bool getEnded() const;
+
 signals:
     void newBuild(std::shared_ptr<Building> building, int pos);
     void allWorkersPlaced();
     void workersReset();
     void roundChanged();
+    void endGame();
 
 private:
-
+    bool m_ended;
     Colour m_currentPlayer;
     std::vector<std::shared_ptr<Building>> m_buildingCardStacks[4];
     std::shared_ptr<Player> m_players[4];

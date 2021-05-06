@@ -168,8 +168,7 @@ QJsonObject Player::save(){
     return json;
 }
 
-QString Player::getString()
-{
+QString Player::getString(){
     switch(m_colour){
     case(Colour::red):
         return "Red player";
@@ -182,4 +181,41 @@ QString Player::getString()
     default:
         return "error: no colour given";
     }
+}
+
+int Player::calcScore(){
+    int score = m_scoreCount;
+    score += m_farmerCount * m_foodGain;
+    score += m_shamanCount * m_workers;
+    int toolAmount = 0;
+    for(Tool tool : m_tools){
+        toolAmount += tool.getLevel();
+    }
+    score += m_toolMakerCount * toolAmount;
+    int c = 1;
+    while(c != 0){
+        c = 0;
+        for(int i = 0; i < 8; ++i){
+            if(m_civBonuses[i] > 0){
+                ++c;
+                m_civBonuses[i] -= 1;
+            }
+
+        }
+        score += std::pow(c, 2);
+    }
+    return score;
+}
+
+int Player::calcTieBreak(){
+    int tieBreak = m_foodGain;
+    tieBreak += m_workers;
+
+    int toolAmount = 0;
+    for(Tool tool : m_tools){
+        toolAmount += tool.getLevel();
+    }
+
+    tieBreak += m_toolMakerCount * toolAmount;
+    return tieBreak;
 }

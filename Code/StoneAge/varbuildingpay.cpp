@@ -64,8 +64,7 @@ int VarBuildingPay::getDiff(){
     return diff;
 }
 
-void VarBuildingPay::editText()
-{
+void VarBuildingPay::editText(){
     int amount = 0;
     int diff = getDiff();
 
@@ -92,7 +91,7 @@ void VarBuildingPay::editText()
     int reqAmount = max - amount;
 
     if(max == min){
-        textAmount = QString::number(amount);
+        textAmount = QString::number(reqAmount);
         ui->okayButton->setEnabled(reqAmount == 0);
     } else{
         if(amount > 0){

@@ -16,6 +16,8 @@ void Field::addWorker(std::shared_ptr<Player> player, int amount = 1){
         return;
     if(player->getFreeWorkers() < amount)
         return;
+    if(player->getFoodGain() >= 10)
+        return;
     player->setWorkersOccupied(amount);
     switch(player->getColour()){
     case(Colour::red):

@@ -36,6 +36,29 @@ void PlayerView::updateText(){
     m_recources[7]->setPlainText("Workers: "+ QString::number(m_player->getFreeWorkers()) + "/" + QString::number(m_player->getWorkerCount()));
 
 }
+int PlayerView::showScore(){
+    for (QGraphicsTextItem* text : m_recources) {
+        text->setVisible(false);
+    }
+    int score = m_player->calcScore();
+    m_recources.push_back(addText("Score: " + QString::number(score)));
+    m_recources.back()->setScale(2);
+    for (QGraphicsTextItem* text : m_recources) {
+        text->setDefaultTextColor(Qt::black);
+    }
+    return score;
+}
+
+int PlayerView::showTieBreak(){
+    int tieBreak = m_player->calcTieBreak();
+    m_recources.push_back(addText("Tie break: " + QString::number(tieBreak)));
+    m_recources.back()->moveBy(0, 24);
+    m_recources.back()->setScale(2);
+    for (QGraphicsTextItem* text : m_recources) {
+        text->setDefaultTextColor(Qt::black);
+    }
+    return tieBreak;
+}
 
 void PlayerView::highlight(){
     setBackgroundBrush(backgroundBrush().color().lighter(200));
