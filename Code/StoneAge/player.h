@@ -45,27 +45,29 @@ public:
 
     int calcScore();
     int calcTieBreak();
+
 signals:
     void dataChanged();
 
+
 private:
-    int m_foodCount;
-    int m_woodCount;
-    int m_clayCount;
-    int m_stoneCount;
-    int m_goldCount;
-    int m_buildingCount;
-    int m_scoreCount;
-    int m_foodGain;
-    Colour m_colour;
-    int m_freeWorkers;
-    int m_workers;
-    Tool m_tools[3];
-    int m_civBonuses[8];
-    int m_farmerCount;
-    int m_toolMakerCount;
-    int m_hutBuilderCount;
-    int m_shamanCount;
+    int m_foodCount; //saved & loaded
+    int m_woodCount; //saved & loaded
+    int m_clayCount; //saved & loaded
+    int m_stoneCount; //saved & loaded
+    int m_goldCount; //saved & loaded
+    int m_buildingCount; //saved  & loaded
+    int m_scoreCount; //saved & loaded
+    int m_foodGain; //saved & loaded
+    Colour m_colour; //saved & loaded
+    int m_freeWorkers; //saved & loaded
+    int m_workers; //saved & loaded
+    Tool m_tools[3]; //saved & loaded
+    int m_civBonuses[8]; //saved & loaded
+    int m_farmerCount; //saved & loaded
+    int m_toolMakerCount; //saved & loaded
+    int m_hutBuilderCount; //saved & loaded
+    int m_shamanCount; //saved & loaded
 };
 
 #endif // PLAYER_H

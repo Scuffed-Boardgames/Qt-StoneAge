@@ -138,13 +138,24 @@ void Player::load(const QJsonObject &json){
     m_goldCount = (int)json["gold"].toDouble();
     m_scoreCount = (int)json["score"].toDouble();
     m_foodGain = (int)json["foodGain"].toDouble();
+    m_farmerCount = (int)json["farmers"].toDouble();
+    m_toolMakerCount = (int)json["toolMakers"].toDouble();
+    m_hutBuilderCount = (int)json["hutBuilders"].toDouble();
+    m_shamanCount = (int)json["shamans"].toDouble();
+    m_buildingCount = (int)json["buildings"].toDouble();
     m_colour = (Colour)(int)json["colour"].toDouble();
     m_workers = (int)json["workerTotal"].toDouble();
     m_freeWorkers = (int)json["workerFree"].toDouble();
+
     QJsonArray tools = json["tools"].toArray();
     for (int i = 0; i < tools.size(); ++i) {
         QJsonObject tool = tools[i].toObject();
         m_tools[i] = Tool(tool);
+    }
+
+    QJsonArray civBonuses = json["civBonuses"].toArray();
+    for (int i = 0; i < civBonuses.size(); ++i) {
+        civBonuses[i] = (int)civBonuses[i].toDouble();
     }
     emit dataChanged();
 }
@@ -154,6 +165,11 @@ QJsonObject Player::save(){
     for (int i = 0; i < 3; ++i) {
         tools.append(m_tools[i].save());
     }
+
+    QJsonArray civBonuses;
+    for (int i = 0; i < 8; ++i) {
+        civBonuses.append(m_civBonuses[i]);
+    }
     QJsonObject json = {{"food", m_foodCount},
                         {"wood", m_woodCount},
                         {"clay", m_clayCount},
@@ -161,10 +177,16 @@ QJsonObject Player::save(){
                         {"gold", m_goldCount},
                         {"score", m_scoreCount},
                         {"foodGain", m_foodGain},
+                        {"farmers", m_farmerCount},
+                        {"toolMakers", m_toolMakerCount},
+                        {"hutBuilders", m_hutBuilderCount},
+                        {"shamans", m_shamanCount},
+                        {"buildings", m_buildingCount},
                         {"colour", (int)m_colour},
                         {"workerTotal", m_workers},
                         {"workerFree", m_freeWorkers},
-                        {"tools", tools}};
+                        {"tools", tools},
+                        {"civBonuses", civBonuses}};
     return json;
 }
 

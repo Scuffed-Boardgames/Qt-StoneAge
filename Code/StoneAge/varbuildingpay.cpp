@@ -130,6 +130,8 @@ void VarBuildingPay::editText(){
     }
     if(ui->okayButton->isEnabled())
         ui->okayButton->setEnabled(m_building->canPay(m_player, woodAmount, clayAmount, stoneAmount, goldAmount));
+    if(ui->okayButton->isEnabled())
+        ui->okayButton->setEnabled(reqDiff == 0);
 }
 
 void VarBuildingPay::resetAmounts(){
