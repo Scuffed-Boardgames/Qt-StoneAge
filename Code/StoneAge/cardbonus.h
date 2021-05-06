@@ -9,8 +9,9 @@ class CardBonus : public Civilisation
 public:
     CardBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, bool card);
     CardBonus(const QJsonObject &json);
-    void setCard(std::shared_ptr<Civilisation> card);
     QJsonObject save();
+
+    void setCard(std::shared_ptr<Civilisation> card);
 
     void giveItems(std::shared_ptr<Player> player);
 

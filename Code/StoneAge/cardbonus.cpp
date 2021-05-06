@@ -9,10 +9,6 @@ CardBonus::CardBonus(const QJsonObject &json)
       (CivBonus)(json["bonus"].toInt()), json["cost"].toInt(), json["card"].toBool()), m_card(nullptr)
 {}
 
-void CardBonus::setCard(std::shared_ptr<Civilisation> card){
-    m_card = card;
-}
-
 QJsonObject CardBonus::save()
 {
     QJsonObject json = {{"colour", (int)getStandingColour()},
@@ -25,6 +21,10 @@ QJsonObject CardBonus::save()
                         {"card", (int)getCard()}
                         };
     return json;
+}
+
+void CardBonus::setCard(std::shared_ptr<Civilisation> card){
+    m_card = card;
 }
 
 void CardBonus::giveItems(std::shared_ptr<Player> player)
