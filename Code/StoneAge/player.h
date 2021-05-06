@@ -23,6 +23,7 @@ public:
     void addScore(int amount);
     void addFoodGain();
     void addBuilding();
+    void addExtraTool(int tool);
 
     int getResource(Resource resource); // gets the amount of a given resource
     int getScore(); // gets the score the player curently has
@@ -33,6 +34,9 @@ public:
     Tool* getTools();
     QString getString();
 
+    bool maxToolsReached();
+    void deleteExtraTool(int tool);
+
     void resetTools();
     void resetWorkers();
 
@@ -41,7 +45,6 @@ public:
 
     QJsonObject save();
     void load(const QJsonObject &json);
-
 
     int calcScore();
     int calcTieBreak();
@@ -63,6 +66,7 @@ private:
     int m_freeWorkers; //saved & loaded
     int m_workers; //saved & loaded
     Tool m_tools[3]; //saved & loaded
+    std::vector<int> m_extraTools; //saved & loaded
     int m_civBonuses[8]; //saved & loaded
     int m_farmerCount; //saved & loaded
     int m_toolMakerCount; //saved & loaded

@@ -64,6 +64,11 @@ void Player::addBuilding(){
     m_buildingCount += 1;
 }
 
+void Player::addExtraTool(int tool)
+{
+    m_extraTools.push_back(tool);
+}
+
 
 Tool *Player::getTools(){
     return m_tools;
@@ -153,6 +158,10 @@ void Player::load(const QJsonObject &json){
         QJsonObject tool = tools[i].toObject();
         m_tools[i] = Tool(tool);
     }
+    QJsonArray extraTools = json["extraTools"].toArray();
+    for (int i = 0; i < tools.size(); ++i) {
+        m_extraTools[i] = extraTools[i].toInt();
+    }
 
     QJsonArray civBonuses = json["civBonuses"].toArray();
     for (int i = 0; i < civBonuses.size(); ++i) {
@@ -166,7 +175,10 @@ QJsonObject Player::save(){
     for (int i = 0; i < 3; ++i) {
         tools.append(m_tools[i].save());
     }
-
+    QJsonArray extraTools;
+    for (size_t i = 0; i < m_extraTools.size();++i){
+        extraTools.append(m_extraTools[i]);
+    }
     QJsonArray civBonuses;
     for (int i = 0; i < 8; ++i) {
         civBonuses.append(m_civBonuses[i]);
@@ -187,6 +199,7 @@ QJsonObject Player::save(){
                         {"workerTotal", m_workers},
                         {"workerFree", m_freeWorkers},
                         {"tools", tools},
+                        {"extraTools", extraTools},
                         {"civBonuses", civBonuses}};
     return json;
 }
@@ -203,6 +216,24 @@ QString Player::getString(){
         return "Green player";
     default:
         return "error: no colour given";
+    }
+}
+
+bool Player::maxToolsReached()
+{
+    int total = m_tools[0].getLevel() + m_tools[1].getLevel() + m_tools[2].getLevel();
+    if (total >= 12){
+        return true;
+    }
+    return false;
+}
+
+void Player::deleteExtraTool(int tool)
+{
+    for(size_t i = 0; i < m_extraTools.size(); ++i){
+        if(tool == m_extraTools[i]){
+            m_extraTools.erase(m_extraTools.begin() + i);
+        }
     }
 }
 
