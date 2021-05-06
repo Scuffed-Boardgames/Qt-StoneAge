@@ -16,7 +16,6 @@ public:
     int getCost(Resource resource) const;
 
     QJsonObject save();
-    void load(const QJsonObject &json);
 private:
     int m_woodCost;
     int m_clayCost;

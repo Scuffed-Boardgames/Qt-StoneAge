@@ -124,7 +124,7 @@ void Board::buildBuilding(Colour colour){
 
 void Board::nextPlayer(int checked){
     if(checked == 4){
-        m_currentPlayer = Colour::red;
+        m_currentPlayer = (Colour)(m_round%4);
         emit allWorkersPlaced();
     }else{
         m_currentPlayer = (Colour)(((int)m_currentPlayer + 1)%4);

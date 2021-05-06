@@ -62,13 +62,3 @@ QJsonObject SetBuilding::save(){
                         {"scoreGain", m_scoreGain}};
     return json;
 }
-
-void SetBuilding::load(const QJsonObject &json){
-    m_woodCost = (int)json["woodCost"].toDouble();
-    m_clayCost = (int)json["clayCost"].toDouble();
-    m_stoneCost = (int)json["stoneCost"].toDouble();
-    m_goldCost = (int)json["goldCost"].toDouble();
-    m_scoreGain = (int)json["scoreGain"].toDouble();
-}
-
-
