@@ -44,7 +44,7 @@ int PlayerView::showScore(){
     m_recources.push_back(addText("Score: " + QString::number(score)));
     m_recources.back()->setScale(2);
     for (QGraphicsTextItem* text : m_recources) {
-        text->setDefaultTextColor(Qt::black);
+        text->setDefaultTextColor(Qt::white);
     }
     return score;
 }
@@ -55,9 +55,19 @@ int PlayerView::showTieBreak(){
     m_recources.back()->moveBy(0, 24);
     m_recources.back()->setScale(2);
     for (QGraphicsTextItem* text : m_recources) {
-        text->setDefaultTextColor(Qt::black);
+        text->setDefaultTextColor(Qt::white);
     }
     return tieBreak;
+}
+void PlayerView::unEnd(){
+
+    while (m_recources.size() > 8){
+        removeItem(m_recources.back());
+        m_recources.pop_back();
+    }
+    for (QGraphicsTextItem* text : m_recources) {
+        text->setVisible(true);
+    }
 }
 
 void PlayerView::highlight(){
