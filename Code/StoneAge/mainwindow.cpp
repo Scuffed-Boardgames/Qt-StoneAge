@@ -10,18 +10,20 @@ MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
     QString text = "Round: " + QString::number(m_board->getRound()+1);
     m_ui->Turn->setText(text);
     QColor red(237, 28, 36);
-    m_playerviews.push_back(std::make_shared<PlayerView>(red, board->getPlayer(Colour::red)));
+    m_playerviews.push_back(std::make_shared<PlayerView>(red.darker(200), board->getPlayer(Colour::red)));
     QColor blue(63, 72, 204);
-    m_playerviews.push_back(std::make_shared<PlayerView>(blue, board->getPlayer(Colour::blue)));
+    m_playerviews.push_back(std::make_shared<PlayerView>(blue.darker(200), board->getPlayer(Colour::blue)));
     QColor yellow(255, 242, 0);
-    m_playerviews.push_back(std::make_shared<PlayerView>(yellow, board->getPlayer(Colour::yellow)));
+    m_playerviews.push_back(std::make_shared<PlayerView>(yellow.darker(200), board->getPlayer(Colour::yellow)));
     QColor green(34, 177, 76);
-    m_playerviews.push_back(std::make_shared<PlayerView>(green, board->getPlayer(Colour::green)));
+    m_playerviews.push_back(std::make_shared<PlayerView>(green.darker(200), board->getPlayer(Colour::green)));
 
     for(int i = 0; i<4 ; ++i){
         connect(board->getGather(Resource::food).get(), &Place::resourcesChanged, m_playerviews[i].get(), &PlayerView::updateText);
     }
     connect(m_board.get(), &Board::roundChanged, this, &MainWindow::updateRound);
+    connect(m_boardview.get(), &BoardView::highlight, this, &MainWindow::highlight);
+    connect(m_boardview.get(), &BoardView::unHighlight, this, &MainWindow::unHighlight);
 
     m_ui->redView->setScene(m_playerviews[0].get());
     m_ui->blueView->setScene(m_playerviews[1].get());
@@ -30,6 +32,7 @@ MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
     m_ui->BoardView->setScene(m_boardview.get());
     QFont font( "Arial", 25, QFont::Bold);
     m_ui->Turn->setFont(font);
+    m_playerviews[0]->highlight();
 }
 
 MainWindow::~MainWindow(){
@@ -81,4 +84,12 @@ void MainWindow::on_newGameButton_clicked(){
      m_board->load(jsonObject);
      m_board->rerollBuildings();
 
+}
+
+void MainWindow::highlight(Colour colour){
+    m_playerviews[(int) colour]->highlight();
+}
+
+void MainWindow::unHighlight(Colour colour){
+    m_playerviews[(int) colour]->unHighlight();
 }

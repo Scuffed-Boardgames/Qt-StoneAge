@@ -8,6 +8,8 @@ class PlayerView : public QGraphicsScene
 public:
     PlayerView(QColor color, std::shared_ptr<Player> player, QObject* parent = nullptr); // constructor of player
 
+    void highlight();
+    void unHighlight();
 public slots:
     void updateText(); // updates player text
 

@@ -20,6 +20,7 @@ PlayerView::PlayerView(const QColor color, const std::shared_ptr<Player> player,
     for (int i = 0; i < (int)m_recources.size(); ++i) {
         m_recources[i]->moveBy(0, 24*i);
         m_recources[i]->setScale(2);
+        m_recources[i]->setDefaultTextColor(Qt::white);
     }
     connect(player.get(), &Player::dataChanged, this, &PlayerView::updateText);
 }
@@ -34,4 +35,19 @@ void PlayerView::updateText(){
     m_recources[6]->setPlainText("Tools: +" + QString::number(tools[0].getLevel()) + "/+" + QString::number(tools[1].getLevel()) + "/+" + QString::number(tools[2].getLevel()));
     m_recources[7]->setPlainText("Workers: "+ QString::number(m_player->getFreeWorkers()) + "/" + QString::number(m_player->getWorkerCount()));
 
+}
+
+void PlayerView::highlight(){
+    setBackgroundBrush(backgroundBrush().color().lighter(200));
+    for (QGraphicsTextItem* text : m_recources) {
+        text->setDefaultTextColor(Qt::black);
+    }
+}
+
+
+void PlayerView::unHighlight(){
+    setBackgroundBrush(backgroundBrush().color().darker(200));
+    for (QGraphicsTextItem* text : m_recources) {
+        text->setDefaultTextColor(Qt::white);
+    }
 }

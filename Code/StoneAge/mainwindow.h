@@ -18,6 +18,9 @@ public:
     MainWindow(std::shared_ptr<Board> board, QWidget *parent = nullptr);// constructor
     ~MainWindow();
 
+public slots:
+    void highlight(Colour colour);
+    void unHighlight(Colour colour);
 private slots:
     void updateRound();
     void on_quitButton_clicked();

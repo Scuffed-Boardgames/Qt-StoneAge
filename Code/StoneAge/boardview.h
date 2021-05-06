@@ -21,6 +21,10 @@ public slots:
     void updateTurn();
     void placementDone();
 
+signals:
+    void highlight(Colour colour);
+    void unHighlight(Colour colour);
+
 private:
     bool m_placementDone;
     std::unique_ptr<BuildingView> m_buildings[4];

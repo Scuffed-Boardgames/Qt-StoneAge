@@ -16,7 +16,9 @@ void BoardView::newBuild(std::shared_ptr<Building> building, int pos){
 }
 
 void BoardView::updateTurn(){
+    emit unHighlight(m_board->getCurrentPlayer());
     m_board->nextPlayer();
+    emit highlight(m_board->getCurrentPlayer());
 }
 
 void BoardView::placementDone(){
@@ -25,8 +27,10 @@ void BoardView::placementDone(){
 
 void BoardView::updateResources(){
     setSelectable(false);
-    for(int i = 0; i<4; ++i){
+    for(int i = 0; i < 4; ++i){
         m_board->payResources((Colour)i);
+        emit unHighlight((Colour)i);
+        emit highlight((Colour)((i+1)%4));
     }
     m_board->resetWorkers();
     buildBuildings();
@@ -35,8 +39,10 @@ void BoardView::updateResources(){
 }
 
 void BoardView::buildBuildings(){
-    for(int i = 0; i<4; ++i){
+    for(int i = 0; i < 4; ++i){
         m_board->buildBuilding((Colour)i);
+        emit unHighlight((Colour)i);
+        emit highlight((Colour)((i+1)%4));
     }
     setSelectable(true);
     m_placementDone = false;
