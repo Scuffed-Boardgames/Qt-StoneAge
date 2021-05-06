@@ -13,6 +13,20 @@ void CardBonus::setCard(std::shared_ptr<Civilisation> card){
     m_card = card;
 }
 
+QJsonObject CardBonus::save()
+{
+    QJsonObject json = {{"colour", (int)getStandingColour()},
+                        {"farmers", getFarmers()},
+                        {"makers", getMakers()},
+                        {"builders", getBuilders()},
+                        {"shamen", getShamen()},
+                        {"makers", (int)getBonus()},
+                        {"cost", getCost()},
+                        {"card", (int)getCard()}
+                        };
+    return json;
+}
+
 void CardBonus::giveItems(std::shared_ptr<Player> player)
 {
     m_card->giveBonus(player);

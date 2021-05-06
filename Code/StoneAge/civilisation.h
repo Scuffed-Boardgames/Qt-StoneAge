@@ -13,13 +13,22 @@ public:
     void addWorker(std::shared_ptr<Player> player);
 
     void reset();
-    Colour getStandingColour() const;
 
     virtual void giveItems(std::shared_ptr<Player> player) = 0;
     void giveBonus(std::shared_ptr<Player> player);
 
+    Colour getStandingColour() const;
+    int getFarmers() const;
+    int getMakers() const;
+    int getBuilders() const;
+    int getShamen() const;
+    CivBonus getBonus() const;
     int getCost() const;
+    bool getCard() const;
+
     void setCost(int cost);
+
+    virtual QJsonObject save() = 0;
 
 signals:
     void changedWorkers();

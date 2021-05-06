@@ -14,3 +14,19 @@ void SetBonus::giveItems(std::shared_ptr<Player> player)
     player->addResource(m_resource, m_amount);
     giveBonus(player);
 }
+
+QJsonObject SetBonus::save()
+{
+    QJsonObject json = {{"colour", (int)getStandingColour()},
+                        {"farmers", getFarmers()},
+                        {"makers", getMakers()},
+                        {"builders", getBuilders()},
+                        {"shamen", getShamen()},
+                        {"makers", (int)getBonus()},
+                        {"cost", getCost()},
+                        {"card", (int)getCard()},
+                        {"amount", m_amount},
+                        {"resource", (int)m_resource},
+                        };
+    return json;
+}

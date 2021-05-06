@@ -22,3 +22,20 @@ void MiscBonus::giveItems(std::shared_ptr<Player> player)
     }
     giveBonus(player);
 }
+
+QJsonObject MiscBonus::save()
+{
+    QJsonObject json = {{"colour", (int)getStandingColour()},
+                        {"farmers", getFarmers()},
+                        {"makers", getMakers()},
+                        {"builders", getBuilders()},
+                        {"shamen", getShamen()},
+                        {"makers", (int)getBonus()},
+                        {"cost", getCost()},
+                        {"card", (int)getCard()},
+                        {"score", m_score},
+                        {"food", m_food},
+                        {"tool", m_tool}
+                        };
+    return json;
+}

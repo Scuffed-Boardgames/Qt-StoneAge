@@ -37,3 +37,33 @@ void Civilisation::setCost(int cost)
 {
     m_cost = cost;
 }
+
+bool Civilisation::getCard() const
+{
+    return m_card;
+}
+
+int Civilisation::getFarmers() const
+{
+    return m_farmers;
+}
+
+int Civilisation::getMakers() const
+{
+    return m_makers;
+}
+
+int Civilisation::getBuilders() const
+{
+    return m_builders;
+}
+
+int Civilisation::getShamen() const
+{
+    return m_shamen;
+}
+
+CivBonus Civilisation::getBonus() const
+{
+    return m_bonus;
+}
