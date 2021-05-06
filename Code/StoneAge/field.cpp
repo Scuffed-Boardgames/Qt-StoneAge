@@ -7,7 +7,6 @@ void Field::giveResource(std::shared_ptr<Player> player){
     int amount = getWorkers(player->getColour());
     if(amount == 1){
         player->addFoodGain();
-        emit resourcesChanged();
     }
 }
 

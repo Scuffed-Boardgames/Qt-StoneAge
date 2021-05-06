@@ -18,9 +18,6 @@ MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
     QColor green(34, 177, 76);
     m_playerviews.push_back(std::make_shared<PlayerView>(green.darker(200), board->getPlayer(Colour::green)));
 
-    for(int i = 0; i<4 ; ++i){
-        connect(board->getGather(Resource::food).get(), &Place::resourcesChanged, m_playerviews[i].get(), &PlayerView::updateText);
-    }
     connect(m_board.get(), &Board::roundChanged, this, &MainWindow::updateRound);
     connect(m_board.get(), &Board::endGame, this, &MainWindow::gameEnded);
     connect(m_boardview.get(), &BoardView::highlight, this, &MainWindow::highlight);

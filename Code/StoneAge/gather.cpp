@@ -16,7 +16,6 @@ void Gather::giveResource(std::shared_ptr<Player> player){
     roll->exec();
     if (roll->getGain() > 0){
         player->addResource(m_resource, roll->getGain());
-        emit resourcesChanged();
     }
 }
 
