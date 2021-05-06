@@ -51,21 +51,21 @@ signals:
     void endGame();
 
 private:
-    bool m_ended;
-    Colour m_currentPlayer;
-    std::vector<std::shared_ptr<Building>> m_buildingCardStacks[4];
-    std::shared_ptr<Player> m_players[4];
-    std::shared_ptr<Hut> m_hut;
-    std::shared_ptr<Gather> m_forest;
-    std::shared_ptr<Gather> m_clayPit;
-    std::shared_ptr<Gather> m_quarry;
-    std::shared_ptr<Gather> m_river;
-    std::shared_ptr<Gather> m_hunt;
-    std::shared_ptr<ToolShed> m_toolShed;
-    std::shared_ptr<Field> m_field;
-    int m_round;
-    std::shared_ptr<SetBuildingPay> m_setBuildingPay;
-    std::shared_ptr<VarBuildingPay> m_varBuildingPay;
+    bool m_ended; //saved & loaded
+    Colour m_currentPlayer; //saved & loaded
+    std::vector<std::shared_ptr<Building>> m_buildingCardStacks[4]; //saved & loaded
+    std::shared_ptr<Player> m_players[4]; //saved & loaded
+    std::shared_ptr<Hut> m_hut; //saved & loaded
+    std::shared_ptr<Gather> m_forest; //saved & loaded
+    std::shared_ptr<Gather> m_clayPit; //saved & loaded
+    std::shared_ptr<Gather> m_quarry; //saved & loaded
+    std::shared_ptr<Gather> m_river; //saved & loaded
+    std::shared_ptr<Gather> m_hunt; //saved & loaded
+    std::shared_ptr<ToolShed> m_toolShed; //saved & loaded
+    std::shared_ptr<Field> m_field; //saved & loaded
+    int m_round; //saved & loaded
+    std::shared_ptr<SetBuildingPay> m_setBuildingPay; //doesnt need to be saved or loaded
+    std::shared_ptr<VarBuildingPay> m_varBuildingPay; //doesnt need to be saved or loaded
 
 };
 

@@ -232,6 +232,7 @@ std::shared_ptr<Field> Board::getField(){
 
 
 void Board::load(const QJsonObject &json){
+    m_ended = json["ended"].toBool();
     m_round = (int)json["round"].toDouble();
     m_currentPlayer = (Colour)json["activePlayer"].toDouble();
     QJsonArray players = json["players"].toArray();
@@ -283,7 +284,8 @@ QJsonObject Board::save(){
     QJsonObject hunt = m_hunt->save();
     QJsonObject toolShed = m_toolShed->save();
     QJsonObject field = m_field->save();
-    QJsonObject json = {{"round", m_round},
+    QJsonObject json = {{"ended", m_ended},
+                        {"round", m_round},
                         {"activePlayer", (int)m_currentPlayer},
                         {"players", players},
                         {"hut", hut},
