@@ -13,6 +13,7 @@ SOURCES += \
     boardview.cpp \
     building.cpp \
     buildingview.cpp \
+    civilisation.cpp \
     field.cpp \
     gather.cpp \
     hut.cpp \
@@ -38,6 +39,8 @@ HEADERS += \
     boardview.h \
     building.h \
     buildingview.h \
+    civbonuses.h \
+    civilisation.h \
     colour.h \
     field.h \
     gather.h \
