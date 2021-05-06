@@ -57,6 +57,7 @@ void Player::addScore(int amount){
 
 void Player::addFoodGain(){
     m_foodGain += 1;
+    emit dataChanged();
 }
 
 void Player::addBuilding(){

@@ -27,7 +27,6 @@ protected:
 
 signals:
     void changedWorkers();
-    void resourcesChanged();
     void turnHappend();
 };
 
