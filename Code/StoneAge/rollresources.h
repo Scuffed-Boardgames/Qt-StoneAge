@@ -18,7 +18,6 @@ public:
 
     int getGain(); //returns the amount of resources gained
 
-
 private slots:
     void on_pushButton_clicked();
     void on_Tool1Button_clicked();
