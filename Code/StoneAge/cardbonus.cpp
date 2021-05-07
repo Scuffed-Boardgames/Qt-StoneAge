@@ -16,7 +16,7 @@ QJsonObject CardBonus::save()
                         {"makers", getMakers()},
                         {"builders", getBuilders()},
                         {"shamen", getShamen()},
-                        {"makers", (int)getBonus()},
+                        {"bonus", (int)getBonus()},
                         {"cost", getCost()}
                         };
     return json;

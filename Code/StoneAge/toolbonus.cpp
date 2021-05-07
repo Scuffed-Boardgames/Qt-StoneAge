@@ -16,7 +16,7 @@ QJsonObject ToolBonus::save()
                         {"makers", getMakers()},
                         {"builders", getBuilders()},
                         {"shamen", getShamen()},
-                        {"makers", (int)getBonus()},
+                        {"bonus", (int)getBonus()},
                         {"cost", getCost()},
                         {"tool", m_tool}
                         };

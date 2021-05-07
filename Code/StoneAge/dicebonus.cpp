@@ -27,7 +27,7 @@ QJsonObject DiceBonus::save()
                         {"makers", getMakers()},
                         {"builders", getBuilders()},
                         {"shamen", getShamen()},
-                        {"makers", (int)getBonus()},
+                        {"bonus", (int)getBonus()},
                         {"cost", getCost()},
                         {"score", (int)m_resource}
                         };

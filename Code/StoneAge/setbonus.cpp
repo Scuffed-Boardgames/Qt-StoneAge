@@ -22,7 +22,7 @@ QJsonObject SetBonus::save()
                         {"makers", getMakers()},
                         {"builders", getBuilders()},
                         {"shamen", getShamen()},
-                        {"makers", (int)getBonus()},
+                        {"bonus", (int)getBonus()},
                         {"cost", getCost()},
                         {"amount", m_amount},
                         {"resource", (int)m_resource},
