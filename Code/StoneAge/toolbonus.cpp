@@ -26,4 +26,5 @@ QJsonObject ToolBonus::save()
 void ToolBonus::giveItems(std::shared_ptr<Player> player)
 {
     player->addExtraTool(m_tool);
+    giveBonus(player);
 }
