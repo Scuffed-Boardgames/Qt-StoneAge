@@ -24,10 +24,12 @@ SOURCES += \
     miscbonus.cpp \
     otherplaceview.cpp \
     payfood.cpp \
+    pickbonus.cpp \
     place.cpp \
     player.cpp \
     playerview.cpp \
     resourceplaceview.cpp \
+    rollbonus.cpp \
     rollresources.cpp \
     setbonus.cpp \
     setbuilding.cpp \
@@ -56,11 +58,13 @@ HEADERS += \
     miscbonus.h \
     otherplaceview.h \
     payfood.h \
+    pickbonus.h \
     place.h \
     player.h \
     playerview.h \
     resourceplaceview.h \
     resources.h \
+    rollbonus.h \
     rollresources.h \
     setbonus.h \
     setbuilding.h \

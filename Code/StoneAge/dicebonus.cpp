@@ -7,7 +7,7 @@ DiceBonus::DiceBonus(Colour colour, int farmers, int makers, int builders, int s
 
 DiceBonus::DiceBonus(const QJsonObject &json)
     : Civilisation((Colour)(json["colour"].toInt()), json["farmers"].toInt(), json["makers"].toInt(), json["builders"].toInt(), json["shamen"].toInt(),
-      (CivBonus)(json["bonus"].toInt()), json["cost"].toInt()), m_resource((Resource)(json["resource"].toInt()))
+      (CivBonus)(json["bonus"].toInt()), json["cost"].toInt()), m_resource((Resource)(json["diceResource"].toInt()))
 {}
 
 void DiceBonus::giveItems(std::shared_ptr<Player> player)
@@ -29,7 +29,7 @@ QJsonObject DiceBonus::save()
                         {"shamen", getShamen()},
                         {"bonus", (int)getBonus()},
                         {"cost", getCost()},
-                        {"score", (int)m_resource}
+                        {"diceResource", (int)m_resource}
                         };
     return json;
 }
