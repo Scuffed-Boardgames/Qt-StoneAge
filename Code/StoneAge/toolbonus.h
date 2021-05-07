@@ -7,7 +7,7 @@ class ToolBonus : public Civilisation
 {
     Q_OBJECT
 public:
-    ToolBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, bool card, int tool);
+    ToolBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, int tool);
     ToolBonus(const QJsonObject &json);
     QJsonObject save();
 

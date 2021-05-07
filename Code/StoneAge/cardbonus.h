@@ -7,7 +7,7 @@ class CardBonus : public Civilisation
 {
     Q_OBJECT
 public:
-    CardBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, bool card);
+    CardBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost);
     CardBonus(const QJsonObject &json);
     QJsonObject save();
 
