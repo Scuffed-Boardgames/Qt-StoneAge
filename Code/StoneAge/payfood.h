@@ -14,6 +14,8 @@ public:
     PayFood(std::shared_ptr<Player> player, int amount);
     ~PayFood();
 
+public slots:
+    void editText();
 private slots:
     void on_acceptButton_clicked();
     void on_scoreButton_clicked();
