@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "resourceplaceview.h"
+#include "toolshed.h"
 #include "buildingview.h"
 #include "gather.h"
 

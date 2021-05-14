@@ -49,6 +49,9 @@ public:
     int calcScore();
     int calcTieBreak();
 
+    int getLowestToolLevel();
+    int getBuildingCount() const;
+
 signals:
     void dataChanged();
 

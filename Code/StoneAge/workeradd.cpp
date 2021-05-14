@@ -17,7 +17,11 @@ void WorkerAdd::addToPlace(std::shared_ptr<Place> place, std::shared_ptr<Player>
         int freeSpace = gather->getMaxWorkers() - m_place->totalWorkers();
         int placable = std::min(freeSpace, m_player->getFreeWorkers());
         ui->amount->setMaximum(placable);
-        ui->okayButton->setDisabled(placable == 0);
+        ui->okayButton->setDisabled(placable == 0);  
+    }
+    std::shared_ptr<ToolShed> toolShed = std::dynamic_pointer_cast<ToolShed>(m_place);
+    if(toolShed){
+        ui->okayButton->setDisabled(toolShed->getTools34() == 0 && player->getLowestToolLevel() == 2);
     }
 }
 
