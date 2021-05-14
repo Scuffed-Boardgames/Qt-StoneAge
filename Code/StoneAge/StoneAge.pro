@@ -23,6 +23,7 @@ SOURCES += \
     mainwindow.cpp \
     miscbonus.cpp \
     otherplaceview.cpp \
+    payciv.cpp \
     payfood.cpp \
     pickbonus.cpp \
     place.cpp \
@@ -57,6 +58,7 @@ HEADERS += \
     mainwindow.h \
     miscbonus.h \
     otherplaceview.h \
+    payciv.h \
     payfood.h \
     pickbonus.h \
     place.h \
@@ -78,6 +80,7 @@ HEADERS += \
 
 FORMS += \
     mainwindow.ui \
+    payciv.ui \
     payfood.ui \
     rollresources.ui \
     setbuildingpay.ui \
