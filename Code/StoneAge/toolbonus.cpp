@@ -18,7 +18,7 @@ QJsonObject ToolBonus::save()
                         {"shamen", getShamen()},
                         {"bonus", (int)getBonus()},
                         {"cost", getCost()},
-                        {"tool", m_tool}
+                        {"tools", m_tool}
                         };
     return json;
 }
