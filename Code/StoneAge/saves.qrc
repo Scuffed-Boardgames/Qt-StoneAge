@@ -3,5 +3,6 @@
     <qresource prefix="/files">
         <file>files/cleanSave.json</file>
         <file>files/buildings.json</file>
+        <file>files/civilisation.json</file>
     </qresource>
 </RCC>

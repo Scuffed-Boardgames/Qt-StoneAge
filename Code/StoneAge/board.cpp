@@ -39,36 +39,36 @@ Board::Board() : m_ended{false}, m_currentPlayer{Colour::red}, m_hut(std::make_s
 
     QFile file2(":/files/files/civilisation.json");
     file2.open(QIODevice::ReadOnly | QIODevice::Text);
-    data = file2.readAll();
+    QByteArray data2 = file2.readAll();
     file2.close();
-    document = QJsonDocument::fromJson(data);
-    jsonObject = document.object();
-    QJsonArray jsonCivs = jsonObject["setBonus"].toArray();
+    QJsonDocument document2 = QJsonDocument::fromJson(data2);
+    QJsonObject jsonObject2 = document2.object();
+    QJsonArray jsonCivs = jsonObject2["setBonus"].toArray();
     std::vector<std::shared_ptr<Civilisation>> civCards;
     for(int i = 0; i < jsonCivs.size(); ++i){
         civCards.push_back(std::make_shared<SetBonus>(jsonCivs[i].toObject()));
     }
-    jsonCivs = jsonObject["miscBonus"].toArray();
+    jsonCivs = jsonObject2["miscBonus"].toArray();
     for(int i = 0; i < jsonCivs.size(); ++i){
         civCards.push_back(std::make_shared<MiscBonus>(jsonCivs[i].toObject()));
     }
-    jsonCivs = jsonObject["cardBonus"].toArray();
+    jsonCivs = jsonObject2["cardBonus"].toArray();
     for(int i = 0; i < jsonCivs.size(); ++i){
         civCards.push_back(std::make_shared<CardBonus>(jsonCivs[i].toObject()));
     }
-    jsonCivs = jsonObject["diceBonus"].toArray();
+    jsonCivs = jsonObject2["diceBonus"].toArray();
     for(int i = 0; i < jsonCivs.size(); ++i){
         civCards.push_back(std::make_shared<DiceBonus>(jsonCivs[i].toObject()));
     }
-    jsonCivs = jsonObject["pickBonus"].toArray();
+    jsonCivs = jsonObject2["pickBonus"].toArray();
     for(int i = 0; i < jsonCivs.size(); ++i){
         civCards.push_back(std::make_shared<PickBonus>(jsonCivs[i].toObject()));
     }
-    jsonCivs = jsonObject["rollBonus"].toArray();
+    jsonCivs = jsonObject2["rollBonus"].toArray();
     for(int i = 0; i < jsonCivs.size(); ++i){
         civCards.push_back(std::make_shared<RollBonus>(jsonCivs[i].toObject()));
     }
-    jsonCivs = jsonObject["toolBonus"].toArray();
+    jsonCivs = jsonObject2["toolBonus"].toArray();
     for(int i = 0; i < jsonCivs.size(); ++i){
         civCards.push_back(std::make_shared<ToolBonus>(jsonCivs[i].toObject()));
     }
