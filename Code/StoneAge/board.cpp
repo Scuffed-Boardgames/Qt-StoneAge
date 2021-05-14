@@ -35,7 +35,51 @@ Board::Board() : m_ended{false}, m_currentPlayer{Colour::red}, m_hut(std::make_s
         m_buildingCardStacks[i].push_back(buildingCards[place]);
         buildingCards.erase(buildingCards.begin() + place);
         i = (++i) % 4;
+    }
 
+    QFile file2(":/files/files/civilisation.json");
+    file2.open(QIODevice::ReadOnly | QIODevice::Text);
+    QByteArray data2 = file2.readAll();
+    file2.close();
+    QJsonDocument document2 = QJsonDocument::fromJson(data2);
+    QJsonObject jsonObject2 = document2.object();
+    QJsonArray jsonCivs = jsonObject2["setBonus"].toArray();
+    std::vector<std::shared_ptr<Civilisation>> civCards;
+    for(int i = 0; i < jsonCivs.size(); ++i){
+        civCards.push_back(std::make_shared<SetBonus>(jsonCivs[i].toObject()));
+    }
+    jsonCivs = jsonObject2["miscBonus"].toArray();
+    for(int i = 0; i < jsonCivs.size(); ++i){
+        civCards.push_back(std::make_shared<MiscBonus>(jsonCivs[i].toObject()));
+    }
+    jsonCivs = jsonObject2["cardBonus"].toArray();
+    for(int i = 0; i < jsonCivs.size(); ++i){
+        civCards.push_back(std::make_shared<CardBonus>(jsonCivs[i].toObject()));
+    }
+    jsonCivs = jsonObject2["diceBonus"].toArray();
+    for(int i = 0; i < jsonCivs.size(); ++i){
+        civCards.push_back(std::make_shared<DiceBonus>(jsonCivs[i].toObject()));
+    }
+    jsonCivs = jsonObject2["pickBonus"].toArray();
+    for(int i = 0; i < jsonCivs.size(); ++i){
+        civCards.push_back(std::make_shared<PickBonus>(jsonCivs[i].toObject()));
+    }
+    jsonCivs = jsonObject2["rollBonus"].toArray();
+    for(int i = 0; i < jsonCivs.size(); ++i){
+        civCards.push_back(std::make_shared<RollBonus>(jsonCivs[i].toObject()));
+    }
+    jsonCivs = jsonObject2["toolBonus"].toArray();
+    for(int i = 0; i < jsonCivs.size(); ++i){
+        civCards.push_back(std::make_shared<ToolBonus>(jsonCivs[i].toObject()));
+    }
+    while(civCards.size() > 0){
+        int place = rand() % civCards.size();
+        m_civilisationCards.push_back(civCards[place]);
+        civCards.erase(civCards.begin() + place);
+    }
+    for(int i = 0; i < 4; ++i){
+        m_openCivilisationCards.push_back(m_civilisationCards[i]);
+        m_civilisationCards.erase(m_civilisationCards.begin() + i);
     }
 }
 
@@ -123,6 +167,12 @@ void Board::buildBuilding(Colour colour){
         }
     }
 
+}
+
+void Board::updateOpenCivCards()
+{
+    for(size_t i = 0; i < m_openCivilisationCards.size(); ++i)
+        m_openCivilisationCards[i]->setCost(i+1);
 }
 
 
@@ -268,6 +318,43 @@ void Board::load(const QJsonObject &json){
         }
         emit newBuild(m_buildingCardStacks[i].back(), i);
     }
+
+    QJsonArray civCards = json["civs"].toArray();
+    for(int i = 0; i < civCards.size(); ++i){
+        if(civCards[i].toObject().contains("resource")){
+            m_civilisationCards.push_back(std::make_shared<SetBonus>(civCards[i].toObject()));
+        }else if(civCards[i].toObject().contains("score")){
+            m_civilisationCards.push_back(std::make_shared<MiscBonus>(civCards[i].toObject()));
+        }else if(civCards[i].toObject().contains("tools")){
+            m_civilisationCards.push_back(std::make_shared<ToolBonus>(civCards[i].toObject()));
+        }else if(civCards[i].toObject().contains("diceResource")){
+            m_civilisationCards.push_back(std::make_shared<DiceBonus>(civCards[i].toObject()));
+        }else if(civCards[i].toObject().contains("hasCard")){
+            m_civilisationCards.push_back(std::make_shared<CardBonus>(civCards[i].toObject()));
+        }else if(civCards[i].toObject().contains("choice")){
+            m_civilisationCards.push_back(std::make_shared<PickBonus>(civCards[i].toObject()));
+        }else if(civCards[i].toObject().contains("die1")){
+            m_civilisationCards.push_back(std::make_shared<RollBonus>(civCards[i].toObject()));
+        }
+    }
+    QJsonArray openCivCards = json["openCivs"].toArray();
+    for(int i = 0; i < openCivCards.size(); ++i){
+        if(openCivCards[i].toObject().contains("resource")){
+            m_openCivilisationCards.push_back(std::make_shared<SetBonus>(openCivCards[i].toObject()));
+        }else if(openCivCards[i].toObject().contains("score")){
+            m_openCivilisationCards.push_back(std::make_shared<MiscBonus>(openCivCards[i].toObject()));
+        }else if(openCivCards[i].toObject().contains("tools")){
+            m_openCivilisationCards.push_back(std::make_shared<ToolBonus>(openCivCards[i].toObject()));
+        }else if(openCivCards[i].toObject().contains("diceResource")){
+            m_openCivilisationCards.push_back(std::make_shared<DiceBonus>(openCivCards[i].toObject()));
+        }else if(openCivCards[i].toObject().contains("hasCard")){
+            m_openCivilisationCards.push_back(std::make_shared<CardBonus>(openCivCards[i].toObject()));
+        }else if(openCivCards[i].toObject().contains("choice")){
+            m_openCivilisationCards.push_back(std::make_shared<PickBonus>(openCivCards[i].toObject()));
+        }else if(openCivCards[i].toObject().contains("die1")){
+            m_openCivilisationCards.push_back(std::make_shared<RollBonus>(openCivCards[i].toObject()));
+        }
+    }
     m_hut->load(json["hut"].toObject());
     m_forest->load(json["forest"].toObject());
     m_clayPit->load(json["clayPit"].toObject());
@@ -291,7 +378,14 @@ QJsonObject Board::save(){
         }
         buildingsStacks.append(buildings);
     }
-
+    QJsonArray civCards;
+    for(int i = 0; i < (int)m_civilisationCards.size(); ++i){
+        civCards.append(m_civilisationCards[i]->save());
+    }
+    QJsonArray openCivCards;
+    for(int i = 0; i < (int)m_openCivilisationCards.size(); ++i){
+        openCivCards.append(m_openCivilisationCards[i]->save());
+    }
     QJsonObject hut = m_hut->save();
     QJsonObject forest = m_forest->save();
     QJsonObject clayPit = m_clayPit->save();
@@ -312,7 +406,9 @@ QJsonObject Board::save(){
                         {"hunt", hunt},
                         {"toolShed", toolShed},
                         {"field", field},
-                        {"buildings", buildingsStacks}};
+                        {"buildings", buildingsStacks},
+                        {"civs", civCards},
+                        {"openCivs", openCivCards}};
     return json;
 }
 

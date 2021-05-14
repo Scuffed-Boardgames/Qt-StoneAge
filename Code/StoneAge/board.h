@@ -10,6 +10,13 @@
 #include "setbuildingpay.h"
 #include "setbuilding.h"
 #include "varbuilding.h"
+#include "cardbonus.h"
+#include "dicebonus.h"
+#include "miscbonus.h"
+#include "pickbonus.h"
+#include "rollbonus.h"
+#include "setbonus.h"
+#include "toolbonus.h"
 #include <memory>
 
 class Board : public QObject
@@ -25,6 +32,8 @@ public:
     void newBuilding(int place);
     void rerollBuildings();
     void buildBuilding(Colour colour);
+
+    void updateOpenCivCards();
 
     void nextPlayer(int checked = 0);
     void payResources(Colour colour);
@@ -56,6 +65,8 @@ private:
     bool m_ended; //saved & loaded
     Colour m_currentPlayer; //saved & loaded
     std::vector<std::shared_ptr<Building>> m_buildingCardStacks[4]; //saved & loaded
+    std::vector<std::shared_ptr<Civilisation>> m_civilisationCards; //saved & loaded
+    std::vector<std::shared_ptr<Civilisation>> m_openCivilisationCards; //saved & loaded
     std::shared_ptr<Player> m_players[4]; //saved & loaded
     std::shared_ptr<Hut> m_hut; //saved & loaded
     std::shared_ptr<Gather> m_forest; //saved & loaded
