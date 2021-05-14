@@ -6,7 +6,11 @@ Player::Player(): m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount
 
 Player::Player(Colour colour) : m_foodCount(12),  m_woodCount(0), m_clayCount(0), m_stoneCount(0), m_goldCount(0), m_buildingCount(0),
     m_scoreCount(0), m_foodGain(0), m_colour(colour), m_freeWorkers(5), m_workers(5), m_farmerCount(0), m_toolMakerCount(0), m_hutBuilderCount(0), m_shamanCount(0)
-{}
+{
+    for(int i = 0; i < 8 ; ++i){
+        m_civBonuses[i] = 0;
+    }
+}
 
 
 void Player::addResource(const Resource resource, const int amount){
@@ -87,6 +91,11 @@ int Player::getLowestToolLevel(){
 int Player::getBuildingCount() const
 {
     return m_buildingCount;
+}
+
+std::vector<int> Player::getExtraTools() const
+{
+    return m_extraTools;
 }
 
 int Player::getResource(const Resource resource){
@@ -174,8 +183,9 @@ void Player::load(const QJsonObject &json){
         m_tools[i] = Tool(tool);
     }
     QJsonArray extraTools = json["extraTools"].toArray();
+     m_extraTools.clear();
     for (int i = 0; i < extraTools.size(); ++i) {
-        m_extraTools[i] = extraTools[i].toInt();
+        m_extraTools.push_back(extraTools[i].toInt());
     }
 
     QJsonArray civBonuses = json["civBonuses"].toArray();
@@ -243,11 +253,11 @@ bool Player::maxToolsReached()
     return false;
 }
 
-void Player::deleteExtraTool(int tool)
-{
+void Player::deleteExtraTool(int tool){
     for(size_t i = 0; i < m_extraTools.size(); ++i){
         if(tool == m_extraTools[i]){
             m_extraTools.erase(m_extraTools.begin() + i);
+            return;
         }
     }
 }

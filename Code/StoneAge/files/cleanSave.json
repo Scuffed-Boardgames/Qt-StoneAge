@@ -3,10 +3,90 @@
     "buildings": [
         [
             {
+                "clayCost": 1,
+                "colour": -1,
+                "goldCost": 0,
+                "scoreGain": 12,
+                "stoneCost": 1,
+                "woodCost": 1
+            },
+            {
                 "colour": -1,
                 "diffMaterials": 3,
                 "maxCost": 5,
                 "minCost": 5
+            },
+            {
+                "clayCost": 1,
+                "colour": -1,
+                "goldCost": 1,
+                "scoreGain": 13,
+                "stoneCost": 0,
+                "woodCost": 1
+            },
+            {
+                "colour": -1,
+                "diffMaterials": 1,
+                "maxCost": 5,
+                "minCost": 5
+            },
+            {
+                "colour": -1,
+                "diffMaterials": 1,
+                "maxCost": 4,
+                "minCost": 4
+            },
+            {
+                "clayCost": 0,
+                "colour": -1,
+                "goldCost": 1,
+                "scoreGain": 14,
+                "stoneCost": 1,
+                "woodCost": 1
+            },
+            {
+                "clayCost": 2,
+                "colour": -1,
+                "goldCost": 0,
+                "scoreGain": 11,
+                "stoneCost": 0,
+                "woodCost": 1
+            }
+        ],
+        [
+            {
+                "clayCost": 0,
+                "colour": -1,
+                "goldCost": 1,
+                "scoreGain": 16,
+                "stoneCost": 2,
+                "woodCost": 0
+            },
+            {
+                "colour": -1,
+                "diffMaterials": 0,
+                "maxCost": 7,
+                "minCost": 1
+            },
+            {
+                "colour": -1,
+                "diffMaterials": 2,
+                "maxCost": 4,
+                "minCost": 4
+            },
+            {
+                "clayCost": 1,
+                "colour": -1,
+                "goldCost": 1,
+                "scoreGain": 15,
+                "stoneCost": 1,
+                "woodCost": 0
+            },
+            {
+                "colour": -1,
+                "diffMaterials": 0,
+                "maxCost": 7,
+                "minCost": 1
             },
             {
                 "clayCost": 0,
@@ -18,7 +98,23 @@
             },
             {
                 "colour": -1,
-                "diffMaterials": 4,
+                "diffMaterials": 2,
+                "maxCost": 5,
+                "minCost": 5
+            }
+        ],
+        [
+            {
+                "clayCost": 1,
+                "colour": -1,
+                "goldCost": 1,
+                "scoreGain": 13,
+                "stoneCost": 0,
+                "woodCost": 1
+            },
+            {
+                "colour": -1,
+                "diffMaterials": 3,
                 "maxCost": 4,
                 "minCost": 4
             },
@@ -32,43 +128,9 @@
             },
             {
                 "colour": -1,
-                "diffMaterials": 1,
-                "maxCost": 5,
-                "minCost": 5
-            },
-            {
-                "clayCost": 1,
-                "colour": -1,
-                "goldCost": 1,
-                "scoreGain": 13,
-                "stoneCost": 0,
-                "woodCost": 1
-            },
-            {
-                "colour": -1,
-                "diffMaterials": 1,
+                "diffMaterials": 4,
                 "maxCost": 4,
                 "minCost": 4
-            }
-        ],
-        [
-            {
-                "colour": -1,
-                "diffMaterials": 2,
-                "maxCost": 5,
-                "minCost": 5
-            },
-            {
-                "colour": -1,
-                "diffMaterials": 4,
-                "maxCost": 5,
-                "minCost": 5
-            },
-            {
-                "colour": -1,
-                "diffMaterials": 0,
-                "maxCost": 7,
-                "minCost": 1
             },
             {
                 "clayCost": 1,
@@ -79,18 +141,42 @@
                 "woodCost": 0
             },
             {
+                "clayCost": 2,
+                "colour": -1,
+                "goldCost": 0,
+                "scoreGain": 13,
+                "stoneCost": 1,
+                "woodCost": 0
+            },
+            {
                 "colour": -1,
                 "diffMaterials": 0,
                 "maxCost": 7,
                 "minCost": 1
+            }
+        ],
+        [
+            {
+                "colour": -1,
+                "diffMaterials": 4,
+                "maxCost": 5,
+                "minCost": 5
             },
             {
-                "clayCost": 1,
+                "clayCost": 0,
                 "colour": -1,
                 "goldCost": 1,
-                "scoreGain": 13,
-                "stoneCost": 0,
+                "scoreGain": 14,
+                "stoneCost": 1,
                 "woodCost": 1
+            },
+            {
+                "clayCost": 0,
+                "colour": -1,
+                "goldCost": 0,
+                "scoreGain": 11,
+                "stoneCost": 1,
+                "woodCost": 2
             },
             {
                 "clayCost": 2,
@@ -99,9 +185,15 @@
                 "scoreGain": 14,
                 "stoneCost": 0,
                 "woodCost": 0
-            }
-        ],
-        [
+            },
+            {
+                "clayCost": 0,
+                "colour": -1,
+                "goldCost": 1,
+                "scoreGain": 12,
+                "stoneCost": 0,
+                "woodCost": 2
+            },
             {
                 "clayCost": 1,
                 "colour": -1,
@@ -111,103 +203,11 @@
                 "woodCost": 2
             },
             {
-                "clayCost": 0,
-                "colour": -1,
-                "goldCost": 0,
-                "scoreGain": 11,
-                "stoneCost": 1,
-                "woodCost": 2
-            },
-            {
-                "clayCost": 0,
-                "colour": -1,
-                "goldCost": 1,
-                "scoreGain": 12,
-                "stoneCost": 0,
-                "woodCost": 2
-            },
-            {
-                "clayCost": 2,
-                "colour": -1,
-                "goldCost": 0,
-                "scoreGain": 11,
-                "stoneCost": 0,
-                "woodCost": 1
-            },
-            {
-                "clayCost": 0,
-                "colour": -1,
-                "goldCost": 1,
-                "scoreGain": 14,
-                "stoneCost": 1,
-                "woodCost": 1
-            },
-            {
-                "clayCost": 2,
-                "colour": -1,
-                "goldCost": 0,
-                "scoreGain": 13,
-                "stoneCost": 1,
-                "woodCost": 0
-            },
-            {
                 "clayCost": 1,
                 "colour": -1,
                 "goldCost": 1,
                 "scoreGain": 15,
                 "stoneCost": 1,
-                "woodCost": 0
-            }
-        ],
-        [
-            {
-                "clayCost": 1,
-                "colour": -1,
-                "goldCost": 0,
-                "scoreGain": 12,
-                "stoneCost": 1,
-                "woodCost": 1
-            },
-            {
-                "colour": -1,
-                "diffMaterials": 0,
-                "maxCost": 7,
-                "minCost": 1
-            },
-            {
-                "colour": -1,
-                "diffMaterials": 3,
-                "maxCost": 4,
-                "minCost": 4
-            },
-            {
-                "colour": -1,
-                "diffMaterials": 2,
-                "maxCost": 4,
-                "minCost": 4
-            },
-            {
-                "clayCost": 1,
-                "colour": -1,
-                "goldCost": 1,
-                "scoreGain": 15,
-                "stoneCost": 1,
-                "woodCost": 0
-            },
-            {
-                "clayCost": 0,
-                "colour": -1,
-                "goldCost": 1,
-                "scoreGain": 14,
-                "stoneCost": 1,
-                "woodCost": 1
-            },
-            {
-                "clayCost": 0,
-                "colour": -1,
-                "goldCost": 1,
-                "scoreGain": 16,
-                "stoneCost": 2,
                 "woodCost": 0
             }
         ]
@@ -247,14 +247,14 @@
         {
             "buildings": 0,
             "civBonuses": [
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             ],
             "clay": 0,
             "colour": 0,
@@ -290,14 +290,14 @@
         {
             "buildings": 0,
             "civBonuses": [
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             ],
             "clay": 0,
             "colour": 1,
@@ -333,14 +333,14 @@
         {
             "buildings": 0,
             "civBonuses": [
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             ],
             "clay": 0,
             "colour": 2,
@@ -376,14 +376,14 @@
         {
             "buildings": 0,
             "civBonuses": [
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451,
-                -842150451
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             ],
             "clay": 0,
             "colour": 3,

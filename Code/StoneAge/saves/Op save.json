@@ -244,8 +244,24 @@
     },
     "players": [
         {
+		   "buildings": 0,
+            "civBonuses": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
             "clay": 100,
             "colour": 0,
+			"extraTools": [
+				4,
+				4,
+				4
+            ],
             "food": 100,
             "foodGain": 100,
             "gold": 100,
@@ -270,8 +286,24 @@
             "workerTotal": 5
         },
         {
+			"buildings": 0,
+            "civBonuses": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
             "clay": 100,
             "colour": 1,
+			"extraTools": [
+				4,
+				4,
+				4
+            ],
             "food": 100,
             "foodGain": 100,
             "gold": 100,
@@ -296,8 +328,24 @@
             "workerTotal": 5
         },
         {
+			"buildings": 0,
+            "civBonuses": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
             "clay": 100,
             "colour": 2,
+			"extraTools": [
+				4,
+				4,
+				4
+            ],
             "food": 100,
             "foodGain": 100,
             "gold": 100,
@@ -322,8 +370,24 @@
             "workerTotal": 5
         },
         {
+			"buildings": 0,
+            "civBonuses": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
             "clay": 100,
             "colour": 3,
+			"extraTools": [
+				4,
+				4,
+				4
+            ],
             "food": 100,
             "foodGain": 100,
             "gold": 100,

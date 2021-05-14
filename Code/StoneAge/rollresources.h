@@ -18,11 +18,18 @@ public:
 
     int getGain(); //returns the amount of resources gained
 
+    void tempTools(std::vector<int> tools);
 private slots:
     void on_pushButton_clicked();
     void on_Tool1Button_clicked();
     void on_Tool2Button_clicked();
     void on_Tool3Button_clicked();
+
+    void on_tempTool3Button_clicked();
+
+    void on_tempTool2Button_clicked();
+
+    void on_tempTool1Button_clicked();
 
 private:
     const QString resourceToString(Resource resource);
