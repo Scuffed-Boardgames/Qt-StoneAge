@@ -215,7 +215,7 @@
 			"shamen": 0,
 			"bonus": -1,
 			"cost": 0,
-			"tool": 4
+			"tools": 4
         },
 		{
 			"colour": -1,
@@ -225,7 +225,7 @@
 			"shamen": 0,
 			"bonus": -1,
 			"cost": 0,
-			"tool": 3
+			"tools": 3
         },
         {
 			"colour": -1,
@@ -235,7 +235,7 @@
 			"shamen": 0,
 			"bonus": -1,
 			"cost": 0,
-			"tool": 2
+			"tools": 2
         }
 	],
 	"diceBonus": [
