@@ -74,6 +74,21 @@ Tool *Player::getTools(){
     return m_tools;
 }
 
+int Player::getLowestToolLevel(){
+    int lowestLevel = 5;
+    for(int i = 0; i < 3; ++i){
+        if(m_tools[i].getLevel() < lowestLevel)
+            lowestLevel = m_tools[i].getLevel();
+    }
+    return lowestLevel;
+
+}
+
+int Player::getBuildingCount() const
+{
+    return m_buildingCount;
+}
+
 int Player::getResource(const Resource resource){
     switch (resource){
     case(Resource::food):

@@ -10,8 +10,8 @@ BoardView::BoardView()
 }
 
 void BoardView::newBuild(std::shared_ptr<Building> building, int pos){
+    m_buildings[pos]->updateBuilding(building);
     if(building){
-        m_buildings[pos]->updateBuilding(building);
         connect(m_board->getOpenBuildingCard(pos).get(), &Building::changedWorkers,  m_buildings[pos].get(), &BuildingView::updateText);
         connect(m_board->getOpenBuildingCard(pos).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
     }

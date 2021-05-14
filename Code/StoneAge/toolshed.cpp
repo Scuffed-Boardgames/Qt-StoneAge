@@ -1,6 +1,6 @@
 #include "toolshed.h"
 
-ToolShed::ToolShed() : Place()
+ToolShed::ToolShed() : Place(), m_tools34(6)
 {
 
 }
@@ -8,6 +8,15 @@ ToolShed::ToolShed() : Place()
 
 void ToolShed::giveResource(std::shared_ptr<Player> player){
     int amount = getWorkers(player->getColour());
+
+    if(player->getLowestToolLevel() == 2 ){
+        if(m_tools34 <= 0){
+            return;
+        }else {
+            --m_tools34;
+        }
+    }
+
     if(amount == 1){
         player->addTool();
     }
@@ -40,4 +49,9 @@ void ToolShed::addWorker(std::shared_ptr<Player> player, int amount){
     }
     emit changedWorkers();
     emit turnHappend();
+}
+
+int ToolShed::getTools34() const
+{
+    return m_tools34;
 }

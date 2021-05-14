@@ -17,6 +17,7 @@ PlayerView::PlayerView(const QColor color, const std::shared_ptr<Player> player,
     m_recources.push_back(addText("Food made: " + QString::number(m_player->getFoodGain())));
     m_recources.push_back(addText("Tools: +" + QString::number(tools[0].getLevel()) + "/+" + QString::number(tools[1].getLevel()) + "/+" + QString::number(tools[2].getLevel())));
     m_recources.push_back(addText("Workers: "+ QString::number(m_player->getFreeWorkers()) + "/" + QString::number(m_player->getWorkerCount())));
+    m_recources.push_back(addText("Buildings: "+ QString::number(m_player->getBuildingCount())));
     for (int i = 0; i < (int)m_recources.size(); ++i) {
         m_recources[i]->moveBy(0, 24*i);
         m_recources[i]->setScale(2);
@@ -34,6 +35,7 @@ void PlayerView::updateText(){
     m_recources[5]->setPlainText("Food made: " + QString::number(m_player->getFoodGain()));
     m_recources[6]->setPlainText("Tools: +" + QString::number(tools[0].getLevel()) + "/+" + QString::number(tools[1].getLevel()) + "/+" + QString::number(tools[2].getLevel()));
     m_recources[7]->setPlainText("Workers: "+ QString::number(m_player->getFreeWorkers()) + "/" + QString::number(m_player->getWorkerCount()));
+    m_recources[8]->setPlainText("Buildings: "+ QString::number(m_player->getBuildingCount()));
 
 }
 int PlayerView::showScore(){
@@ -61,7 +63,7 @@ int PlayerView::showTieBreak(){
 }
 void PlayerView::unEnd(){
 
-    while (m_recources.size() > 8){
+    while (m_recources.size() > 9){
         removeItem(m_recources.back());
         m_recources.pop_back();
     }
