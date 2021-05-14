@@ -44,6 +44,7 @@ void PayCiv::on_acceptButton_clicked(){
         return;
     }
     removeResources();
+    m_civ->giveItems(m_player);
     m_player = nullptr;
     m_hasPayed = true;
     this->close();
