@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <algorithm>
 #include "payfood.h"
 
 Board::Board() : m_ended{false}, m_currentPlayer{Colour::red}, m_hut(std::make_shared<Hut>()), m_forest{std::make_shared<Gather>(Resource::wood)},
@@ -167,6 +168,19 @@ void Board::buildBuilding(Colour colour){
         }
     }
 
+}
+
+void Board::newOpenCivCards()
+{
+    for(int i = 0; i < 4; ++i){
+        m_civilisationCards.push_back(m_openCivilisationCards[i]);
+        m_openCivilisationCards.erase(m_openCivilisationCards.begin() + i);
+    }
+    std::random_shuffle(m_civilisationCards.begin(), m_civilisationCards.end());
+    for(int i = 0; i < 4; ++i){
+        m_openCivilisationCards.push_back(m_civilisationCards[i]);
+        m_civilisationCards.erase(m_civilisationCards.begin() + i);
+    }
 }
 
 void Board::updateOpenCivCards()
@@ -337,6 +351,7 @@ void Board::load(const QJsonObject &json){
             m_civilisationCards.push_back(std::make_shared<RollBonus>(civCards[i].toObject()));
         }
     }
+    std::random_shuffle(m_civilisationCards.begin(), m_civilisationCards.end());
     QJsonArray openCivCards = json["openCivs"].toArray();
     for(int i = 0; i < openCivCards.size(); ++i){
         if(openCivCards[i].toObject().contains("resource")){

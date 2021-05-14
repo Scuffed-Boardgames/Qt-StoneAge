@@ -33,6 +33,7 @@ public:
     void rerollBuildings();
     void buildBuilding(Colour colour);
 
+    void newOpenCivCards();
     void updateOpenCivCards();
 
     void nextPlayer(int checked = 0);
