@@ -113,6 +113,7 @@ void BuildingView::updateBuilding(std::shared_ptr<Building> building){
     m_building = building;
     QString topText = "Score: ";
     std::shared_ptr<SetBuilding> setBuilding = std::dynamic_pointer_cast<SetBuilding>(building);
+    std::shared_ptr<VarBuilding> varBuilding = std::dynamic_pointer_cast<VarBuilding>(building);
     QGraphicsRectItem* costs[3] = {m_cost1, m_cost2, m_cost3};
     if(setBuilding){
         int pos = 0;
@@ -134,8 +135,9 @@ void BuildingView::updateBuilding(std::shared_ptr<Building> building){
             costs[pos]->setBrush(QColor(255,215,0));
             ++pos;
         }
-    } else{
-        std::shared_ptr<VarBuilding> varBuilding = std::dynamic_pointer_cast<VarBuilding>(building);
+        m_text->setPlainText(topText);
+        updateText();
+    } else if(varBuilding){
         int min = varBuilding->getTotalMin();
         int max = varBuilding->getTotalMax();
         topText += "?";
@@ -148,9 +150,18 @@ void BuildingView::updateBuilding(std::shared_ptr<Building> building){
             m_minMax->setPos(-90, -2);
             m_minMax->setText(QString::number(min) + "-" + QString::number(max));
         }
+        m_text->setPlainText(topText);
+        updateText();
+    } else {
+        QGraphicsRectItem* costs[3] = {m_cost1, m_cost2, m_cost3};
+        for(int i = 0; i < 3; ++i){
+            costs[i]->setVisible(false);
+        }
+        m_holder->setVisible(false);
+        m_minMax->setVisible(false);
+        m_indicator->setVisible(false);
+        m_text->setVisible(false);
     }
-    m_text->setPlainText(topText);
-    updateText();
 }
 
 
@@ -161,5 +172,6 @@ void BuildingView::setOrVar(bool isSet){
     }
     m_holder->setVisible(!isSet);
     m_minMax->setVisible(!isSet);
+
 
 }

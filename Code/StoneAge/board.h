@@ -43,6 +43,8 @@ public:
 
     bool getEnded() const;
 
+    bool checkStacks();
+    void end();
 signals:
     void newBuild(std::shared_ptr<Building> building, int pos);
     void allWorkersPlaced();

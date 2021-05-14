@@ -10,9 +10,11 @@ BoardView::BoardView()
 }
 
 void BoardView::newBuild(std::shared_ptr<Building> building, int pos){
-    m_buildings[pos]->updateBuilding(building);
-    connect(m_board->getOpenBuildingCard(pos).get(), &Building::changedWorkers,  m_buildings[pos].get(), &BuildingView::updateText);
-    connect(m_board->getOpenBuildingCard(pos).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
+    if(building){
+        m_buildings[pos]->updateBuilding(building);
+        connect(m_board->getOpenBuildingCard(pos).get(), &Building::changedWorkers,  m_buildings[pos].get(), &BuildingView::updateText);
+        connect(m_board->getOpenBuildingCard(pos).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
+    }
 }
 
 void BoardView::updateTurn(){
@@ -48,6 +50,9 @@ void BoardView::buildBuildings(){
     }
     emit unHighlight(m_board->getCurrentPlayer());
     emit highlight((Colour)(((int)m_board->getCurrentPlayer() + 1) % 4));
+    if(m_board->checkStacks()){
+        m_board->end();
+    }
     setSelectable(true);
     m_placementDone = false;
 }
@@ -131,8 +136,10 @@ void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     BuildingView* buildingSelected = dynamic_cast<BuildingView*>(list[0]);
     if(buildingSelected){
         m_workeradd->setStatic(1);
-        m_workeradd->addToBuilding(buildingSelected->getBuilding(), m_board->getPlayer(m_board->getCurrentPlayer()));
-        m_workeradd->exec();
+        if(buildingSelected->getBuilding()){
+            m_workeradd->addToBuilding(buildingSelected->getBuilding(), m_board->getPlayer(m_board->getCurrentPlayer()));
+            m_workeradd->exec();
+        }
     }
     if(m_placementDone){
         updateResources();

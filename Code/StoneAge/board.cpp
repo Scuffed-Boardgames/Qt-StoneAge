@@ -102,20 +102,22 @@ void Board::buildBuilding(Colour colour){
         return;
 
     for(int i = 0; i < 4; ++i){
-        if(m_buildingCardStacks[i].back()->getStandingColour() == colour){
-            std::shared_ptr<SetBuilding> setBuilding = std::dynamic_pointer_cast<SetBuilding>(m_buildingCardStacks[i].back());
-            if(setBuilding){
-                m_setBuildingPay->setBuilding(getPlayer(colour), setBuilding);
-                m_setBuildingPay->exec();
-                if(m_setBuildingPay->getBought()){
-                    newBuilding(i);
-                }
-            } else{
-                std::shared_ptr<VarBuilding> varBuilding = std::dynamic_pointer_cast<VarBuilding>(m_buildingCardStacks[i].back());
-                m_varBuildingPay->setBuilding(getPlayer(colour), varBuilding);
-                m_varBuildingPay->exec();
-                if( m_varBuildingPay->getBought()){
-                    newBuilding(i);
+        if(!m_buildingCardStacks[i].empty()){
+            if(m_buildingCardStacks[i].back()->getStandingColour() == colour){
+                std::shared_ptr<SetBuilding> setBuilding = std::dynamic_pointer_cast<SetBuilding>(m_buildingCardStacks[i].back());
+                if(setBuilding){
+                    m_setBuildingPay->setBuilding(getPlayer(colour), setBuilding);
+                    m_setBuildingPay->exec();
+                    if(m_setBuildingPay->getBought()){
+                        newBuilding(i);
+                    }
+                } else{
+                    std::shared_ptr<VarBuilding> varBuilding = std::dynamic_pointer_cast<VarBuilding>(m_buildingCardStacks[i].back());
+                    m_varBuildingPay->setBuilding(getPlayer(colour), varBuilding);
+                    m_varBuildingPay->exec();
+                    if( m_varBuildingPay->getBought()){
+                        newBuilding(i);
+                    }
                 }
             }
         }
@@ -178,14 +180,28 @@ std::shared_ptr<Building> Board::getOpenBuildingCard(int pos){
     return m_buildingCardStacks[pos].back();
 }
 
+void Board::end(){
+    m_ended = true;
+    emit endGame();
+}
+
 void Board::newBuilding(int place){
-    m_buildingCardStacks[place].pop_back();
-    if(m_buildingCardStacks[place].size() == 0){
-        m_ended = true;
-        emit endGame();
+    if(!m_buildingCardStacks[place].empty()){
+        m_buildingCardStacks[place].pop_back();
+    }
+    if(m_buildingCardStacks[place].empty()){
+        emit newBuild(nullptr, place);
         return;
     }
     emit newBuild(m_buildingCardStacks[place].back(), place);
+}
+
+bool Board::checkStacks(){
+    for(int i = 0; i < 4; ++i){
+        if(m_buildingCardStacks[i].empty())
+            return true;
+    }
+    return false;
 }
 
 Colour Board::getCurrentPlayer() const{
