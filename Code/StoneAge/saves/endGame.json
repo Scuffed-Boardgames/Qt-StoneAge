@@ -3,6 +3,7 @@
     "buildings": [
         [
             {
+				"colour": -1,
                 "diffMaterials": 2,
                 "maxCost": 5,
                 "minCost": 5
@@ -10,6 +11,7 @@
         ],
         [
             {
+				"colour": -1,
                 "diffMaterials": 4,
                 "maxCost": 5,
                 "minCost": 5
@@ -17,6 +19,7 @@
         ],
         [
             {
+				"colour": -1,
                 "clayCost": 0,
                 "goldCost": 0,
                 "scoreGain": 11,
@@ -26,6 +29,7 @@
         ],
         [
             {
+				"colour": -1,
                 "clayCost": 1,
                 "goldCost": 0,
                 "scoreGain": 12,

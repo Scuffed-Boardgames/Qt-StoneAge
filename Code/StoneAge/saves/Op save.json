@@ -1,38 +1,110 @@
 {
     "activePlayer": 0,
-    "buildings": [
+	"buildings": [
         [
             {
+                "colour": -1,
+                "diffMaterials": 3,
+                "maxCost": 5,
+                "minCost": 5
+            },
+            {
+                "clayCost": 0,
+                "colour": -1,
+                "goldCost": 0,
+                "scoreGain": 13,
+                "stoneCost": 2,
+                "woodCost": 1
+            },
+            {
+                "colour": -1,
+                "diffMaterials": 4,
+                "maxCost": 4,
+                "minCost": 4
+            },
+            {
                 "clayCost": 1,
+                "colour": -1,
+                "goldCost": 0,
+                "scoreGain": 12,
+                "stoneCost": 1,
+                "woodCost": 1
+            },
+            {
+                "colour": -1,
+                "diffMaterials": 1,
+                "maxCost": 5,
+                "minCost": 5
+            },
+            {
+                "clayCost": 1,
+                "colour": -1,
                 "goldCost": 1,
                 "scoreGain": 13,
                 "stoneCost": 0,
                 "woodCost": 1
             },
             {
-                "diffMaterials": 0,
-                "maxCost": 7,
-                "minCost": 1
-            },
+                "colour": -1,
+                "diffMaterials": 1,
+                "maxCost": 4,
+                "minCost": 4
+            }
+        ],
+        [
             {
-                "clayCost": 2,
-                "goldCost": 0,
-                "scoreGain": 13,
-                "stoneCost": 1,
-                "woodCost": 0
-            },
-            {
-                "diffMaterials": 0,
-                "maxCost": 7,
-                "minCost": 1
-            },
-            {
-                "diffMaterials": 3,
+                "colour": -1,
+                "diffMaterials": 2,
                 "maxCost": 5,
                 "minCost": 5
             },
             {
+                "colour": -1,
+                "diffMaterials": 4,
+                "maxCost": 5,
+                "minCost": 5
+            },
+            {
+                "colour": -1,
+                "diffMaterials": 0,
+                "maxCost": 7,
+                "minCost": 1
+            },
+            {
                 "clayCost": 1,
+                "colour": -1,
+                "goldCost": 0,
+                "scoreGain": 14,
+                "stoneCost": 2,
+                "woodCost": 0
+            },
+            {
+                "colour": -1,
+                "diffMaterials": 0,
+                "maxCost": 7,
+                "minCost": 1
+            },
+            {
+                "clayCost": 1,
+                "colour": -1,
+                "goldCost": 1,
+                "scoreGain": 13,
+                "stoneCost": 0,
+                "woodCost": 1
+            },
+            {
+                "clayCost": 2,
+                "colour": -1,
+                "goldCost": 1,
+                "scoreGain": 14,
+                "stoneCost": 0,
+                "woodCost": 0
+            }
+        ],
+        [
+            {
+                "clayCost": 1,
+                "colour": -1,
                 "goldCost": 0,
                 "scoreGain": 10,
                 "stoneCost": 0,
@@ -40,39 +112,23 @@
             },
             {
                 "clayCost": 0,
-                "goldCost": 1,
-                "scoreGain": 16,
-                "stoneCost": 2,
-                "woodCost": 0
-            }
-        ],
-        [
-            {
-                "diffMaterials": 4,
-                "maxCost": 4,
-                "minCost": 4
-            },
-            {
-                "diffMaterials": 4,
-                "maxCost": 5,
-                "minCost": 5
-            },
-            {
-                "clayCost": 1,
+                "colour": -1,
                 "goldCost": 0,
-                "scoreGain": 14,
-                "stoneCost": 2,
-                "woodCost": 0
+                "scoreGain": 11,
+                "stoneCost": 1,
+                "woodCost": 2
             },
             {
                 "clayCost": 0,
+                "colour": -1,
                 "goldCost": 1,
-                "scoreGain": 14,
-                "stoneCost": 1,
-                "woodCost": 1
+                "scoreGain": 12,
+                "stoneCost": 0,
+                "woodCost": 2
             },
             {
                 "clayCost": 2,
+                "colour": -1,
                 "goldCost": 0,
                 "scoreGain": 11,
                 "stoneCost": 0,
@@ -80,60 +136,23 @@
             },
             {
                 "clayCost": 0,
-                "goldCost": 0,
-                "scoreGain": 13,
-                "stoneCost": 2,
-                "woodCost": 1
-            },
-            {
-                "clayCost": 0,
+                "colour": -1,
                 "goldCost": 1,
-                "scoreGain": 12,
-                "stoneCost": 0,
-                "woodCost": 2
-            }
-        ],
-        [
-            {
-                "diffMaterials": 1,
-                "maxCost": 4,
-                "minCost": 4
-            },
-            {
-                "diffMaterials": 2,
-                "maxCost": 4,
-                "minCost": 4
-            },
-            {
-                "clayCost": 1,
-                "goldCost": 1,
-                "scoreGain": 13,
-                "stoneCost": 0,
-                "woodCost": 1
-            },
-            {
-                "clayCost": 1,
-                "goldCost": 0,
-                "scoreGain": 12,
+                "scoreGain": 14,
                 "stoneCost": 1,
                 "woodCost": 1
             },
             {
                 "clayCost": 2,
-                "goldCost": 1,
-                "scoreGain": 14,
-                "stoneCost": 0,
+                "colour": -1,
+                "goldCost": 0,
+                "scoreGain": 13,
+                "stoneCost": 1,
                 "woodCost": 0
             },
             {
-                "clayCost": 0,
-                "goldCost": 0,
-                "scoreGain": 11,
-                "stoneCost": 1,
-                "woodCost": 2
-            },
-            {
                 "clayCost": 1,
+                "colour": -1,
                 "goldCost": 1,
                 "scoreGain": 15,
                 "stoneCost": 1,
@@ -142,45 +161,54 @@
         ],
         [
             {
-                "diffMaterials": 2,
-                "maxCost": 5,
-                "minCost": 5
-            },
-            {
-                "clayCost": 0,
-                "goldCost": 1,
-                "scoreGain": 14,
+                "clayCost": 1,
+                "colour": -1,
+                "goldCost": 0,
+                "scoreGain": 12,
                 "stoneCost": 1,
                 "woodCost": 1
             },
             {
-                "diffMaterials": 3,
-                "maxCost": 4,
-                "minCost": 4
-            },
-            {
+                "colour": -1,
                 "diffMaterials": 0,
                 "maxCost": 7,
                 "minCost": 1
             },
             {
+                "colour": -1,
+                "diffMaterials": 3,
+                "maxCost": 4,
+                "minCost": 4
+            },
+            {
+                "colour": -1,
+                "diffMaterials": 2,
+                "maxCost": 4,
+                "minCost": 4
+            },
+            {
                 "clayCost": 1,
+                "colour": -1,
                 "goldCost": 1,
                 "scoreGain": 15,
                 "stoneCost": 1,
                 "woodCost": 0
             },
             {
-                "clayCost": 1,
-                "goldCost": 0,
-                "scoreGain": 12,
+                "clayCost": 0,
+                "colour": -1,
+                "goldCost": 1,
+                "scoreGain": 14,
                 "stoneCost": 1,
                 "woodCost": 1
             },
             {
-                "diffMaterials": 1,
-                "maxCost": 5,
-                "minCost": 5
+                "clayCost": 0,
+                "colour": -1,
+                "goldCost": 1,
+                "scoreGain": 16,
+                "stoneCost": 2,
+                "woodCost": 0
             }
         ]
     ],
