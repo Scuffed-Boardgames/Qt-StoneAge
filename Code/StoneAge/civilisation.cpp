@@ -1,7 +1,7 @@
 #include "civilisation.h"
 
-Civilisation::Civilisation(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, bool card)
-    : m_standingColour(colour), m_farmers(farmers), m_makers(makers), m_builders(builders), m_shamen(shamen), m_bonus(bonus), m_cost(cost), m_card(card){
+Civilisation::Civilisation(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost)
+    : m_standingColour(colour), m_farmers(farmers), m_makers(makers), m_builders(builders), m_shamen(shamen), m_bonus(bonus), m_cost(cost){
 }
 
 void Civilisation::addWorker(std::shared_ptr<Player> player){
@@ -36,11 +36,6 @@ int Civilisation::getCost() const
 void Civilisation::setCost(int cost)
 {
     m_cost = cost;
-}
-
-bool Civilisation::getCard() const
-{
-    return m_card;
 }
 
 int Civilisation::getFarmers() const

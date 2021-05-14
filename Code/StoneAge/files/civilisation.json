@@ -1,0 +1,429 @@
+{
+    "setBonus": [
+        {
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 3,
+			"cost": 0,
+			"amount": 7,
+			"resource": 2
+        },
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 2,
+			"shamen": 0,
+			"bonus": -1,
+			"cost": 0,
+			"amount": 2,
+			"resource": 2
+        },
+        {
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 1,
+			"shamen": 0,
+			"bonus": -1,
+			"cost": 0,
+			"amount": 4,
+			"resource": 2
+        }, 
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 1,
+			"cost": 0,
+			"amount": 5,
+			"resource": 2
+        }, 
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 6,
+			"cost": 0,
+			"amount": 3,
+			"resource": 2
+        },    
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 6,
+			"cost": 0,
+			"amount": 1,
+			"resource": 2
+        },    
+		{
+			"colour": -1,
+			"farmers": 2,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": -1,
+			"cost": 0,
+			"amount": 3,
+			"resource": 2
+        },     
+		{
+			"colour": -1,
+			"farmers": 1,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": -1,
+			"cost": 0,
+			"amount": 1,
+			"resource": 5
+        },    
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 5,
+			"cost": 0,
+			"amount": 2,
+			"resource": 5
+        },    
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 1,
+			"bonus": -1,
+			"cost": 0,
+			"amount": 1,
+			"resource": 5
+        },    
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 1,
+			"bonus": -1,
+			"cost": 0,
+			"amount": 1,
+			"resource": 6
+        }, 	
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 2,
+			"bonus": -1,
+			"cost": 0,
+			"amount": 1,
+			"resource": 4
+        }
+	],
+	"miscBonus": [
+        {
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 3,
+			"shamen": 0,
+			"bonus": -1,
+			"score": true,
+			"food": false,
+			"tool": false
+        },
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 2,
+			"cost": 0,
+			"score": true,
+			"food": false,
+			"tool": false
+        },
+        {
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 2,
+			"cost": 0,
+			"score": true,
+			"food": false,
+			"tool": false
+        }, 
+		{
+			"colour": -1,
+			"farmers": 1,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": -1,
+			"cost": 0,
+			"score": false,
+			"food": true,
+			"tool": false
+        }, 
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 4,
+			"cost": 0,
+			"score": false,
+			"food": true,
+			"tool": false
+        },    
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 0,
+			"cost": 0,
+			"score": false,
+			"food": false,
+			"tool": true
+        }
+	],
+	"toolBonus": [
+        {
+			"colour": -1,
+			"farmers": 0,
+			"makers": 1,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": -1,
+			"cost": 0,
+			"tool": 4
+        },
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 1,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": -1,
+			"cost": 0,
+			"tool": 3
+        },
+        {
+			"colour": -1,
+			"farmers": 0,
+			"makers": 1,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": -1,
+			"cost": 0,
+			"tool": 2
+        }
+	],
+	"diceBonus": [
+        {
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 0,
+			"cost": 0,
+			"diceResource": 6
+        },
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 2,
+			"bonus": -1,
+			"cost": 0,
+			"diceResource": 3
+        },
+        {
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 1,
+			"bonus": -1,
+			"cost": 0,
+			"diceResource": 4
+        }
+	],
+	"cardBonus": [
+        {
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 7,
+			"cost": 0,
+			"hasCard": false
+        }
+	],
+	"pickBonus": [
+        {
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 1,
+			"cost": 0,
+			"choice": 2
+        }
+	],
+	"rollBonus": [
+        {
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 3,
+			"cost": 0,
+			"die1": 0,
+			"die2": 0,
+			"die3": 0,
+			"die4": 0
+        },
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 1,
+			"shamen": 0,
+			"bonus": -1,
+			"cost": 0,
+			"die1": 0,
+			"die2": 0,
+			"die3": 0,
+			"die4": 0
+        },
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 2,
+			"shamen": 0,
+			"bonus": -1,
+			"cost": 0,
+			"die1": 0,
+			"die2": 0,
+			"die3": 0,
+			"die4": 0
+        },
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 7,
+			"cost": 0,
+			"die1": 0,
+			"die2": 0,
+			"die3": 0,
+			"die4": 0
+        },
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 2,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": -1,
+			"cost": 0,
+			"die1": 0,
+			"die2": 0,
+			"die3": 0,
+			"die4": 0
+        },
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 2,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": -1,
+			"cost": 0,
+			"die1": 0,
+			"die2": 0,
+			"die3": 0,
+			"die4": 0
+        },
+		{
+			"colour": -1,
+			"farmers": 1,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": -1,
+			"cost": 0,
+			"die1": 0,
+			"die2": 0,
+			"die3": 0,
+			"die4": 0
+        },
+		{
+			"colour": -1,
+			"farmers": 2,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": -1,
+			"cost": 0,
+			"die1": 0,
+			"die2": 0,
+			"die3": 0,
+			"die4": 0
+        },
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 4,
+			"cost": 0,
+			"die1": 0,
+			"die2": 0,
+			"die3": 0,
+			"die4": 0
+        },
+		{
+			"colour": -1,
+			"farmers": 0,
+			"makers": 0,
+			"builders": 0,
+			"shamen": 0,
+			"bonus": 5,
+			"cost": 0,
+			"die1": 0,
+			"die2": 0,
+			"die3": 0,
+			"die4": 0
+        }
+	]
+}

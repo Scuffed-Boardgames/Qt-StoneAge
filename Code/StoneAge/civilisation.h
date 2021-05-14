@@ -8,7 +8,7 @@ class Civilisation : public QObject
 {
     Q_OBJECT
 public:
-    Civilisation(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, bool card);
+    Civilisation(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost);
 
     void addWorker(std::shared_ptr<Player> player);
 
@@ -44,9 +44,6 @@ private:
     CivBonus m_bonus;
 
     int m_cost;
-
-    bool m_card;
-
 };
 
 #endif // CIVILISATION_H
