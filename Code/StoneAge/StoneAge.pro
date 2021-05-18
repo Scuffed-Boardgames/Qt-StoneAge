@@ -26,6 +26,7 @@ SOURCES += \
     payciv.cpp \
     payfood.cpp \
     pickbonus.cpp \
+    pickresources.cpp \
     place.cpp \
     player.cpp \
     playerview.cpp \
@@ -61,6 +62,7 @@ HEADERS += \
     payciv.h \
     payfood.h \
     pickbonus.h \
+    pickresources.h \
     place.h \
     player.h \
     playerview.h \
@@ -82,6 +84,7 @@ FORMS += \
     mainwindow.ui \
     payciv.ui \
     payfood.ui \
+    pickresources.ui \
     rollresources.ui \
     setbuildingpay.ui \
     varbuildingpay.ui \
