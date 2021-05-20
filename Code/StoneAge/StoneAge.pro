@@ -15,6 +15,7 @@ SOURCES += \
     buildingview.cpp \
     cardbonus.cpp \
     civilisation.cpp \
+    civilisationview.cpp \
     dicebonus.cpp \
     field.cpp \
     gather.cpp \
@@ -52,6 +53,7 @@ HEADERS += \
     cardbonus.h \
     civbonuses.h \
     civilisation.h \
+    civilisationview.h \
     colour.h \
     dicebonus.h \
     field.h \
