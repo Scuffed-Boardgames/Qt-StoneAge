@@ -112,6 +112,12 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
         connect(m_board->getOpenBuildingCard(i).get(), &Building::changedWorkers,  m_buildings[i].get(), &BuildingView::updateText);
         connect(m_board->getOpenBuildingCard(i).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
     }
+    for(int i = 0; i < 4; ++i){
+        m_civilisations[i] = std::make_unique<CivilisationView>(moveByX, m_board->getOpenCivilisationCards(i), this);
+        moveByX += rectWidth;
+//        connect(m_board->getOpenBuildingCard(i).get(), &Building::changedWorkers,  m_buildings[i].get(), &BuildingView::updateText);
+//        connect(m_board->getOpenBuildingCard(i).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
+    }
     connect(m_board.get(), &Board::newBuild, this, &BoardView::newBuild);
 
 }

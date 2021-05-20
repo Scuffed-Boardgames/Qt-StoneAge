@@ -22,6 +22,7 @@ public slots:
 //    void updateBuilding(std::shared_ptr<Civilisation> building);
 
 private:
+    QString bonusToString(CivBonus bonus);
     int m_x;
     QGraphicsTextItem* m_underCardBonus;
     std::shared_ptr<Civilisation> m_civilisation;

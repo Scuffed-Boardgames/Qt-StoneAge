@@ -34,7 +34,7 @@ public:
     void buildBuilding(Colour colour);
 
     void newOpenCivCards();
-    void updateOpenCivCards();
+    void addOpenCivCard();
 
     void nextPlayer(int checked = 0);
     void payResources(Colour colour);
@@ -55,6 +55,8 @@ public:
 
     bool checkStacks();
     void end();
+    std::shared_ptr<Civilisation> getOpenCivilisationCards(int pos) const;
+
 signals:
     void newBuild(std::shared_ptr<Building> building, int pos);
     void allWorkersPlaced();

@@ -81,6 +81,7 @@ Board::Board() : m_ended{false}, m_currentPlayer{Colour::red}, m_hut(std::make_s
     }
     for(int i = 0; i < 4; ++i){
         m_openCivilisationCards.push_back(m_civilisationCards[i]);
+        m_openCivilisationCards[i]->setCost(i + 1);
         m_civilisationCards.erase(m_civilisationCards.begin() + i);
     }
 }
@@ -184,8 +185,11 @@ void Board::newOpenCivCards()
     }
 }
 
-void Board::updateOpenCivCards()
+void Board::addOpenCivCard()
 {
+    if(m_civilisationCards.size() == 0)
+        return;
+    m_openCivilisationCards.push_back(m_civilisationCards.back());
     for(size_t i = 0; i < m_openCivilisationCards.size(); ++i)
         m_openCivilisationCards[i]->setCost(i+1);
 }
@@ -249,6 +253,12 @@ void Board::end(){
     m_ended = true;
     emit endGame();
 }
+
+std::shared_ptr<Civilisation> Board::getOpenCivilisationCards(int pos) const
+{
+    return m_openCivilisationCards[pos];
+}
+
 
 void Board::newBuilding(int place){
     if(!m_buildingCardStacks[place].empty()){

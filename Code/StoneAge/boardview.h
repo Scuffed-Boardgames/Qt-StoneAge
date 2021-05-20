@@ -7,6 +7,7 @@
 #include "workeradd.h"
 #include "otherplaceview.h"
 #include "resourceplaceview.h"
+#include "civilisationview.h"
 
 class BoardView : public QGraphicsScene
 {
@@ -29,6 +30,7 @@ signals:
 private:
     bool m_placementDone;
     std::unique_ptr<BuildingView> m_buildings[4];
+    std::unique_ptr<CivilisationView> m_civilisations[4];
     std::shared_ptr<WorkerAdd> m_workeradd;
     std::shared_ptr<Board> m_board;
     std::shared_ptr<ResourcePlaceView> m_food;
