@@ -25,7 +25,6 @@ QJsonObject CardBonus::save()
 }
 
 void CardBonus::setCard(std::shared_ptr<Civilisation> card){
-    m_hasCard = true;
     m_card = card;
 }
 

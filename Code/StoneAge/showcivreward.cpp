@@ -44,3 +44,8 @@ const QString ShowCivReward::resourceToString(Resource resource)
         return "none";
     }
 }
+
+void ShowCivReward::on_pushButton_clicked()
+{
+    this->close();
+}

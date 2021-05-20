@@ -115,10 +115,10 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
     }
      moveByX += 100;
     for(int i = 0; i < 4; ++i){
-        if(std::dynamic_pointer_cast<SetBonus>(m_board->getOpenCivilisationCards(i))){
-            m_civilisations[i] = std::make_unique<SetBonusView>(moveByX, m_board->getOpenCivilisationCards(i), this);
+        if(std::dynamic_pointer_cast<SetBonus>(m_board->getOpenCivilisationCard(i))){
+            m_civilisations[i] = std::make_unique<SetBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
         } else {
-            m_civilisations[i] = std::make_unique<CivilisationView>(moveByX, m_board->getOpenCivilisationCards(i), this);
+            m_civilisations[i] = std::make_unique<CivilisationView>(moveByX, m_board->getOpenCivilisationCard(i), this);
         }
         moveByX += rectWidth;
 //        connect(m_board->getOpenBuildingCard(i).get(), &Building::changedWorkers,  m_buildings[i].get(), &BuildingView::updateText);

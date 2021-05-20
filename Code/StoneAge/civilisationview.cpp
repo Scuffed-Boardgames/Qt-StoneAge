@@ -49,7 +49,7 @@ CivilisationView::CivilisationView(int moveByX, std::shared_ptr<Civilisation> ci
     m_underCardBonus->setFont(font1);
     m_underCardBonus->moveBy(0, yPos);
 
-    updateBuilding(civilisation);
+    updateCivilisation(civilisation);
 }
 
 
