@@ -73,6 +73,43 @@ void Player::addExtraTool(int tool)
     m_extraTools.push_back(tool);
 }
 
+void Player::addBonus(int farmers, int makers, int builders, int shamen, CivBonus bonus)
+{
+    m_farmerCount += farmers;
+    m_toolMakerCount += makers;
+    m_hutBuilderCount += builders;
+    m_shamanCount += shamen;
+    switch (bonus){
+    case(CivBonus::art):
+        m_civBonuses[0] += 1;
+        return;
+    case(CivBonus::healing):
+        m_civBonuses[1] += 1;
+        return;
+    case(CivBonus::music):
+        m_civBonuses[2] += 1;
+        return;
+    case(CivBonus::pottery):
+        m_civBonuses[3] += 1;
+        return;
+    case(CivBonus::time):
+        m_civBonuses[4] += 1;
+        return;
+    case(CivBonus::transport):
+        m_civBonuses[5] += 1;
+        return;
+    case(CivBonus::weaving):
+        m_civBonuses[6] += 1;
+        return;
+    case(CivBonus::writing):
+        m_civBonuses[7] += 1;
+        return;
+    default:
+        return;
+    }
+}
+
+
 
 Tool *Player::getTools(){
     return m_tools;
