@@ -7,6 +7,9 @@ RollBonus::RollBonus(Colour colour, int farmers, int makers, int builders, int s
     m_dice[1] = die2;
     m_dice[2] = die3;
     m_dice[3] = die4;
+    if(m_dice[0] + m_dice[1] + m_dice[2] + m_dice[3] == 0){
+        rollDice();
+    }
 }
 
 RollBonus::RollBonus(const QJsonObject &json)
@@ -39,5 +42,12 @@ QJsonObject RollBonus::save()
                         {"die4", m_dice[3]}
                         };
     return json;
+}
+
+void RollBonus::rollDice()
+{
+    for(int i = 0; i < 4; ++i){
+        m_dice[i] = rand() % 6 + 1;
+    }
 }
 
