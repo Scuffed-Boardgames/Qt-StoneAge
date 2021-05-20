@@ -38,6 +38,7 @@ SOURCES += \
     setbuilding.cpp \
     setbuildingpay.cpp \
     showbonus.cpp \
+    showcivreward.cpp \
     tool.cpp \
     toolbonus.cpp \
     toolshed.cpp \
@@ -77,6 +78,7 @@ HEADERS += \
     setbuilding.h \
     setbuildingpay.h \
     showbonus.h \
+    showcivreward.h \
     tool.h \
     toolbonus.h \
     toolshed.h \
@@ -92,6 +94,7 @@ FORMS += \
     rollresources.ui \
     setbuildingpay.ui \
     showbonus.ui \
+    showcivreward.ui \
     varbuildingpay.ui \
     workeradd.ui
 
