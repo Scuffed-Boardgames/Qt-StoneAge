@@ -11,6 +11,10 @@ public:
     SetBonus(const QJsonObject &json);
     void giveItems(std::shared_ptr<Player> player);
     QJsonObject save();
+    int getAmount() const;
+
+    Resource getResource() const;
+
 private:
     int m_amount;
     Resource m_resource;

@@ -32,3 +32,13 @@ QJsonObject SetBonus::save()
                         };
     return json;
 }
+
+int SetBonus::getAmount() const
+{
+    return m_amount;
+}
+
+Resource SetBonus::getResource() const
+{
+    return m_resource;
+}

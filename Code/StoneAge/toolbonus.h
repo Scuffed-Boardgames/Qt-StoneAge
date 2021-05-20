@@ -13,6 +13,8 @@ public:
 
     void giveItems(std::shared_ptr<Player> player);
 
+    int getTool() const;
+
 private:
     int m_tool;
 };

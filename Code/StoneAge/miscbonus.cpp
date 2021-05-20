@@ -45,3 +45,18 @@ QJsonObject MiscBonus::save()
                         };
     return json;
 }
+
+bool MiscBonus::getFood() const
+{
+    return m_food;
+}
+
+bool MiscBonus::getTool() const
+{
+    return m_tool;
+}
+
+bool MiscBonus::getScore() const
+{
+    return m_score;
+}
