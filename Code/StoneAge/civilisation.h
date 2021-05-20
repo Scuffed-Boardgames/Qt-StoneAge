@@ -24,7 +24,6 @@ public:
     int getShamen() const;
     CivBonus getBonus() const;
     int getCost() const;
-    bool getCard() const;
 
     void setCost(int cost);
 

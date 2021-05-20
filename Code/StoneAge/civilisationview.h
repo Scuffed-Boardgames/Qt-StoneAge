@@ -15,7 +15,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
     void setOwner(Colour colour);
-    void updateBuilding(std::shared_ptr<Civilisation> building);
+    void updateCivilisation(std::shared_ptr<Civilisation> civilisation);
 
 public slots:
 //    void updateText();
@@ -23,7 +23,6 @@ public slots:
 
 private:
     QString bonusToString(CivBonus bonus);
-    int m_x;
     QGraphicsTextItem* m_underCardBonus;
     std::shared_ptr<Civilisation> m_civilisation;
     QGraphicsSimpleTextItem* m_cost;

@@ -254,7 +254,7 @@ void Board::end(){
     emit endGame();
 }
 
-std::shared_ptr<Civilisation> Board::getOpenCivilisationCards(int pos) const
+std::shared_ptr<Civilisation> Board::getOpenCivilisationCard(int pos) const
 {
     return m_openCivilisationCards[pos];
 }
