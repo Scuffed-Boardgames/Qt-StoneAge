@@ -11,6 +11,11 @@ public:
     MiscBonus(const QJsonObject &json);
     void giveItems(std::shared_ptr<Player> player);
     QJsonObject save();
+
+    bool getScore() const;
+    bool getFood() const;
+    bool getTool() const;
+
 private:
     bool m_score;
     bool m_food;

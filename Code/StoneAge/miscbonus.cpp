@@ -1,4 +1,5 @@
 #include "miscbonus.h"
+#include "showcivreward.h"
 
 MiscBonus::MiscBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, bool score, bool food, bool tool)
     : Civilisation(colour, farmers, makers, builders, shamen, bonus, cost), m_score(score), m_food(food), m_tool(tool){
@@ -12,12 +13,18 @@ MiscBonus::MiscBonus(const QJsonObject &json)
 void MiscBonus::giveItems(std::shared_ptr<Player> player)
 {
     if(m_score){
+        ShowCivReward* show = new ShowCivReward(player, false, false, true);
+        show->exec();
         player->addScore(3);
     }
     if(m_food){
+        ShowCivReward* show = new ShowCivReward(player, false, true);
+        show->exec();
         player->addFoodGain();
     }
     if(m_tool){
+        ShowCivReward* show = new ShowCivReward(player, false, false, false, true);
+        show->exec();
         player->addTool();
     }
     giveBonus(player);
@@ -37,4 +44,19 @@ QJsonObject MiscBonus::save()
                         {"tool", m_tool}
                         };
     return json;
+}
+
+bool MiscBonus::getFood() const
+{
+    return m_food;
+}
+
+bool MiscBonus::getTool() const
+{
+    return m_tool;
+}
+
+bool MiscBonus::getScore() const
+{
+    return m_score;
 }

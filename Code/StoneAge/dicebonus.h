@@ -11,6 +11,8 @@ public:
     DiceBonus(const QJsonObject &json);
     void giveItems(std::shared_ptr<Player> player);
     QJsonObject save();
+    Resource getResource() const;
+
 private:
     Resource m_resource;
 };

@@ -33,3 +33,8 @@ QJsonObject DiceBonus::save()
                         };
     return json;
 }
+
+Resource DiceBonus::getResource() const
+{
+    return m_resource;
+}

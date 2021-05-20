@@ -1,4 +1,5 @@
 #include "cardbonus.h"
+#include "showcivreward.h"
 
 CardBonus::CardBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, bool hasCard)
     : Civilisation(colour, farmers, makers, builders, shamen, bonus, cost), m_hasCard(hasCard), m_card(nullptr)
@@ -29,6 +30,8 @@ void CardBonus::setCard(std::shared_ptr<Civilisation> card){
 
 void CardBonus::giveItems(std::shared_ptr<Player> player)
 {
+    ShowCivReward* show = new ShowCivReward(player, true);
+    show->exec();
     m_card->giveBonus(player);
     giveBonus(player);
 }
