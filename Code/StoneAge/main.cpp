@@ -7,6 +7,7 @@
 #include "workeradd.h"
 #include "setbuildingpay.h"
 #include "varbuildingpay.h"
+#include "pickresources.h"
 #include "rollresources.h"
 #include <ctime>
 

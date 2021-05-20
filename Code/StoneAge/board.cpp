@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <random>
 #include <algorithm>
 #include "payfood.h"
 
@@ -176,7 +177,7 @@ void Board::newOpenCivCards()
         m_civilisationCards.push_back(m_openCivilisationCards[i]);
         m_openCivilisationCards.erase(m_openCivilisationCards.begin() + i);
     }
-    std::random_shuffle(m_civilisationCards.begin(), m_civilisationCards.end());
+    std::shuffle(m_civilisationCards.begin(), m_civilisationCards.end(), std::default_random_engine(time(0)));
     for(int i = 0; i < 4; ++i){
         m_openCivilisationCards.push_back(m_civilisationCards[i]);
         m_civilisationCards.erase(m_civilisationCards.begin() + i);
@@ -351,7 +352,6 @@ void Board::load(const QJsonObject &json){
             m_civilisationCards.push_back(std::make_shared<RollBonus>(civCards[i].toObject()));
         }
     }
-    std::random_shuffle(m_civilisationCards.begin(), m_civilisationCards.end());
     QJsonArray openCivCards = json["openCivs"].toArray();
     for(int i = 0; i < openCivCards.size(); ++i){
         if(openCivCards[i].toObject().contains("resource")){
