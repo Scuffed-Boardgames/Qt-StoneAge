@@ -8,6 +8,7 @@
 #include "resources.h"
 #include "colour.h"
 #include "tool.h"
+#include "civbonuses.h"
 
 class Player : public QObject
 {
@@ -24,6 +25,7 @@ public:
     void addFoodGain();
     void addBuilding();
     void addExtraTool(int tool);
+    void addBonus(int farmers, int makers, int builders, int shamen, CivBonus bonus);
 
     int getResource(Resource resource); // gets the amount of a given resource
     int getScore(); // gets the score the player curently has

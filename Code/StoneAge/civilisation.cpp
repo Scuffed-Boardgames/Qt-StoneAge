@@ -25,7 +25,7 @@ Colour Civilisation::getStandingColour() const
 
 void Civilisation::giveBonus(std::shared_ptr<Player> player)
 {
-//    player->addBonus(m_farmers, m_makers, m_builders, m_shamen, m_bonus);
+    player->addBonus(m_farmers, m_makers, m_builders, m_shamen, m_bonus);
 }
 
 int Civilisation::getCost() const
