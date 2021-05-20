@@ -65,7 +65,7 @@ void CivilisationView::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 
 }
 
-void CivilisationView::updateBuilding(std::shared_ptr<Civilisation> civilisation){
+void CivilisationView::updateCivilisation(std::shared_ptr<Civilisation> civilisation){
     m_civilisation = civilisation;
     m_cost->setText(QString::number(m_civilisation->getCost()));
     if((int)m_civilisation->getBonus() != -1){

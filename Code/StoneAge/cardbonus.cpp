@@ -1,13 +1,13 @@
 #include "cardbonus.h"
 #include "showcivreward.h"
 
-CardBonus::CardBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, bool hasCard)
-    : Civilisation(colour, farmers, makers, builders, shamen, bonus, cost), m_hasCard(hasCard), m_card(nullptr)
+CardBonus::CardBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost)
+    : Civilisation(colour, farmers, makers, builders, shamen, bonus, cost), m_card(nullptr)
 {}
 
 CardBonus::CardBonus(const QJsonObject &json)
     : Civilisation((Colour)(json["colour"].toInt()), json["farmers"].toInt(), json["makers"].toInt(), json["builders"].toInt(), json["shamen"].toInt(),
-      (CivBonus)(json["bonus"].toInt()), json["cost"].toInt()), m_hasCard(json["hasCard"].toBool()), m_card(nullptr)
+      (CivBonus)(json["bonus"].toInt()), json["cost"].toInt()), m_card(nullptr)
 {}
 
 QJsonObject CardBonus::save()
@@ -18,7 +18,8 @@ QJsonObject CardBonus::save()
                         {"builders", getBuilders()},
                         {"shamen", getShamen()},
                         {"bonus", (int)getBonus()},
-                        {"cost", getCost()}
+                        {"cost", getCost()},
+                        {"hasCard", false}
                         };
     return json;
 }

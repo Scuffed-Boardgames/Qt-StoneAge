@@ -55,7 +55,7 @@ public:
 
     bool checkStacks();
     void end();
-    std::shared_ptr<Civilisation> getOpenCivilisationCards(int pos) const;
+    std::shared_ptr<Civilisation> getOpenCivilisationCard(int pos) const;
 
 signals:
     void newBuild(std::shared_ptr<Building> building, int pos);

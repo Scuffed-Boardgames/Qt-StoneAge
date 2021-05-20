@@ -18,13 +18,9 @@ public:
 
 private slots:
       void on_okayButton_clicked();
-//    void capButtons();
 
 private:
     Ui::PickResources *ui;
-    int totalSet();
-    void addResources();
-
     std::shared_ptr<Player> m_player;
 };
 
