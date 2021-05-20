@@ -5,13 +5,12 @@
 
 
 ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, const int moveByX, std::shared_ptr<Place> place, QGraphicsScene* parentItem)
-    :  m_x(moveByX), m_place(place){
-
+    : m_place(place){
+    parentItem->addItem(this);
+    this->moveBy(moveByX, 100);
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
     QGraphicsRectItem* parent = new QGraphicsRectItem(0, 0, 300, 350, this);
-    parent->moveBy(moveByX,100);
     parent->setBrush(colour);
-    parentItem->addItem(this);
 
     QGraphicsTextItem* text = new QGraphicsTextItem(name, parent);
     QFont font("Font", 26);
@@ -72,7 +71,7 @@ ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, co
 
 
 QRectF ResourcePlaceView::boundingRect() const{
-    return QRectF(m_x, 100, 300, 350 );
+    return QRectF(0, 0, 300, 350 );
 }
 
 void ResourcePlaceView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){

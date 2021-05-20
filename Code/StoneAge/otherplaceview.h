@@ -26,7 +26,6 @@ public slots:
 private:
     std::shared_ptr<Place> m_place;
     Colour m_owner;
-    int m_x;
     int m_staticCost;
     QGraphicsRectItem* m_indicator;
 };

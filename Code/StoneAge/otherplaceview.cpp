@@ -4,13 +4,13 @@
 #include <QGraphicsScene>
 
 OtherPlaceView::OtherPlaceView(QColor colour, int moveByX, int cost, QString name, std::shared_ptr<Place> place, QGraphicsScene* parentItem)
-    : m_place(place), m_owner(Colour::none), m_x(moveByX), m_staticCost(cost){
-
+    : m_place(place), m_owner(Colour::none), m_staticCost(cost){
+    parentItem->addItem(this);
+    this->moveBy(moveByX, 450);
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
     QGraphicsRectItem* tile = new QGraphicsRectItem(0, 0,500, 350, this);
-    tile->moveBy(moveByX, 450);
+
     tile->setBrush(colour);
-    parentItem->addItem(this);
     QFont font("Font", 26);
     QGraphicsTextItem* text = new QGraphicsTextItem(name, tile);
     text->setFont(font);
@@ -27,7 +27,7 @@ OtherPlaceView::OtherPlaceView(QColor colour, int moveByX, int cost, QString nam
 
 
 QRectF OtherPlaceView::boundingRect() const{
-    return QRectF(m_x, 450, 500, 350 );
+    return QRectF(0, 0, 500, 350 );
 }
 
 void OtherPlaceView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

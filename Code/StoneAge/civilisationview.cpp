@@ -3,12 +3,13 @@
 
 CivilisationView::CivilisationView(int moveByX, std::shared_ptr<Civilisation> civilisation, QGraphicsScene *parentItem)
 {
+    parentItem->addItem(this);
     int yPos = 5;
     this->setFlag(QGraphicsItem::ItemIsSelectable, true);
+    this->moveBy(moveByX, 800);
     QGraphicsRectItem* tile = new QGraphicsRectItem(0, 0, 175, 200, this);
-    tile->moveBy(moveByX, 800);
     tile->setBrush(QColor(245, 241, 214));
-    parentItem->addItem(this);
+
 
     m_holder = new QGraphicsRectItem(0, 0, 40, 40, tile);
     m_holder->moveBy(67.5, yPos);
@@ -54,7 +55,7 @@ CivilisationView::CivilisationView(int moveByX, std::shared_ptr<Civilisation> ci
 
 QRectF CivilisationView::boundingRect() const
 {
-    return QRectF(m_x, 800, 175 , 200);
+    return QRectF(0, 0, 175 , 200);
 }
 
 void CivilisationView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

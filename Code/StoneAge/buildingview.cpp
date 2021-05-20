@@ -5,11 +5,14 @@
 BuildingView::BuildingView(int moveByX, std::shared_ptr<Building> building, QGraphicsScene* parentItem ) : m_x(moveByX), m_building(building){
 
     int yPos = 0;
-    this->setFlag(QGraphicsItem::ItemIsSelectable, true);
-    QGraphicsRectItem* tile = new QGraphicsRectItem(0, 0, 175, 200, this);
-    tile->moveBy(moveByX, 800);
-    tile->setBrush(QColor(245, 241, 214));
     parentItem->addItem(this);
+    this->moveBy(moveByX, 800);
+    this->setFlag(QGraphicsItem::ItemIsSelectable, true);
+
+    QGraphicsRectItem* tile = new QGraphicsRectItem(0, 0, 175, 200, this);
+
+    tile->setBrush(QColor(245, 241, 214));
+
 
     QFont font1("Font", 15);
     yPos += 5;
@@ -65,12 +68,13 @@ BuildingView::BuildingView(int moveByX, std::shared_ptr<Building> building, QGra
     m_minMax->setScale(1.5);
 
     updateBuilding(m_building);
+
 }
 
 
 QRectF BuildingView::boundingRect() const
 {
-    return QRectF(m_x, 800, 175 , 200);
+    return QRectF(0, 0, 175 , 200);
 }
 
 void BuildingView::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

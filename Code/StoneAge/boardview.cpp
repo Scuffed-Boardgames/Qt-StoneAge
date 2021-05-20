@@ -4,6 +4,7 @@
 
 #include "buildingview.h"
 #include "setbuilding.h"
+#include "setbonusview.h"
 
 BoardView::BoardView()
 {
@@ -60,7 +61,7 @@ void BoardView::buildBuildings(){
 BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
     : QGraphicsScene(parent), m_placementDone{false}, m_workeradd{std::make_unique<WorkerAdd>()}, m_board{board}{
     connect(m_board.get(), &Board::allWorkersPlaced, this, &BoardView::placementDone);
-    int moveByX = 50;
+    int moveByX = 0;
     int rectWidth = 300;
     m_food = std::make_unique<ResourcePlaceView>(QColor(60,125,0), "Hunt", moveByX, m_board->getGather(Resource::food), this);//forest green
     connect(m_board->getGather(Resource::food).get(), &Place::changedWorkers, m_food.get(), &ResourcePlaceView::updateText);
@@ -87,7 +88,7 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
     connect(m_board->getGather(Resource::gold).get(), &Place::turnHappend, this, &BoardView::updateTurn);
     //    connect(m_board.get(), &Board::workersReset, m_gold.get(), &ResourcePlaceView::updateText);
 
-    moveByX = 50;
+    moveByX = 0;
     rectWidth = 500;
     m_field = std::make_unique<OtherPlaceView>(QColor(245,222,179), moveByX, 1, "Field", m_board->getField(), this);//wheat yellow
     connect(m_board->getField().get(), &Place::changedWorkers, m_field.get(), &OtherPlaceView::updateText);
@@ -104,7 +105,7 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
     connect(m_board->getToolShed().get(), &Place::turnHappend, this, &BoardView::updateTurn);
     //    connect(m_board.get(), &Board::workersReset, m_toolshed.get(), &OtherPlaceView::updateText);
 
-    moveByX = 50;
+    moveByX = 0;
     rectWidth = 175;
     for(int i = 0; i < 4; ++i){
         m_buildings[i] = std::make_unique<BuildingView>(moveByX, m_board->getOpenBuildingCard(i), this);
@@ -112,8 +113,13 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
         connect(m_board->getOpenBuildingCard(i).get(), &Building::changedWorkers,  m_buildings[i].get(), &BuildingView::updateText);
         connect(m_board->getOpenBuildingCard(i).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
     }
+     moveByX += 100;
     for(int i = 0; i < 4; ++i){
-        m_civilisations[i] = std::make_unique<CivilisationView>(moveByX, m_board->getOpenCivilisationCards(i), this);
+        if(std::dynamic_pointer_cast<SetBonus>(m_board->getOpenCivilisationCards(i))){
+            m_civilisations[i] = std::make_unique<SetBonusView>(moveByX, m_board->getOpenCivilisationCards(i), this);
+        } else {
+            m_civilisations[i] = std::make_unique<CivilisationView>(moveByX, m_board->getOpenCivilisationCards(i), this);
+        }
         moveByX += rectWidth;
 //        connect(m_board->getOpenBuildingCard(i).get(), &Building::changedWorkers,  m_buildings[i].get(), &BuildingView::updateText);
 //        connect(m_board->getOpenBuildingCard(i).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
