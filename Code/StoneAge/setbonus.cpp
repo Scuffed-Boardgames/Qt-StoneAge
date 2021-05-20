@@ -1,4 +1,5 @@
 #include "setbonus.h"
+#include "showcivreward.h"
 
 SetBonus::SetBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, int amount, Resource resource)
     : Civilisation(colour, farmers, makers, builders, shamen, bonus, cost), m_amount(amount), m_resource(resource){
@@ -11,6 +12,8 @@ SetBonus::SetBonus(const QJsonObject &json)
 
 void SetBonus::giveItems(std::shared_ptr<Player> player)
 {
+    ShowCivReward* show = new ShowCivReward(player, false, false, false, false, false, m_amount, (int)m_resource);
+    show->exec();
     player->addResource(m_resource, m_amount);
     giveBonus(player);
 }

@@ -13,7 +13,7 @@ class ShowCivReward : public QDialog
     Q_OBJECT
 
 public:
-    explicit ShowCivReward(std::shared_ptr<Player>player, bool card = false, bool food = false, bool score = false, bool tool = false, int resource = 0, int amount = 0, QWidget *parent = nullptr);
+    explicit ShowCivReward(std::shared_ptr<Player>player, bool card = false, bool food = false, bool score = false, bool tool = false, bool xtool= false, int resource = 0, int amount = 0, QWidget *parent = nullptr);
     ~ShowCivReward();
 
 private:

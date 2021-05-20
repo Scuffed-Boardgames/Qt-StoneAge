@@ -1,4 +1,5 @@
 #include "toolbonus.h"
+#include "showcivreward.h"
 
 ToolBonus::ToolBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, int tool)
     : Civilisation(colour, farmers, makers, builders, shamen, bonus, cost), m_tool(tool)
@@ -25,6 +26,8 @@ QJsonObject ToolBonus::save()
 
 void ToolBonus::giveItems(std::shared_ptr<Player> player)
 {
+    ShowCivReward* show = new ShowCivReward(player, false, false, false, false, true);
+    show->exec();
     player->addExtraTool(m_tool);
     giveBonus(player);
 }

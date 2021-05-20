@@ -1,7 +1,7 @@
 #include "showcivreward.h"
 #include "ui_showcivreward.h"
 
-ShowCivReward::ShowCivReward(std::shared_ptr<Player>player, bool card, bool food, bool score, bool tool,int resource, int amount, QWidget *parent) :
+ShowCivReward::ShowCivReward(std::shared_ptr<Player>player, bool card, bool food, bool score, bool tool, bool xtool, int resource, int amount, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ShowCivReward)
 {
@@ -15,6 +15,8 @@ ShowCivReward::ShowCivReward(std::shared_ptr<Player>player, bool card, bool food
         ui->label->setText("You receive +3 score");
     }else if(tool){
         ui->label->setText("You receive +1 tool");
+    }else if(xtool){
+        ui->label->setText("You receive an extra tool");
     }else{
         ui->label->setText("You receive " + QString::number(amount) + " " + resourceToString((Resource)resource));
     }
