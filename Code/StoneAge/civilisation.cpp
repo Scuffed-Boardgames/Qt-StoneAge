@@ -1,4 +1,5 @@
 #include "civilisation.h"
+#include "showbonus.h"
 
 Civilisation::Civilisation(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost)
     : m_standingColour(colour), m_farmers(farmers), m_makers(makers), m_builders(builders), m_shamen(shamen), m_bonus(bonus), m_cost(cost){
@@ -25,6 +26,8 @@ Colour Civilisation::getStandingColour() const
 
 void Civilisation::giveBonus(std::shared_ptr<Player> player)
 {
+    ShowBonus* show = new ShowBonus(m_farmers, m_makers, m_builders, m_shamen, (int)m_bonus, player);
+    show->exec();
     player->addBonus(m_farmers, m_makers, m_builders, m_shamen, m_bonus);
 }
 
