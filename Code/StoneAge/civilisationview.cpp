@@ -67,4 +67,48 @@ void CivilisationView::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 void CivilisationView::updateBuilding(std::shared_ptr<Civilisation> civilisation){
     m_civilisation = civilisation;
     m_cost->setText(QString::number(m_civilisation->getCost()));
+    if((int)m_civilisation->getBonus() != -1){
+        m_underCardBonus->setPlainText(bonusToString(m_civilisation->getBonus()));
+        m_underCardBonus->setPos(45, 170);
+    } else if(m_civilisation->getBuilders() > 0){
+        m_underCardBonus->setPlainText(QString::number(m_civilisation->getBuilders()) + " Hut builder(s)");
+        m_underCardBonus->setPos(25, 170);
+    } else if(m_civilisation->getShamen() > 0){
+        m_underCardBonus->setPlainText(QString::number(m_civilisation->getShamen()) + " Shaman(s)");
+        m_underCardBonus->setPos(35, 170);
+    } else if(m_civilisation->getFarmers() > 0){
+        m_underCardBonus->setPlainText(QString::number(m_civilisation->getFarmers()) + " Farmer(s)");
+        m_underCardBonus->setPos(35, 170);
+    } else if(m_civilisation->getMakers() > 0){
+        m_underCardBonus->setPlainText(QString::number(m_civilisation->getMakers()) + " Tool maker(s)");
+        m_underCardBonus->setPos(25, 170);
+    }
+
+}
+
+QString CivilisationView::bonusToString(CivBonus bonus)
+{
+    switch(bonus){
+    case(CivBonus::art):
+        return "Art";
+    case(CivBonus::healing):
+        return "Healing";
+    case(CivBonus::music):
+        return "Music";
+    case(CivBonus::pottery):
+        return "Pottery";
+    case(CivBonus::time):
+        return "Time";
+    case(CivBonus::transport):
+        return "Transport";
+    case(CivBonus::weaving):
+        return "Weaving";
+    case(CivBonus::writing):
+        return "Writing";
+    default:
+        return "";
+
+
+    }
+
 }
