@@ -17,13 +17,14 @@ public:
     ~PickResources();
 
 private slots:
-    void capButtons();
+      void on_okayButton_clicked();
+//    void capButtons();
 
 private:
     Ui::PickResources *ui;
     int totalSet();
     void addResources();
-    void on_okayButton_clicked();
+
     std::shared_ptr<Player> m_player;
 };
 
