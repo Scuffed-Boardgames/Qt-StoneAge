@@ -12,6 +12,7 @@ public:
     void giveItems(std::shared_ptr<Player> player);
     QJsonObject save();
 private:
+    void rollDice();
     int m_dice[4];
 };
 
