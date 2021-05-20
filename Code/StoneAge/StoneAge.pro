@@ -35,6 +35,7 @@ SOURCES += \
     rollbonus.cpp \
     rollresources.cpp \
     setbonus.cpp \
+    setbonusview.cpp \
     setbuilding.cpp \
     setbuildingpay.cpp \
     showbonus.cpp \
@@ -75,6 +76,7 @@ HEADERS += \
     rollbonus.h \
     rollresources.h \
     setbonus.h \
+    setbonusview.h \
     setbuilding.h \
     setbuildingpay.h \
     showbonus.h \
