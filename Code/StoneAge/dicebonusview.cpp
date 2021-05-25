@@ -12,7 +12,7 @@ DiceBonusView::DiceBonusView(int moveByX, std::shared_ptr<Civilisation> civilisa
 
     std::shared_ptr<DiceBonus> rollBonus = std::dynamic_pointer_cast<DiceBonus>(civilisation);
     QGraphicsRectItem* resource = new QGraphicsRectItem(0, 0, 30, 30, this);
-    resource->moveBy(90, 135);
+    resource->moveBy(95, 135);
     QGraphicsRectItem* dice = new QGraphicsRectItem(0, 0, 30, 30, this);
     dice->setBrush(Qt::white);
     QGraphicsEllipseItem* dot1 = new QGraphicsEllipseItem(0, 0, 5, 5, dice);

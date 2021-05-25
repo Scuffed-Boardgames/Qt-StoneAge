@@ -28,6 +28,7 @@ SOURCES += \
     payciv.cpp \
     payfood.cpp \
     pickbonus.cpp \
+    pickbonusview.cpp \
     pickresources.cpp \
     place.cpp \
     player.cpp \
@@ -69,6 +70,7 @@ HEADERS += \
     payciv.h \
     payfood.h \
     pickbonus.h \
+    pickbonusview.h \
     pickresources.h \
     place.h \
     player.h \
