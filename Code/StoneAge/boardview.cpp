@@ -10,6 +10,7 @@
 #include "cardbonusview.h"
 #include "miscbonusview.h"
 #include "toolbonusview.h"
+#include "rollbonusview.h"
 BoardView::BoardView()
 {
 }
@@ -131,6 +132,8 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
             m_civilisations[i] = std::make_unique<MiscBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
         } else if(std::dynamic_pointer_cast<ToolBonus>(m_board->getOpenCivilisationCard(i))){
             m_civilisations[i] = std::make_unique<ToolBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
+        } else if(std::dynamic_pointer_cast<RollBonus>(m_board->getOpenCivilisationCard(i))){
+            m_civilisations[i] = std::make_unique<RollBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
         } else{
             m_civilisations[i] = std::make_unique<CivilisationView>(moveByX, m_board->getOpenCivilisationCard(i), this);
         }

@@ -40,4 +40,5 @@ PickBonusView::PickBonusView(int moveByX, std::shared_ptr<Civilisation> civilisa
     bleft2->moveBy(15, 15);
     bleft2->setBrush(QColor(255,215,0));
 
+
 }

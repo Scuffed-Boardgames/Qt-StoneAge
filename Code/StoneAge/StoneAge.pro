@@ -38,6 +38,7 @@ SOURCES += \
     playerview.cpp \
     resourceplaceview.cpp \
     rollbonus.cpp \
+    rollbonusview.cpp \
     rollresources.cpp \
     setbonus.cpp \
     setbonusview.cpp \
@@ -85,6 +86,7 @@ HEADERS += \
     resourceplaceview.h \
     resources.h \
     rollbonus.h \
+    rollbonusview.h \
     rollresources.h \
     setbonus.h \
     setbonusview.h \
