@@ -7,7 +7,7 @@ ToolBonus::ToolBonus(Colour colour, int farmers, int makers, int builders, int s
 
 ToolBonus::ToolBonus(const QJsonObject &json)
     : Civilisation((Colour)(json["colour"].toInt()), json["farmers"].toInt(), json["makers"].toInt(), json["builders"].toInt(), json["shamen"].toInt(),
-      (CivBonus)(json["bonus"].toInt()), json["cost"].toInt()), m_tool(json["tool"].toInt())
+      (CivBonus)(json["bonus"].toInt()), json["cost"].toInt()), m_tool(json["tools"].toInt())
 {}
 
 QJsonObject ToolBonus::save()

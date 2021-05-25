@@ -47,6 +47,7 @@ SOURCES += \
     showcivreward.cpp \
     tool.cpp \
     toolbonus.cpp \
+    toolbonusview.cpp \
     toolshed.cpp \
     varbuilding.cpp \
     varbuildingpay.cpp \
@@ -93,6 +94,7 @@ HEADERS += \
     showcivreward.h \
     tool.h \
     toolbonus.h \
+    toolbonusview.h \
     toolshed.h \
     varbuilding.h \
     varbuildingpay.h \
