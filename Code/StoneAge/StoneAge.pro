@@ -25,6 +25,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     miscbonus.cpp \
+    miscbonusview.cpp \
     otherplaceview.cpp \
     payciv.cpp \
     payfood.cpp \
@@ -69,6 +70,7 @@ HEADERS += \
     hut.h \
     mainwindow.h \
     miscbonus.h \
+    miscbonusview.h \
     otherplaceview.h \
     payciv.h \
     payfood.h \
