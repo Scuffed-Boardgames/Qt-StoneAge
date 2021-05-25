@@ -8,15 +8,15 @@ ShowBonus::ShowBonus(int farmers, int makers, int builders, int shamen, int bonu
     ui->setupUi(this);
     this->setWindowTitle(player->getString());
     if(farmers != 0){
-        ui->label->setText("You receive " + QString::number(farmers) + "farmer(s)");
+        ui->label->setText("You received " + QString::number(farmers) + " farmer(s)");
     }else if(makers != 0){
-        ui->label->setText("You receive " + QString::number(makers) + "tool maker(s)");
+        ui->label->setText("You received " + QString::number(makers) + " tool maker(s)");
     }else if(builders != 0){
-        ui->label->setText("You receive " + QString::number(builders) + "hut builder(s)");
+        ui->label->setText("You received " + QString::number(builders) + " hut builder(s)");
     }else if(shamen != 0){
-        ui->label->setText("You receive " + QString::number(shamen) + "shaman(s)");
+        ui->label->setText("You received " + QString::number(shamen) + " shaman(s)");
     }else{
-        ui->label->setText("You receive " + bonusToString(bonus));
+        ui->label->setText("You received " + bonusToString(bonus));
     }
 }
 

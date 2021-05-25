@@ -8,17 +8,17 @@ ShowCivReward::ShowCivReward(std::shared_ptr<Player>player, bool card, bool food
     ui->setupUi(this);
     this->setWindowTitle(player->getString());
     if(card){
-        ui->label->setText("You receive another card");
+        ui->label->setText("You received another card");
     }else if(food){
-        ui->label->setText("You receive +1 food gain");
+        ui->label->setText("You received +1 food gain");
     }else if(score){
-        ui->label->setText("You receive +3 score");
+        ui->label->setText("You received +3 score");
     }else if(tool){
-        ui->label->setText("You receive +1 tool");
+        ui->label->setText("You received +1 tool");
     }else if(xtool){
-        ui->label->setText("You receive an extra tool");
+        ui->label->setText("You received an extra tool");
     }else{
-        ui->label->setText("You receive " + QString::number(amount) + " " + resourceToString((Resource)resource));
+        ui->label->setText("You received " + QString::number(amount) + " " + resourceToString((Resource)resource));
     }
 }
 

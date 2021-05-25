@@ -17,6 +17,8 @@ public:
     BoardView(std::shared_ptr<Board> board, QObject* parent = nullptr);
     BoardView();
 
+
+    void updateCivCards(int moveByX);
 public slots:
     void newBuild(std::shared_ptr<Building> building, int pos);
     void updateTurn();
@@ -26,6 +28,7 @@ public slots:
 signals:
     void highlight(Colour colour);
     void unHighlight(Colour colour);
+    void endGame();
 
 private:
     bool m_placementDone;
@@ -44,6 +47,7 @@ private:
 
     void updateResources();
     void buildBuildings();
+    void civilizeCivilisations();
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
 };

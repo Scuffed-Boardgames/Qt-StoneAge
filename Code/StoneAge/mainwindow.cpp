@@ -19,7 +19,7 @@ MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
     m_playerviews.push_back(std::make_shared<PlayerView>(green.darker(200), board->getPlayer(Colour::green)));
 
     connect(m_board.get(), &Board::roundChanged, this, &MainWindow::updateRound);
-    connect(m_board.get(), &Board::endGame, this, &MainWindow::gameEnded);
+    connect(m_boardview.get(), &BoardView::endGame, this, &MainWindow::gameEnded);
     connect(m_boardview.get(), &BoardView::highlight, this, &MainWindow::highlight);
     connect(m_boardview.get(), &BoardView::unHighlight, this, &MainWindow::unHighlight);
 

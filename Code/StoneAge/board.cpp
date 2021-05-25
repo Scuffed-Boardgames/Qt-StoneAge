@@ -145,9 +145,6 @@ void Board::rerollBuildings(){
 }
 
 void Board::buildBuilding(Colour colour){
-    if(m_ended)
-        return;
-
     for(int i = 0; i < 4; ++i){
         if(!m_buildingCardStacks[i].empty()){
             if(m_buildingCardStacks[i].back()->getStandingColour() == colour){
@@ -172,6 +169,16 @@ void Board::buildBuilding(Colour colour){
 
 }
 
+void Board::civilizeCivilisation(Colour colour){
+    for(int i = 0; i < 4; ++i){
+        if(m_openCivilisationCards[i]->getStandingColour() == colour){
+            m_openCivilisationCards[i]->giveBonus(getPlayer(colour));
+            m_openCivilisationCards[i]->giveItems(getPlayer(colour));
+            m_openCivilisationCards.erase(m_openCivilisationCards.begin() + i,  m_openCivilisationCards.begin() + i);
+        }
+    }
+
+}
 void Board::newOpenCivCards()
 {
     for(int i = 0; i < 4; ++i){
@@ -251,9 +258,20 @@ std::shared_ptr<Building> Board::getOpenBuildingCard(int pos){
 
 void Board::end(){
     m_ended = true;
-    emit endGame();
 }
 
+void Board::newCivCards(){
+    if(m_openCivilisationCards.size() < 4 || m_civilisationCards.size() == 0){
+        m_ended = true;
+        return;
+    }
+    while(m_openCivilisationCards.size() < 4){
+        m_openCivilisationCards.push_back(m_civilisationCards[rand() % m_civilisationCards.size()]);
+    }
+    for(size_t i = 0; i < m_openCivilisationCards.size(); ++i)
+        m_openCivilisationCards[i]->setCost(i+1);
+
+}
 std::shared_ptr<Civilisation> Board::getOpenCivilisationCard(int pos) const
 {
     return m_openCivilisationCards[pos];

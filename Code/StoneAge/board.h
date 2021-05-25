@@ -58,12 +58,13 @@ public:
     void end();
     std::shared_ptr<Civilisation> getOpenCivilisationCard(int pos) const;
 
+    void civilizeCivilisation(Colour colour);
+    void newCivCards();
 signals:
     void newBuild(std::shared_ptr<Building> building, int pos);
     void allWorkersPlaced();
     void workersReset();
     void roundChanged();
-    void endGame();
 
 private:
     bool m_ended; //saved & loaded

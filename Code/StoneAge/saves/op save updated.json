@@ -674,38 +674,38 @@
                 0,
                 0
             ],
-            "clay": 0,
+            "clay": 100,
             "colour": 0,
             "extraTools": [
             ],
-            "farmers": 0,
-            "food": 12,
-            "foodGain": 0,
-            "gold": 0,
-            "hutBuilders": 0,
-            "score": 0,
-            "shamans": 0,
-            "stone": 0,
-            "toolMakers": 0,
+            "farmers": 100,
+            "food": 100,
+            "foodGain": 100,
+            "gold": 100,
+            "hutBuilders": 100,
+            "score": 1000,
+            "shamans": 100,
+            "stone": 100,
+            "toolMakers": 100,
             "tools": [
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 }
             ],
-            "wood": 0,
+            "wood": 100,
             "workerFree": 5,
             "workerTotal": 5
         },
-        {
+       {
             "buildings": 0,
             "civBonuses": [
                 0,
@@ -717,34 +717,34 @@
                 0,
                 0
             ],
-            "clay": 0,
+            "clay": 100,
             "colour": 1,
             "extraTools": [
             ],
-            "farmers": 0,
-            "food": 12,
-            "foodGain": 0,
-            "gold": 0,
-            "hutBuilders": 0,
-            "score": 0,
-            "shamans": 0,
-            "stone": 0,
-            "toolMakers": 0,
+            "farmers": 100,
+            "food": 100,
+            "foodGain": 100,
+            "gold": 100,
+            "hutBuilders": 100,
+            "score": 1000,
+            "shamans": 100,
+            "stone": 100,
+            "toolMakers": 100,
             "tools": [
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 }
             ],
-            "wood": 0,
+            "wood": 100,
             "workerFree": 5,
             "workerTotal": 5
         },
@@ -760,34 +760,34 @@
                 0,
                 0
             ],
-            "clay": 0,
+            "clay": 100,
             "colour": 2,
             "extraTools": [
             ],
-            "farmers": 0,
-            "food": 12,
-            "foodGain": 0,
-            "gold": 0,
-            "hutBuilders": 0,
-            "score": 0,
-            "shamans": 0,
-            "stone": 0,
-            "toolMakers": 0,
+            "farmers": 100,
+            "food": 100,
+            "foodGain": 100,
+            "gold": 100,
+            "hutBuilders": 100,
+            "score": 1000,
+            "shamans": 100,
+            "stone": 100,
+            "toolMakers": 100,
             "tools": [
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 }
             ],
-            "wood": 0,
+            "wood": 100,
             "workerFree": 5,
             "workerTotal": 5
         },
@@ -803,34 +803,34 @@
                 0,
                 0
             ],
-            "clay": 0,
+            "clay": 100,
             "colour": 3,
             "extraTools": [
             ],
-            "farmers": 0,
-            "food": 12,
-            "foodGain": 0,
-            "gold": 0,
-            "hutBuilders": 0,
-            "score": 0,
-            "shamans": 0,
-            "stone": 0,
-            "toolMakers": 0,
+            "farmers": 100,
+            "food": 100,
+            "foodGain": 100,
+            "gold": 100,
+            "hutBuilders": 100,
+            "score": 1000,
+            "shamans": 100,
+            "stone": 100,
+            "toolMakers": 100,
             "tools": [
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 },
                 {
-                    "level": 0,
+                    "level": 6,
                     "used": false
                 }
             ],
-            "wood": 0,
+            "wood": 100,
             "workerFree": 5,
             "workerTotal": 5
         }
