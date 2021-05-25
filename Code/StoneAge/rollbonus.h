@@ -13,6 +13,7 @@ public:
     QJsonObject save();
 private:
     void rollDice();
+    int getDie(int number);
     int m_dice[4];
 };
 

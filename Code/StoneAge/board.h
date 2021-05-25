@@ -17,6 +17,7 @@
 #include "rollbonus.h"
 #include "setbonus.h"
 #include "toolbonus.h"
+#include "pickrolled.h"
 #include <memory>
 
 class Board : public QObject
@@ -82,6 +83,7 @@ private:
     int m_round; //saved & loaded
     std::shared_ptr<SetBuildingPay> m_setBuildingPay; //doesnt need to be saved or loaded
     std::shared_ptr<VarBuildingPay> m_varBuildingPay; //doesnt need to be saved or loaded
+    std::shared_ptr<PickRolled> m_pickWindow; //doesnt need to be saved or loaded
 
 };
 

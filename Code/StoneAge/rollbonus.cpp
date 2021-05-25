@@ -51,3 +51,8 @@ void RollBonus::rollDice()
     }
 }
 
+int RollBonus::getDie(int die)
+{
+    return m_dice[die - 1];
+}
+
