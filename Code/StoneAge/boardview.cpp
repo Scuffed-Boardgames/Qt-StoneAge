@@ -138,8 +138,8 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
             m_civilisations[i] = std::make_unique<CivilisationView>(moveByX, m_board->getOpenCivilisationCard(i), this);
         }
         moveByX += rectWidth;
-//        connect(m_board->getOpenBuildingCard(i).get(), &Building::changedWorkers,  m_buildings[i].get(), &BuildingView::updateText);
-//        connect(m_board->getOpenBuildingCard(i).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
+        connect(m_board->getOpenCivilisationCard(i).get(), &Civilisation::changedWorkers, m_civilisations[i].get(), &CivilisationView::updateText);
+        connect(m_board->getOpenCivilisationCard(i).get(), &Civilisation::turnHappend, this, &BoardView::updateTurn);
     }
     connect(m_board.get(), &Board::newBuild, this, &BoardView::newBuild);
 
@@ -170,6 +170,13 @@ void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
             m_workeradd->exec();
         }
     }
+    CivilisationView* civSelected = dynamic_cast<CivilisationView*>(list[0]);
+    if(civSelected){
+        m_workeradd->setStatic(1);
+        m_workeradd->addToCiv(civSelected->getCivilisation(), m_board->getPlayer(m_board->getCurrentPlayer()));
+        m_workeradd->exec();
+        }
+
     if(m_placementDone){
         updateResources();
     }

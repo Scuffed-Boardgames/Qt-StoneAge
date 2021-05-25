@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "resourceplaceview.h"
 #include "toolshed.h"
+#include "civilisation.h"
 #include "buildingview.h"
 #include "gather.h"
 
@@ -26,6 +27,7 @@ public:
 
     void addToBuilding(std::shared_ptr<Building> building, std::shared_ptr<Player> player);
 
+    void addToCiv(std::shared_ptr<Civilisation> building, std::shared_ptr<Player> player);
 private slots:
     void on_okayButton_clicked();
     void on_cancelButton_clicked();
@@ -34,6 +36,7 @@ private:
     std::shared_ptr<Building> m_building;
     std::shared_ptr<Player> m_player;
     std::shared_ptr<Place> m_place;
+    std::shared_ptr<Civilisation> m_civilisation;
     Ui::WorkerAdd* ui;
 };
 

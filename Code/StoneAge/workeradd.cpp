@@ -31,6 +31,12 @@ void WorkerAdd::addToBuilding(std::shared_ptr<Building> building, std::shared_pt
     m_player = player;
 }
 
+void WorkerAdd::addToCiv(std::shared_ptr<Civilisation> building, std::shared_ptr<Player> player){
+    this->setWindowTitle(player->getString());
+    m_civilisation = building;
+    m_player = player;
+}
+
 WorkerAdd::~WorkerAdd(){
     delete ui;
 }
@@ -40,9 +46,12 @@ void WorkerAdd::on_okayButton_clicked(){
         m_place->addWorker(m_player, ui->amount->value());
     if(m_building)
         m_building->addWorker(m_player);
+    if(m_civilisation)
+        m_civilisation->addWorker(m_player);
     ui->amount->setValue(1);
     m_place = nullptr;
     m_building = nullptr;
+    m_civilisation = nullptr;
     this->close();
 }
 

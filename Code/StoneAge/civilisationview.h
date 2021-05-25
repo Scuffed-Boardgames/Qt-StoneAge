@@ -17,9 +17,11 @@ public:
     void setOwner(Colour colour);
     void updateCivilisation(std::shared_ptr<Civilisation> civilisation);
 
+    std::shared_ptr<Civilisation> getCivilisation() const;
+
 public slots:
-//    void updateText();
-//    void updateBuilding(std::shared_ptr<Civilisation> building);
+    //    void updateBuilding(std::shared_ptr<Civilisation> building);
+    void updateText();
 
 private:
     QString bonusToString(CivBonus bonus);

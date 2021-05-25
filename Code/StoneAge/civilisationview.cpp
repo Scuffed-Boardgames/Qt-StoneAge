@@ -85,6 +85,28 @@ void CivilisationView::updateCivilisation(std::shared_ptr<Civilisation> civilisa
     }
 }
 
+void CivilisationView::updateText(){
+    if(m_civilisation->getStandingColour() == Colour::red){
+        m_indicator->setBrush(QColor(237,28,36));
+        return;
+    }
+    else if(m_civilisation->getStandingColour() == Colour::blue){
+        m_indicator->setBrush(QColor(63,72,204));
+        return;
+    }
+    else if(m_civilisation->getStandingColour() == Colour::yellow){
+        m_indicator->setBrush(QColor(255,242,0));
+        return;
+    }
+    else if(m_civilisation->getStandingColour() == Colour::green){
+        m_indicator->setBrush(QColor(34,177,76));
+        return;
+    }
+    m_indicator->setBrush(QColor(234, 222, 210));
+    return;
+
+}
+
 QString CivilisationView::bonusToString(CivBonus bonus)
 {
     switch(bonus){
@@ -110,4 +132,9 @@ QString CivilisationView::bonusToString(CivBonus bonus)
 
     }
 
+}
+
+std::shared_ptr<Civilisation> CivilisationView::getCivilisation() const
+{
+    return m_civilisation;
 }
