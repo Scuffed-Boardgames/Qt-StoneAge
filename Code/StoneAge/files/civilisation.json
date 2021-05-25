@@ -267,7 +267,7 @@
 			"shamen": 1,
 			"bonus": -1,
 			"cost": 0,
-			"diceResource": 4
+			"diceResource": 5
         }
 	],
 	"cardBonus": [
