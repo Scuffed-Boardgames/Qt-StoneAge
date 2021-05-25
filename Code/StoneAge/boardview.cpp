@@ -7,6 +7,7 @@
 #include "setbonusview.h"
 #include "dicebonusview.h"
 #include "pickbonusview.h"
+#include "cardbonusview.h"
 BoardView::BoardView()
 {
 }
@@ -122,6 +123,8 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
             m_civilisations[i] = std::make_unique<DiceBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
         } else if(std::dynamic_pointer_cast<PickBonus>(m_board->getOpenCivilisationCard(i))){
             m_civilisations[i] = std::make_unique<PickBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
+        } else if(std::dynamic_pointer_cast<CardBonus>(m_board->getOpenCivilisationCard(i))){
+            m_civilisations[i] = std::make_unique<CardBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
         } else {
             m_civilisations[i] = std::make_unique<CivilisationView>(moveByX, m_board->getOpenCivilisationCard(i), this);
         }

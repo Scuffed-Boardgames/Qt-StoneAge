@@ -14,6 +14,7 @@ SOURCES += \
     building.cpp \
     buildingview.cpp \
     cardbonus.cpp \
+    cardbonusview.cpp \
     civilisation.cpp \
     civilisationview.cpp \
     dicebonus.cpp \
@@ -56,6 +57,7 @@ HEADERS += \
     building.h \
     buildingview.h \
     cardbonus.h \
+    cardbonusview.h \
     civbonuses.h \
     civilisation.h \
     civilisationview.h \
