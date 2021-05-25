@@ -70,21 +70,19 @@ void CivilisationView::updateCivilisation(std::shared_ptr<Civilisation> civilisa
     m_cost->setText(QString::number(m_civilisation->getCost()));
     if((int)m_civilisation->getBonus() != -1){
         m_underCardBonus->setPlainText(bonusToString(m_civilisation->getBonus()));
-        m_underCardBonus->setPos(45, 170);
     } else if(m_civilisation->getBuilders() > 0){
         m_underCardBonus->setPlainText(QString::number(m_civilisation->getBuilders()) + " Hut builder(s)");
-        m_underCardBonus->setPos(25, 170);
     } else if(m_civilisation->getShamen() > 0){
         m_underCardBonus->setPlainText(QString::number(m_civilisation->getShamen()) + " Shaman(s)");
-        m_underCardBonus->setPos(35, 170);
     } else if(m_civilisation->getFarmers() > 0){
         m_underCardBonus->setPlainText(QString::number(m_civilisation->getFarmers()) + " Farmer(s)");
-        m_underCardBonus->setPos(35, 170);
     } else if(m_civilisation->getMakers() > 0){
         m_underCardBonus->setPlainText(QString::number(m_civilisation->getMakers()) + " Tool maker(s)");
-        m_underCardBonus->setPos(25, 170);
     }
-
+    m_underCardBonus->setPos(80, 170);
+    for(int i = 0; i < m_underCardBonus->toPlainText().length(); ++i){
+        m_underCardBonus->moveBy(-4, 0);
+    }
 }
 
 QString CivilisationView::bonusToString(CivBonus bonus)
