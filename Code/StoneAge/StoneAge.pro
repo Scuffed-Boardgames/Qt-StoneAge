@@ -17,6 +17,7 @@ SOURCES += \
     civilisation.cpp \
     civilisationview.cpp \
     dicebonus.cpp \
+    dicebonusview.cpp \
     field.cpp \
     gather.cpp \
     hut.cpp \
@@ -58,6 +59,7 @@ HEADERS += \
     civilisationview.h \
     colour.h \
     dicebonus.h \
+    dicebonusview.h \
     field.h \
     gather.h \
     hut.h \
