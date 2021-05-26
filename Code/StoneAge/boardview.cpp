@@ -13,51 +13,50 @@
 #include "rollbonusview.h"
 
 BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
-    : QGraphicsScene(parent), m_placementDone{false}, m_workeradd{std::make_unique<WorkerAdd>()}, m_board{board}{
+    : QGraphicsScene(parent), m_placementDone{false}, m_board{board}{
     connect(m_board.get(), &Board::allWorkersPlaced, this, &BoardView::placementDone);
     int moveByX = 0;
     int rectWidth = 300;
     m_food = std::make_unique<ResourcePlaceView>(QColor(60,125,0), "Hunt", moveByX, m_board->getGather(Resource::food), this);//forest green
     connect(m_board->getGather(Resource::food).get(), &Place::changedWorkers, m_food.get(), &ResourcePlaceView::updateText);
     connect(m_board->getGather(Resource::food).get(), &Place::turnHappend, this, &BoardView::updateTurn);
-    //    connect(m_board.get(), &Board::workersReset, m_food.get(), &ResourcePlaceView::updateText);
+
     moveByX += rectWidth;
     m_wood = std::make_unique<ResourcePlaceView>(QColor(115,75,0), "Forest", moveByX, m_board->getGather(Resource::wood), this);//brown
     connect(m_board->getGather(Resource::wood).get(), &Place::changedWorkers, m_wood.get(), &ResourcePlaceView::updateText);
     connect(m_board->getGather(Resource::wood).get(), &Place::turnHappend, this, &BoardView::updateTurn);
-    //    connect(m_board.get(), &Board::workersReset, m_wood.get(), &ResourcePlaceView::updateText);
+
     moveByX += rectWidth;
     m_clay = std::make_unique<ResourcePlaceView>(QColor(220,85,57), "Clay Pit", moveByX, m_board->getGather(Resource::clay), this);//brick red
     connect(m_board->getGather(Resource::clay).get(), &Place::changedWorkers, m_clay.get(), &ResourcePlaceView::updateText);
     connect(m_board->getGather(Resource::clay).get(), &Place::turnHappend, this, &BoardView::updateTurn);
     connect(m_board.get(), &Board::workersReset, m_clay.get(), &ResourcePlaceView::updateText);
+
     moveByX += rectWidth;
     m_stone = std::make_unique<ResourcePlaceView>(QColor(75,75,75), "Quarry", moveByX, m_board->getGather(Resource::stone), this);//grey
     connect(m_board->getGather(Resource::stone).get(), &Place::changedWorkers, m_stone.get(), &ResourcePlaceView::updateText);
     connect(m_board->getGather(Resource::stone).get(), &Place::turnHappend, this, &BoardView::updateTurn);
-    //    connect(m_board.get(), &Board::workersReset, m_stone.get(), &ResourcePlaceView::updateText);
+
     moveByX += rectWidth;
     m_gold = std::make_unique<ResourcePlaceView>(QColor(255,215,0), "River", moveByX, m_board->getGather(Resource::gold), this);//gold
     connect(m_board->getGather(Resource::gold).get(), &Place::changedWorkers, m_gold.get(), &ResourcePlaceView::updateText);
     connect(m_board->getGather(Resource::gold).get(), &Place::turnHappend, this, &BoardView::updateTurn);
-    //    connect(m_board.get(), &Board::workersReset, m_gold.get(), &ResourcePlaceView::updateText);
 
     moveByX = 0;
     rectWidth = 500;
     m_field = std::make_unique<OtherPlaceView>(QColor(245,222,179), moveByX, 1, "Field", m_board->getField(), this);//wheat yellow
     connect(m_board->getField().get(), &Place::changedWorkers, m_field.get(), &OtherPlaceView::updateText);
     connect(m_board->getField().get(), &Place::turnHappend, this, &BoardView::updateTurn);
-    //    connect(m_board.get(), &Board::workersReset, m_field.get(), &OtherPlaceView::updateText);
+
     moveByX += rectWidth;
     m_hut = std::make_unique<OtherPlaceView>(QColor(254,184,198), moveByX, 2, "Hut", m_board->getHut(), this);//love pink
     connect(m_board->getHut().get(), &Place::changedWorkers, m_hut.get(), &OtherPlaceView::updateText);
     connect(m_board->getHut().get(), &Place::turnHappend, this, &BoardView::updateTurn);
-    //    connect(m_board.get(), &Board::workersReset, m_hut.get(), &OtherPlaceView::updateText);
+
     moveByX += rectWidth;
     m_toolshed = std::make_unique<OtherPlaceView>(QColor(161,133,105), moveByX, 1, "Tool Shed", m_board->getToolShed(), this);//tool brown
     connect(m_board->getToolShed().get(), &Place::changedWorkers, m_toolshed.get(), &OtherPlaceView::updateText);
     connect(m_board->getToolShed().get(), &Place::turnHappend, this, &BoardView::updateTurn);
-    //    connect(m_board.get(), &Board::workersReset, m_toolshed.get(), &OtherPlaceView::updateText);
 
     moveByX = 0;
     rectWidth = 175;
@@ -70,7 +69,6 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
     updateCivCards();
     connect(m_board.get(), &Board::newBuild, this, &BoardView::newBuild);
     connect(m_board.get(), &Board::newCiv, this, &BoardView::updateCivCards);
-
 }
 
 void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
@@ -80,33 +78,36 @@ void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
         return;
     ResourcePlaceView* resourceSelected = dynamic_cast<ResourcePlaceView*>(list[0]);
     if(resourceSelected){
-        m_workeradd->setDynamic();
-        m_workeradd->addToPlace(resourceSelected->getPlace(), m_board->getPlayer(m_board->getCurrentPlayer()));
-        m_workeradd->exec();
+        WorkerAdd workerAdd;
+        workerAdd.addToPlace(resourceSelected->getPlace(), m_board->getPlayer(m_board->getCurrentPlayer()));
+        workerAdd.exec();
     }
     OtherPlaceView* otherSelected = dynamic_cast<OtherPlaceView*>(list[0]);
     if(otherSelected){
-        m_workeradd->setStatic(otherSelected->getCost());
-        m_workeradd->addToPlace(otherSelected->getPlace(), m_board->getPlayer(m_board->getCurrentPlayer()));
-        m_workeradd->exec();
+        WorkerAdd workerAdd;
+        workerAdd.setStatic(otherSelected->getCost());
+        workerAdd.addToPlace(otherSelected->getPlace(), m_board->getPlayer(m_board->getCurrentPlayer()));
+        workerAdd.exec();
     }
     BuildingView* buildingSelected = dynamic_cast<BuildingView*>(list[0]);
     if(buildingSelected){
-        m_workeradd->setStatic(1);
+        WorkerAdd workerAdd;
+        workerAdd.setStatic(1);
         if(buildingSelected->getBuilding()){
-            m_workeradd->addToBuilding(buildingSelected->getBuilding(), m_board->getPlayer(m_board->getCurrentPlayer()));
-            m_workeradd->exec();
+            workerAdd.addToBuilding(buildingSelected->getBuilding(), m_board->getPlayer(m_board->getCurrentPlayer()));
+            workerAdd.exec();
         }
     }
     CivilisationView* civSelected = dynamic_cast<CivilisationView*>(list[0]);
     if(civSelected){
-        m_workeradd->setStatic(1);
-        m_workeradd->addToCiv(civSelected->getCivilisation(), m_board->getPlayer(m_board->getCurrentPlayer()));
-        m_workeradd->exec();
+        WorkerAdd workerAdd;
+        workerAdd.setStatic(1);
+        workerAdd.addToCiv(civSelected->getCivilisation(), m_board->getPlayer(m_board->getCurrentPlayer()));
+        workerAdd.exec();
     }
 
     if(m_placementDone){
-        updateResources();
+        gameLoop();
     }
 }
 void BoardView::newBuild(std::shared_ptr<Building> building, int pos){
@@ -127,50 +128,42 @@ void BoardView::placementDone(){
     m_placementDone = true;
 }
 
-void BoardView::updateResources(){
+void BoardView::gameLoop(){
     setSelectable(false);
     for(int i = (int)m_board->getCurrentPlayer(); i < (int)m_board->getCurrentPlayer() + 4; ++i){
         m_board->payResources((Colour)(i % 4));
+        m_board->resetWorkers((Colour)(i % 4));
+        civilizeCivilisations((Colour)(i % 4));
+        buildBuildings((Colour)(i % 4));
+        m_board->feedWorkers((Colour)(i % 4));
         emit unHighlight((Colour)(i % 4));
-        emit highlight((Colour)((i + 1) % 4));
+        emit highlight((Colour)((i+1)%4));
     }
-    m_board->resetWorkers();
-    buildBuildings();
-    civilizeCivilisations();
-    m_board->feedWorkers();
+
     if(m_board->getEnded()){
         emit endGame();
         return;
     }
+    emit unHighlight(m_board->getCurrentPlayer());
+    emit highlight((Colour)(((int)m_board->getCurrentPlayer() + 1) % 4));
     m_board->addRound();
     setSelectable(true);
     m_placementDone = false;
 }
 
-void BoardView::buildBuildings(){
-    for(int i = (int)m_board->getCurrentPlayer(); i < (int)m_board->getCurrentPlayer() + 4; ++i){
-        m_board->buildBuilding((Colour)(i % 4));
-        if(m_board->getEnded())
-            return;
-        emit unHighlight((Colour)(i % 4));
-        emit highlight((Colour)((i+1)%4));
-    }
+void BoardView::buildBuildings(Colour colour){
+    m_board->buildBuilding(colour);
+    if(m_board->getEnded())
+        return;
     if(m_board->checkStacks()){
         m_board->end();
     }
 }
 
-void BoardView::civilizeCivilisations(){
-    for(int i = (int)m_board->getCurrentPlayer(); i < (int)m_board->getCurrentPlayer() + 4; ++i){
-        m_board->civilizeCivilisation((Colour)(i % 4));
-        emit unHighlight((Colour)(i % 4));
-        emit highlight((Colour)((i+1) % 4));
-    }
-    emit unHighlight(m_board->getCurrentPlayer());
-    emit highlight((Colour)(((int)m_board->getCurrentPlayer() + 1) % 4));
+void BoardView::civilizeCivilisations(Colour colour){
+    m_board->civilizeCivilisation(colour);
     m_board->newCivCards();
     updateCivCards();
-
 
 }
 void BoardView::updateCivCards(){

@@ -26,8 +26,8 @@ class Board : public QObject
 public:
     Board();
 
-    void resetWorkers();
-    void feedWorkers();
+    void resetWorkers(Colour colour);
+    void feedWorkers(Colour colour);
 
     std::shared_ptr<Building> getOpenBuildingCard(int pos);
     void newBuilding(int place);
@@ -84,8 +84,6 @@ private:
     std::shared_ptr<ToolShed> m_toolShed; //saved & loaded
     std::shared_ptr<Field> m_field; //saved & loaded
     int m_round; //saved & loaded
-    std::shared_ptr<SetBuildingPay> m_setBuildingPay; //doesnt need to be saved or loaded
-    std::shared_ptr<VarBuildingPay> m_varBuildingPay; //doesnt need to be saved or loaded
     std::shared_ptr<PickRolled> m_pickWindow; //doesnt need to be saved or loaded
 
 };

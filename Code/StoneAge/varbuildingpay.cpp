@@ -1,15 +1,13 @@
 #include "varbuildingpay.h"
 #include "ui_varbuildingpay.h"
 
-VarBuildingPay::VarBuildingPay(QWidget *parent) :QDialog(parent), m_bought(false), ui(new Ui::VarBuildingPay){
+VarBuildingPay::VarBuildingPay(std::shared_ptr<Player> player, std::shared_ptr<VarBuilding> building, QWidget *parent)
+    :QDialog(parent), m_bought(false), ui(new Ui::VarBuildingPay), m_player(player), m_building(building){
     ui->setupUi(this);
     connect(ui->woodAmount, &QSpinBox::valueChanged, this, &VarBuildingPay::editText);
     connect(ui->clayAmount, &QSpinBox::valueChanged, this, &VarBuildingPay::editText);
     connect(ui->stoneAmount, &QSpinBox::valueChanged, this, &VarBuildingPay::editText);
     connect(ui->goldAmount, &QSpinBox::valueChanged, this, &VarBuildingPay::editText);
-}
-
-void VarBuildingPay::setBuilding(std::shared_ptr<Player> player, std::shared_ptr<VarBuilding> building){
     this->setWindowTitle(player->getString());
     m_bought = false;
     m_player = player;

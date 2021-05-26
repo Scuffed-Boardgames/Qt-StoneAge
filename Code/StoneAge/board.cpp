@@ -10,7 +10,7 @@
 Board::Board() : m_ended{false}, m_currentPlayer{Colour::red}, m_hut(std::make_shared<Hut>()), m_forest{std::make_shared<Gather>(Resource::wood)},
     m_clayPit{std::make_shared<Gather>(Resource::clay)}, m_quarry{std::make_shared<Gather>(Resource::stone)}, m_river{std::make_shared<Gather>(Resource::gold)},
     m_hunt{std::make_shared<Gather>(Resource::food)}, m_toolShed(std::make_shared<ToolShed>()), m_field(std::make_shared<Field>()),
-    m_setBuildingPay(std::make_shared<SetBuildingPay>()), m_varBuildingPay(std::make_shared<VarBuildingPay>()), m_pickWindow(std::make_shared<PickRolled>()){
+    m_pickWindow(std::make_shared<PickRolled>()){
 
     m_round = 0;
     for(int i = 0; i < 4; ++i){
@@ -88,34 +88,32 @@ Board::Board() : m_ended{false}, m_currentPlayer{Colour::red}, m_hut(std::make_s
 }
 
 
-void Board::feedWorkers(){
-    for(int i = 0; i < 4; ++i){
-        int foodNeeded = m_players[i]->getWorkerCount();
-        int ownedFood = m_players[i]->getResource(Resource::food);
-        if(foodNeeded <= ownedFood){
-            m_players[i]->addResource(Resource::food, -foodNeeded);
-        }else{
-            m_players[i]->addResource(Resource::food, -ownedFood);
-            foodNeeded -= ownedFood;
-            PayFood* pay = new PayFood(m_players[i], foodNeeded);
-            pay->exec();
-        }
+void Board::feedWorkers(Colour colour){
+    int foodNeeded = getPlayer(colour)->getWorkerCount();
+    int ownedFood = getPlayer(colour)->getResource(Resource::food);
+    if(foodNeeded <= ownedFood){
+        getPlayer(colour)->addResource(Resource::food, -foodNeeded);
+    }else{
+        getPlayer(colour)->addResource(Resource::food, -ownedFood);
+        foodNeeded -= ownedFood;
+        PayFood* pay = new PayFood(getPlayer(colour), foodNeeded);
+        pay->exec();
     }
 }
 
-void Board::resetWorkers(){
-    m_hunt->resetWorkers();
-    m_forest->resetWorkers();
-    m_clayPit->resetWorkers();
-    m_quarry->resetWorkers();
-    m_river->resetWorkers();
-    m_field->resetWorkers();
-    m_hut->resetWorkers();
-    m_toolShed->resetWorkers();
-    for (int i = 0; i<4 ; ++i){
-        m_players[i]->resetWorkers();
-        m_players[i]->resetTools();
-    }
+void Board::resetWorkers(Colour colour){
+    m_hunt->resetWorkers(colour);
+    m_forest->resetWorkers(colour);
+    m_clayPit->resetWorkers(colour);
+    m_quarry->resetWorkers(colour);
+    m_river->resetWorkers(colour);
+    m_field->resetWorkers(colour);
+    m_hut->resetWorkers(colour);
+    m_toolShed->resetWorkers(colour);
+
+    getPlayer(colour)->resetWorkers();
+    getPlayer(colour)->resetTools();
+
     emit m_hunt->changedWorkers();
     emit m_forest->changedWorkers();
     emit m_clayPit->changedWorkers();
@@ -151,16 +149,16 @@ void Board::buildBuilding(Colour colour){
             if(m_buildingCardStacks[i].back()->getStandingColour() == colour){
                 std::shared_ptr<SetBuilding> setBuilding = std::dynamic_pointer_cast<SetBuilding>(m_buildingCardStacks[i].back());
                 if(setBuilding){
-                    m_setBuildingPay->setBuilding(getPlayer(colour), setBuilding);
-                    m_setBuildingPay->exec();
-                    if(m_setBuildingPay->getBought()){
+                    SetBuildingPay buildingpay(getPlayer(colour), setBuilding);
+                    buildingpay.exec();
+                    if(buildingpay.getBought()){
                         newBuilding(i);
                     }
                 } else{
                     std::shared_ptr<VarBuilding> varBuilding = std::dynamic_pointer_cast<VarBuilding>(m_buildingCardStacks[i].back());
-                    m_varBuildingPay->setBuilding(getPlayer(colour), varBuilding);
-                    m_varBuildingPay->exec();
-                    if( m_varBuildingPay->getBought()){
+                    VarBuildingPay buildingpay(getPlayer(colour), varBuilding);
+                    buildingpay.exec();
+                    if(buildingpay.getBought()){
                         newBuilding(i);
                     }
                 }

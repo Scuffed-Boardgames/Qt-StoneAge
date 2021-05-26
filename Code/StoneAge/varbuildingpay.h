@@ -14,10 +14,9 @@ class VarBuildingPay : public QDialog
     Q_OBJECT
 
 public:
-    explicit VarBuildingPay(QWidget *parent = nullptr);
+    explicit VarBuildingPay(std::shared_ptr<Player> player, std::shared_ptr<VarBuilding> building, QWidget *parent = nullptr);
     ~VarBuildingPay();
 
-    void setBuilding(std::shared_ptr<Player> player, std::shared_ptr<VarBuilding> building);
     void resetAmounts();
 
     bool getBought() const;

@@ -3,11 +3,23 @@
 Place::Place() : QObject(nullptr), m_redWorkers{0}, m_blueWorkers{0}, m_yellowWorkers{0}, m_greenWorkers{0}
 {}
 
-void Place::resetWorkers(){
-    m_redWorkers = 0;
-    m_blueWorkers = 0;
-    m_yellowWorkers = 0;
-    m_greenWorkers = 0;
+void Place::resetWorkers(Colour colour){
+    switch (colour) {
+    case(Colour::red):
+        m_redWorkers = 0;
+        return;
+    case(Colour::blue):
+        m_blueWorkers = 0;
+        return;
+    case(Colour::yellow):
+        m_yellowWorkers = 0;
+        return;
+    case(Colour::green):
+        m_greenWorkers = 0;
+        return;
+    default:
+        return;
+    }
 }
 
 int Place::getWorkers(Colour colour){

@@ -14,11 +14,10 @@ class SetBuildingPay : public QDialog
 
 public:
     explicit SetBuildingPay(QWidget *parent = nullptr);
-    void setBuilding(std::shared_ptr<Player> player, std::shared_ptr<SetBuilding> building);
     ~SetBuildingPay();
 
     bool getBought() const;
-
+    SetBuildingPay(std::shared_ptr<Player> player, std::shared_ptr<SetBuilding> building, QWidget *parent = nullptr);
 private slots:
     void on_yesButton_clicked();
 

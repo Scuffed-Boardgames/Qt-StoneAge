@@ -2,11 +2,9 @@
 #include "ui_setbuildingpay.h"
 #include "ui_buildingpay.h"
 
-SetBuildingPay::SetBuildingPay(QWidget *parent) :QDialog(parent), ui(new Ui::SetBuildingPay), m_bought(false){
+SetBuildingPay::SetBuildingPay(std::shared_ptr<Player> player, std::shared_ptr<SetBuilding> building, QWidget *parent)
+    :QDialog(parent), ui(new Ui::SetBuildingPay), m_building(building), m_player(player),  m_bought(false){
     ui->setupUi(this);
-}
-
-void SetBuildingPay::setBuilding(std::shared_ptr<Player> player, std::shared_ptr<SetBuilding> building){
     this->setWindowTitle(player->getString());
     m_bought = false;
     m_player = player;
@@ -31,6 +29,7 @@ void SetBuildingPay::setBuilding(std::shared_ptr<Player> player, std::shared_ptr
     ui->bottomText->setText("and will give you " + QString::number(building->getScoreGain()) + " score");
     ui->yesButton->setEnabled(building->canPay(m_player));
 }
+
 
 SetBuildingPay::~SetBuildingPay(){
     delete ui;
