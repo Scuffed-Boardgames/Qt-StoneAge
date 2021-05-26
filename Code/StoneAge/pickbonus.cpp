@@ -12,8 +12,8 @@ PickBonus::PickBonus(const QJsonObject &json)
 
 void PickBonus::giveItems(std::shared_ptr<Player> player)
 {
-    PickResources* pick = new PickResources(player);
-    pick->exec();
+    PickResources pick(player);
+    pick.exec();
     giveBonus(player);
 }
 

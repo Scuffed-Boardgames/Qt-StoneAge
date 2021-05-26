@@ -29,8 +29,8 @@ void CardBonus::setCard(std::shared_ptr<Civilisation> card){
 }
 
 void CardBonus::giveItems(std::shared_ptr<Player> player){
-    ShowCivReward* show = new ShowCivReward(player, true);
-    show->exec();
+    ShowCivReward show(player, true);
+    show.exec();
     m_card->giveBonus(player);
     giveBonus(player);
 }

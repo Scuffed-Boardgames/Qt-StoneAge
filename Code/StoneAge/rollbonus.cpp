@@ -1,12 +1,8 @@
 #include "rollbonus.h"
 
 RollBonus::RollBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, int die1, int die2, int die3, int die4)
-    : Civilisation(colour, farmers, makers, builders, shamen, bonus, cost)
+    : Civilisation(colour, farmers, makers, builders, shamen, bonus, cost), m_dice{die1, die2 , die3, die4}
 {
-    m_dice[0] = die1;
-    m_dice[1] = die2;
-    m_dice[2] = die3;
-    m_dice[3] = die4;
     if(m_dice[0] + m_dice[1] + m_dice[2] + m_dice[3] == 0){
         rollDice();
     }

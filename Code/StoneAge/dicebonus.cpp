@@ -12,10 +12,10 @@ DiceBonus::DiceBonus(const QJsonObject &json)
 
 void DiceBonus::giveItems(std::shared_ptr<Player> player)
 {
-    RollResources* roll = new RollResources(2, m_resource, player, nullptr);
-    roll->exec();
-    if (roll->getGain() > 0){
-        player->addResource(m_resource, roll->getGain());
+    RollResources roll(2, m_resource, player, nullptr);
+    roll.exec();
+    if (roll.getGain() > 0){
+        player->addResource(m_resource, roll.getGain());
     }
     giveBonus(player);
 }

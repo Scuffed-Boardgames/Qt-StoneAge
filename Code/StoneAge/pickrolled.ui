@@ -13,39 +13,25 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>10</y>
-     <width>94</width>
-     <height>72</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Choose a resource</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="resourceBox"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QPushButton" name="okayButton">
-      <property name="text">
-       <string>Okay</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout_3">
+   <item alignment="Qt::AlignHCenter">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Choose a resource</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="resourceBox"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="okayButton">
+     <property name="text">
+      <string>Okay</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

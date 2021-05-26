@@ -13,18 +13,18 @@ MiscBonus::MiscBonus(const QJsonObject &json)
 void MiscBonus::giveItems(std::shared_ptr<Player> player)
 {
     if(m_score){
-        ShowCivReward* show = new ShowCivReward(player, false, false, true);
-        show->exec();
+        ShowCivReward show(player, false, false, true);
+        show.exec();
         player->addScore(3);
     }
     if(m_food){
-        ShowCivReward* show = new ShowCivReward(player, false, true);
-        show->exec();
+        ShowCivReward show(player, false, true);
+        show.exec();
         player->addFoodGain();
     }
     if(m_tool){
-        ShowCivReward* show = new ShowCivReward(player, false, false, false, true);
-        show->exec();
+        ShowCivReward show(player, false, false, false, true);
+        show.exec();
         player->addTool();
     }
     giveBonus(player);

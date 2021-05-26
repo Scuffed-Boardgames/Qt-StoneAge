@@ -131,6 +131,11 @@ void BoardView::gameLoop(){
         civilizeCivilisations((Colour)(i % 4));
         m_board->checkChosen((Colour)(i % 4));
         buildBuildings((Colour)(i % 4));
+        emit unHighlight((Colour)(i % 4));
+        emit highlight((Colour)((i+1)%4));
+    }
+
+    for(int i = (int)m_board->getCurrentPlayer(); i < (int)m_board->getCurrentPlayer() + 4; ++i){
         m_board->feedWorkers((Colour)(i % 4));
         emit unHighlight((Colour)(i % 4));
         emit highlight((Colour)((i+1)%4));
@@ -140,6 +145,7 @@ void BoardView::gameLoop(){
         emit endGame();
         return;
     }
+
     emit unHighlight(m_board->getCurrentPlayer());
     emit highlight((Colour)(((int)m_board->getCurrentPlayer() + 1) % 4));
     m_board->addRound();
@@ -165,6 +171,7 @@ void BoardView::updateCivCards(){
     int moveByX = 800;
     int rectWidth = 175;
     for(int i = 0; i < 4; ++i){
+        this->removeItem(m_civilisations[i].get());
         if(std::dynamic_pointer_cast<SetBonus>(m_board->getOpenCivilisationCard(i))){
             m_civilisations[i] = std::make_unique<SetBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
         } else if(std::dynamic_pointer_cast<DiceBonus>(m_board->getOpenCivilisationCard(i))){

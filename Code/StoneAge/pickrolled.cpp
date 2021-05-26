@@ -72,38 +72,37 @@ void PickRolled::assignResources()
         switch(m_resources[i]){
         case(1):
             ui->resourceBox->addItem("Wood");
-            return;
+            break;
         case(2):
             ui->resourceBox->addItem("Clay");
-            return;
+            break;
         case(3):
             ui->resourceBox->addItem("Stone");
-            return;
+            break;
         case(4):
             ui->resourceBox->addItem("Gold");
-            return;
+            break;
         case(5):
             ui->resourceBox->addItem("Tool");
-            return;
+            break;
         case(6):
             ui->resourceBox->addItem("Food Gain");
-            return;
+            break;
         default:
-            return;
+            break;
         }
     }
 }
 
-void PickRolled::assignPlayer(std::shared_ptr<Player> player)
-{
+void PickRolled::assignPlayer(std::shared_ptr<Player> player){
     m_player = player;
 }
 
-void PickRolled::on_okayButton_clicked()
-{
+void PickRolled::on_okayButton_clicked(){
     giveResource(ui->resourceBox->currentText());
     ui->resourceBox->removeItem(ui->resourceBox->currentIndex());
     m_chosen[(int)m_player->getColour()] = true;
+    this->close();
 }
 
 bool PickRolled::hasChosen(Colour colour)
