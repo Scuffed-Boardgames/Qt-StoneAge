@@ -18,6 +18,7 @@ PayCiv::~PayCiv(){
 }
 
 void PayCiv::on_cancelButton_clicked(){
+    m_civ->reset();
     m_player = nullptr;
     this->close();
 }

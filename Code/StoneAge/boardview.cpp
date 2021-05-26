@@ -119,6 +119,7 @@ void BoardView::newBuild(std::shared_ptr<Building> building, int pos){
 }
 
 void BoardView::updateTurn(){
+    m_board->checkChosen(m_board->getCurrentPlayer());
     emit unHighlight(m_board->getCurrentPlayer());
     m_board->nextPlayer();
     emit highlight(m_board->getCurrentPlayer());
@@ -131,9 +132,11 @@ void BoardView::placementDone(){
 void BoardView::gameLoop(){
     setSelectable(false);
     for(int i = (int)m_board->getCurrentPlayer(); i < (int)m_board->getCurrentPlayer() + 4; ++i){
+        m_board->checkChosen((Colour)(i % 4));
         m_board->payResources((Colour)(i % 4));
         m_board->resetWorkers((Colour)(i % 4));
         civilizeCivilisations((Colour)(i % 4));
+        m_board->checkChosen((Colour)(i % 4));
         buildBuildings((Colour)(i % 4));
         m_board->feedWorkers((Colour)(i % 4));
         emit unHighlight((Colour)(i % 4));
@@ -153,8 +156,6 @@ void BoardView::gameLoop(){
 
 void BoardView::buildBuildings(Colour colour){
     m_board->buildBuilding(colour);
-    if(m_board->getEnded())
-        return;
     if(m_board->checkStacks()){
         m_board->end();
     }

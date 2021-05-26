@@ -10,10 +10,10 @@ public:
     RollBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, int die1, int die2, int die3, int die4);
     RollBonus(const QJsonObject &json);
     void giveItems(std::shared_ptr<Player> player);
+    int getDie(int number);
     QJsonObject save();
 private:
     void rollDice();
-    int getDie(int number);
     int m_dice[4];
 };
 

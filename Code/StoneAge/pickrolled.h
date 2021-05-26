@@ -14,7 +14,11 @@ class PickRolled : public QDialog
 
 public:
     explicit PickRolled(std::shared_ptr<Player> player = nullptr, int die1 = 0, int die2 = 0, int die3 = 0, int die4 = 0, QWidget *parent = nullptr);
+    PickRolled(const QJsonObject &json);
     ~PickRolled();
+     QJsonObject save();
+     bool hasChosen(Colour colour);
+     void assignPlayer(std::shared_ptr<Player> player);
 
 private slots:
     void on_okayButton_clicked();
@@ -22,11 +26,11 @@ private slots:
 private:
     Ui::PickRolled *ui;
     std::shared_ptr<Player> m_player;
+    int m_resources[4];
+    bool m_chosen[4];
+
     void giveResource(QString resource);
     void assignResources();
-    void assignDice(int die1, int die2, int die3, int die4);
-    void assignPlayer(std::shared_ptr<Player> player);
-    int m_resources[4];
 };
 
 #endif // PICKROLLED_H

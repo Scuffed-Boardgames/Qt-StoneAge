@@ -20,6 +20,9 @@ RollBonus::RollBonus(const QJsonObject &json)
      m_dice[1] = json["die2"].toInt();
      m_dice[2] = json["die3"].toInt();
      m_dice[3] = json["die4"].toInt();
+     if(m_dice[0] + m_dice[1] + m_dice[2] + m_dice[3] == 0){
+         rollDice();
+     }
 }
 
 void RollBonus::giveItems(std::shared_ptr<Player> player)

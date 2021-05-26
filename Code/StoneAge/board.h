@@ -56,6 +56,7 @@ public:
 
     bool checkStacks();
     void end();
+    void checkChosen(Colour colour);
     std::shared_ptr<Civilisation> getOpenCivilisationCard(int pos) const;
 
     void civilizeCivilisation(Colour colour);
@@ -84,7 +85,7 @@ private:
     std::shared_ptr<ToolShed> m_toolShed; //saved & loaded
     std::shared_ptr<Field> m_field; //saved & loaded
     int m_round; //saved & loaded
-    std::shared_ptr<PickRolled> m_pickWindow; //doesnt need to be saved or loaded
+    std::vector<std::shared_ptr<PickRolled>> m_pickWindows; // needs to be saved and loaded
 
 };
 

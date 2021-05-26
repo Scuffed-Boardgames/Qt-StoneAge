@@ -9,9 +9,8 @@
 
 Board::Board() : m_ended{false}, m_currentPlayer{Colour::red}, m_hut(std::make_shared<Hut>()), m_forest{std::make_shared<Gather>(Resource::wood)},
     m_clayPit{std::make_shared<Gather>(Resource::clay)}, m_quarry{std::make_shared<Gather>(Resource::stone)}, m_river{std::make_shared<Gather>(Resource::gold)},
-    m_hunt{std::make_shared<Gather>(Resource::food)}, m_toolShed(std::make_shared<ToolShed>()), m_field(std::make_shared<Field>()),
-    m_pickWindow(std::make_shared<PickRolled>()){
-
+    m_hunt{std::make_shared<Gather>(Resource::food)}, m_toolShed(std::make_shared<ToolShed>()), m_field(std::make_shared<Field>())
+{
     m_round = 0;
     for(int i = 0; i < 4; ++i){
         m_players[i] = std::make_shared<Player>((Colour)i);
@@ -169,19 +168,28 @@ void Board::buildBuilding(Colour colour){
 }
 
 void Board::civilizeCivilisation(Colour colour){
-    for(int i = 0; i < 4; ++i){
+    std::vector<std::shared_ptr<Civilisation>> list;
+    for(int i = 0; i < (int)m_openCivilisationCards.size(); ++i){
         if(m_openCivilisationCards[i]->getStandingColour() == colour){
             std::shared_ptr<CardBonus> bonus = std::dynamic_pointer_cast<CardBonus>(m_openCivilisationCards[i]);
             if(bonus){
                 bonus->setCard(m_civilisationCards.back());
                 m_civilisationCards.pop_back();
             }
+            std::shared_ptr<RollBonus> rollbonus = std::dynamic_pointer_cast<RollBonus>(m_openCivilisationCards[i]);
+            if(rollbonus){
+                std::shared_ptr<PickRolled> roll = std::make_shared<PickRolled>(nullptr, rollbonus->getDie(1), rollbonus->getDie(2), rollbonus->getDie(3), rollbonus->getDie(4));
+                m_pickWindows.push_back(roll);
+            }
             PayCiv pay(getPlayer(colour), m_openCivilisationCards[i]);
             pay.exec();
-            if(pay.getHasPayed())
-                m_openCivilisationCards.erase(m_openCivilisationCards.begin() + i);
+            if(!pay.getHasPayed())
+                list.push_back(m_openCivilisationCards[i]);
+        }else{
+            list.push_back(m_openCivilisationCards[i]);
         }
     }
+    m_openCivilisationCards = list;
 
 }
 void Board::newOpenCivCards()
@@ -268,8 +276,18 @@ void Board::end(){
     m_ended = true;
 }
 
+void Board::checkChosen(Colour colour)
+{
+    for(size_t i = 0; i < m_pickWindows.size(); ++i){
+        if(!m_pickWindows[i]->hasChosen(colour)){
+            m_pickWindows[i]->assignPlayer(m_players[(int)colour]);
+            m_pickWindows[i]->exec();
+        }
+    }
+}
+
 void Board::newCivCards(){
-    if(m_openCivilisationCards.size() < 4 || m_civilisationCards.size() == 0){
+    if(m_openCivilisationCards.size() < 4 && m_civilisationCards.size() == 0){
         m_ended = true;
         return;
     }
@@ -410,6 +428,11 @@ void Board::load(const QJsonObject &json){
         }
     }
     emit newCiv();
+    QJsonArray pickWindows = json["pickWindows"].toArray();
+    m_pickWindows.clear();
+    for(int i = 0; i < pickWindows.size(); ++i){
+        m_pickWindows.push_back(std::make_shared<PickRolled>(pickWindows[i].toObject()));
+    }
     m_hut->load(json["hut"].toObject());
     m_forest->load(json["forest"].toObject());
     m_clayPit->load(json["clayPit"].toObject());
@@ -441,6 +464,10 @@ QJsonObject Board::save(){
     for(int i = 0; i < (int)m_openCivilisationCards.size(); ++i){
         openCivCards.append(m_openCivilisationCards[i]->save());
     }
+    QJsonArray pickWindows;
+    for(int i = 0; i < (int)m_pickWindows.size(); ++i){
+        pickWindows.append(m_pickWindows[i]->save());
+    }
     QJsonObject hut = m_hut->save();
     QJsonObject forest = m_forest->save();
     QJsonObject clayPit = m_clayPit->save();
@@ -463,7 +490,8 @@ QJsonObject Board::save(){
                         {"field", field},
                         {"buildings", buildingsStacks},
                         {"civs", civCards},
-                        {"openCivs", openCivCards}};
+                        {"openCivs", openCivCards},
+                        {"pickWindows", pickWindows}};
     return json;
 }
 
