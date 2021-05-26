@@ -7,10 +7,10 @@ PayCiv::PayCiv(std::shared_ptr<Player> player, std::shared_ptr<Civilisation> civ
     ui->setupUi(this);
     this->setWindowTitle(player->getString());
     ui->payLabel->setText("You have to pay " + QString::number(m_amount) + " items for this card");
-    ui->spinBoxWood->setMaximum(std::min(player->getResource(Resource::wood), m_amount));
-    ui->spinBoxClay->setMaximum(std::min(player->getResource(Resource::clay), m_amount));
-    ui->spinBoxStone->setMaximum(std::min(player->getResource(Resource::stone), m_amount));
-    ui->spinBoxGold->setMaximum(std::min(player->getResource(Resource::gold), m_amount));
+    connect(ui->spinBoxWood, &QSpinBox::valueChanged, this, &PayCiv::editText);
+    connect(ui->spinBoxClay, &QSpinBox::valueChanged, this, &PayCiv::editText);
+    connect(ui->spinBoxStone, &QSpinBox::valueChanged, this, &PayCiv::editText);
+    connect(ui->spinBoxGold, &QSpinBox::valueChanged, this, &PayCiv::editText);
 }
 
 PayCiv::~PayCiv(){
@@ -21,6 +21,16 @@ void PayCiv::on_cancelButton_clicked(){
     m_civ->reset();
     m_player = nullptr;
     this->close();
+}
+
+void PayCiv::editText(){
+    int reqAmount = m_amount - totalSet();
+    ui->payLabel->setText("You still have to pay " + QString::number(reqAmount) + " items for this card");
+    ui->spinBoxWood->setMaximum(std::min(m_player->getResource(Resource::wood), ui->spinBoxWood->value() + reqAmount));
+    ui->spinBoxClay->setMaximum(std::min(m_player->getResource(Resource::clay), ui->spinBoxClay->value() + reqAmount));
+    ui->spinBoxStone->setMaximum(std::min(m_player->getResource(Resource::stone), ui->spinBoxStone->value() + reqAmount));
+    ui->spinBoxGold->setMaximum(std::min(m_player->getResource(Resource::gold), ui->spinBoxGold->value() + reqAmount));
+    ui->acceptButton->setEnabled(reqAmount == 0);
 }
 
 int PayCiv::totalSet(){

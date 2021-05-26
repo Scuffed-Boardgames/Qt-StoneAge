@@ -19,6 +19,9 @@ public:
 
     bool getHasPayed() const;
 
+public slots:
+    void editText();
+
 private slots:
     void on_acceptButton_clicked();
     void on_cancelButton_clicked();

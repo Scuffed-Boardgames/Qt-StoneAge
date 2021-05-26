@@ -20,7 +20,6 @@ public:
     std::shared_ptr<Civilisation> getCivilisation() const;
 
 public slots:
-    //    void updateBuilding(std::shared_ptr<Civilisation> building);
     void updateText();
 
 private:

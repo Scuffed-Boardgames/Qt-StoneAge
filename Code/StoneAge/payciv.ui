@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>252</width>
-    <height>212</height>
+    <width>211</width>
+    <height>211</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,56 +41,56 @@
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
-       <item>
+       <item alignment="Qt::AlignRight">
         <widget class="QLabel" name="label">
          <property name="text">
           <string>Wood:</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item alignment="Qt::AlignLeft">
         <widget class="QSpinBox" name="spinBoxWood"/>
        </item>
       </layout>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
+       <item alignment="Qt::AlignRight">
         <widget class="QLabel" name="label_2">
          <property name="text">
           <string>Clay:</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item alignment="Qt::AlignLeft">
         <widget class="QSpinBox" name="spinBoxClay"/>
        </item>
       </layout>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
+       <item alignment="Qt::AlignRight">
         <widget class="QLabel" name="label_3">
          <property name="text">
           <string>Stone:</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item alignment="Qt::AlignLeft">
         <widget class="QSpinBox" name="spinBoxStone"/>
        </item>
       </layout>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
-       <item>
+       <item alignment="Qt::AlignRight">
         <widget class="QLabel" name="label_4">
          <property name="text">
           <string>Gold:</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item alignment="Qt::AlignLeft">
         <widget class="QSpinBox" name="spinBoxGold"/>
        </item>
       </layout>
