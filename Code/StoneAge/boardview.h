@@ -16,8 +16,6 @@ class BoardView : public QGraphicsScene
 public:
     BoardView(std::shared_ptr<Board> board, QObject* parent = nullptr);
 
-    void gameLoop();
-
 public slots:
     void updateCivCards();
     void newBuild(std::shared_ptr<Building> building, int pos);
@@ -44,6 +42,7 @@ private:
     std::unique_ptr<OtherPlaceView> m_hut;
     std::unique_ptr<OtherPlaceView> m_toolshed;
 
+    void gameLoop();
     void updateResources(Colour colour);
     void buildBuildings(Colour colour);
     void civilizeCivilisations(Colour colour);

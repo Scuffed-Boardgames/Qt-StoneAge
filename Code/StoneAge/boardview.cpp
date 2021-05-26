@@ -74,42 +74,35 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
 void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     QGraphicsScene::mouseReleaseEvent(event);
     QList<QGraphicsItem*>list = this->selectedItems();
-    if(list.length() == 0)
+    if (list.length() == 0)
         return;
-    ResourcePlaceView* resourceSelected = dynamic_cast<ResourcePlaceView*>(list[0]);
-    if(resourceSelected){
+    if (ResourcePlaceView* resourceSelected = dynamic_cast<ResourcePlaceView*>(list[0])){
         WorkerAdd workerAdd;
         workerAdd.addToPlace(resourceSelected->getPlace(), m_board->getPlayer(m_board->getCurrentPlayer()));
         workerAdd.exec();
-    }
-    OtherPlaceView* otherSelected = dynamic_cast<OtherPlaceView*>(list[0]);
-    if(otherSelected){
+    }else if (OtherPlaceView* otherSelected = dynamic_cast<OtherPlaceView*>(list[0])){
         WorkerAdd workerAdd;
         workerAdd.setStatic(otherSelected->getCost());
         workerAdd.addToPlace(otherSelected->getPlace(), m_board->getPlayer(m_board->getCurrentPlayer()));
         workerAdd.exec();
-    }
-    BuildingView* buildingSelected = dynamic_cast<BuildingView*>(list[0]);
-    if(buildingSelected){
+    }else if (BuildingView* buildingSelected = dynamic_cast<BuildingView*>(list[0])){
         WorkerAdd workerAdd;
         workerAdd.setStatic(1);
         if(buildingSelected->getBuilding()){
             workerAdd.addToBuilding(buildingSelected->getBuilding(), m_board->getPlayer(m_board->getCurrentPlayer()));
             workerAdd.exec();
         }
-    }
-    CivilisationView* civSelected = dynamic_cast<CivilisationView*>(list[0]);
-    if(civSelected){
+    }else if (CivilisationView* civSelected = dynamic_cast<CivilisationView*>(list[0])){
         WorkerAdd workerAdd;
         workerAdd.setStatic(1);
         workerAdd.addToCiv(civSelected->getCivilisation(), m_board->getPlayer(m_board->getCurrentPlayer()));
         workerAdd.exec();
     }
-
     if(m_placementDone){
         gameLoop();
     }
 }
+
 void BoardView::newBuild(std::shared_ptr<Building> building, int pos){
     m_buildings[pos]->updateBuilding(building);
     if(building){
@@ -166,13 +159,11 @@ void BoardView::civilizeCivilisations(Colour colour){
     updateCivCards();
 
 }
+
 void BoardView::updateCivCards(){
     int moveByX = 800;
     int rectWidth = 175;
-
     for(int i = 0; i < 4; ++i){
-        this->removeItem(m_civilisations[i].get());
-         m_civilisations[i].release();
         if(std::dynamic_pointer_cast<SetBonus>(m_board->getOpenCivilisationCard(i))){
             m_civilisations[i] = std::make_unique<SetBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
         } else if(std::dynamic_pointer_cast<DiceBonus>(m_board->getOpenCivilisationCard(i))){
@@ -190,12 +181,12 @@ void BoardView::updateCivCards(){
         } else{
             m_civilisations[i] = std::make_unique<CivilisationView>(moveByX, m_board->getOpenCivilisationCard(i), this);
         }
-        this->addItem(m_civilisations[i].get());
         moveByX += rectWidth;
         connect(m_board->getOpenCivilisationCard(i).get(), &Civilisation::changedWorkers, m_civilisations[i].get(), &CivilisationView::updateText);
         connect(m_board->getOpenCivilisationCard(i).get(), &Civilisation::turnHappend, this, &BoardView::updateTurn);
     }
 }
+
 void BoardView::setSelectable(bool isSelectalbe){
     if(isSelectalbe){
         m_food->setFlag(QGraphicsItem::ItemIsSelectable, true);
