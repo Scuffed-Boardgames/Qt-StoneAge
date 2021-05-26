@@ -4,6 +4,7 @@
 #include <QJsonDocument>
 #include <random>
 #include <algorithm>
+#include "payciv.h"
 #include "payfood.h"
 
 Board::Board() : m_ended{false}, m_currentPlayer{Colour::red}, m_hut(std::make_shared<Hut>()), m_forest{std::make_shared<Gather>(Resource::wood)},
@@ -172,9 +173,15 @@ void Board::buildBuilding(Colour colour){
 void Board::civilizeCivilisation(Colour colour){
     for(int i = 0; i < 4; ++i){
         if(m_openCivilisationCards[i]->getStandingColour() == colour){
-            m_openCivilisationCards[i]->giveBonus(getPlayer(colour));
-            m_openCivilisationCards[i]->giveItems(getPlayer(colour));
-            m_openCivilisationCards.erase(m_openCivilisationCards.begin() + i,  m_openCivilisationCards.begin() + i);
+            std::shared_ptr<CardBonus> bonus = std::dynamic_pointer_cast<CardBonus>(m_openCivilisationCards[i]);
+            if(bonus){
+                bonus->setCard(m_civilisationCards.back());
+                m_civilisationCards.pop_back();
+            }
+            PayCiv pay(getPlayer(colour), m_openCivilisationCards[i]);
+            pay.exec();
+            if(pay.getHasPayed())
+                m_openCivilisationCards.erase(m_openCivilisationCards.begin() + i);
         }
     }
 
@@ -182,14 +189,17 @@ void Board::civilizeCivilisation(Colour colour){
 void Board::newOpenCivCards()
 {
     for(int i = 0; i < 4; ++i){
-        m_civilisationCards.push_back(m_openCivilisationCards[i]);
-        m_openCivilisationCards.erase(m_openCivilisationCards.begin() + i);
+        m_civilisationCards.push_back(m_openCivilisationCards.back());
+        m_openCivilisationCards.pop_back();
     }
     std::shuffle(m_civilisationCards.begin(), m_civilisationCards.end(), std::default_random_engine(time(0)));
     for(int i = 0; i < 4; ++i){
         m_openCivilisationCards.push_back(m_civilisationCards[i]);
         m_civilisationCards.erase(m_civilisationCards.begin() + i);
     }
+    for(size_t i = 0; i < m_openCivilisationCards.size(); ++i)
+        m_openCivilisationCards[i]->setCost(i+1);
+    emit newCiv();
 }
 
 void Board::addOpenCivCard()
@@ -266,7 +276,8 @@ void Board::newCivCards(){
         return;
     }
     while(m_openCivilisationCards.size() < 4){
-        m_openCivilisationCards.push_back(m_civilisationCards[rand() % m_civilisationCards.size()]);
+        m_openCivilisationCards.push_back(m_civilisationCards.back());
+        m_civilisationCards.pop_back();
     }
     for(size_t i = 0; i < m_openCivilisationCards.size(); ++i)
         m_openCivilisationCards[i]->setCost(i+1);
@@ -363,6 +374,7 @@ void Board::load(const QJsonObject &json){
     }
 
     QJsonArray civCards = json["civs"].toArray();
+    m_civilisationCards.clear();
     for(int i = 0; i < civCards.size(); ++i){
         if(civCards[i].toObject().contains("resource")){
             m_civilisationCards.push_back(std::make_shared<SetBonus>(civCards[i].toObject()));
@@ -381,6 +393,7 @@ void Board::load(const QJsonObject &json){
         }
     }
     QJsonArray openCivCards = json["openCivs"].toArray();
+    m_openCivilisationCards.clear();
     for(int i = 0; i < openCivCards.size(); ++i){
         if(openCivCards[i].toObject().contains("resource")){
             m_openCivilisationCards.push_back(std::make_shared<SetBonus>(openCivCards[i].toObject()));
@@ -398,6 +411,7 @@ void Board::load(const QJsonObject &json){
             m_openCivilisationCards.push_back(std::make_shared<RollBonus>(openCivCards[i].toObject()));
         }
     }
+    emit newCiv();
     m_hut->load(json["hut"].toObject());
     m_forest->load(json["forest"].toObject());
     m_clayPit->load(json["clayPit"].toObject());

@@ -11,99 +11,6 @@
 #include "miscbonusview.h"
 #include "toolbonusview.h"
 #include "rollbonusview.h"
-BoardView::BoardView()
-{
-}
-
-void BoardView::newBuild(std::shared_ptr<Building> building, int pos){
-    m_buildings[pos]->updateBuilding(building);
-    if(building){
-        connect(m_board->getOpenBuildingCard(pos).get(), &Building::changedWorkers,  m_buildings[pos].get(), &BuildingView::updateText);
-        connect(m_board->getOpenBuildingCard(pos).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
-    }
-}
-
-void BoardView::updateTurn(){
-    emit unHighlight(m_board->getCurrentPlayer());
-    m_board->nextPlayer();
-    emit highlight(m_board->getCurrentPlayer());
-}
-
-void BoardView::placementDone(){
-    m_placementDone = true;
-}
-
-void BoardView::updateResources(){
-    setSelectable(false);
-    for(int i = (int)m_board->getCurrentPlayer(); i < (int)m_board->getCurrentPlayer() + 4; ++i){
-        m_board->payResources((Colour)(i % 4));
-        emit unHighlight((Colour)(i % 4));
-        emit highlight((Colour)((i+1)%4));
-    }
-    m_board->resetWorkers();
-    buildBuildings();
-    civilizeCivilisations();
-    m_board->feedWorkers();
-    if(m_board->getEnded()){
-        emit endGame();
-    }
-    m_board->addRound();
-    setSelectable(true);
-    m_placementDone = false;
-}
-
-void BoardView::buildBuildings(){
-    for(int i = (int)m_board->getCurrentPlayer(); i < (int)m_board->getCurrentPlayer() + 4; ++i){
-        m_board->buildBuilding((Colour)(i % 4));
-        if(m_board->getEnded())
-            return;
-        emit unHighlight((Colour)(i % 4));
-        emit highlight((Colour)((i+1)%4));
-    }
-    emit unHighlight(m_board->getCurrentPlayer());
-    emit highlight((Colour)(((int)m_board->getCurrentPlayer() + 1) % 4));
-    if(m_board->checkStacks()){
-        m_board->end();
-    }
-}
-
-void BoardView::civilizeCivilisations(){
-    for(int i = (int)m_board->getCurrentPlayer(); i < (int)m_board->getCurrentPlayer() + 4; ++i){
-        m_board->civilizeCivilisation((Colour)(i % 4));
-        emit unHighlight((Colour)(i % 4));
-        emit highlight((Colour)((i+1) % 4));
-    }
-    emit unHighlight(m_board->getCurrentPlayer());
-    emit highlight((Colour)(((int)m_board->getCurrentPlayer() + 1) % 4));
-    m_board->newCivCards();
-
-
-}
-void BoardView::updateCivCards(int moveByX){
-    int rectWidth = 175;
-    for(int i = 0; i < 4; ++i){
-        if(std::dynamic_pointer_cast<SetBonus>(m_board->getOpenCivilisationCard(i))){
-            m_civilisations[i] = std::make_unique<SetBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
-        } else if(std::dynamic_pointer_cast<DiceBonus>(m_board->getOpenCivilisationCard(i))){
-            m_civilisations[i] = std::make_unique<DiceBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
-        } else if(std::dynamic_pointer_cast<PickBonus>(m_board->getOpenCivilisationCard(i))){
-            m_civilisations[i] = std::make_unique<PickBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
-        } else if(std::dynamic_pointer_cast<CardBonus>(m_board->getOpenCivilisationCard(i))){
-            m_civilisations[i] = std::make_unique<CardBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
-        } else if(std::dynamic_pointer_cast<MiscBonus>(m_board->getOpenCivilisationCard(i))){
-            m_civilisations[i] = std::make_unique<MiscBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
-        } else if(std::dynamic_pointer_cast<ToolBonus>(m_board->getOpenCivilisationCard(i))){
-            m_civilisations[i] = std::make_unique<ToolBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
-        } else if(std::dynamic_pointer_cast<RollBonus>(m_board->getOpenCivilisationCard(i))){
-            m_civilisations[i] = std::make_unique<RollBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
-        } else{
-            m_civilisations[i] = std::make_unique<CivilisationView>(moveByX, m_board->getOpenCivilisationCard(i), this);
-        }
-        moveByX += rectWidth;
-        connect(m_board->getOpenCivilisationCard(i).get(), &Civilisation::changedWorkers, m_civilisations[i].get(), &CivilisationView::updateText);
-        connect(m_board->getOpenCivilisationCard(i).get(), &Civilisation::turnHappend, this, &BoardView::updateTurn);
-    }
-}
 
 BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
     : QGraphicsScene(parent), m_placementDone{false}, m_workeradd{std::make_unique<WorkerAdd>()}, m_board{board}{
@@ -160,9 +67,9 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
         connect(m_board->getOpenBuildingCard(i).get(), &Building::changedWorkers,  m_buildings[i].get(), &BuildingView::updateText);
         connect(m_board->getOpenBuildingCard(i).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
     }
-    moveByX += 100;
-    updateCivCards(moveByX);
+    updateCivCards();
     connect(m_board.get(), &Board::newBuild, this, &BoardView::newBuild);
+    connect(m_board.get(), &Board::newCiv, this, &BoardView::updateCivCards);
 
 }
 
@@ -202,7 +109,100 @@ void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
         updateResources();
     }
 }
+void BoardView::newBuild(std::shared_ptr<Building> building, int pos){
+    m_buildings[pos]->updateBuilding(building);
+    if(building){
+        connect(m_board->getOpenBuildingCard(pos).get(), &Building::changedWorkers,  m_buildings[pos].get(), &BuildingView::updateText);
+        connect(m_board->getOpenBuildingCard(pos).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
+    }
+}
 
+void BoardView::updateTurn(){
+    emit unHighlight(m_board->getCurrentPlayer());
+    m_board->nextPlayer();
+    emit highlight(m_board->getCurrentPlayer());
+}
+
+void BoardView::placementDone(){
+    m_placementDone = true;
+}
+
+void BoardView::updateResources(){
+    setSelectable(false);
+    for(int i = (int)m_board->getCurrentPlayer(); i < (int)m_board->getCurrentPlayer() + 4; ++i){
+        m_board->payResources((Colour)(i % 4));
+        emit unHighlight((Colour)(i % 4));
+        emit highlight((Colour)((i + 1) % 4));
+    }
+    m_board->resetWorkers();
+    buildBuildings();
+    civilizeCivilisations();
+    m_board->feedWorkers();
+    if(m_board->getEnded()){
+        emit endGame();
+        return;
+    }
+    m_board->addRound();
+    setSelectable(true);
+    m_placementDone = false;
+}
+
+void BoardView::buildBuildings(){
+    for(int i = (int)m_board->getCurrentPlayer(); i < (int)m_board->getCurrentPlayer() + 4; ++i){
+        m_board->buildBuilding((Colour)(i % 4));
+        if(m_board->getEnded())
+            return;
+        emit unHighlight((Colour)(i % 4));
+        emit highlight((Colour)((i+1)%4));
+    }
+    if(m_board->checkStacks()){
+        m_board->end();
+    }
+}
+
+void BoardView::civilizeCivilisations(){
+    for(int i = (int)m_board->getCurrentPlayer(); i < (int)m_board->getCurrentPlayer() + 4; ++i){
+        m_board->civilizeCivilisation((Colour)(i % 4));
+        emit unHighlight((Colour)(i % 4));
+        emit highlight((Colour)((i+1) % 4));
+    }
+    emit unHighlight(m_board->getCurrentPlayer());
+    emit highlight((Colour)(((int)m_board->getCurrentPlayer() + 1) % 4));
+    m_board->newCivCards();
+    updateCivCards();
+
+
+}
+void BoardView::updateCivCards(){
+    int moveByX = 800;
+    int rectWidth = 175;
+
+    for(int i = 0; i < 4; ++i){
+        this->removeItem(m_civilisations[i].get());
+         m_civilisations[i].release();
+        if(std::dynamic_pointer_cast<SetBonus>(m_board->getOpenCivilisationCard(i))){
+            m_civilisations[i] = std::make_unique<SetBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
+        } else if(std::dynamic_pointer_cast<DiceBonus>(m_board->getOpenCivilisationCard(i))){
+            m_civilisations[i] = std::make_unique<DiceBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
+        } else if(std::dynamic_pointer_cast<PickBonus>(m_board->getOpenCivilisationCard(i))){
+            m_civilisations[i] = std::make_unique<PickBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
+        } else if(std::dynamic_pointer_cast<CardBonus>(m_board->getOpenCivilisationCard(i))){
+            m_civilisations[i] = std::make_unique<CardBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
+        } else if(std::dynamic_pointer_cast<MiscBonus>(m_board->getOpenCivilisationCard(i))){
+            m_civilisations[i] = std::make_unique<MiscBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
+        } else if(std::dynamic_pointer_cast<ToolBonus>(m_board->getOpenCivilisationCard(i))){
+            m_civilisations[i] = std::make_unique<ToolBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
+        } else if(std::dynamic_pointer_cast<RollBonus>(m_board->getOpenCivilisationCard(i))){
+            m_civilisations[i] = std::make_unique<RollBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
+        } else{
+            m_civilisations[i] = std::make_unique<CivilisationView>(moveByX, m_board->getOpenCivilisationCard(i), this);
+        }
+        this->addItem(m_civilisations[i].get());
+        moveByX += rectWidth;
+        connect(m_board->getOpenCivilisationCard(i).get(), &Civilisation::changedWorkers, m_civilisations[i].get(), &CivilisationView::updateText);
+        connect(m_board->getOpenCivilisationCard(i).get(), &Civilisation::turnHappend, this, &BoardView::updateTurn);
+    }
+}
 void BoardView::setSelectable(bool isSelectalbe){
     if(isSelectalbe){
         m_food->setFlag(QGraphicsItem::ItemIsSelectable, true);

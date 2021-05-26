@@ -7,10 +7,10 @@ PayCiv::PayCiv(std::shared_ptr<Player> player, std::shared_ptr<Civilisation> civ
     ui->setupUi(this);
     this->setWindowTitle(player->getString());
     ui->payLabel->setText("You have to pay " + QString::number(m_amount) + " items for this card");
-    ui->spinBoxWood->setMaximum(player->getResource(Resource::wood));
-    ui->spinBoxClay->setMaximum(player->getResource(Resource::clay));
-    ui->spinBoxStone->setMaximum(player->getResource(Resource::stone));
-    ui->spinBoxGold->setMaximum(player->getResource(Resource::gold));
+    ui->spinBoxWood->setMaximum(std::min(player->getResource(Resource::wood), m_amount));
+    ui->spinBoxClay->setMaximum(std::min(player->getResource(Resource::clay), m_amount));
+    ui->spinBoxStone->setMaximum(std::min(player->getResource(Resource::stone), m_amount));
+    ui->spinBoxGold->setMaximum(std::min(player->getResource(Resource::gold), m_amount));
 }
 
 PayCiv::~PayCiv(){
@@ -36,6 +36,11 @@ void PayCiv::removeResources(){
     m_player->addResource(Resource::clay, -ui->spinBoxClay->value());
     m_player->addResource(Resource::stone, -ui->spinBoxStone->value());
     m_player->addResource(Resource::gold, -ui->spinBoxGold->value());
+}
+
+bool PayCiv::getHasPayed() const
+{
+    return m_hasPayed;
 }
 
 void PayCiv::on_acceptButton_clicked(){

@@ -15,11 +15,9 @@ class BoardView : public QGraphicsScene
 
 public:
     BoardView(std::shared_ptr<Board> board, QObject* parent = nullptr);
-    BoardView();
 
-
-    void updateCivCards(int moveByX);
 public slots:
+    void updateCivCards();
     void newBuild(std::shared_ptr<Building> building, int pos);
     void updateTurn();
     void placementDone();

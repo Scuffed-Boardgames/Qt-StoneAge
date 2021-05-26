@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QDir>
 #include <QFile>
 #include <QJsonDocument>
 
@@ -86,6 +87,7 @@ void MainWindow::on_newGameButton_clicked(){
     QJsonObject jsonObject = document.object();
     m_board->load(jsonObject);
     m_board->rerollBuildings();
+    m_board->newOpenCivCards();
     for(std::shared_ptr<PlayerView> player : m_playerviews){
         player->unHighlight();
     }

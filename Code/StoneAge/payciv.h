@@ -17,6 +17,8 @@ public:
     explicit PayCiv(std::shared_ptr<Player> player, std::shared_ptr<Civilisation> civCard);
     ~PayCiv();
 
+    bool getHasPayed() const;
+
 private slots:
     void on_acceptButton_clicked();
     void on_cancelButton_clicked();
