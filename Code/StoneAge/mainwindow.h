@@ -30,6 +30,7 @@ private slots:
     void on_loadButton_clicked();
     void on_saveButton_clicked();
     void on_newGameButton_clicked();
+    void on_stopButton_clicked();
 
 private:
     Ui::MainWindow *m_ui;

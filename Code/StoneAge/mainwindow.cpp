@@ -23,7 +23,7 @@ MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
     connect(m_boardview.get(), &BoardView::endGame, this, &MainWindow::gameEnded);
     connect(m_boardview.get(), &BoardView::highlight, this, &MainWindow::highlight);
     connect(m_boardview.get(), &BoardView::unHighlight, this, &MainWindow::unHighlight);
-
+    m_ui->quitButton->setVisible(false);
     m_ui->redView->setScene(m_playerviews[0].get());
     m_ui->blueView->setScene(m_playerviews[1].get());
     m_ui->yellowView->setScene(m_playerviews[2].get());
@@ -104,6 +104,8 @@ void MainWindow::unHighlight(Colour colour){
     m_playerviews[(int) colour]->unHighlight();
 }
 void MainWindow::gameUnEnded(){
+    m_ui->quitButton->setVisible(false);
+    m_ui->stopButton->setVisible(true);
     m_boardview->setSelectable(true);
     for (std::shared_ptr<PlayerView> player : m_playerviews){
         player->unEnd();
@@ -129,20 +131,30 @@ void MainWindow::gameEnded(){
         }
 
     }
-    int bestPlayer = 0;
+    std::vector<int> bestPlayer;
     if(highestScorePlayer.size() > 1){
         int highestTieBreak = 0;
         for (int i = 0; i < (int)highestScorePlayer.size(); ++i){
             int tieBreak = m_playerviews[highestScorePlayer[i]]->showTieBreak();
             if(tieBreak > highestTieBreak){
+                bestPlayer.clear();
                 highestTieBreak = tieBreak;
-                bestPlayer = highestScorePlayer[i];
+                bestPlayer.push_back(highestScorePlayer[i]);
+            }else if (tieBreak == highestTieBreak) {
+                bestPlayer.push_back(highestScorePlayer[i]);
             }
 
         }
     } else {
-        bestPlayer = highestScorePlayer[0];
+        bestPlayer = highestScorePlayer;
     }
+    for(int pos : bestPlayer)
+        m_playerviews[pos]->highlight();
+}
 
-    m_playerviews[bestPlayer]->highlight();
+
+void MainWindow::on_stopButton_clicked(){
+    m_ui->quitButton->setVisible(true);
+    m_ui->stopButton->setVisible(false);
+    gameEnded();
 }
