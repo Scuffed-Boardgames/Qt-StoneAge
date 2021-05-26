@@ -16,8 +16,25 @@ PlayerView::PlayerView(const QColor color, const std::shared_ptr<Player> player,
     m_recources.push_back(addText("Gold: " + QString::number(m_player->getResource(Resource::gold))));
     m_recources.push_back(addText("Food made: " + QString::number(m_player->getFoodGain())));
     m_recources.push_back(addText("Tools: +" + QString::number(tools[0].getLevel()) + "/+" + QString::number(tools[1].getLevel()) + "/+" + QString::number(tools[2].getLevel())));
-    m_recources.push_back(addText("Workers: "+ QString::number(m_player->getFreeWorkers()) + "/" + QString::number(m_player->getWorkerCount())));
-    m_recources.push_back(addText("Buildings: "+ QString::number(m_player->getBuildingCount())));
+    m_recources.push_back(addText("Workers: " + QString::number(m_player->getFreeWorkers()) + "/" + QString::number(m_player->getWorkerCount())));
+    m_recources.push_back(addText("Buildings: " + QString::number(m_player->getBuildingCount())));
+    m_recources.push_back(addText("Score: "+ QString::number(m_player->getScore())));
+
+    std::vector<int> xtratools = m_player->getExtraTools();
+    QString text;
+    if(xtratools.size() > 0){
+        text += "Extra tools:";
+        while(xtratools.size() != 0){
+            text += " +" + QString::number( xtratools.back());
+            xtratools.pop_back();
+            if(xtratools.size() > 0){
+                text += "/";
+            }
+        }
+        m_recources.push_back(addText(text));
+    }
+
+
     for (int i = 0; i < (int)m_recources.size(); ++i) {
         m_recources[i]->moveBy(0, 24*i);
         m_recources[i]->setScale(2);
@@ -37,6 +54,26 @@ void PlayerView::updateText(){
     m_recources[7]->setPlainText("Workers: "+ QString::number(m_player->getFreeWorkers()) + "/" + QString::number(m_player->getWorkerCount()));
     m_recources[8]->setPlainText("Buildings: "+ QString::number(m_player->getBuildingCount()));
 
+    std::vector<int> xtratools = m_player->getExtraTools();
+    QString text;
+    if(m_recources.back()->toPlainText()[0] == 'E'){
+        removeItem(m_recources.back());
+        m_recources.pop_back();
+    }
+    if(xtratools.size() > 0){
+        text += "Extra tools:";
+        while(xtratools.size() != 0){
+            text += " +" + QString::number( xtratools.back());
+            xtratools.pop_back();
+            if(xtratools.size() > 0){
+                text += "/";
+            }
+        }
+        m_recources.push_back(addText(text));
+        m_recources.back()->moveBy(0, 24 * (m_recources.size() - 1));
+        m_recources.back()->setScale(2);
+        m_recources.back()->setDefaultTextColor(Qt::white);
+    }
 }
 int PlayerView::showScore(){
     for (QGraphicsTextItem* text : m_recources) {
