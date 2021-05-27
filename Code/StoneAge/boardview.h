@@ -47,8 +47,6 @@ private:
 
     void gameLoop();
     void updateResources(Colour colour);
-    void buildBuildings(Colour colour);
-    void civilizeCivilisations(Colour colour);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
 };
