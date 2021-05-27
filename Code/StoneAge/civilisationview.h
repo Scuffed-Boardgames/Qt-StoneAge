@@ -14,9 +14,6 @@ public:
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-    void setOwner(Colour colour);
-    void updateCivilisation(std::shared_ptr<Civilisation> civilisation);
-
     std::shared_ptr<Civilisation> getCivilisation() const;
 
 public slots:
@@ -24,10 +21,11 @@ public slots:
 
 private:
     QString bonusToString(CivBonus bonus);
+    void updateCivilisation(std::shared_ptr<Civilisation> civilisation);
+
     QGraphicsTextItem* m_underCardBonus;
     std::shared_ptr<Civilisation> m_civilisation;
     QGraphicsSimpleTextItem* m_cost;
-
     QGraphicsRectItem* m_indicator;
     QGraphicsRectItem* m_holder;
 

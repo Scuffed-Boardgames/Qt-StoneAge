@@ -18,7 +18,6 @@ public:
 
     int getGain(); //returns the amount of resources gained
 
-    void tempTools(std::vector<int> tools);
 private slots:
     void on_pushButton_clicked();
     void on_Tool1Button_clicked();
@@ -32,7 +31,9 @@ private slots:
     void on_tempTool1Button_clicked();
 
 private:
+    void tempTools(std::vector<int> tools);
     const QString resourceToString(Resource resource);
+
     Ui::RollResources *ui;
     int m_roll;
     int m_gain;

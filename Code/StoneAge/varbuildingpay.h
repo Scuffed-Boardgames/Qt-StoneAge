@@ -17,15 +17,11 @@ public:
     explicit VarBuildingPay(std::shared_ptr<Player> player, std::shared_ptr<VarBuilding> building, QWidget *parent = nullptr);
     ~VarBuildingPay();
 
-    void resetAmounts();
-
     bool getBought() const;
     int getAmount(Resource resource);
 
-public slots:
-    void editText();
-
 private slots:
+    void editText();
     void on_okayButton_clicked();
     void on_cancelButton_clicked();
 
@@ -34,6 +30,8 @@ private:
     Ui::VarBuildingPay *ui;
     std::shared_ptr<Player> m_player;
     std::shared_ptr<VarBuilding> m_building;
+
+    void resetAmounts();
     int getDiff();
 };
 

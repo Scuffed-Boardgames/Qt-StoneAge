@@ -59,7 +59,6 @@ public:
 signals:
     void dataChanged();
 
-
 private:
     int m_foodCount; //saved & loaded
     int m_woodCount; //saved & loaded

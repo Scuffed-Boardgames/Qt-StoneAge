@@ -19,12 +19,11 @@ public:
     ~MainWindow();
 
     void gameUnEnded();
-public slots:
+
+private slots:
     void highlight(Colour colour);
     void unHighlight(Colour colour);
     void gameEnded();
-
-private slots:
     void updateRound();
     void on_quitButton_clicked();
     void on_loadButton_clicked();

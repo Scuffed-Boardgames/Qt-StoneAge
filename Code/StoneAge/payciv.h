@@ -19,10 +19,8 @@ public:
 
     bool getHasPayed() const;
 
-public slots:
-    void editText();
-
 private slots:
+    void editText();
     void on_acceptButton_clicked();
     void on_cancelButton_clicked();
 
