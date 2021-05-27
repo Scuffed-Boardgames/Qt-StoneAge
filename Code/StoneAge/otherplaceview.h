@@ -18,8 +18,6 @@ public:
     std::shared_ptr<Place> getPlace();
     int getCost();
 
-    void setColour(Colour colour);
-
 public slots:
     void updateText();
 

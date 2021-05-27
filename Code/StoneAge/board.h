@@ -30,12 +30,10 @@ public:
     void feedWorkers(Colour colour);
 
     std::shared_ptr<Building> getOpenBuildingCard(int pos);
-    void newBuilding(int place);
     void rerollBuildings();
     void buildBuilding(Colour colour);
 
     void newOpenCivCards();
-    void addOpenCivCard();
 
     void nextPlayer(int checked = 0);
     void payResources(Colour colour);
@@ -70,6 +68,8 @@ signals:
     void newCiv(int stackSize);
 
 private:
+    void newBuilding(int place);
+
     bool m_ended; //saved & loaded
     Colour m_currentPlayer; //saved & loaded
     std::vector<std::shared_ptr<Building>> m_buildingCardStacks[4]; //saved & loaded

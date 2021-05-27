@@ -17,11 +17,13 @@ public:
     BoardView(std::shared_ptr<Board> board, QObject* parent = nullptr);
 
 public slots:
+    void setSelectable(bool isSelectalbe);
+
+private slots:
     void updateCivCards(int stackSize);
     void newBuild(std::shared_ptr<Building> building, int pos, int stackSize);
     void updateTurn();
     void placementDone();
-    void setSelectable(bool isSelectalbe);
 
 signals:
     void highlight(Colour colour);
@@ -45,8 +47,6 @@ private:
 
     void gameLoop();
     void updateResources(Colour colour);
-    void buildBuildings(Colour colour);
-    void civilizeCivilisations(Colour colour);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
 };

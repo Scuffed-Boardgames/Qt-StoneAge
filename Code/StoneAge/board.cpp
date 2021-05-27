@@ -208,17 +208,6 @@ void Board::newOpenCivCards()
     emit newCiv(m_civilisationCards.size());
 }
 
-void Board::addOpenCivCard()
-{
-    if(m_civilisationCards.size() == 0)
-        return;
-    m_openCivilisationCards.push_back(m_civilisationCards.back());
-    for(size_t i = 0; i < m_openCivilisationCards.size(); ++i)
-        m_openCivilisationCards[i]->setCost(i+1);
-}
-
-
-
 void Board::nextPlayer(int checked){
     if(checked == 4){
         m_currentPlayer = (Colour)((m_round) % 4);
