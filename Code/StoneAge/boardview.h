@@ -34,7 +34,7 @@ private:
     std::unique_ptr<BuildingView> m_buildings[4];
     std::unique_ptr<CivilisationView> m_civilisations[4];
     std::shared_ptr<Board> m_board;
-    std::shared_ptr<ResourcePlaceView> m_food;
+    std::unique_ptr<ResourcePlaceView> m_food;
     std::unique_ptr<ResourcePlaceView> m_wood;
     std::unique_ptr<ResourcePlaceView> m_clay;
     std::unique_ptr<ResourcePlaceView> m_stone;

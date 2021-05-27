@@ -126,7 +126,7 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
-        <widget class="QPushButton" name="tempTool3Button">
+        <widget class="QPushButton" name="tempTool1Button">
          <property name="text">
           <string>Add temp tool</string>
          </property>
@@ -140,7 +140,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="tempTool1Button">
+        <widget class="QPushButton" name="tempTool3Button">
          <property name="text">
           <string>Add temp tool</string>
          </property>

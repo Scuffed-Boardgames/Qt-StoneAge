@@ -24,7 +24,6 @@ public slots:
 
 private:
     void setOrVar(bool isSet);
-    int m_x;
     QGraphicsTextItem* m_stackAmount;
     QGraphicsTextItem* m_text;
     std::shared_ptr<Building> m_building;

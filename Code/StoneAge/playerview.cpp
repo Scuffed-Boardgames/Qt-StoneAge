@@ -58,9 +58,9 @@ void PlayerView::updateText(){
         m_recources.pop_back();
     }
     if(xtratools.size() > 0){
-        text += "Extra tools:";
+        text += "Extra tools: ";
         while(xtratools.size() != 0){
-            text += " +" + QString::number( xtratools.back());
+            text += "+" + QString::number(xtratools.back());
             xtratools.pop_back();
             if(xtratools.size() > 0){
                 text += "/";

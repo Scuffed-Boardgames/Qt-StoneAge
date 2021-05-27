@@ -63,6 +63,7 @@ void MainWindow::on_loadButton_clicked(){
         player->unHighlight();
         player->updateText();
     }
+    updateRound();
     highlight(m_board->getCurrentPlayer());
     gameUnEnded();
 }
@@ -93,6 +94,7 @@ void MainWindow::on_newGameButton_clicked(){
         player->unHighlight();
         player->updateText();
     }
+    updateRound();
     highlight(m_board->getCurrentPlayer());
     gameUnEnded();
 }

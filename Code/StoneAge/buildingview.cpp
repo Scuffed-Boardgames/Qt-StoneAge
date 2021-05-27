@@ -2,7 +2,7 @@
 #include <QGraphicsScene>
 //#include <QGraphicsTextItem>
 
-BuildingView::BuildingView(int moveByX, std::shared_ptr<Building> building, int stackSize, QGraphicsScene* parentItem ) : m_x(moveByX), m_building(building){
+BuildingView::BuildingView(int moveByX, std::shared_ptr<Building> building, int stackSize, QGraphicsScene* parentItem ) : m_building(building){
 
     int yPos = 0;
     parentItem->addItem(this);
