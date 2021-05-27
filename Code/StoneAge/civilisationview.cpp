@@ -79,6 +79,7 @@ void CivilisationView::updateCivilisation(std::shared_ptr<Civilisation> civilisa
     for(int i = 0; i < m_underCardBonus->toPlainText().length(); ++i){
         m_underCardBonus->moveBy(-4, 0);
     }
+    updateText();
 }
 
 void CivilisationView::updateText(){
