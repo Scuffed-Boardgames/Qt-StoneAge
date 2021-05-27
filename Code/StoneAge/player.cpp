@@ -57,6 +57,7 @@ void Player::addTool(){
 
 void Player::addScore(int amount){
     m_scoreCount += amount;
+    emit dataChanged();
 }
 
 void Player::addFoodGain(){
@@ -66,6 +67,7 @@ void Player::addFoodGain(){
 
 void Player::addBuilding(){
     m_buildingCount += 1;
+    emit dataChanged();
 }
 
 void Player::addExtraTool(int tool)

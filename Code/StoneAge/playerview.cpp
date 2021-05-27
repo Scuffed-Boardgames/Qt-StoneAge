@@ -31,14 +31,16 @@ PlayerView::PlayerView(const QColor color, const std::shared_ptr<Player> player,
         m_recources.push_back(addText(text));
     }
 
-
-    for (int i = 0; i < (int)m_recources.size(); ++i) {
-        m_recources[i]->moveBy(0, 24*i);
-        m_recources[i]->setScale(2);
-        m_recources[i]->setDefaultTextColor(Qt::white);
+    int i = 0;
+    for(QGraphicsTextItem* text : m_recources){
+        text->moveBy(0, 24*i);
+        text->setScale(2);
+        text->setDefaultTextColor(Qt::white);
+        ++i;
     }
     connect(player.get(), &Player::dataChanged, this, &PlayerView::updateText);
 }
+
 void PlayerView::updateText(){
     Tool* tools = m_player->getTools();
     m_recources[0]->setPlainText("Food: " + QString::number(m_player->getResource(Resource::food)));
@@ -50,6 +52,7 @@ void PlayerView::updateText(){
     m_recources[6]->setPlainText("Tools: +" + QString::number(tools[0].getLevel()) + "/+" + QString::number(tools[1].getLevel()) + "/+" + QString::number(tools[2].getLevel()));
     m_recources[7]->setPlainText("Workers: "+ QString::number(m_player->getFreeWorkers()) + "/" + QString::number(m_player->getWorkerCount()));
     m_recources[8]->setPlainText("Buildings: "+ QString::number(m_player->getBuildingCount()));
+    m_recources[9]->setPlainText("Score: "+ QString::number(m_player->getScore()));
 
     std::vector<int> xtratools = m_player->getExtraTools();
     QString text;
@@ -72,6 +75,7 @@ void PlayerView::updateText(){
         m_recources.back()->setDefaultTextColor(Qt::white);
     }
 }
+
 int PlayerView::showScore(){
     for (QGraphicsTextItem* text : m_recources) {
         text->setVisible(false);
@@ -96,10 +100,14 @@ int PlayerView::showTieBreak(){
     return tieBreak;
 }
 void PlayerView::unEnd(){
+    if(m_recources[0]->isVisible())
+        return;
 
-    while (m_recources.size() > 9){
-        removeItem(m_recources.back());
-        m_recources.pop_back();
+    for(int i = 0; i < (int)m_recources.size(); ++i){
+        if(m_recources[i]->isVisible()){
+            removeItem(m_recources[i]);
+            m_recources.erase(m_recources.begin() + i);
+        }
     }
     for (QGraphicsTextItem* text : m_recources) {
         text->setVisible(true);

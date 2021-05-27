@@ -58,9 +58,10 @@ void MainWindow::on_loadButton_clicked(){
     QJsonDocument document = QJsonDocument::fromJson(data);
     QJsonObject jsonObject = document.object();
     m_board->load(jsonObject);
-    for(std::shared_ptr<PlayerView> player : m_playerviews){
-        player->unHighlight();
-        player->updateText();
+//    for(std::shared_ptr<PlayerView> player : m_playerviews){
+      for(int i = 0; i < 4; ++i){
+        m_playerviews[i]->unHighlight();
+        m_playerviews[i]->updateText();
     }
     updateRound();
     highlight(m_board->getCurrentPlayer());
