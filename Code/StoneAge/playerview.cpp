@@ -2,10 +2,7 @@
 #include <QGraphicsView>
 #include <QGraphicsTextItem>
 PlayerView::PlayerView(const QColor color, const std::shared_ptr<Player> player, QObject* parent) : QGraphicsScene(parent), m_player(player){
-    QBrush background;
-    background.setColor(color);
-    background.setStyle(Qt::SolidPattern);
-    setBackgroundBrush(background);
+    setBackgroundBrush(QBrush(color));
 
     Tool* tools = m_player->getTools();
 

@@ -60,14 +60,14 @@ public:
     std::shared_ptr<Civilisation> getOpenCivilisationCard(int pos) const;
 
     void civilizeCivilisation(Colour colour);
-    void newCivCards();
+    int newCivCards();
 
 signals:
-    void newBuild(std::shared_ptr<Building> building, int pos);
+    void newBuild(std::shared_ptr<Building> building, int pos, int stackSize);
     void allWorkersPlaced();
     void workersReset();
     void roundChanged();
-    void newCiv();
+    void newCiv(int stackSize);
 
 private:
     bool m_ended; //saved & loaded

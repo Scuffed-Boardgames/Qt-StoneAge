@@ -138,7 +138,7 @@ void Board::rerollBuildings(){
         i = (++i) % 4;
     }
     for(int i = 0; i < 4; ++i){
-        emit newBuild(m_buildingCardStacks[i].back(), i);
+        emit newBuild(m_buildingCardStacks[i].back(), i, m_buildingCardStacks[i].size());
     }
 }
 
@@ -205,7 +205,7 @@ void Board::newOpenCivCards()
     }
     for(size_t i = 0; i < m_openCivilisationCards.size(); ++i)
         m_openCivilisationCards[i]->setCost(i+1);
-    emit newCiv();
+    emit newCiv(m_civilisationCards.size());
 }
 
 void Board::addOpenCivCard()
@@ -286,10 +286,10 @@ void Board::checkChosen(Colour colour)
     }
 }
 
-void Board::newCivCards(){
+int Board::newCivCards(){
     if(m_openCivilisationCards.size() < 4 && m_civilisationCards.size() == 0){
         m_ended = true;
-        return;
+        return 0;
     }
     while(m_openCivilisationCards.size() < 4){
         m_openCivilisationCards.push_back(m_civilisationCards.back());
@@ -297,6 +297,7 @@ void Board::newCivCards(){
     }
     for(size_t i = 0; i < m_openCivilisationCards.size(); ++i)
         m_openCivilisationCards[i]->setCost(i+1);
+    return m_civilisationCards.size();
 
 }
 std::shared_ptr<Civilisation> Board::getOpenCivilisationCard(int pos) const
@@ -310,10 +311,10 @@ void Board::newBuilding(int place){
         m_buildingCardStacks[place].pop_back();
     }
     if(m_buildingCardStacks[place].empty()){
-        emit newBuild(nullptr, place);
+        emit newBuild(nullptr, place, 0);
         return;
     }
-    emit newBuild(m_buildingCardStacks[place].back(), place);
+    emit newBuild(m_buildingCardStacks[place].back(), place, m_buildingCardStacks[place].size());
 }
 
 bool Board::checkStacks(){
@@ -386,7 +387,7 @@ void Board::load(const QJsonObject &json){
                 m_buildingCardStacks[i].push_back(std::make_shared<SetBuilding>(buildings[j].toObject()));
             }
         }
-        emit newBuild(m_buildingCardStacks[i].back(), i);
+        emit newBuild(m_buildingCardStacks[i].back(), i, m_buildingCardStacks[i].size());
     }
 
     QJsonArray civCards = json["civs"].toArray();
@@ -427,7 +428,7 @@ void Board::load(const QJsonObject &json){
             m_openCivilisationCards.push_back(std::make_shared<RollBonus>(openCivCards[i].toObject()));
         }
     }
-    emit newCiv();
+    emit newCiv(m_civilisationCards.size());
     QJsonArray pickWindows = json["pickWindows"].toArray();
     m_pickWindows.clear();
     for(int i = 0; i < pickWindows.size(); ++i){

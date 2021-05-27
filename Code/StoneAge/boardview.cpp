@@ -61,12 +61,18 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
     moveByX = 0;
     rectWidth = 175;
     for(int i = 0; i < 4; ++i){
-        m_buildings[i] = std::make_unique<BuildingView>(moveByX, m_board->getOpenBuildingCard(i), this);
+        m_buildings[i] = std::make_unique<BuildingView>(moveByX, m_board->getOpenBuildingCard(i), 14, this);
         moveByX += rectWidth;
         connect(m_board->getOpenBuildingCard(i).get(), &Building::changedWorkers,  m_buildings[i].get(), &BuildingView::updateText);
         connect(m_board->getOpenBuildingCard(i).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
     }
-    updateCivCards();
+    QGraphicsRectItem* AmountHolder = new QGraphicsRectItem(0,0,100,100, m_buildings[3].get());
+    AmountHolder->moveBy(175, 0);
+    AmountHolder->setBrush(Qt::gray);
+    m_civCardAmount = new QGraphicsTextItem("32", AmountHolder);
+    m_civCardAmount->setFont(QFont("Arial", 26));
+    m_civCardAmount->moveBy(25, 25);
+    updateCivCards(32);
     connect(m_board.get(), &Board::newBuild, this, &BoardView::newBuild);
     connect(m_board.get(), &Board::newCiv, this, &BoardView::updateCivCards);
 }
@@ -103,8 +109,8 @@ void BoardView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
     }
 }
 
-void BoardView::newBuild(std::shared_ptr<Building> building, int pos){
-    m_buildings[pos]->updateBuilding(building);
+void BoardView::newBuild(std::shared_ptr<Building> building, int pos, int stackSize){
+    m_buildings[pos]->updateBuilding(building, stackSize);
     if(building){
         connect(m_board->getOpenBuildingCard(pos).get(), &Building::changedWorkers,  m_buildings[pos].get(), &BuildingView::updateText);
         connect(m_board->getOpenBuildingCard(pos).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
@@ -162,12 +168,13 @@ void BoardView::buildBuildings(Colour colour){
 
 void BoardView::civilizeCivilisations(Colour colour){
     m_board->civilizeCivilisation(colour);
-    m_board->newCivCards();
-    updateCivCards();
+    int stackSize = m_board->newCivCards();
+    updateCivCards(stackSize);
 
 }
 
-void BoardView::updateCivCards(){
+void BoardView::updateCivCards(int stackSize){
+    m_civCardAmount->setPlainText(QString::number(stackSize));
     int moveByX = 800;
     int rectWidth = 175;
     for(int i = 0; i < 4; ++i){

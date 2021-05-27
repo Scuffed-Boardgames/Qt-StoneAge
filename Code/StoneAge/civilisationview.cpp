@@ -26,15 +26,12 @@ CivilisationView::CivilisationView(int moveByX, std::shared_ptr<Civilisation> ci
     bleft->moveBy(20, 20);
     bleft->setBrush(QColor(255,215,0));
 
-    QFont font2("font", 20);
     m_cost = new QGraphicsSimpleTextItem("", m_holder);
     m_cost->setBrush(Qt::white);
-    m_cost->setFont(font2);
+    m_cost->setFont(QFont("Arial", 20));
     m_cost->setScale(1.5);
     m_cost->moveBy(9, -2);
-    QPen pen;
-    pen.setBrush(Qt::black);
-    m_cost->setPen(pen);
+    m_cost->setPen(QPen(Qt::black));
     yPos += 40;
 
     yPos += 5;
@@ -43,10 +40,9 @@ CivilisationView::CivilisationView(int moveByX, std::shared_ptr<Civilisation> ci
     m_indicator->setBrush(QColor(234, 222, 210)); //white-ish
     yPos += 75;
 
-    QFont font1("Font", 14);
     yPos += 45;
     m_underCardBonus = new QGraphicsTextItem("", tile);
-    m_underCardBonus->setFont(font1);
+    m_underCardBonus->setFont(QFont("Arial", 14));
     m_underCardBonus->moveBy(0, yPos);
 
     updateCivilisation(civilisation);
@@ -128,8 +124,6 @@ QString CivilisationView::bonusToString(CivBonus bonus)
         return "Writing";
     default:
         return "";
-
-
     }
 
 }

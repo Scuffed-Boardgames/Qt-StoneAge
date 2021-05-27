@@ -17,8 +17,8 @@ public:
     BoardView(std::shared_ptr<Board> board, QObject* parent = nullptr);
 
 public slots:
-    void updateCivCards();
-    void newBuild(std::shared_ptr<Building> building, int pos);
+    void updateCivCards(int stackSize);
+    void newBuild(std::shared_ptr<Building> building, int pos, int stackSize);
     void updateTurn();
     void placementDone();
     void setSelectable(bool isSelectalbe);
@@ -29,6 +29,7 @@ signals:
     void endGame();
 
 private:
+    QGraphicsTextItem* m_civCardAmount;
     bool m_placementDone;
     std::unique_ptr<BuildingView> m_buildings[4];
     std::unique_ptr<CivilisationView> m_civilisations[4];
