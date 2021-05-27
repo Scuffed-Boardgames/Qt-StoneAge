@@ -53,7 +53,6 @@ void PlayerView::updateText(){
     m_recources[7]->setPlainText("Workers: "+ QString::number(m_player->getFreeWorkers()) + "/" + QString::number(m_player->getWorkerCount()));
     m_recources[8]->setPlainText("Buildings: "+ QString::number(m_player->getBuildingCount()));
     m_recources[9]->setPlainText("Score: "+ QString::number(m_player->getScore()));
-
     std::vector<int> xtratools = m_player->getExtraTools();
     QString text;
     if(m_recources.back()->toPlainText()[0] == 'E'){
@@ -99,10 +98,10 @@ int PlayerView::showTieBreak(){
     }
     return tieBreak;
 }
+
 void PlayerView::unEnd(){
     if(m_recources[0]->isVisible())
         return;
-
     for(int i = 0; i < (int)m_recources.size(); ++i){
         if(m_recources[i]->isVisible()){
             removeItem(m_recources[i]);

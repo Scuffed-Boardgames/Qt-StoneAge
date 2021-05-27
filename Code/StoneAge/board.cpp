@@ -177,12 +177,13 @@ void Board::civilizeCivilisation(Colour colour){
                 m_civilisationCards.pop_back();
             }
             std::shared_ptr<RollBonus> rollbonus = std::dynamic_pointer_cast<RollBonus>(m_openCivilisationCards[i]);
-            if(rollbonus){
+
+            PayCiv pay(getPlayer(colour), m_openCivilisationCards[i]);
+            pay.exec();
+            if(rollbonus && pay.getHasPayed()){
                 std::shared_ptr<PickRolled> roll = std::make_shared<PickRolled>(nullptr, rollbonus->getDie(1), rollbonus->getDie(2), rollbonus->getDie(3), rollbonus->getDie(4));
                 m_pickWindows.push_back(roll);
             }
-            PayCiv pay(getPlayer(colour), m_openCivilisationCards[i]);
-            pay.exec();
             if(!pay.getHasPayed())
                 list.push_back(m_openCivilisationCards[i]);
         }else{
