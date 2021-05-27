@@ -27,7 +27,7 @@ public:
 
     void addToBuilding(std::shared_ptr<Building> building, std::shared_ptr<Player> player);
 
-    void addToCiv(std::shared_ptr<Civilisation> building, std::shared_ptr<Player> player);
+    void addToCiv(std::shared_ptr<Civilisation> civ, std::shared_ptr<Player> player);
 private slots:
     void on_okayButton_clicked();
     void on_cancelButton_clicked();
