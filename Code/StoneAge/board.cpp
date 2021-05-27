@@ -307,8 +307,8 @@ void Board::newBuilding(int place){
 }
 
 bool Board::checkStacks(){
-    for(int i = 0; i < 4; ++i){
-        if(m_buildingCardStacks[i].empty())
+    for(std::vector<std::shared_ptr<Building>> buildingStack : m_buildingCardStacks){
+        if(buildingStack.empty())
             return true;
     }
     return false;

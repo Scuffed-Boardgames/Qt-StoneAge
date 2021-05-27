@@ -29,8 +29,7 @@ MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
     m_ui->yellowView->setScene(m_playerviews[2].get());
     m_ui->greenView->setScene(m_playerviews[3].get());
     m_ui->BoardView->setScene(m_boardview.get());
-    QFont font( "Arial", 25, QFont::Bold);
-    m_ui->Turn->setFont(font);
+    m_ui->Turn->setFont(QFont( "Arial", 25, QFont::Bold));
     m_playerviews[0]->highlight();
 }
 
@@ -122,7 +121,7 @@ void MainWindow::gameEnded(){
     m_boardview->setSelectable(false);
     int highestScore = 0;
     std::vector<int> highestScorePlayer;
-    for (int i = 0; i < 4; ++i){
+    for (int i = 0; i < (int)m_playerviews.size(); ++i){
         int score = m_playerviews[i]->showScore();
         if(score > highestScore){
             highestScore = score;
@@ -137,14 +136,14 @@ void MainWindow::gameEnded(){
     std::vector<int> bestPlayer;
     if(highestScorePlayer.size() > 1){
         int highestTieBreak = 0;
-        for (int i = 0; i < (int)highestScorePlayer.size(); ++i){
-            int tieBreak = m_playerviews[highestScorePlayer[i]]->showTieBreak();
+        for(int pos : highestScorePlayer){
+            int tieBreak = m_playerviews[pos]->showTieBreak();
             if(tieBreak > highestTieBreak){
                 bestPlayer.clear();
                 highestTieBreak = tieBreak;
-                bestPlayer.push_back(highestScorePlayer[i]);
+                bestPlayer.push_back(pos);
             }else if (tieBreak == highestTieBreak) {
-                bestPlayer.push_back(highestScorePlayer[i]);
+                bestPlayer.push_back(pos);
             }
 
         }

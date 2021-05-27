@@ -67,7 +67,7 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
         connect(m_board->getOpenBuildingCard(i).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
     }
     QGraphicsRectItem* AmountHolder = new QGraphicsRectItem(0,0,100,100, m_buildings[3].get());
-    AmountHolder->moveBy(175, 0);
+    AmountHolder->moveBy(rectWidth, 0);
     AmountHolder->setBrush(Qt::gray);
     m_civCardAmount = new QGraphicsTextItem("32", AmountHolder);
     m_civCardAmount->setFont(QFont("Arial", 26));
@@ -208,7 +208,7 @@ void BoardView::setSelectable(bool isSelectalbe){
         m_field->setFlag(QGraphicsItem::ItemIsSelectable, true);
         m_hut->setFlag(QGraphicsItem::ItemIsSelectable, true);
         m_toolshed->setFlag(QGraphicsItem::ItemIsSelectable, true);
-        for(int i = 0; i<4; ++i){
+        for(int i = 0; i < 4; ++i){
             m_buildings[i]->setFlag(QGraphicsItem::ItemIsSelectable, true);
         }
     }else{
@@ -220,7 +220,7 @@ void BoardView::setSelectable(bool isSelectalbe){
         m_field->setFlag(QGraphicsItem::ItemIsSelectable, false);
         m_hut->setFlag(QGraphicsItem::ItemIsSelectable, false);
         m_toolshed->setFlag(QGraphicsItem::ItemIsSelectable, false);
-        for(int i = 0; i<4; ++i){
+        for(int i = 0; i < 4; ++i){
             m_buildings[i]->setFlag(QGraphicsItem::ItemIsSelectable, false);
         }
     }

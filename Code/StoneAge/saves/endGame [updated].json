@@ -41,19 +41,6 @@
         ]
     ],
     "civs": [
-        {
-            "bonus": 5,
-            "builders": 0,
-            "colour": -1,
-            "cost": 0,
-            "die1": 0,
-            "die2": 0,
-            "die3": 0,
-            "die4": 0,
-            "farmers": 0,
-            "makers": 0,
-            "shamen": 0
-        }
     ],
     "clayPit": {
         "blueWorkers": 0,
@@ -278,7 +265,7 @@
             ],
             "farmers": 3,
             "food": 18,
-            "foodGain": 19,
+            "foodGain": 4,
             "gold": 31,
             "hutBuilders": 10,
             "score": 69,
@@ -316,7 +303,7 @@
         "redWorkers": 0,
         "yellowWorkers": 0
     },
-    "round": 0,
+    "round": 34,
     "toolShed": {
         "blueWorkers": 0,
         "greenWorkers": 0,
