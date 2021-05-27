@@ -61,6 +61,7 @@ void MainWindow::on_loadButton_clicked(){
     m_board->load(jsonObject);
     for(std::shared_ptr<PlayerView> player : m_playerviews){
         player->unHighlight();
+        player->updateText();
     }
     highlight(m_board->getCurrentPlayer());
     gameUnEnded();
@@ -90,6 +91,7 @@ void MainWindow::on_newGameButton_clicked(){
     m_board->newOpenCivCards();
     for(std::shared_ptr<PlayerView> player : m_playerviews){
         player->unHighlight();
+        player->updateText();
     }
     highlight(m_board->getCurrentPlayer());
     gameUnEnded();
