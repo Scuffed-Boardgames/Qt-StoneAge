@@ -192,12 +192,6 @@
             },
             {
                 "colour": -1,
-                "diffMaterials": 0,
-                "maxCost": 7,
-                "minCost": 1
-            },
-            {
-                "colour": -1,
                 "diffMaterials": 2,
                 "maxCost": 5,
                 "minCost": 5
@@ -209,22 +203,25 @@
                 "scoreGain": 14,
                 "stoneCost": 2,
                 "woodCost": 0
+            },
+			{
+                "colour": -1,
+                "diffMaterials": 0,
+                "maxCost": 7,
+                "minCost": 1
             }
         ]
     ],
     "civs": [
-        {
-            "bonus": 4,
+	        {
+            "bonus": -1,
             "builders": 0,
             "colour": -1,
-            "cost": 0,
-            "die1": 0,
-            "die2": 0,
-            "die3": 0,
-            "die4": 0,
+            "cost": 3,
             "farmers": 0,
-            "makers": 0,
-            "shamen": 0
+            "makers": 1,
+            "shamen": 0,
+            "tools": 3
         },
         {
             "bonus": -1,
@@ -449,16 +446,6 @@
             "shamen": 1
         },
         {
-            "bonus": 7,
-            "builders": 0,
-            "colour": -1,
-            "cost": 0,
-            "farmers": 0,
-            "hasCard": false,
-            "makers": 0,
-            "shamen": 0
-        },
-        {
             "amount": 5,
             "bonus": 1,
             "builders": 0,
@@ -540,16 +527,6 @@
             "shamen": 0
         },
         {
-            "bonus": 1,
-            "builders": 0,
-            "choice": 2,
-            "colour": -1,
-            "cost": 0,
-            "farmers": 0,
-            "makers": 0,
-            "shamen": 0
-        },
-        {
             "bonus": -1,
             "builders": 0,
             "colour": -1,
@@ -582,6 +559,26 @@
             "die3": 0,
             "die4": 0,
             "farmers": 0,
+            "makers": 0,
+            "shamen": 0
+        }, 
+		{
+            "bonus": 1,
+            "builders": 0,
+            "choice": 2,
+            "colour": -1,
+            "cost": 0,
+            "farmers": 0,
+            "makers": 0,
+            "shamen": 0
+        },
+		{
+            "bonus": 7,
+            "builders": 0,
+            "colour": -1,
+            "cost": 0,
+            "farmers": 0,
+            "hasCard": false,
             "makers": 0,
             "shamen": 0
         }
@@ -639,14 +636,17 @@
             "tools": 2
         },
         {
-            "bonus": -1,
+            "bonus": 4,
             "builders": 0,
             "colour": -1,
-            "cost": 3,
+            "cost": 0,
+            "die1": 0,
+            "die2": 0,
+            "die3": 0,
+            "die4": 0,
             "farmers": 0,
-            "makers": 1,
-            "shamen": 0,
-            "tools": 3
+            "makers": 0,
+            "shamen": 0
         },
         {
             "bonus": 2,
@@ -677,6 +677,8 @@
             "clay": 100,
             "colour": 0,
             "extraTools": [
+			4,
+			2
             ],
             "farmers": 100,
             "food": 100,
@@ -720,6 +722,7 @@
             "clay": 100,
             "colour": 1,
             "extraTools": [
+			2
             ],
             "farmers": 100,
             "food": 100,
@@ -763,6 +766,7 @@
             "clay": 100,
             "colour": 2,
             "extraTools": [
+			2
             ],
             "farmers": 100,
             "food": 100,
@@ -806,6 +810,10 @@
             "clay": 100,
             "colour": 3,
             "extraTools": [
+			3,
+			4,
+			4,
+			1
             ],
             "farmers": 100,
             "food": 100,

@@ -93,7 +93,6 @@ void MainWindow::on_newGameButton_clicked(){
     }
     highlight(m_board->getCurrentPlayer());
     gameUnEnded();
-
 }
 
 void MainWindow::highlight(Colour colour){

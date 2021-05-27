@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/save">
-        <file>saves/op save updated.json</file>
+        <file>saves/endGame [updated].json</file>
     </qresource>
     <qresource prefix="/files">
         <file>files/cleanSave.json</file>

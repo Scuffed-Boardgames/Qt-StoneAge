@@ -1,6 +1,7 @@
 #include "boardview.h"
 #include <QColor>
 #include <QGraphicsTextItem>
+#include <QMetaMethod>
 
 #include "buildingview.h"
 #include "setbuilding.h"
@@ -134,9 +135,9 @@ void BoardView::gameLoop(){
         m_board->checkChosen((Colour)(i % 4));
         m_board->payResources((Colour)(i % 4));
         m_board->resetWorkers((Colour)(i % 4));
-        civilizeCivilisations((Colour)(i % 4));
+        m_board->civilizeCivilisation((Colour)(i % 4));
         m_board->checkChosen((Colour)(i % 4));
-        buildBuildings((Colour)(i % 4));
+        m_board->buildBuilding((Colour)(i % 4));
         emit unHighlight((Colour)(i % 4));
         emit highlight((Colour)((i+1)%4));
     }
@@ -147,30 +148,23 @@ void BoardView::gameLoop(){
         emit highlight((Colour)((i+1)%4));
     }
 
-    if(m_board->getEnded()){
-        emit endGame();
-        return;
-    }
 
     emit unHighlight(m_board->getCurrentPlayer());
     emit highlight((Colour)(((int)m_board->getCurrentPlayer() + 1) % 4));
     m_board->addRound();
-    setSelectable(true);
-    m_placementDone = false;
-}
+    int stackSize = m_board->newCivCards();
 
-void BoardView::buildBuildings(Colour colour){
-    m_board->buildBuilding(colour);
     if(m_board->checkStacks()){
         m_board->end();
     }
-}
 
-void BoardView::civilizeCivilisations(Colour colour){
-    m_board->civilizeCivilisation(colour);
-    int stackSize = m_board->newCivCards();
+    if(m_board->getEnded()){
+        emit endGame();
+        return;
+    }
     updateCivCards(stackSize);
-
+    setSelectable(true);
+    m_placementDone = false;
 }
 
 void BoardView::updateCivCards(int stackSize){
@@ -178,7 +172,10 @@ void BoardView::updateCivCards(int stackSize){
     int moveByX = 800;
     int rectWidth = 175;
     for(int i = 0; i < 4; ++i){
+        disconnect(m_board->getOpenCivilisationCard(i).get(), &Civilisation::changedWorkers, m_civilisations[i].get(), &CivilisationView::updateText);
+        disconnect(m_board->getOpenCivilisationCard(i).get(), &Civilisation::turnHappend, this, &BoardView::updateTurn);
         this->removeItem(m_civilisations[i].get());
+        m_civilisations[i].release();
         if(std::dynamic_pointer_cast<SetBonus>(m_board->getOpenCivilisationCard(i))){
             m_civilisations[i] = std::make_unique<SetBonusView>(moveByX, m_board->getOpenCivilisationCard(i), this);
         } else if(std::dynamic_pointer_cast<DiceBonus>(m_board->getOpenCivilisationCard(i))){

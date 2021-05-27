@@ -302,6 +302,7 @@ void Player::deleteExtraTool(int tool){
 int Player::calcScore(){
     int score = m_scoreCount;
     score += m_farmerCount * m_foodGain;
+    score += m_hutBuilderCount * m_buildingCount;
     score += m_shamanCount * m_workers;
     int toolAmount = 0;
     for(Tool tool : m_tools){
