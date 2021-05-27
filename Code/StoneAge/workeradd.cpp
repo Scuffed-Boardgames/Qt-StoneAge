@@ -31,9 +31,9 @@ void WorkerAdd::addToBuilding(std::shared_ptr<Building> building, std::shared_pt
     m_player = player;
 }
 
-void WorkerAdd::addToCiv(std::shared_ptr<Civilisation> building, std::shared_ptr<Player> player){
+void WorkerAdd::addToCiv(std::shared_ptr<Civilisation> civ, std::shared_ptr<Player> player){
     this->setWindowTitle(player->getString());
-    m_civilisation = building;
+    m_civilisation = civ;
     m_player = player;
 }
 
