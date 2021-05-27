@@ -11,6 +11,7 @@ PayCiv::PayCiv(std::shared_ptr<Player> player, std::shared_ptr<Civilisation> civ
     connect(ui->spinBoxClay, &QSpinBox::valueChanged, this, &PayCiv::editText);
     connect(ui->spinBoxStone, &QSpinBox::valueChanged, this, &PayCiv::editText);
     connect(ui->spinBoxGold, &QSpinBox::valueChanged, this, &PayCiv::editText);
+    ui->acceptButton->setEnabled(false);
 }
 
 PayCiv::~PayCiv(){

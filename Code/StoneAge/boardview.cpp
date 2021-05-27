@@ -1,7 +1,6 @@
 #include "boardview.h"
 #include <QColor>
 #include <QGraphicsTextItem>
-#include <QMetaMethod>
 
 #include "buildingview.h"
 #include "setbuilding.h"
