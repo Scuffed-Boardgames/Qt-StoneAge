@@ -1,3 +1,4 @@
+// Bernd Uijtdebroeks 2055267
 #ifndef SETBONUS_H
 #define SETBONUS_H
 

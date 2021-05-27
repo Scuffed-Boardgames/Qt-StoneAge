@@ -1,3 +1,4 @@
+// Bernd Uijtdebroeks 2055267
 #ifndef GATHER_H
 #define GATHER_H
 

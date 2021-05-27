@@ -1,3 +1,4 @@
+// Bernd Uijtdebroeks 2055267
 #ifndef BOARDVIEW_H
 #define BOARDVIEW_H
 

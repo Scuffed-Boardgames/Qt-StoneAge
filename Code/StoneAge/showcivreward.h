@@ -1,3 +1,4 @@
+// Bernd Uijtdebroeks 2055267
 #ifndef SHOWCIVREWARD_H
 #define SHOWCIVREWARD_H
 

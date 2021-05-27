@@ -1,3 +1,4 @@
+// Bernd Uijtdebroeks 2055267
 #ifndef DICEBONUS_H
 #define DICEBONUS_H
 
