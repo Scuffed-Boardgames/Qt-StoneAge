@@ -15,8 +15,8 @@ public:
     Player();
     Player(Colour colour);
 
-    void addResource(Resource resource, int amount); // ads a given amount of a given resource to the player(can be negative)
-    void addWorker();// ads one worker to the players inventory
+    void addResource(Resource resource, int amount); // Ads a given amount of a given resource to the player(can be negative)
+    void addWorker();// Ads one worker to the players inventory
     void addTool();
     void addScore(int amount);
     void addFoodGain();
@@ -24,34 +24,34 @@ public:
     void addExtraTool(int tool);
     void addBonus(int farmers, int makers, int builders, int shamen, CivBonus bonus);
 
-    int getResource(Resource resource); // gets the amount of a given resource
-    int getScore(); // gets the score the player curently has
-    int getFoodGain(); // gets the amount of food gain the player curently has
-    int getWorkerCount();// gets the amount of workers the player curently has
-    int getFreeWorkers();// gets the amount of free workers the player curently has
+    int getResource(Resource resource); // Returns the amount of a given resource
+    int getScore(); // Returns the score the player curently has
+    int getFoodGain(); // Returns the amount of food gain the player curently has
+    int getWorkerCount();// Returns the amount of workers the player curently has
+    int getFreeWorkers();// Returns the amount of free workers the player curently has
     Colour getColour() const;
     Tool* getTools();
     QString getString();
 
-    bool maxToolsReached();
-    void deleteExtraTool(int tool);
+    bool maxToolsReached(); // Checks if the maximum tools are reached
+    void deleteExtraTool(int tool); // Deletes a temporary tool
 
-    void resetTools();
-    void resetWorkers();
+    void resetTools(); // Makes all tools usable again
+    void resetWorkers(); // Gives back all workers
 
-    void setWorkersOccupied(int amount);
-    void disableTool(int nr);
+    void setWorkersOccupied(int amount); // Removes an amount of workers from the free workers
+    void disableTool(int nr); // Disables a specific tool
 
     QJsonObject save();
     void load(const QJsonObject &json);
 
-    int calcScore();
-    int calcTieBreak();
+    int calcScore(); // Calculates the score of the player
+    int calcTieBreak(); // Calculates the tie breaker of the player
 
     int getLowestToolLevel();
     int getBuildingCount() const;
 
-    std::vector<int> getExtraTools() const;
+    std::vector<int> getExtraTools() const; // Returns an array of integers representing tools
 
 signals:
     void dataChanged();

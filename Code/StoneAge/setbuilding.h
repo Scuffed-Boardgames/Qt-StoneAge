@@ -11,7 +11,7 @@ public:
     SetBuilding(const QJsonObject &json);
 
     bool build(std::shared_ptr<Player> player);
-    bool canPay(std::shared_ptr<Player> player);
+    bool canPay(std::shared_ptr<Player> player); // Checks if a player is able to pay for a building
 
     int getScoreGain() const;
     int getCost(Resource resource) const;

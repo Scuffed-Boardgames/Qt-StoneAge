@@ -12,9 +12,9 @@ public:
     ToolBonus(const QJsonObject &json);
     QJsonObject save();
 
-    void giveItems(std::shared_ptr<Player> player);
+    void giveItems(std::shared_ptr<Player> player); // Gives items on the card to the player
 
-    int getTool() const;
+    int getTool() const; // Returns the level of the tool on the card
 
 private:
     int m_tool;

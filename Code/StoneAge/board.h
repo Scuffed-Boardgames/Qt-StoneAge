@@ -26,18 +26,18 @@ class Board : public QObject
 public:
     Board();
 
-    void resetWorkers(Colour colour);
-    void feedWorkers(Colour colour);
+    void resetWorkers(Colour colour); // Resets all workers everywhere for a specific player
+    void feedWorkers(Colour colour); // Process the feeding of workers according to the rules
 
-    std::shared_ptr<Building> getOpenBuildingCard(int pos);
-    void rerollBuildings();
-    void buildBuilding(Colour colour);
+    std::shared_ptr<Building> getOpenBuildingCard(int pos); // Returns the top card of the chosen pile
+    void rerollBuildings(); // Shuffles the building cards
+    void buildBuilding(Colour colour); // Processes the buying of a building
 
-    void newOpenCivCards();
+    void newOpenCivCards(); // Shuffles the civilisation cards and draws new open ones
 
-    void nextPlayer(int checked = 0);
-    void payResources(Colour colour);
-    void addRound();
+    void nextPlayer(int checked = 0); // Calculates the next player
+    void payResources(Colour colour); // Processes all the workers placed on resources for a specific player
+    void addRound(); // Ups the round counter
 
     std::shared_ptr<ToolShed> getToolShed();
     std::shared_ptr<Hut> getHut();
@@ -52,13 +52,13 @@ public:
 
     bool getEnded() const;
 
-    bool checkStacks();
-    void end();
-    void checkChosen(Colour colour);
-    std::shared_ptr<Civilisation> getOpenCivilisationCard(int pos) const;
+    bool checkStacks(); // Checks if one of the buildingstacks is empty
+    void end(); // Sets the ended bool to true
+    void checkChosen(Colour colour); // Checks and processes choices (for the choice civ cards) of a specific player
+    std::shared_ptr<Civilisation> getOpenCivilisationCard(int pos) const; // Returns the civilisation card on the chosen position
 
-    void civilizeCivilisation(Colour colour);
-    int newCivCards();
+    void civilizeCivilisation(Colour colour); // Processes the buying of a civilisation card
+    int newCivCards(); // Updates the civilisation cards on the gameboard
 
 signals:
     void newBuild(std::shared_ptr<Building> building, int pos, int stackSize);

@@ -8,7 +8,7 @@ class Field : public Place
 {
 public:
     Field();
-    void giveResource(std::shared_ptr<Player> player);
+    void giveResource(std::shared_ptr<Player> player); // Give +1 food gain to the player
     void addWorker(std::shared_ptr<Player> player, int amount);
 };
 

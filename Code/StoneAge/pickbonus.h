@@ -10,7 +10,7 @@ class PickBonus : public Civilisation
 public:
     PickBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost);
     PickBonus(const QJsonObject &json);
-    void giveItems(std::shared_ptr<Player> player);
+    void giveItems(std::shared_ptr<Player> player); // Gives items on the card to the player
     QJsonObject save();
 
 };

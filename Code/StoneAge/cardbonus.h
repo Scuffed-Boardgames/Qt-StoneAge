@@ -12,9 +12,9 @@ public:
     CardBonus(const QJsonObject &json);
     QJsonObject save();
 
-    void setCard(std::shared_ptr<Civilisation> card);
+    void setCard(std::shared_ptr<Civilisation> card); // Assigns another card to the civ card
 
-    void giveItems(std::shared_ptr<Player> player);
+    void giveItems(std::shared_ptr<Player> player); // Gives items on the card to the player
 
 private:
     std::shared_ptr<Civilisation> m_card;

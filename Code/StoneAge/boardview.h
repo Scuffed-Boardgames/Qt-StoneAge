@@ -46,8 +46,8 @@ private:
     std::unique_ptr<OtherPlaceView> m_hut;
     std::unique_ptr<OtherPlaceView> m_toolshed;
 
-    void gameLoop();
-    void updateResources(Colour colour);
+    void gameLoop(); // Starts fase 2 of a round
+    void updateResources(Colour colour); // Updates the view of a player
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
 };

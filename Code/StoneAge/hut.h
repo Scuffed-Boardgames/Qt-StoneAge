@@ -8,7 +8,7 @@ class Hut : public Place
 {
 public:
     Hut();
-    void giveResource(std::shared_ptr<Player>);
+    void giveResource(std::shared_ptr<Player>); // Gives a worker to the player
     void addWorker(std::shared_ptr<Player> player, int amount);
 };
 

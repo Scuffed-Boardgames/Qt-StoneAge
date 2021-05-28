@@ -20,7 +20,7 @@ public:
     bool getHasPayed() const;
 
 private slots:
-    void editText();
+    void editText(); // Updates the boxes and text
     void on_acceptButton_clicked();
     void on_cancelButton_clicked();
 

@@ -16,7 +16,7 @@ public:
     int showTieBreak();
     void unEnd();
 public slots:
-    void updateText(); // updates player text
+    void updateText(); // Updates player text
 
 private:
     std::shared_ptr<Player> m_player;

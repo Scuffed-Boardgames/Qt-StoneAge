@@ -17,7 +17,7 @@ public:
     explicit RollResources(int workerAmount, Resource resource, std::shared_ptr<Player> player, QWidget *parent = nullptr);
     ~RollResources();
 
-    int getGain(); //returns the amount of resources gained
+    int getGain(); // Returns the amount of resources gained
 
 private slots:
     void on_pushButton_clicked();

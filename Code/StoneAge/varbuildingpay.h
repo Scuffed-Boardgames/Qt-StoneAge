@@ -21,7 +21,7 @@ public:
     int getAmount(Resource resource);
 
 private slots:
-    void editText();
+    void editText(); // Updates the boxes and text
     void on_okayButton_clicked();
     void on_cancelButton_clicked();
 

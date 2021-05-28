@@ -10,7 +10,7 @@ class DiceBonus : public Civilisation
 public:
     DiceBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, Resource m_resource);
     DiceBonus(const QJsonObject &json);
-    void giveItems(std::shared_ptr<Player> player);
+    void giveItems(std::shared_ptr<Player> player); // Gives items on the card to the player
     QJsonObject save();
     Resource getResource() const;
 

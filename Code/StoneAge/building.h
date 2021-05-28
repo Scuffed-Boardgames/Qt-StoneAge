@@ -11,7 +11,7 @@ public:
     Building();
     Building(Colour colour);
 
-    void addWorker(std::shared_ptr<Player> player);
+    void addWorker(std::shared_ptr<Player> player); // Adds a worker to the building card
 
     void reset();
     Colour getStandingColour() const;

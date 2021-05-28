@@ -19,7 +19,7 @@ public:
     int getCost();
 
 public slots:
-    void updateText();
+    void updateText(); // Updates the boxes and text
 
 private:
     std::shared_ptr<Place> m_place;

@@ -13,8 +13,8 @@ public:
     int getLevel();
     void levelUp();
 
-    void isUsed();
-    bool wasUsed();
+    void isUsed(); // Makes a tool used
+    bool wasUsed(); // Returns if the tool is used
     void reset();
     QJsonObject save();
 

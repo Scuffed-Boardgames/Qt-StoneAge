@@ -15,7 +15,7 @@ public:
     void reset();
 
     virtual void giveItems(std::shared_ptr<Player> player) = 0;
-    void giveBonus(std::shared_ptr<Player> player);
+    void giveBonus(std::shared_ptr<Player> player); // Give the bonus on the card to the player
 
     Colour getStandingColour() const;
     int getFarmers() const;

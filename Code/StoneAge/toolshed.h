@@ -13,7 +13,7 @@ public:
     int getTools34() const;
 
 private:
-    int m_tools34;
+    int m_tools34; // The max amount of 3/4 tools
 };
 
 #endif // TOOLSHED_H

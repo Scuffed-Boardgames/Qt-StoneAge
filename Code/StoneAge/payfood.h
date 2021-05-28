@@ -16,7 +16,7 @@ public:
     ~PayFood();
 
 private slots:
-    void editText();
+    void editText(); // Updates the boxes and text
     void on_acceptButton_clicked();
     void on_scoreButton_clicked();
 

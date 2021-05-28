@@ -25,7 +25,7 @@ int VarBuilding::getDiff() const{
 }
 
 bool VarBuilding::build(std::shared_ptr<Player> Player){
-    return false;
+    return Player == nullptr;
 }
 
 int VarBuilding::calcScore(int woodAmount, int clayAmount, int stoneAmount, int goldAmount){

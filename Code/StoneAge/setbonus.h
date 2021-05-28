@@ -10,10 +10,10 @@ class SetBonus : public Civilisation
 public:
     SetBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, int amount, Resource resource);
     SetBonus(const QJsonObject &json);
-    void giveItems(std::shared_ptr<Player> player);
+    void giveItems(std::shared_ptr<Player> player); // Gives items on the card to the player
     QJsonObject save();
-    int getAmount() const;
 
+    int getAmount() const;
     Resource getResource() const;
 
 private:

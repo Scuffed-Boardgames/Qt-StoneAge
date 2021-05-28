@@ -10,7 +10,7 @@ class MiscBonus : public Civilisation
 public:
     MiscBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, bool score, bool food, bool tool);
     MiscBonus(const QJsonObject &json);
-    void giveItems(std::shared_ptr<Player> player);
+    void giveItems(std::shared_ptr<Player> player); // Gives items on the card to the player
     QJsonObject save();
 
     bool getScore() const;
