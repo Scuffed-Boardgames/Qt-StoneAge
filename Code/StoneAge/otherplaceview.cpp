@@ -1,6 +1,5 @@
 #include "otherplaceview.h"
-#include <QBrush>
-#include <QFont>
+
 #include <QGraphicsScene>
 
 OtherPlaceView::OtherPlaceView(QColor colour, int moveByX, int cost, QString name, std::shared_ptr<Place> place, QGraphicsScene* parentItem)

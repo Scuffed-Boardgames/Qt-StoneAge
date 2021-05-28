@@ -2,13 +2,13 @@
 #ifndef BOARDVIEW_H
 #define BOARDVIEW_H
 
-#include <QGraphicsScene>
-#include <QGraphicsRectItem>
 #include "board.h"
 #include "workeradd.h"
 #include "otherplaceview.h"
 #include "resourceplaceview.h"
 #include "civilisationview.h"
+
+#include <QGraphicsScene>
 
 class BoardView : public QGraphicsScene
 {

@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QDir>
-#include <QFile>
+
 #include <QJsonDocument>
 
 MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)

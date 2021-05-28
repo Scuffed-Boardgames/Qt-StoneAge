@@ -1,7 +1,4 @@
 #include "boardview.h"
-#include <QColor>
-#include <QGraphicsTextItem>
-
 #include "buildingview.h"
 #include "setbuilding.h"
 #include "setbonusview.h"
@@ -11,6 +8,8 @@
 #include "miscbonusview.h"
 #include "toolbonusview.h"
 #include "rollbonusview.h"
+
+
 
 BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
     : QGraphicsScene(parent), m_placementDone{false}, m_board{board}{

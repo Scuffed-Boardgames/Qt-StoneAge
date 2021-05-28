@@ -1,11 +1,10 @@
 #include "dicebonusview.h"
-
-#include <QGraphicsScene>
 #include "dicebonus.h"
-#include "QColor"
-#include "QBrush"
-#include "QFont"
-#include "QPen"
+
+
+#include <QColor>
+#include <QBrush>
+
 
 DiceBonusView::DiceBonusView(int moveByX, std::shared_ptr<Civilisation> civilisation, QGraphicsScene *parentItem) :
     CivilisationView(moveByX, civilisation, parentItem){

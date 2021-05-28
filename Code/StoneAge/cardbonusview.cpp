@@ -1,11 +1,7 @@
 #include "cardbonusview.h"
 
 #include <QGraphicsScene>
-#include "dicebonus.h"
-#include "QColor"
-#include "QBrush"
-#include "QFont"
-#include "QPen"
+
 
 CardBonusView::CardBonusView(int moveByX, std::shared_ptr<Civilisation> civilisation, QGraphicsScene *parentItem) :
     CivilisationView(moveByX, civilisation, parentItem){

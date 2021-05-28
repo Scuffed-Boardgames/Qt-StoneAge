@@ -3,7 +3,6 @@
 #define PAYCIV_H
 
 #include <QDialog>
-#include "player.h"
 #include "civilisation.h"
 
 namespace Ui {

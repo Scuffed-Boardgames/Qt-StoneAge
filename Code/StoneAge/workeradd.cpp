@@ -1,5 +1,7 @@
 #include "workeradd.h"
 #include "ui_workeradd.h"
+#include "gather.h"
+#include "toolshed.h"
 
 WorkerAdd::WorkerAdd(QWidget *parent)
     : QDialog(parent), m_building(nullptr), m_place(nullptr), m_civilisation(nullptr), ui(new Ui::WorkerAdd)

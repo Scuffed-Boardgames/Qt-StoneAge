@@ -4,10 +4,9 @@
 
 #include <QDialog>
 #include "resourceplaceview.h"
-#include "toolshed.h"
 #include "civilisation.h"
 #include "buildingview.h"
-#include "gather.h"
+
 
 namespace Ui {
 class WorkerAdd;

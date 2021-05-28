@@ -3,7 +3,6 @@
 #define VARBUILDINGPAY_H
 
 #include <QDialog>
-#include "player.h"
 #include "varbuilding.h"
 
 namespace Ui {

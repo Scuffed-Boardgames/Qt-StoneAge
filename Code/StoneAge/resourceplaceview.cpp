@@ -1,8 +1,6 @@
 #include "resourceplaceview.h"
-#include <QColor>
-#include <QFont>
-#include <QBrush>
 
+#include <QGraphicsScene>
 
 ResourcePlaceView::ResourcePlaceView(const QColor colour, const QString name, const int moveByX, std::shared_ptr<Place> place, QGraphicsScene* parentItem)
     : m_place(place){

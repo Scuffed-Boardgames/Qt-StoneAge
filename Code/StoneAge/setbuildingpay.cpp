@@ -1,6 +1,5 @@
 #include "setbuildingpay.h"
 #include "ui_setbuildingpay.h"
-#include "ui_buildingpay.h"
 
 SetBuildingPay::SetBuildingPay(std::shared_ptr<Player> player, std::shared_ptr<SetBuilding> building, QWidget *parent)
     :QDialog(parent), ui(new Ui::SetBuildingPay), m_building(building), m_player(player),  m_bought(false){

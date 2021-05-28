@@ -1,10 +1,10 @@
 #include "setbonusview.h"
-#include <QGraphicsScene>
 #include "setbonus.h"
-#include "QColor"
-#include "QBrush"
-#include "QFont"
-#include "QPen"
+
+#include <QFont>
+#include <QColor>
+#include <QBrush>
+#include <QPen>
 
 SetBonusView::SetBonusView(int moveByX, std::shared_ptr<Civilisation> civilisation, QGraphicsScene *parentItem) :
     CivilisationView(moveByX, civilisation, parentItem){

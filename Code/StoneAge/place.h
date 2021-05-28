@@ -3,8 +3,6 @@
 #define PLACE_H
 
 #include "player.h"
-#include <memory>
-#include <QObject>
 
 class Place : public QObject
 {

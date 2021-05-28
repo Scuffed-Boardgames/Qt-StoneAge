@@ -1,11 +1,11 @@
 #include "board.h"
+#include "payciv.h"
+#include "payfood.h"
+
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <random>
-#include <algorithm>
-#include "payciv.h"
-#include "payfood.h"
 
 Board::Board() : m_ended{false}, m_currentPlayer{Colour::red}, m_hut(std::make_shared<Hut>()), m_forest{std::make_shared<Gather>(Resource::wood)},
     m_clayPit{std::make_shared<Gather>(Resource::clay)}, m_quarry{std::make_shared<Gather>(Resource::stone)}, m_river{std::make_shared<Gather>(Resource::gold)},

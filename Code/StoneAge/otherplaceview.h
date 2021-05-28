@@ -4,7 +4,6 @@
 
 #include <QGraphicsItem>
 #include "place.h"
-#include "colour.h"
 
 class OtherPlaceView : public QObject, public QGraphicsItem
 {

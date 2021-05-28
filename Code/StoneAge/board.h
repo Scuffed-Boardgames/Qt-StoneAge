@@ -19,7 +19,6 @@
 #include "setbonus.h"
 #include "toolbonus.h"
 #include "pickrolled.h"
-#include <memory>
 
 class Board : public QObject
 {

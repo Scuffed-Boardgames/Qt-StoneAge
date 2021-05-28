@@ -1,17 +1,7 @@
+#include "board.h"
 #include "mainwindow.h"
 
 #include <QApplication>
-#include <QGraphicsView>
-#include <QVBoxLayout>
-#include "boardview.h"
-#include "workeradd.h"
-#include "setbuildingpay.h"
-#include "varbuildingpay.h"
-#include "pickresources.h"
-#include "rollresources.h"
-#include <ctime>
-
-
 
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);

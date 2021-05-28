@@ -1,10 +1,9 @@
 // Denzell Mgbokwere 2054872
 #ifndef CIVILISATIONVIEW_H
 #define CIVILISATIONVIEW_H
-#include "colour.h"
+
 #include "civilisation.h"
 #include <QGraphicsItem>
-#include <QObject>
 
 class CivilisationView :public QObject, public QGraphicsItem
 {

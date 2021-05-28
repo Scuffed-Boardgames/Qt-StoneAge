@@ -1,6 +1,7 @@
 // Denzell Mgbokwere 2054872
 #ifndef PLAYERVIEW_H
 #define PLAYERVIEW_H
+
 #include <QGraphicsScene>
 #include "player.h"
 

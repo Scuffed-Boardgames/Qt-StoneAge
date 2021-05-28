@@ -1,6 +1,6 @@
 #include "buildingview.h"
+
 #include <QGraphicsScene>
-//#include <QGraphicsTextItem>
 
 BuildingView::BuildingView(int moveByX, std::shared_ptr<Building> building, int stackSize, QGraphicsScene* parentItem ) : m_building(building){
 

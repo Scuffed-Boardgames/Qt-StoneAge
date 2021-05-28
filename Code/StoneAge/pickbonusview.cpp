@@ -1,11 +1,8 @@
 #include "pickbonusview.h"
-#include "pickbonus.h"
-#include <QGraphicsScene>
-#include "dicebonus.h"
-#include "QColor"
-#include "QBrush"
-#include "QFont"
-#include "QPen"
+
+#include <QColor>
+#include <QBrush>
+
 
 PickBonusView::PickBonusView(int moveByX, std::shared_ptr<Civilisation> civilisation, QGraphicsScene *parentItem) :
     CivilisationView(moveByX, civilisation, parentItem){

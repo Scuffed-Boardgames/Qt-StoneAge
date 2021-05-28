@@ -1,12 +1,7 @@
 #include "toolbonusview.h"
-
 #include "toolbonus.h"
 
-#include <QGraphicsScene>
-#include "QColor"
-#include "QBrush"
-#include "QFont"
-#include "QPen"
+#include <QFont>
 
 ToolBonusView::ToolBonusView(int moveByX, std::shared_ptr<Civilisation> civilisation, QGraphicsScene *parentItem) :
     CivilisationView(moveByX, civilisation, parentItem){

@@ -2,7 +2,6 @@
 #ifndef BUILDING_H
 #define BUILDING_H
 
-#include "colour.h"
 #include "player.h"
 
 class Building : public QObject

@@ -2,7 +2,6 @@
 #ifndef CIVILISATION_H
 #define CIVILISATION_H
 
-#include "civbonuses.h"
 #include "player.h"
 
 class Civilisation : public QObject

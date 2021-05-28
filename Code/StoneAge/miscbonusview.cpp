@@ -1,11 +1,10 @@
 #include "miscbonusview.h"
 #include "miscbonus.h"
 
-#include <QGraphicsScene>
-#include "QColor"
-#include "QBrush"
-#include "QFont"
-#include "QPen"
+#include <QColor>
+#include <QBrush>
+#include <QFont>
+
 
 MiscBonusView::MiscBonusView(int moveByX, std::shared_ptr<Civilisation> civilisation, QGraphicsScene *parentItem) :
     CivilisationView(moveByX, civilisation, parentItem){

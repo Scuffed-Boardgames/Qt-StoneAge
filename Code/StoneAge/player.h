@@ -2,10 +2,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <vector>
-#include <QObject>
-#include <QJsonArray>
-
 #include "resources.h"
 #include "colour.h"
 #include "tool.h"

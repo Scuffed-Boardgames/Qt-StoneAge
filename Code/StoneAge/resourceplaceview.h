@@ -2,9 +2,7 @@
 #ifndef RESOURCEPLACEVIEW_H
 #define RESOURCEPLACEVIEW_H
 
-#include <QGraphicsRectItem>
-#include <QGraphicsScene>
-#include <QPainter>
+#include <QGraphicsItem>
 #include "colour.h"
 #include "place.h"
 
