@@ -10,7 +10,6 @@
 #include "rollbonusview.h"
 
 
-
 BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
     : QGraphicsScene(parent), m_placementDone{false}, m_board{board}{
     connect(m_board.get(), &Board::allWorkersPlaced, this, &BoardView::placementDone);
@@ -198,29 +197,16 @@ void BoardView::updateCivCards(int stackSize){
 }
 
 void BoardView::setSelectable(bool isSelectalbe){
-    if(isSelectalbe){
-        m_food->setFlag(QGraphicsItem::ItemIsSelectable, true);
-        m_wood->setFlag(QGraphicsItem::ItemIsSelectable, true);
-        m_clay->setFlag(QGraphicsItem::ItemIsSelectable, true);
-        m_stone->setFlag(QGraphicsItem::ItemIsSelectable, true);
-        m_gold->setFlag(QGraphicsItem::ItemIsSelectable, true);
-        m_field->setFlag(QGraphicsItem::ItemIsSelectable, true);
-        m_hut->setFlag(QGraphicsItem::ItemIsSelectable, true);
-        m_toolshed->setFlag(QGraphicsItem::ItemIsSelectable, true);
-        for(int i = 0; i < 4; ++i){
-            m_buildings[i]->setFlag(QGraphicsItem::ItemIsSelectable, true);
-        }
-    }else{
-        m_food->setFlag(QGraphicsItem::ItemIsSelectable, false);
-        m_wood->setFlag(QGraphicsItem::ItemIsSelectable, false);
-        m_clay->setFlag(QGraphicsItem::ItemIsSelectable, false);
-        m_stone->setFlag(QGraphicsItem::ItemIsSelectable, false);
-        m_gold->setFlag(QGraphicsItem::ItemIsSelectable, false);
-        m_field->setFlag(QGraphicsItem::ItemIsSelectable, false);
-        m_hut->setFlag(QGraphicsItem::ItemIsSelectable, false);
-        m_toolshed->setFlag(QGraphicsItem::ItemIsSelectable, false);
-        for(int i = 0; i < 4; ++i){
-            m_buildings[i]->setFlag(QGraphicsItem::ItemIsSelectable, false);
-        }
+    m_food->setFlag(QGraphicsItem::ItemIsSelectable, isSelectalbe);
+    m_wood->setFlag(QGraphicsItem::ItemIsSelectable, isSelectalbe);
+    m_clay->setFlag(QGraphicsItem::ItemIsSelectable, isSelectalbe);
+    m_stone->setFlag(QGraphicsItem::ItemIsSelectable, isSelectalbe);
+    m_gold->setFlag(QGraphicsItem::ItemIsSelectable, isSelectalbe);
+    m_field->setFlag(QGraphicsItem::ItemIsSelectable, isSelectalbe);
+    m_hut->setFlag(QGraphicsItem::ItemIsSelectable, isSelectalbe);
+    m_toolshed->setFlag(QGraphicsItem::ItemIsSelectable, isSelectalbe);
+    for(int i = 0; i < 4; ++i){
+        m_buildings[i]->setFlag(QGraphicsItem::ItemIsSelectable, isSelectalbe);
     }
+
 }

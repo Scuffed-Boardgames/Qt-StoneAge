@@ -37,6 +37,5 @@ private:
     std::unique_ptr<BoardView> m_boardview;
     std::vector<std::shared_ptr<PlayerView>> m_playerviews;
     const std::shared_ptr<Board> m_board;
-    QFileDialog* m_fileDialog;
 };
 #endif // MAINWINDOW_H

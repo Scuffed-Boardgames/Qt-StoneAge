@@ -4,7 +4,7 @@
 #include <QJsonDocument>
 
 MainWindow::MainWindow(const std::shared_ptr<Board> board, QWidget *parent)
-    : QMainWindow(parent), m_ui(new Ui::MainWindow), m_boardview(new BoardView(board, this)), m_board(board), m_fileDialog(new QFileDialog(this)){
+    : QMainWindow(parent), m_ui(new Ui::MainWindow), m_boardview(new BoardView(board, this)), m_board(board){
 
     m_ui->setupUi(this);
     QString text = "Round: " + QString::number(m_board->getRound()+1);
