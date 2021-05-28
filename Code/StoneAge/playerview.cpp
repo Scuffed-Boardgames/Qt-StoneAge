@@ -34,8 +34,8 @@ PlayerView::PlayerView(const QColor color, const std::shared_ptr<Player> player,
 
     int i = 0;
     for(QGraphicsTextItem* text : m_recources){
-        text->moveBy(0, 24*i);
-        text->setScale(2);
+        text->moveBy(0, 21*i);
+        text->setScale(1.75);
         text->setDefaultTextColor(Qt::white);
         ++i;
     }
@@ -70,9 +70,9 @@ void PlayerView::updateText(){
             }
         }
         m_recources.push_back(addText(text));
-        m_recources.back()->moveBy(0, 24 * (m_recources.size() - 1));
-        m_recources.back()->setScale(2);
-        m_recources.back()->setDefaultTextColor(Qt::white);
+        m_recources.back()->moveBy(0, 21 * (m_recources.size() - 1));
+        m_recources.back()->setScale(1.75);
+        m_recources.back()->setDefaultTextColor(m_recources[0]->defaultTextColor());
     }
 }
 
@@ -82,7 +82,7 @@ int PlayerView::showScore(){
     }
     int score = m_player->calcScore();
     m_recources.push_back(addText("Score: " + QString::number(score)));
-    m_recources.back()->setScale(2);
+    m_recources.back()->setScale(1.75);
     for (QGraphicsTextItem* text : m_recources) {
         text->setDefaultTextColor(Qt::white);
     }
@@ -92,8 +92,8 @@ int PlayerView::showScore(){
 int PlayerView::showTieBreak(){
     int tieBreak = m_player->calcTieBreak();
     m_recources.push_back(addText("Tie break: " + QString::number(tieBreak)));
-    m_recources.back()->moveBy(0, 24);
-    m_recources.back()->setScale(2);
+    m_recources.back()->moveBy(0, 21);
+    m_recources.back()->setScale(1.75);
     for (QGraphicsTextItem* text : m_recources) {
         text->setDefaultTextColor(Qt::white);
     }
