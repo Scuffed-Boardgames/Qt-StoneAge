@@ -108,10 +108,10 @@ void VarBuildingPay::editText(){
     }
     ui->topText->setText("You still have to pay " + textAmount + " items" + stringDiff);
     ui->bottomText->setText("this will give you " + QString::number(m_building->calcScore(woodAmount, clayAmount, stoneAmount, goldAmount)) + " score");
-    ui->woodAmount->setMaximum(woodAmount + reqAmount);
-    ui->clayAmount->setMaximum(clayAmount + reqAmount);
-    ui->stoneAmount->setMaximum(stoneAmount + reqAmount);
-    ui->goldAmount->setMaximum(goldAmount + reqAmount);
+    ui->woodAmount->setMaximum(std::min((woodAmount + reqAmount), m_player->getResource(Resource::wood)));
+    ui->clayAmount->setMaximum(std::min((clayAmount + reqAmount), m_player->getResource(Resource::clay)));
+    ui->stoneAmount->setMaximum(std::min((stoneAmount + reqAmount), m_player->getResource(Resource::stone)));
+    ui->goldAmount->setMaximum(std::min((goldAmount + reqAmount), m_player->getResource(Resource::gold)));
     if(reqDiff == 0 && m_building->getDiff() > 0){
         if(woodAmount == 0){
             ui->woodAmount->setMaximum(0);
