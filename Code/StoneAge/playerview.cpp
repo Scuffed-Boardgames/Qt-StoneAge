@@ -103,14 +103,19 @@ int PlayerView::showTieBreak(){
 void PlayerView::unEnd(){
     if(m_recources[0]->isVisible())
         return;
-    for(int i = 0; i < (int)m_recources.size(); ++i){
-        if(m_recources[i]->isVisible()){
-            removeItem(m_recources[i]);
-            m_recources.erase(m_recources.begin() + i);
+    std::vector<QGraphicsTextItem*> tmp;
+    for (QGraphicsTextItem* text : m_recources){
+        if(!text->isVisible()){
+            tmp.push_back(text);
         }
-    }
-    for (QGraphicsTextItem* text : m_recources) {
+        removeItem(text);
         text->setVisible(true);
+    }
+    m_recources.clear();
+    m_recources = tmp;
+    tmp.clear();
+    for (QGraphicsTextItem* text : m_recources){
+        addItem(text);
     }
 }
 

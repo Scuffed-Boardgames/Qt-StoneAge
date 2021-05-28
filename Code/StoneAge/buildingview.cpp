@@ -172,6 +172,7 @@ void BuildingView::updateBuilding(std::shared_ptr<Building> building, int stackS
 
 
 void BuildingView::setOrVar(bool isSet){
+    m_indicator->setVisible(true);
     QGraphicsRectItem* costs[3] = {m_cost1, m_cost2, m_cost3};
     for(int i = 0; i < 3; ++i){
         costs[i]->setVisible(isSet);
