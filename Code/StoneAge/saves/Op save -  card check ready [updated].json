@@ -682,7 +682,7 @@
             ],
             "farmers": 100,
             "food": 100,
-            "foodGain": 100,
+            "foodGain": 10,
             "gold": 100,
             "hutBuilders": 100,
             "score": 1000,
@@ -691,15 +691,15 @@
             "toolMakers": 100,
             "tools": [
                 {
-                    "level": 6,
+                    "level": 4,
                     "used": false
                 },
                 {
-                    "level": 6,
+                    "level": 4,
                     "used": false
                 },
                 {
-                    "level": 6,
+                    "level": 4,
                     "used": false
                 }
             ],
@@ -726,7 +726,7 @@
             ],
             "farmers": 100,
             "food": 100,
-            "foodGain": 100,
+            "foodGain": 10,
             "gold": 100,
             "hutBuilders": 100,
             "score": 1000,
@@ -735,15 +735,15 @@
             "toolMakers": 100,
             "tools": [
                 {
-                    "level": 6,
+                    "level": 4,
                     "used": false
                 },
                 {
-                    "level": 6,
+                    "level": 4,
                     "used": false
                 },
                 {
-                    "level": 6,
+                    "level": 4,
                     "used": false
                 }
             ],
@@ -770,7 +770,7 @@
             ],
             "farmers": 100,
             "food": 100,
-            "foodGain": 100,
+            "foodGain": 10,
             "gold": 100,
             "hutBuilders": 100,
             "score": 1000,
@@ -779,15 +779,15 @@
             "toolMakers": 100,
             "tools": [
                 {
-                    "level": 6,
+                    "level": 4,
                     "used": false
                 },
                 {
-                    "level": 6,
+                    "level": 4,
                     "used": false
                 },
                 {
-                    "level": 6,
+                    "level": 4,
                     "used": false
                 }
             ],
@@ -816,7 +816,7 @@
             ],
             "farmers": 100,
             "food": 100,
-            "foodGain": 100,
+            "foodGain": 10,
             "gold": 100,
             "hutBuilders": 100,
             "score": 1000,
@@ -825,15 +825,15 @@
             "toolMakers": 100,
             "tools": [
                 {
-                    "level": 6,
+                    "level": 4,
                     "used": false
                 },
                 {
-                    "level": 6,
+                    "level": 4,
                     "used": false
                 },
                 {
-                    "level": 6,
+                    "level": 4,
                     "used": false
                 }
             ],
