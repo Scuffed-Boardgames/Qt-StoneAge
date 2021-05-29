@@ -38,7 +38,7 @@ Board::Board() : m_ended{false}, m_currentPlayer{Colour::red}, m_hut(std::make_s
         buildingCards.erase(buildingCards.begin() + place);
         i = (++i) % 4;
     }
-
+    rerollBuildings();
     QFile file2(":/files/files/civilisation.json");
     file2.open(QIODevice::ReadOnly | QIODevice::Text);
     QByteArray data2 = file2.readAll();
@@ -84,6 +84,7 @@ Board::Board() : m_ended{false}, m_currentPlayer{Colour::red}, m_hut(std::make_s
         m_openCivilisationCards[i]->setCost(i + 1);
         m_civilisationCards.erase(m_civilisationCards.begin() + i);
     }
+    newOpenCivCards();
 }
 
 

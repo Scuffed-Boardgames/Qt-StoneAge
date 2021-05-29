@@ -113,8 +113,6 @@ void Player::addBonus(int farmers, int makers, int builders, int shamen, CivBonu
     }
 }
 
-
-
 Tool *Player::getTools(){
     return m_tools;
 }

@@ -504,7 +504,7 @@
     ],
     "players": [
         {
-            "buildings": 0,
+            "buildings": 2,
             "civBonuses": [
                 0,
                 1,
@@ -547,7 +547,7 @@
             "workerTotal": 6
         },
         {
-            "buildings": 0,
+            "buildings": 2,
             "civBonuses": [
                 1,
                 0,
@@ -590,7 +590,7 @@
             "workerTotal": 5
         },
         {
-            "buildings": 0,
+            "buildings": 1,
             "civBonuses": [
                 0,
                 0,
