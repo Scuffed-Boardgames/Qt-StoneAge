@@ -59,7 +59,7 @@ BoardView::BoardView(std::shared_ptr<Board> board, QObject* parent)
     moveByX = 0;
     rectWidth = 175;
     for(int i = 0; i < 4; ++i){
-        m_buildings[i] = std::make_unique<BuildingView>(moveByX, m_board->getOpenBuildingCard(i), 14, this);
+        m_buildings[i] = std::make_unique<BuildingView>(moveByX, m_board->getOpenBuildingCard(i), 7, this);
         moveByX += rectWidth;
         connect(m_board->getOpenBuildingCard(i).get(), &Building::changedWorkers,  m_buildings[i].get(), &BuildingView::updateText);
         connect(m_board->getOpenBuildingCard(i).get(), &Building::turnHappend,  this, &BoardView::updateTurn);
