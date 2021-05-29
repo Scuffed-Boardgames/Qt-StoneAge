@@ -17,6 +17,7 @@ bool SetBuilding::build(std::shared_ptr<Player> player){
     player->addResource(Resource::stone, -m_stoneCost);
     player->addResource(Resource::gold, -m_goldCost);
     player->addScore(m_scoreGain);
+    player->addBuilding();
     return true;
 }
 

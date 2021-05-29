@@ -115,11 +115,12 @@ void BoardView::newBuild(std::shared_ptr<Building> building, int pos, int stackS
     }
 }
 
+
 void BoardView::updateTurn(){
-    m_board->checkChosen(m_board->getCurrentPlayer());
     emit unHighlight(m_board->getCurrentPlayer());
     m_board->nextPlayer();
     emit highlight(m_board->getCurrentPlayer());
+    m_board->checkChosen(m_board->getCurrentPlayer());
 }
 
 void BoardView::placementDone(){
@@ -135,6 +136,7 @@ void BoardView::gameLoop(){
         m_board->civilizeCivilisation((Colour)(i % 4));
         m_board->checkChosen((Colour)(i % 4));
         m_board->buildBuilding((Colour)(i % 4));
+        m_board->getPlayer((Colour)(i % 4))->resetTools();
         emit unHighlight((Colour)(i % 4));
         emit highlight((Colour)((i+1)%4));
     }
@@ -149,6 +151,7 @@ void BoardView::gameLoop(){
     emit unHighlight(m_board->getCurrentPlayer());
     emit highlight((Colour)(((int)m_board->getCurrentPlayer() + 1) % 4));
     m_board->addRound();
+     m_board->checkChosen(m_board->getCurrentPlayer());
     int stackSize = m_board->newCivCards();
 
     if(m_board->checkStacks()){

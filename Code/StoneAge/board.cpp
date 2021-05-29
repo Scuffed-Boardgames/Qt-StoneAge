@@ -111,7 +111,6 @@ void Board::resetWorkers(Colour colour){
     m_toolShed->resetWorkers(colour);
 
     getPlayer(colour)->resetWorkers();
-    getPlayer(colour)->resetTools();
 
     emit m_hunt->changedWorkers();
     emit m_forest->changedWorkers();

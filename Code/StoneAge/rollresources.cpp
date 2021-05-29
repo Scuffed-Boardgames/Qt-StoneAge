@@ -3,8 +3,8 @@
 
 
 RollResources::RollResources(const int workerAmount, const Resource resource, std::shared_ptr<Player>player, QWidget *parent)
-    : QDialog(parent), ui(new Ui::RollResources), m_resource(resource), m_text(resourceToString(resource)), m_player(player){
-
+    : QDialog(parent), ui(new Ui::RollResources), m_resource(resource), m_text(resourceToString(resource)), m_player(player)
+    {
     ui->setupUi(this);
     QString name = player->getString();
     this->setWindowTitle(name);
@@ -17,9 +17,9 @@ RollResources::RollResources(const int workerAmount, const Resource resource, st
     ui->Tool1Label->setText("+" + QString::number(m_player->getTools()[0].getLevel()));
     ui->Tool2Label->setText("+" + QString::number(m_player->getTools()[1].getLevel()));
     ui->Tool3Label->setText("+" + QString::number(m_player->getTools()[2].getLevel()));
-    ui->Tool1Button->setDisabled(m_player->getTools()[0].wasUsed());
-    ui->Tool2Button->setDisabled(m_player->getTools()[1].wasUsed());
-    ui->Tool3Button->setDisabled(m_player->getTools()[2].wasUsed());
+    ui->Tool1Button->setDisabled(m_player->getTools()[0].wasUsed() || m_player->getTools()[0].getLevel() == 0);
+    ui->Tool2Button->setDisabled(m_player->getTools()[1].wasUsed() || m_player->getTools()[1].getLevel() == 0);
+    ui->Tool3Button->setDisabled(m_player->getTools()[2].wasUsed() || m_player->getTools()[2].getLevel() == 0);
     tempTools(player->getExtraTools());
     m_gain = m_roll/(int) m_resource;
     ui->message->setText("You rolled " + QString::number(m_roll) + " which will give you " + QString::number(m_gain) + " " + m_text);

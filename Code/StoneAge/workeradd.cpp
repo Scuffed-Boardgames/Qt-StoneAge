@@ -44,17 +44,18 @@ WorkerAdd::~WorkerAdd(){
 }
 
 void WorkerAdd::on_okayButton_clicked(){
+    this->close();
     if(m_place)
         m_place->addWorker(m_player, ui->amount->value());
     if(m_building)
         m_building->addWorker(m_player);
     if(m_civilisation)
         m_civilisation->addWorker(m_player);
-    ui->amount->setValue(1);
+    ui->amount->setValue(0);
     m_place = nullptr;
     m_building = nullptr;
     m_civilisation = nullptr;
-    this->close();
+
 }
 
 void WorkerAdd::on_cancelButton_clicked(){

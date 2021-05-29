@@ -4,6 +4,7 @@
 PickRolled::PickRolled(std::shared_ptr<Player> player, int die1, int die2, int die3, int die4, QWidget *parent) :
     QDialog(parent), ui(new Ui::PickRolled), m_player{player}
 {
+
     ui->setupUi(this);
     m_resources[0] = die1;
     m_resources[1] = die2;
@@ -62,7 +63,7 @@ void PickRolled::giveResource(QString resource)
     }else if(resource == "Tool"){
         m_player->addTool();
     }else if(resource == "Food Gain"){
-        m_player->addTool();
+        m_player->addFoodGain();
     }
 }
 
@@ -96,6 +97,7 @@ void PickRolled::assignResources()
 
 void PickRolled::assignPlayer(std::shared_ptr<Player> player){
     m_player = player;
+    this->setWindowTitle(m_player->getString());
 }
 
 void PickRolled::on_okayButton_clicked(){

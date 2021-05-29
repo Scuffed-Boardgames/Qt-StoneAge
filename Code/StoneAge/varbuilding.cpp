@@ -59,6 +59,7 @@ bool VarBuilding::build(std::shared_ptr<Player> player, int woodAmount, int clay
     player->addResource(Resource::stone, -stoneAmount);
     player->addResource(Resource::gold, -goldAmount);
     player->addScore(calcScore(woodAmount, clayAmount, stoneAmount, goldAmount));
+    player->addBuilding();
     return true;
 }
 

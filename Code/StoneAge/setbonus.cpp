@@ -10,8 +10,7 @@ SetBonus::SetBonus(const QJsonObject &json)
       (CivBonus)(json["bonus"].toInt()), json["cost"].toInt()), m_amount(json["amount"].toInt()), m_resource((Resource)(json["resource"].toInt()))
 {}
 
-void SetBonus::giveItems(std::shared_ptr<Player> player)
-{
+void SetBonus::giveItems(std::shared_ptr<Player> player){
     ShowCivReward show(player, false, false, false, false, false, (int)m_resource, m_amount);
     show.exec();
     player->addResource(m_resource, m_amount);

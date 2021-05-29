@@ -21,7 +21,7 @@ BuildingView::BuildingView(int moveByX, std::shared_ptr<Building> building, int 
     QGraphicsRectItem* stackHolder = new QGraphicsRectItem(0, 0, 30, 30, tile);
     stackHolder->moveBy(140, 5);
     stackHolder->setBrush(Qt::gray);
-    m_stackAmount = new QGraphicsTextItem("14", stackHolder);
+    m_stackAmount = new QGraphicsTextItem("7", stackHolder);
     m_stackAmount->setFont(QFont("Arial",15));
 
     yPos += 40;

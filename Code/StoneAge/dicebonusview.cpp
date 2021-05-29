@@ -33,7 +33,7 @@ DiceBonusView::DiceBonusView(int moveByX, std::shared_ptr<Civilisation> civilisa
     dice->moveBy(50, 135);
     switch (rollBonus->getResource()) {
     case(Resource::wood):
-        resource->setBrush(QColor(60,125,0));
+        resource->setBrush(QColor(115,75,0));
         return;
     case(Resource::stone):
         resource->setBrush(QColor(75,75,75));
