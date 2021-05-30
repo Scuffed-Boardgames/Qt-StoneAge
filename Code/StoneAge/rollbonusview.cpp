@@ -1,3 +1,4 @@
+// Denzell Mgbokwere 2054872
 #include "rollbonusview.h"
 
 #include<QColor>

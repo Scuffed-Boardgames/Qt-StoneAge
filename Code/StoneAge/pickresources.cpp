@@ -1,3 +1,4 @@
+// Bernd Uijtdebroeks 2055267
 #include "pickresources.h"
 #include "ui_pickresources.h"
 #include "resources.h"

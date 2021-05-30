@@ -1,3 +1,4 @@
+// Bernd Uijtdebroeks 2055267
 #include "place.h"
 
 Place::Place() : QObject(nullptr), m_redWorkers{0}, m_blueWorkers{0}, m_yellowWorkers{0}, m_greenWorkers{0}

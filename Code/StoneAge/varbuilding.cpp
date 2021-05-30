@@ -1,3 +1,4 @@
+// Denzell Mgbokwere 2054872
 #include "varbuilding.h"
 
 VarBuilding::VarBuilding(int diff, int totalMin, int totalMax) : m_diff{diff}, m_totalMin{totalMin}, m_totalMax{totalMax}

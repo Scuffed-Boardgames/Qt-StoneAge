@@ -1,3 +1,4 @@
+// Denzell Mgbokwere 2054872
 #include "resourceplaceview.h"
 
 #include <QGraphicsScene>

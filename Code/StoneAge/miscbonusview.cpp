@@ -1,6 +1,6 @@
+// Denzell Mgbokwere 2054872
 #include "miscbonusview.h"
 #include "miscbonus.h"
-
 #include <QColor>
 #include <QBrush>
 #include <QFont>

@@ -1,3 +1,4 @@
+// Denzell Mgbokwere 2054872
 #include "building.h"
 
 Building::Building() : m_standingColour(Colour::none)

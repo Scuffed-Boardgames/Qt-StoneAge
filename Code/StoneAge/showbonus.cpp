@@ -1,3 +1,4 @@
+// Bernd Uijtdebroeks 2055267
 #include "showbonus.h"
 #include "ui_showbonus.h"
 

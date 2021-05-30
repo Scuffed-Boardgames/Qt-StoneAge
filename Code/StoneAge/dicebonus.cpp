@@ -1,3 +1,4 @@
+// Bernd Uijtdebroeks 2055267
 #include "dicebonus.h"
 #include "rollresources.h"
 

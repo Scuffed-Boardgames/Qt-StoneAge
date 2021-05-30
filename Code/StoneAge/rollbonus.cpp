@@ -1,3 +1,4 @@
+// Bernd Uijtdebroeks 2055267
 #include "rollbonus.h"
 
 RollBonus::RollBonus(Colour colour, int farmers, int makers, int builders, int shamen, CivBonus bonus, int cost, int die1, int die2, int die3, int die4)

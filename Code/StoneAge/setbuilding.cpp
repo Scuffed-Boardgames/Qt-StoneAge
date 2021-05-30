@@ -1,3 +1,4 @@
+// Denzell Mgbokwere 2054872
 #include "setbuilding.h"
 
 SetBuilding::SetBuilding(int wood, int clay, int stone, int gold, int score) : m_woodCost(wood), m_clayCost(clay), m_stoneCost(stone), m_goldCost(gold), m_scoreGain(score)

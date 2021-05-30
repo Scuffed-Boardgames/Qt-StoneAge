@@ -1,3 +1,4 @@
+// Bernd Uijtdebroeks 2055267
 #include "hut.h"
 
 Hut::Hut() : Place(){

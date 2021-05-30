@@ -1,3 +1,4 @@
+// Bernd Uijtdebroeks 2055267
 #include "boardview.h"
 #include "buildingview.h"
 #include "setbuilding.h"
