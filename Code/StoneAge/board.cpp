@@ -130,6 +130,7 @@ void Board::rerollBuildings(){
     for(int i = 0; i < 4; ++i){
         m_buildingCardStacks[i].back()->reset();
         buildings.insert(buildings.end(),m_buildingCardStacks[i].begin(), m_buildingCardStacks[i].end());
+        m_buildingCardStacks[i].clear();
     }
     int i = 0;
     while(buildings.size() > 0){
