@@ -336,6 +336,6 @@ int Player::calcTieBreak(){
         toolAmount += tool.getLevel();
     }
 
-    tieBreak += m_toolMakerCount * toolAmount;
+    tieBreak += toolAmount;
     return tieBreak;
 }

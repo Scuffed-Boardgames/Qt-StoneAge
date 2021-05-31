@@ -185,7 +185,7 @@
             "score": 50,
             "shamans": 8,
             "stone": 20,
-            "toolMakers": 2,
+            "toolMakers": 0,
             "tools": [
                 {
                     "level": 3,
@@ -228,7 +228,7 @@
             "score": 50,
             "shamans": 8,
             "stone": 20,
-            "toolMakers": 2,
+            "toolMakers": 0,
             "tools": [
                 {
                     "level": 3,
@@ -239,7 +239,7 @@
                     "used": false
                 },
                 {
-                    "level": 2,
+                    "level": 1,
                     "used": false
                 }
             ],
