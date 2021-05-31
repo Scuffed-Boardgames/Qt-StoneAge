@@ -141,8 +141,8 @@ void VarBuildingPay::resetAmounts(){
 }
 
 void VarBuildingPay::on_okayButton_clicked(){
-    resetAmounts();
     m_bought = m_building->build(m_player, ui->woodAmount->value(), ui->clayAmount->value(), ui->stoneAmount->value(), ui->goldAmount->value());
+    resetAmounts();
     m_building = nullptr;
     m_player = nullptr;
     this->close();
